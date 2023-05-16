@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/favicon.ico">
+
+        <title>Signposting the Web!</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+
+        <script>
+
+        </script>
+    
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/lodash.min.js"></script>
+        <script src="/static/js/backbone-min.js"></script>
+
+<style>
+
+/* hide interactive JointJS tools */
+.link-tools .tool-remove { display: none; }
+.link-tools .tool-options { display: none; }
+.link .marker-arrowheads { display: none; }
+
+.featurette-divider {
+    margin: 80px;
+    }
+
+#landing {
+    width: 430px;
+    height: 300px;
+    position: relative;
+    z-index: 999;
+    border: 1px solid #000000;
+    border-radius: 25px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding-top: 40px;
+    padding-left: 10px;
+}
+
+#bibliographic {
+    width: 430px;
+    height: 300px;
+    position: relative;
+    z-index: 999;
+    border: 1px solid #000000;
+    border-radius: 25px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding-top: 40px;
+    padding-left: 10px;
+}
+</style>
+
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <div class="row featurette">
+                    <div class="col-md-7 col-md-push-5">
+                        <h2>Signposting the Scholarly Web</h2>
+                        <p class="lead">
+                        Signposting is an approach to make the scholarly web more friendly to machines. 
+                        It uses <a href=“https://www.iana.org/assignments/link-relations/link-relations.xhtml”>typed links</a> in 
+                        <a href=“http://tools.ietf.org/html/rfc5988”>HTTP Link headers</a> as a means to clarify patterns that occur repeatedly in scholarly portals. 
+                        When visiting scholarly portals, readers can easily figure out landing pages, links to bibliographic records, authorship, etc. 
+                        But, because portals use different conventions to convey such patterns, machines have a hard time finding their way around. 
+                        As a portal administrator, you can change that by implementing some of the Signposting patterns listed on this site. 
+                        Doing so will allow machines to navigate scholarly portals in a uniform manner.
+                        </p>
+                        <p class="lead">
+                       As an example, Herbert Van de Sompel and Michael L. Nelson are the authors of the paper with DOI 
+                       <a href=“http://dx.doi.org/10.1045/november2015-vandesompel”>http://dx.doi.org/10.1045/november2015-vandesompel</a>; 
+                       their respective <a href="http://orcid.org/">ORCIDs</a> are <a href=“http://orcid.org/0000-0002-0715-6126”>http://orcid.org/0000-0002-0715-6126</a> 
+                       and <a href=“http://orcid.org/0000-0003-3749-8116”>http://orcid.org/0000-0003-3749-8116</a>. 
+                       <a href="http://crossref.org">CrossRef</a>, the DOI registration agency, can express this authorship 
+                       in a Link header provided in the response to an HTTP HEAD/GET issued against http://dx.doi.org/10.1045/november2015-vandesompel:
+                        <br />
+<pre>
+HTTP/1.1 303 See Other
+Server: Apache-Coyote/1.1
+Vary: Accept
+Location: http://www.dlib.org/dlib/november15/vandesompel/11vandesompel.html
+Link: &lt;http://orcid.org/0000-0002-0715-6126&gt; ; rel="author",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0003-3749-8116&gt; ; rel="author"
+Expires: Tue, 31 May 2016 17:18:50 GMT
+Content-Type: text/html;charset=utf-8
+Content-Length: 217
+Date: Tue, 31 May 2016 16:38:15 GMT
+Connection: keep-alive
+</pre>
+                        </p>
+                    </div>
+                    <div class="col-md-5 col-md-pull-7">
+                        <img src="https://signposting.org/static/images/signposting.png" alt="Signposting the Scholarly Web" 
+                                                                                        style="width: 300px; height: 300px;" />
+                        <p style="font-size: 0.7em;">Image courtesy of <a href="https://twitter.com/hochstenbach" target="_blank">Patrick Hochstenbach</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- /container -->
+
+
+    </body>
+</html>

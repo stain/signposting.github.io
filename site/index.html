@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>Signposting the Scholarly Web</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/signposting.js"></script>
+
+        <script>
+
+$(function() {
+    load_header_footer();
+
+});
+        </script>
+    </head>
+
+    <body>
+        <!-- Static navbar -->
+        <div id="signposting-menu"></div>
+
+        <div class="container">
+
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="row">
+                <div class="jumbo"> 
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h3 style="margin: 0; margin-bottom: 10px;">Signposting the Scholarly Web</h3>
+                            <p class="">
+                            Signposting is an approach to make the scholarly web more friendly to machines. 
+                            It uses <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">Typed Links</a> 
+                            as a means to clarify patterns that occur repeatedly in scholarly portals. For resources of any media type, 
+                            these typed links are provided in 
+                            <a href="http://tools.ietf.org/html/rfc5988">HTTP Link headers</a>. For HTML resources, they may additionally 
+                            be provided in 
+                            <a href="https://www.w3.org/wiki/HTML/Elements/link">HTML link elements</a>. Throughout this site, examples use the former approach.  
+                            <br/><br/>When visiting scholarly portals, readers can easily figure out landing pages, links to bibliographic records, authorship, etc. 
+                            But, because portals use different conventions to convey such patterns, machines have a hard time finding their way around. 
+                            <br/><br/>As a portal administrator or operator of scholarly infrastructure, you can change that by implementing some of the Signposting patterns listed on this site. Doing so will allow machines to navigate scholarly portals in a uniform manner. Which will lead to applications that make things easier for readers too.
+                            </p>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="clearfix">
+                                <img src="https://signposting.org/static/images/signposting.png" alt="Signposting the Scholarly web in Slideshare" class="sp_pat pull-right"/>
+                            </div>
+                            <p style="font-size: 0.7em;" class="pull-right">Image courtesy of <a href="https://twitter.com/hochstenbach" target="_blank">Patrick Hochstenbach</a>.</p>
+                        </div>
+                    </div> <!-- row -->
+                    <div class="row" style="padding: 0 15px;">
+                        <p>
+                        As an example, Herbert Van de Sompel and Michael L. Nelson are the authors of the paper with DOI 
+                        <a href="https://doi.org/10.1045/november2015-vandesompel">https://doi.org/10.1045/november2015-vandesompel</a>; 
+                        their respective <a href="http://orcid.org/">ORCIDs</a> are <a href="http://orcid.org/0000-0002-0715-6126">http://orcid.org/0000-0002-0715-6126</a> 
+                        and <a href="http://orcid.org/0000-0003-3749-8116">http://orcid.org/0000-0003-3749-8116</a>. 
+                        <a href="http://crossref.org">CrossRef</a>, the DOI registration agency, can express this authorship 
+                        in a Link header provided in the response to an HTTP HEAD/GET issued against https://doi.org/10.1045/november2015-vandesompel:
+                        <br />
+
+                        <div class="code">
+                            HTTP/1.1 302 Found<br/>
+                            Server: Apache-Coyote/1.1<br/>
+                            Vary: Accept<br/>
+                            Location: http://www.dlib.org/dlib/november15/vandesompel/11vandesompel.html<br/>
+                            <b>Link: &lt;http://orcid.org/0000-0002-0715-6126&gt; ; rel="author",<br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0003-3749-8116&gt; ; rel="author"<br/></b>
+                            Expires: Tue, 31 May 2016 17:18:50 GMT<br/>
+                            Content-Type: text/html;charset=utf-8<br/>
+                            Content-Length: 217<br/>
+                            Date: Tue, 31 May 2016 16:38:15 GMT<br/>
+                            Connection: keep-alive<br/>
+                        </div>
+                        </p>   
+                    </div>
+                    <div class="row" style="padding: 0 15px;">
+                        <p>
+							There are several reasons why the use of HTTP Link headers is appealing for scholarly portals. 
+                            The headers approach can be used for resources of any media type, not just HTML. Hence, 
+                            images, datasets, PDFs, etc. can all uniformly use the same approach to clarify patterns. Also, headers are accessible using HTTP HEAD requests that return only transaction metadata, 
+                            not content. As such, headers can be obtained for massive resources, such as big data sets or high resolution images, without actually downloading these resources. 
+                            In a similar way, HTTP HEAD requests could be used to obtain headers for restricted content, including paywalled articles. 
+                           But HTTP headers, including the Link header, are not accessible from JavaScript. Therefor, for HTML resources, 
+                            the typed links may additionally 
+                            be provided using the <a href="https://www.w3.org/wiki/HTML/Elements/link">link</a> element in the HTML <a href="https://www.w3.org/wiki/HTML/Elements/head">head</a> element. 
+                    	</p>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
+                    <h3 style="margin: 0; margin-bottom: 10px;">Signposting Patterns</h3>
+                    <h4 class="text-muted">Which pattern do you want machines to understand?</h4>
+                    <div class="" style="padding: 10px;">
+                        <ul>
+                            <li>
+                                <a href="/author/">Author</a>
+                            </li>
+                            <li>
+                                <a href="/bibliographic_metadata/">Bibliographic Metadata</a>
+                            </li>
+                            <li>
+                                <a href="/identifier/">Identifier</a>
+                            </li>
+                            <li>
+                                <a href="/publication_boundary/">Publication Boundary</a>
+                            </li>
+                            <li>
+                                <a href="/resource_type/">Resource Type</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT -->
+
+            <div class="row">
+                <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
+                    <a name="about"></a>
+                    <h3 style="margin: 0; margin-bottom: 10px;">About</h3>
+                    <p class="">
+                    There is very little interoperability among scholarly portals on the
+                    web. Most portals focus on access via the user interface. Some provide APIs
+                    for machine access, in which case each portal exposes their own. But
+                    how about some uniform approaches to allow machines to interact with
+                    scholarly portals?
+                    <br/>
+                    <br/>
+
+                    Understanding that resources are scarce, Signposting proposes a really
+                    simple approach, based on Typed Links conveyed in HTTP Link headers,
+                    to clarify patterns that occur repeatedly in scholarly portals. Typed
+                    Links are used to help machines answer questions like "What is the DOI
+                    of this PDF publication", "Where to find the publication resources
+                    from the landing page?", "Where to find the BibTeX metadata that
+                    describes the publication", "What is the ORCID of the author of this
+                    publication", ...
+
+                    </p>
+                    <p class="">
+                    Signposting is not a formal standardization effort. It's just an
+                    accumulation of ideas from people that have spent a lot of time
+                    thinking about the web and scholarly communication on the web, working
+                    on specifications to improve on the interoperability status quo, and
+                    witnessing some specifications being adopted and others not. Those
+                    scarce resources, you know.
+                    <br/>
+                    <br/>
+
+                    The Signposting approach is fully aligned with hypermedia (REST, HATEOAS)
+                    lines of thinking regarding web interoperability. Implementation of a
+                    pattern should be straightforward and would help machines
+                    significantly. Which would allow the emergence of new applications that make the life of a reader easier. 
+                    Meaning great Return On Investment.
+                    <br/>
+                    <br/>
+
+                    Please share feedback on the <a href="https://groups.google.com/forum/#!forum/signposting">Signposting Google Group</a>.
+                    </p>
+                    
+                    <iframe src="//www.slideshare.net/slideshow/embed_code/key/mS4Iqsjv9NDaqv" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> 
+                    <br/>
+                    <p style="font-weight: 200;">Some background material related to the Signposting effort:</p>
+                    <ul style="font-weight: 200;">
+                        <li>
+                            Van de Sompel, H., and Nelson, M.L. (2015) Reminiscing About 15 Years
+                            of Interoperability Efforts. D-Lib Magazine, 21(11/12).
+                            DOI:10.1045/november2015-vandesompel,
+                            <a href="https://doi.org/10.1045/november2015-vandesompel">https://doi.org/10.1045/november2015-vandesompel</a>
+                        </li>
+                        <li>
+                            Van de Sompel, H., Rosenthal, D., and Nelson, M.L. (2016) Web
+                            Infrastructure to Support e-Journal Preservation (and More). Arxiv
+                            preprint. arXiv:1605.06154 ; <a href="http://arxiv.org/abs/1605.06154">http://arxiv.org/abs/1605.06154</a>
+                        </li>
+                        <li>
+                            Van de Sompel, H., and Nelson, M.L. (2015) Achieving Meaningful
+                            Interoperability for Web-Based Scholarship.
+                            <a href="http://www.slideshare.net/hvdsomp/interoperability-for-web-based-scholarship">http://www.slideshare.net/hvdsomp/interoperability-for-web-based-scholarship</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FEEDBACK -->
+
+            <div class="row">
+                <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
+                    <a name="feedback"></a>
+                    <h3 style="margin: 0; margin-bottom: 10px;">Feedback</h3>
+                    <p class="">
+                    Do you have feedback regarding patterns listed on this site? Are you thinking of another pattern that should be addressed? Do you have concrete suggestions for addressing another pattern? Do you have ideas on how to promote Signposting in the scholarly community? Do you want to join the cause to make the scholarly web more friendly to machines?
+
+                    <br/><br/>
+                    Please let yourself be heard on the <a href="https://groups.google.com/forum/#!forum/signposting" target="_blank">Signposting Google Group</a>.
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /container -->
+
+        <div class="footer" id="footer">
+        </div>
+    </body>
+</html>

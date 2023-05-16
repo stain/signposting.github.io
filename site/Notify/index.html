@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>Notify: Notification modeling</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/signposting.js"></script>
+        <script src="/static/js/lodash.min.js"></script>
+        <script src="/static/js/backbone-min.js"></script>
+ <style type="text/css">       
+ol.nested-counter-list {
+  counter-reset: item;
+}
+
+ol.nested-counter-list li {
+  display: block;
+}
+
+ol.nested-counter-list li::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+ol.nested-counter-list ol {
+  counter-reset: item;
+}
+</style>        
+
+
+    </head>
+
+    <body>
+
+
+
+        <div class="container">
+
+            <div class="row">
+                <div class="jumbo">
+                <div class="row">
+                        <h3>Notify: Notification modeling</h3>
+
+                        
+                    </div>
+            </div>
+            
+<h3><a name="toc"></a>Table of Contents</h3>
+
+<div class=" ">
+<ol class="nested-counter-list">
+<li><a href="#A">Repo requests a Service to review a preprint</a></li>
+<li><a href="#B">Service responds to the review request from Repo</a>
+<ol>
+<li><a href="#B1">Service informs Repo that the request to review is accepted</a></li>
+<li><a href="#B2">Service informs Repo that the request to review is rejected</a></li>
+</ol>
+</li>
+<li><a href="#C">Service informs Repo about review outcome</a>
+<ol>
+<li><a href="#C1">Service informs Repo about positive review outcome</a></li>
+<li><a href="#C2">Service informs Repo about negative review outcome</a></li>
+</ol>
+</li>
+<li><a href="#D">Repo withdraws request to review a preprint previously issued to a Service</a></li>
+</ol>
+</div>
+            
+<h3><a name="A"></a>1. Repo requests a Service to review a preprint</h3>
+
+<div class=" ">
+<ul>
+<li>Activity id represented as urn:uuid. Could be an HTTP URI but that choice assumes HEAD/GET accessibility of the URI.</li>
+<li>Review request is modeled as an Offer.</li>
+<li>Landing page URI of the preprint is at the center of attention, i.e. is the "object". It gets the schema.org type AboutPage.</li> 
+<li>PID (if exists) provided via cite-as link associated with the "object".</li>
+<li>URI of content resource (e.g. the PDF) provided in "url" associated with the "object". It gets the schema.org type ScholarlyArticle.</li>
+<li>In the special case where the landing page isn't a typical landing page but rather the full content (HTML) article (cf. PLOS articles):</li>
+<ul>
+<li>The "object" gets the schema.org type ScholarlyArticle.</li>
+<li>The URI of the content resource provided in "url" associated with the "object" is the same URI as the one for "object" and it gets the 
+schema.org type ScholarlyArticle.</li>
+</ul>
+<li>"origin" and "target" used as originator and destination of the Activity, respectively.</li>
+<li>"actor" (not shown) may be used to express the Service/Person issuing the request for review.</li>
+<li>"origin", "target", and "actor" can all have inboxes.</li>
+<li>Convention is proposed to provide the inbox for the preprint under "origin".</li>
+<li>Additional metadata about the preprint can be provided under "object". Could use AS2 and/or schema.org vocab.</li>
+</ul>
+</div>	
+
+<br />
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Repo requests a Service to review a preprint</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams#",
+    {
+      "sorg": "http://schema.org/",
+      "ldp": "http://www.w3.org/ns/ldp#",
+      "ietf": "http://www.iana.org/assignments/relation/",
+      "ext1": "http://purl.org/external-vocab/v1#"
+    }
+  ],
+  "@id": "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd",
+  "@type": [
+    "Offer",
+    "ext1:review-request"
+  ],
+  "object": {
+    "@id": "https://repository.org/preprint/201203/421/",
+    "@type": "sorg:AboutPage",
+    "ietf:cite-as": "https://doi.org/10.5555/12345680",
+    "url": {
+      "@id": "https://repository.org/preprint/201203/421/content.pdf",
+      "@type": [
+        "Article",
+        "sorg:ScholarlyArticle",
+        "ext1:preprint"
+      ],
+      "mediaType": "application/pdf"
+    }
+  },
+  "origin": {
+    "@id": "https://repository.org",
+    "@type": "Service",
+    "ldp:inbox": "https://repository.org/inbox/"
+  },
+  "target": {
+    "@id": "https://reviewservice.org",
+    "@type": "Service",
+    "ldp:inbox": "https://reviewservice.org/requests/inbox"
+  }
+}
+</pre>
+</td>
+</tr>
+</table>
+</div>	
+
+<br />
+
+                 <div style="text-align: center;">
+                        <a href="A.png" target="_blank"><img src="A.png" width="1200" alt="Repo requests a Service to review a preprint"/></a>
+                        </div>
+               <br />
+   
+
+                
+              
+                               
+<h3><a name="B"></a>2. Service responds to the review request from Repo</h3>
+
+<div class=" ">
+<ul>
+<li>Uses Activity types Accept or Reject. After all, this is a response to an Offer to review a paper. 
+The service is going to review it (Accept offer) or not (Reject offer). The Accept/Reject are not about the paper but about the offer.</li>
+<li>In the next phase, announcement of the outcome of the review process, we'll use the Activity type Announce.</li>
+<li>Activity id represented as urn:uuid. Could be an HTTP URI but that choice assumes HEAD/GET accessibility of the URI.</li>
+<li>The Accept/Reject activities have no "object" themselves because no resource is made available.</li>
+<li>"inReplyTo" is used to connect to the Offer above.</li>
+<li>The preprint for which the review was requested is reflected in the "object" that sits in "inReplyTo".</li>
+<li>"origin" and "target" used as originator and destination of the Activity, respectively.</li>
+<li>"actor" (not shown) may be used to express the Service/Person responding to the request for review.</li>
+<li>"origin", "target", and "actor" can all have inboxes.</li>
+</ul>
+</div>
+
+<br />
+                
+<h4><a name="B1"></a>2.1. Service informs Repo that the request to review is accepted</h4>
+
+
+<div class=" ">
+<ul>
+<li>Given use of Accept of the Offer, not sure we need the specialized type ext1:accept-review-request.</li>
+</ul>
+</div>	
+
+<br />
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Service informs Repo that the request to review is accepted</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams#",
+    {
+      "sorg": "http://schema.org/",
+      "ldp": "http://www.w3.org/ns/ldp#",
+      "ietf": "http://www.iana.org/assignments/relation/",
+      "ext1": "http://purl.org/external-vocab/v1#"
+    }
+  ],
+  "@id": "4fb3af44-d4f8-4226-9475-2d09c2d8d9e0",
+  "@type": [
+    "Accept",
+    "ext1:accept-review-request"
+  ],
+  "inReplyTo": {
+    "@id": "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd",
+    "@type": [
+      "Offer",
+      "ext1:review-request"
+    ],
+    "object": {
+      "@id": "https://repository.org/preprint/201203/421/",
+      "ietf:cite-as": "https://doi.org/10.5555/12345680"
+    }
+  },
+  "origin": {
+    "@id": "https://reviewservice.org",
+    "@type": "Service",
+    "ldp:inbox": "https://reviewservice.org/requests/inbox"
+  },
+  "target": {
+    "@id": "https://repository.org",
+    "@type": "Service",
+    "ldp:inbox": "https://repository.org/inbox/"
+  }
+}
+</pre>
+</td>
+</tr>
+</table>
+</div>	
+
+<br />
+
+                 <div style="text-align: center;">
+                        <a href="B1.png" target="_blank"><img src="B1.png" width="1200" alt="Service informs Repo that the request to review is accepted"/></a>
+                        </div>
+               <br />
+
+
+
+
+ <h4><a name="B2"></a>2.2. Service informs Repo that the request to review is rejected</h4>
+ 
+<div class=" ">
+<ul>
+<li>Given use of Reject of the Offer, not sure we need the specialized type ext1:reject-review-request.</li>
+</ul>
+</div>	
+
+<br />
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Service informs Repo that the request to review is rejected</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams#",
+    {
+      "sorg": "http://schema.org/",
+      "ldp": "http://www.w3.org/ns/ldp#",
+      "ietf": "http://www.iana.org/assignments/relation/",
+      "ext1": "http://purl.org/external-vocab/v1#"
+    }
+  ],
+  "@id": "4fb3af44-d4f8-4226-9475-2d09c2d8d9e0",
+  "@type": [
+    "Reject",
+    "ext1:reject-review-request"
+  ],
+  "inReplyTo": {
+    "@id": "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd",
+    "@type": [
+      "Offer",
+      "ext1:review-request"
+    ],
+    "object": {
+      "@id": "https://repository.org/preprint/201203/421/",
+      "ietf:cite-as": "https://doi.org/10.5555/12345680"
+    }
+  },
+  "origin": {
+    "@id": "https://reviewservice.org",
+    "@type": "Service",
+    "ldp:inbox": "https://reviewservice.org/requests/inbox"
+  },
+  "target": {
+    "@id": "https://repository.org",
+    "@type": "Service",
+    "ldp:inbox": "https://repository.org/inbox/"
+  }
+}
+</pre>
+</td>
+</tr>
+</table>
+</div>	
+
+<br />
+
+                 <div style="text-align: center;">
+                        <a href="B2.png" target="_blank"><img src="B2.png" width="1200" alt="Service informs Repo that the request to review is rejected"/></a>
+                        </div>
+               <br />
+
+		
+
+                
+
+<h3><a name="C"></a>3. Service informs Repo about review outcome</h3>
+
+<div class=" ">
+<ul>
+<li>Activity id represented as urn:uuid. Could be an HTTP URI but that choice assumes HEAD/GET accessibility of the URI.</li>
+<li>"inReplyTo is used to connect to the Offer above.</li>
+<li>The preprint for which the review was requested is reflected in the "object" that sits in "inReplyTo".</li>
+<li>"origin" and "target" used as originator and destination of the Activity, respectively.</li>
+<li>"actor" (not shown) may be used to express the Service/Person responsible for the review outcome.</li>
+<li>"origin", "target", and "actor" can all have inboxes.</li>
+</ul>
+</div>
+
+<br />
+                
+<h4><a name="C1"></a>3.1. Service informs Repo about positive review outcome</h4>
+
+
+<div class=" ">
+<ul>
+<li>Assumes a resource is made available at the service as a result of the review, e.g. an overlay review, a reviewed article, ... 
+That resource becomes the "object" for this Announce Activity.</li>
+</ul>
+</div>	
+
+<br />
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Service informs Repo about positive review outcome</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams#",
+    {
+      "sorg": "http://schema.org/",
+      "ldp": "http://www.w3.org/ns/ldp#",
+      "ietf": "http://www.iana.org/assignments/relation/",
+      "ext1": "http://purl.org/external-vocab/v1#"
+    }
+  ],
+  "@id": "94ecae35-dcfd-4182-8550-22c7164fe23f",
+  "@type": [
+    "Announce",
+    "ext1:review-success"
+  ],
+  "inReplyTo": {
+    "@id": "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd",
+    "@type": [
+      "Offer",
+      "ext1:review-request"
+    ],
+    "object": {
+      "@id": "https://repository.org/preprint/201203/421/",
+      "ietf:cite-as": "https://doi.org/10.5555/12345680"
+    }
+  },
+  "object": {
+    "@id": "https://reviewservice.org/review/geo/202103/0021",
+    "@type": [
+      "Document",
+      "sorg:Review",
+      "ext1:standalone-peer-review"
+    ],
+    "ietf:cite-as": "https://doi.org/10.3214/987654"
+  },
+  "origin": {
+    "@id": "https://reviewservice.org",
+    "@type": "Service",
+    "ldp:inbox": "https://reviewservice.org/requests/inbox"
+  },
+  "target": {
+    "@id": "https://repository.org",
+    "@type": "Service",
+    "ldp:inbox": "https://repository.org/inbox/"
+  }
+}
+</pre>
+</td>
+</tr>
+</table>
+</div>	
+
+<br />
+
+                 <div style="text-align: center;">
+                        <a href="C1.png" target="_blank"><img src="C1.png" width="1200" alt="Service informs Repo about positive review outcome"/></a>
+                        </div>
+               <br />
+
+
+
+
+ <h4><a name="C2"></a>3.2. Service informs Repo about negative review outcome</h4>
+ 
+<div class=" ">
+<ul>
+<li>Assumes no resource is made available at the service as a result of the review. 
+Hence, this Announce Activity has no "object"".
+In case there would be a resource (e.g. a negative review document)it would be handled as above.</li>
+</ul>
+</div>	
+
+<br />
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Service informs Repo about negative review outcome</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams#",
+    {
+      "sorg": "http://schema.org/",
+      "ldp": "http://www.w3.org/ns/ldp#",
+      "ietf": "http://www.iana.org/assignments/relation/",
+      "ext1": "http://purl.org/external-vocab/v1#"
+    }
+  ],
+  "@id": "94ecae35-dcfd-4182-8550-22c7164fe23f",
+  "@type": [
+    "Announce",
+    "ext1:review-failure"
+  ],
+  "inReplyTo": {
+    "@id": "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd",
+    "@type": [
+      "Offer",
+      "ext1:review-request"
+    ],
+    "object": {
+      "@id": "https://repository.org/preprint/201203/421/",
+      "ietf:cite-as": "https://doi.org/10.5555/12345680"
+    }
+  },
+  "origin": {
+    "@id": "https://reviewservice.org",
+    "@type": "Service",
+    "ldp:inbox": "https://reviewservice.org/requests/inbox"
+  },
+  "target": {
+    "@id": "https://repository.org",
+    "@type": "Service",
+    "ldp:inbox": "https://repository.org/inbox/"
+  }
+}
+</pre>
+</td>
+</tr>
+</table>
+</div>	
+
+<br />
+
+                 <div style="text-align: center;">
+                        <a href="C2.png" target="_blank"><img src="C2.png" width="1200" alt="Service informs Repo about negative review outcome"/></a>
+                        </div>
+               <br />
+
+
+
+
+<h3><a name="D"></a>4. Repo withdraws request to review a preprint previously issued to a Service</h3>
+
+<div class=" ">
+<ul>
+<li>Activity id represented as urn:uuid. Could be an HTTP URI but that choice assumes HEAD/GET accessibility of the URI.</li>
+<li>"origin" and "target" used as originator and destination of the Activity, respectively.</li>
+<li>"actor" (not shown) may be used to express the Service/Person issuing the withdrawal of the prior request for review.</li>
+<li>"origin", "target", and "actor" can all have inboxes.</li>
+</ul>
+</div>	
+
+<br />
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Repo withdraws request to review a preprint previously issued to a Service</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams#",
+    {
+      "sorg": "http://schema.org/",
+      "ldp": "http://www.w3.org/ns/ldp#",
+      "ietf": "http://www.iana.org/assignments/relation/",
+      "ext1": "http://purl.org/external-vocab/v1#"
+    }
+  ],
+  "@id": "urn:uuid:6eafed1d-935c-41b1-a5bb-645be4b7533f",
+  "@type": "Undo",
+  "object": {
+    "@id": "urn:uuid:0370c0fb-bb78-4a9b-87f5-bed307a509dd",
+    "@type": [
+      "Offer",
+      "ext1:review-request"
+    ]
+  },
+  "origin": {
+    "@id": "https://repository.org",
+    "@type": "Service",
+    "ldp:inbox": "https://repository.org/inbox/"
+  },
+  "target": {
+    "@id": "https://reviewservice.org",
+    "@type": "Service",
+    "ldp:inbox": "https://reviewservice.org/requests/inbox"
+  }
+}
+</pre>
+</td>
+</tr>
+</table>
+</div>	
+
+<br />
+
+                 <div style="text-align: center;">
+                        <a href="D.png" target="_blank"><img src="D.png" width="1200" alt="Repo withdraws request to review a preprint previously issued to a Service"/></a>
+                        </div>
+               <br />
+
+
+
+<br />
+
+
+
+
+</div>
+            </div> <!-- /container -->
+
+
+
+    </body>
+</html>

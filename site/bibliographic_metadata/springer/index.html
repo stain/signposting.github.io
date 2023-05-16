@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.17), see www.w3.org">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/static/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href=
+  "/static/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href=
+  "/static/images/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href=
+  "/static/images/favicon-16x16.png">
+
+  <title>Bibliographic Metadata - Signposting the Scholarly
+  Web</title><!-- Bootstrap core CSS -->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet" type=
+  "text/css">
+  <link href="/static/css/signposting.css" rel="stylesheet" type=
+  "text/css"><!-- Custom styles for this template -->
+
+  <script src="/static/js/jquery.min.js" type="text/javascript">
+</script>
+  <script src="/static/js/bootstrap.min.js" type="text/javascript">
+</script>
+  <script src="/static/js/signposting.js" type="text/javascript">
+</script>
+  <script type="text/javascript">
+
+  $(function() {
+    load_header_footer();
+  });
+  </script>
+</head>
+
+<body>
+  <!-- Static navbar -->
+
+  <div id="signposting-menu"></div>
+
+  <div class="container">
+    <!-- Main component for a primary marketing message or call to action -->
+
+    <div class="row">
+      <div class="jumbo">
+        <!-- <div style="display: inline-block; width: 89%;"> -->
+
+        <h3 id="publisher-name">Bibliographic Metadata</h3>
+
+        <h4 class="text-muted" id="pattern-sub-heading">DOI ➞
+        Landing Page ➞ Bibliographic Resources</h4>
+
+        <p class="" id="publisher-description"></p>
+
+        <p>The use of Typed Links in the HTTP Link header is
+        illustrated for the paper:</p>
+
+        <div class="code" style=
+        'font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 16px;'>
+        <p id="citation"><span style=
+        "font-variant: small-caps;">Robatian, D.</span> The
+        Fixed-Point Property Under Induced Interval Maps of
+        Continua. <em>Journal of Mathematical Sciences 215</em>, 3
+        (Jun. 2016), 376–386. <a href=
+        "https://doi.org/10.1007/s10958-016-2844-8">https://doi.org/10.1007/s10958-016-2844-8</a>.</p>
+        </div>
+
+        <p id="summary"></p>
+
+        <p>This is a summary of the links that should be provided:</p>
+
+        <ul>
+          <li>The HTTP DOI URI should provide a link with the
+          <code>describedby</code> relation type pointing at the
+          <a href=
+          "/conventions/#bibliographic_resource">Bibliographic
+          Resource</a> provided by the DOI Registration agency
+          (e.g. CrossRef). The link should have <code>type</code>
+          attribute to convey the <a href=
+          "/conventions/#bibliographic">format</a> of the
+          metadata.</li>
+
+          <li>The <a href=
+          "/conventions/#bibliographic_resource">Bibliographic
+          Resource</a> provided by the DOI Registration agency
+          should provide a link with the <code>describes</code>
+          relation type pointing back to the HTTP DOI URI.</li>
+
+          <li>The landing page should provide a link with the
+          <code>describedby</code> relation type pointing to each
+          associated <a href=
+          "/conventions/#bibliographic_resource">Bibliographic
+          Resource</a>, both those provided by the portal itself
+          and by the DOI Registration agency. Each link should use
+          the <code>type</code> attribute (and the
+          <code>profile</code> attribute, if needed) to specify the
+          metadata <a href=
+          "/conventions/#bibliographic">format</a>.</li>
+
+          <li>Each <a href=
+          "/conventions/#bibliographic_resource">Bibliographic
+          Resource</a> provided by the portal should provide a link
+          with the <code>describes</code> relation type pointing
+          back to the landing page.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="jumbo" style=
+      "background: #fff; border-bottom: 0px; border-radius: 0px;">
+        <h3 style="margin:0; margin-bottom: 10px;">Link Headers for
+        the Bibliographic Metadata pattern</h3>
+      </div>
+    </div>
+
+    <div class="pagebreak"></div>
+
+    <div class="row plain-row" style="border-bottom: 0px;" id=
+    "metadata">
+      <img src=
+      "/static/images/bibliographic_metadata_doi_landingpage.png"
+      alt="Visualization of link relations" style=
+      "border: 1px #000 solid;" class="example-graphs">
+
+      <div id="metadataheaders" class="link_headers">
+        <div>
+          <br>
+          <br>
+
+          <div style=
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
+          The HTTP Link Header to link to metadata from the <b>DOI URI</b><br>
+            <tt>https://doi.org/10.1007/s10958-016-2844-8</tt>
+            is:<br>
+
+            <div style="background: #fff; margin: 0 10px;">
+              <br>
+              <code>curl -I &quot;https://doi.org/10.1007/s10958-016-2844-8&quot;</code>
+              <br>
+              <br>
+              <code>Link: &lt;https://doi.org/10.1007/s10958-016-2844-8&gt;<br>
+
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;
+              type=<b>"application/vnd.citationstyles.csl+json"</b></code>
+            </div>
+          </div>
+          <br>
+
+          <div style=
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
+            The HTTP Link header to link from the <b>CrossRef
+            Metadata URI</b><br>
+            <tt>http://data.crossref.org/10.1007%2Fs10958-016-2844-8</tt>
+            is <br/>
+            (in the example metadata in the <code>application/vnd.citationstyles.csl+json</code> format is requested):<br>
+
+            <div style="background: #fff; margin: 0 10px;">
+              <br>
+              <code>curl -I -H &quot;Accept: application/vnd.citationstyles.csl+json&quot; &quot;http://data.crossref.org/10.1007%2Fs10958-016-2844-8&quot;</code>
+              <br>
+              <br>
+              <code>Link: &lt;https://doi.org/10.1007/s10958-016-2844-8&gt;<br>
+
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describes"</b></code>
+            </div>
+          </div>
+
+          <div style=
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
+            The HTTP Link Header to link to metadata from the
+            <b>Landing Page URI</b><br>
+            <tt>http://link.springer.com/article/10.1007%2Fs10958-016-2844-8</tt>
+            is:<br>
+
+            <div style="background: #fff; margin: 0 10px;">
+              <br>
+              <code>curl -I &quot;http://link.springer.com/article/10.1007%2Fs10958-016-2844-8&quot;</code>
+              <br>
+              <br>
+              <code>Link: &lt;http://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation&gt;<br>
+
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;
+              type=<b>"application/x-research-info-systems"</b>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation&gt;<br>
+
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-bibtex"</b>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.org/10.1007/s10958-016-2844-8&gt;<br>
+
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;
+              type=<b>"application/vnd.citationstyles.csl+json"</b></code>
+            </div>
+          </div>
+
+          <div style=
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
+            The HTTP Link header to link from the <b>Metadata RIS
+            URI</b><br>
+            <tt>http://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation</tt>
+            is:<br>
+
+            <div style="background: #fff; margin: 0 10px;">
+              <br>
+              <code>curl -I &quot;http://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation&quot;</code>
+              <br>
+              <br>
+              <code>Link: &lt;http://link.springer.com/article/10.1007%2Fs10958-016-2844-8&gt;<br>
+
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describes"</b></code>
+            </div>
+          </div>
+
+          <div style=
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;">
+          <br>
+            The HTTP Link header to link from the <b>Metadata
+            BibTeX URI</b><br>
+            <tt>http://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation</tt>
+            is:<br>
+
+            <div style="background: #fff; margin: 0 10px;">
+              <br>
+              <code>curl -I &quot;http://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation&quot;</code>
+              <br>
+              <br>            
+              <code>Link: &lt;http://link.springer.com/article/10.1007%2Fs10958-016-2844-8&gt;<br>
+
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describes"</b></code>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="pagebreak"></div>
+  </div><!-- /container -->
+
+  <div class="footer" id="footer"></div>
+</body>
+</html>

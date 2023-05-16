@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>Input for "Apples to apples" Hackathon</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/signposting.js"></script>
+        <script src="/static/js/lodash.min.js"></script>
+        <script src="/static/js/backbone-min.js"></script>
+ <style type="text/css">       
+ol.nested-counter-list {
+  counter-reset: item;
+}
+
+ol.nested-counter-list li {
+  display: block;
+}
+
+ol.nested-counter-list li::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+ol.nested-counter-list ol {
+  counter-reset: item;
+}
+</style>        
+        
+        <!-- RobustLinks CSS -->
+		<link rel="stylesheet" type="text/css" href="https://doi.org/10.25776/z58z-r575" />
+		<!-- RobustLinks Javascript -->
+		<script type="text/javascript" src="https://doi.org/10.25776/h1fa-7a28"></script>
+        <script>   
+$(function() {
+    load_header_footer();
+});
+        </script>
+    </head>
+
+    <body>
+
+        <!-- Static navbar -->
+        <div id="signposting-menu"></div>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="jumbo">
+                <div class="row">
+                        <h3>Input for "Apples to apples" Hackathon</h3>
+                        <h5>
+                        Prepared by: Herbert Van de Sompel (DANS, Ghent University IDLab)
+                        </h5>
+                        <h5>Created 20220225
+                        
+<!--
+                        <a href="https://www.signposting.org/FAIR/"
+data-versionurl="https://web.archive.org/web/20210420065853/https://www.signposting.org/FAIR/"
+data-versiondate="2021-04-20">https://www.signposting.org/FAIR/</a> </h5>
+<h5>Previous version, created 20210401 <a href="https://web.archive.org/web/20210401072126/https://signposting.org/FAIR/">https://web.archive.org/web/20210401072126/https://signposting.org/FAIR/</a></h5>
+						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a></h5>
+						-->
+
+                        </div>
+                    </div>
+            </div>
+            
+<h3><a name="toc"></a>Table of Contents</h3>
+
+<div class=" ">
+<ol class="nested-counter-list">
+<li><a href="#intro">Background</a></li>
+<li><a href="#linktypes">The <code>cite-as</code>, <code>describedby</code>, <code>item</code> link relation types</a></li>
+<li><a href="#recipe">Two implementation approaches: links by-value or by-reference</a>
+</li>
+<li><a href="#examples">Example</a>
+<ol>
+<li><a href="#examples1">Example of typed links by-value</a></li>
+<li><a href="#examples2">Example of typed links by-reference</a></li>
+</ol>
+</li>
+</ol>
+</div>
+            
+<h3><a name="intro"></a>1. Background</h3>
+
+<div class="">
+                    
+                             An outcome of the "Apples to Apples" FAIR Evaluation Stakeholder meetings held on February 7th and 10th 2022 
+                             was a solution (using a subset of the 
+                             <a href="https://signposting.org/FAIR/">FAIR Signposting Profile</a>) to the problems that Mark Wilkinson wanted to address: 
+                             <ul>
+                             <li>Use <code>describedby</code> link(s) on the landing page to support discovery of metadata</li>
+                             <ul>
+                             <li>Use the <code>type</code> attribute on the link to express the media type of the metadata</li>
+                             <li>In case of the media type of the metadata is <code>application/json+ld</code>, use the 
+                             <code>profile</code> attribute to express JSON profile</li>
+                             <li>No <code>type</code> attribute suggests possibility to do HTTP content negotiation for metadata formats</li>
+                             </ul>
+                             <li>Use <code>item</code> link(s) on the landing page to support discovery of data</li>
+                             <ul>
+                             <li>Use the <code>type</code> attribute on the link to express the media type of the data</li>
+                             </ul>
+                             <li>Use a <code>cite-as</code> link on the landing page to express the PID as an HTTP URI</li>
+                             <ul>
+                             <li>For clients that arrive at landing page from a place other than the PID</li>
+                             <li>Removes the perceived ambiguity regarding links that have landing page URI as default anchor 
+                             because the combination of an <code>HTTP 302 Found</code> redirect from the PID (expressed as HTTP URI) 
+                             to the landing page and a <code>cite-as</code> link 
+                             from the landing page to the PID (expressed as HTTP URI) conveys an equivalence between PID (expressed as HTTP URI) and landing page.</li>
+                             </ul>
+                             </ul>
+                         </div>	
+
+                 
+<h3><a name="linktypes"></a>2. The <code>cite-as</code>, <code>describedby</code>, <code>item</code> link relation types</h3>                       
+
+<div class=" ">The typed links that are considered for the hackathon are a subset of those 
+recommended for the <a href="https://signposting.org/FAIR/">FAIR Signposting Profile</a>. The below images compare 
+the typed links recommended for the FAIR Signposting Profile (top) and the subset used for the hackathon (bottom). 
+<br />
+</div>
+<br />
+
+<div style="text-align: center;">
+<img src="FAIR-signposting-links.png" width="500" border="2" alt="FAIR Signposting links"/>
+</div>
+   <br />          
+<div style="text-align: center;">
+<img src="hackaton-links.png" width="500" alt="hackathon links"/>
+</div>
+  <br />   
+  
+  <div class=" ">
+The below table shows cardinality and description for the
+<code>describedby</code>, <code>item</code>, and <code>cite-as</code> links that are provided 
+with the <b>landing page</b> as link context. As is the case with all link relation types used in Signposting, these 
+relation types are registered in the <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">IANA Link Relation Registry</a> 
+with inclusion of the formal specifications in which they have been defined.
+<br />
+</div>
+<br />      
+                        
+<div class="">
+                    <table class="table" >
+                        <tr>
+                            <td style="width: 15%;"><b>Link Relation Type</b></td>
+                            <td style="width: 15%;"><b> Link Cardinality</b></td>
+                            <td><b>Comment</b></td>
+                        </tr>
+                        <!--
+                        <tr>
+                            <td><code>author</code></td>
+                            <td>0 or more</td>
+                            <td>For each author of the scholarly object that has a persistent identifier (e.g. ORCID expressed as HTTP URI), 
+                            consider providing a link that has the landing page as link context and the persistent identifier 
+                            of the author as target. When doing so a link should be provided for each author that has a persistent identifier. 
+                             <br /><br />However, be aware that the number of authors for a scholarly object can be large. 
+                            As such, in order to avoid the risk of the HTTP header becoming too large, it may be safer 
+                            to only provide these links when using Link Sets in <a href="#level2">Level 2</a>. 
+                             </td>
+                        </tr>
+                        -->
+                        <tr>
+                            <td><code>cite-as</code></td>
+                            <td>1</td>
+                            <td>Provide a link that has the persistent identifier  
+                            of the scholarly object (e.g. DOI expressed as an HTTP URI) as target.</td>
+                        </tr>
+                        <tr>
+                            <td><code>describedby</code></td>
+                            <td>1 or more</td>
+                            <td>Provide one or more links that have the URI of metadata that describes the scholarly object 
+                            in a commonly used format as target. 
+                             On each link, provide the media type of the metadata in the <code>type</code> 
+                            attribute. Common media types include
+                            <br /><code>application/x-bibtex</code> (BibTeX), 
+                            <br /><code>application/vnd.citationstyles.csl+json</code> (CiteProc JSON), 
+                            <br /><code>application/x-research-info-systems</code> (RIS), 
+                            <br /><code>application/vnd.datacite.datacite+xml</code> (DataCite XML), 
+                            <br /><code>application/vnd.datacite.datacite+json</code> (DataCite JSON), 
+                            <br /><code>application/vnd.jats+xml</code> (JATS),
+                            <br /><code>application/vnd.codemeta.ld+json</code> (Codemeta),
+                            <br /><code>text/x-bibliography</code> (Formatted text citation).
+                            <br /><br />Many other bibliographic formats are in use that have <code>text/plain</code>, 
+                            <code>application/xml</code>, <code>application/json</code>, or <code>application/ld+json</code> as media type.
+                            When providing metadata that describes the scholarly object using these media types, use the <code>profile</code> 
+                            attribute on the link to convey, by means of an HTTP URI, the specific format of the metadata. For example, for 
+                            metadata expressed as <code>application/xml</code>, provide the XML Namespace URI in the <code>profile</code> 
+                            attribute. 
+                            <br /><br />Note that the use of the <code>profile</code> attribute is standardized for certain media types (e.g. for 
+                <code>application/ld+json</code>) but not for others (e.g. <code>application/xml</code>). However, the <a href="https://datatracker.ietf.org/doc/html/rfc8288">Web Linking</a> RFC does support 
+                <a href="https://datatracker.ietf.org/doc/html/rfc8288#section-3.4.2">extension attributes</a>. It seems logical to choose <code>profile</code> as an extension attribute to provide detailed information 
+                 for media types for which the <code>profile</code> attribute has not explicitly been standardized.
+                            </td>
+                        </tr>
+                        <!--
+                        <tr>
+                            <td><code>type</code></td>
+                            <td>2 (in most cases) or 1</td>
+                            <td>Provide a <em>first</em> link that has as target 
+                            the <a href="https://schema.org">schema.org</a> 
+                            term (HTTP URI) for a <a href="https://schema.org/CreativeWork">Creative Work</a> that best  
+                            characterizes the scholarly object as a whole. For example, provide <code>https://schema.org/ScholarlyArticle</code> 
+                            in case the object is a scholarly paper; provide <code>https://schema.org/Dataset</code> if it is a dataset. 
+                            If no appropriate term is available in 
+                            <code>https://schema.org/</code>, select one (HTTP URI) from a commonly used ontology. 
+                            <br />
+                            Provide a <em>second</em> link that has as target 
+                            <code>https://schema.org/AboutPage</code> in the common case where an actual landing page is concerned. 
+                            Do not provide this second link in case a content resource is concerned, i.e. do not provide 
+                            this second link when the persistent identifier of the scholarly object directly resolves to a content resource, such 
+                            as an HTML article, without presenting an intermediate landing page.
+                            </td>
+                        </tr>
+                        -->
+                        <!--
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>0 or 1</td>
+                            <td>If the license under which the scholarly object is made available is known, 
+                            provide a link that has as target the URI of that license. 
+                            Common licenses used are those provided by the <a href="https://creativecommons.org/share-your-work/">Creative Commons</a>. 
+                            </td>
+                        </tr>
+                        -->
+                        <tr>
+                            <td><code>item</code></td>
+                            <td>1 or more</td>
+                            <td>The landing page is modeled as a collection of content resources. 
+                            As such, provide links that have content resources 
+                            (e.g. the PDF article, the CSV dataset, the ZIPped software repository)
+                            as target. When doing so a 
+                            link should be provided for each content resource. 
+                            Use the <code>type</code> attribute on each link to convey the media type 
+                            of the content resource.
+                            However, be aware that the number of content resources for a scholarly object might be large. 
+                            As such, in order to avoid the risk of the HTTP header becoming too large, it may be safer 
+                            to provide these links using the <a href="#level2">Link Set</a> approach.
+                            </td>
+                        </tr>
+                    </table>
+</div>
+  
+                               
+<h3><a name="recipe"></a>3. Two implementation approaches: links by-value or by-reference</h3>
+
+<div class=" ">
+Typed links can be conveyed in two ways: 
+<ul>
+<li>Approach 1 - <b>By value</b> in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element.</li>
+<li>Approach 2 - <b>By reference</b> in a <a href="#linkset">Link Set</a>, which is made discoverable by means of a link with the 
+<code>linkset</code> relation type in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element. 
+</li>
+</ul>
+Approach 2 is attractive when it can be expected that a large number of typed links need to be conveyed, for example, 
+when the research outputs hosted by a repository typically have a significant number of content files (i.e. many <code>item</code> links) 
+as is sometimes the case with data repositories. It is also attractive when implementing a larget set of 
+typed links recommended by the <a href="https://signposting.org/FAIR/">FAIR Signposting Profile</a>. This is especially 
+the case when also implementing typed links pertaining to content resources. In that case, all typed links can be contained in a single 
+Link Set that is made discoverable from both landing page and content resources. 
+</div>
+
+<br />
+
+                <div style="text-align: center;">
+<img src="linkset_basics.png" width="500" alt="Link Sets"/>
+</div>
+
+<br />
+
+<div class=" "><a name="linkset"></a>Link Sets are specified in the IETF Internet Draft (well on its way to become an RFC) 
+                <a href="https://datatracker.ietf.org/doc/draft-ietf-httpapi-linkset/">Linkset: Media Types and a Link Relation Type for Link Sets</a>:
+                <ul>
+                <li>
+                A Link Set is a collection of typed links, including links pertaining to the resource that 
+                makes the set of links discoverable. 
+                </li> 
+                <li>
+                A Link Set is made discoverable by means of a typed link with the <code>linkset</code> 
+                relation type that will be added to the <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">IANA Link Relation 
+                Registry</a> as soon as the <a href="https://datatracker.ietf.org/doc/draft-ietf-httpapi-linkset/">Linkset</a> Internet Draft 
+                becomes an RFC. A <code>type</code> attribute on that link conveys the media type that is 
+                used to serialize the Link Set.
+                </li>
+                <li>
+                Two approaches exist to serialize a Link Set: one is JSON-based (media type <code>application/json+linkset</code>) 
+                and the other uses the same format as the payload of the HTTP <code>Link</code> header 
+                (media type <code>application/linkset</code>).
+                </li>
+                <li>For all typed links in a Link Set, both link context and link target must be explicitly provided and expressed as 
+                absolute URIs. This allows to unambiguously interpret a Link Set without the need to 
+                save contextual information such as the URI where it is published.
+                </li>
+				</ul>
+</div> 
+                
+
+                
+               
+
+<h3><a name="examples"></a>4. Examples</h3>
+
+<div class=" ">
+This section shows examples for providing the <code>cite-as</code>, <code>describedby</code>, <code>item</code> 
+links with the landing page as link context, using the <a href="#level">by-value</a> and <a href="#level2">by-reference</a> approaches. 
+The examples use the dataset with PID <a href="https://doi.org/10.34894/SRSB8I">https://doi.org/10.34894/SRSB8I</a> as an example. 
+The below table lists important resources for that dataset. Note that various metadata formats are available 
+via content negotiation with https://doi.org/10.34894/SRSB8I as described in the section Supported Content Types of 
+the <a href="https://support.datacite.org/docs/datacite-content-resolver">DataCite Content Negotiation manual</a>. The example 
+provides a link to only one of those formats. 
+</div>
+
+<br />
+
+<div class=" ">
+<table class="table" >
+                        <tr>
+                            <td style="width: 45%;"><b>Scholarly Object Resources</b></td>
+                            <td style="width: 35%;"><b>HTTP URI</b></td>
+                            <td><b>Media Type</b></td>
+                        </tr>
+                        <tr>
+                            <td>Persistent Identifier</td>
+                            <td>https://doi.org/10.34894/SRSB8I</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Landing Page</td>
+                            <td>https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I</td>
+                            <td>text/html</td>
+                        </tr>
+                        <tr>
+                            <td>Content Resource 1 - PDF file</td>
+                            <td>https://dataverse.nl/api/access/datafile/192732</td>
+                            <td>application/pdf</td>
+                        </tr>
+                        <tr>
+                        <td>Content Resource 2 - SPSS file</td>
+                            <td>https://dataverse.nl/api/access/datafile/192733</td>
+                            <td>application/x-spss-sav</td>
+                        </tr>
+                        <tr>
+                        <td>Metadata Description 1</td>
+                            <td>https://doi.org/10.34894/SRSB8I</td>
+                            <td>application/vnd.citationstyles.csl+json</td>
+                        </tr>
+                        <tr>
+                        <td>Metadata Description 2</td>
+                            <td>https://dataverse.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.34894/SRSB8I</td>
+                            <td>application/json+ld</td>
+                        </tr>
+</table>
+</div>
+
+<br />
+
+
+
+<h4><a name="examples1"></a>4.1. Example of typed links by-value</h4>
+
+<div class=" ">The typed links can be provided   
+in the page's HTTP <code>Link</code> header and/or in <code>&lt;link&gt;</code> elements in the <code>&lt;head&gt;</code> section of that page's HTML. 
+Remember that typed links in the HTTP <code>Link</code> header are accessible 
+via both HTTP HEAD and GET, while links in the HTML are only accessible via HTTP GET.
+</div>
+
+<br />
+
+<div class=" ">When using the <code>Link</code> header approach:
+<ul>
+<li>the required typed links can be conveyed in a single the HTTP <code>Link</code> header 
+or using multiple <code>Link</code> headers, one header per link</li>
+<li>line breaks must not be used in <code>Link</code> headers as they are not allowed per 
+<a href="https://tools.ietf.org/html/rfc7230#section-3.2">RFC7230</a>;  
+only whitespaces and tabs are supported as separators</li>
+</ul>
+</div>
+
+<br />
+
+<div class=" ">
+The below examples show responses to an HTTP GET request issued against the URI of the landing page of our example dataset. 
+In the first example, the HTTP header approach is used to convey the typed links, with each link provided in a separate <code>Link</code> header. 
+Note that the same links could simultaneously be provided via <code>&lt;link&gt;</code> elements in the HTML's <code>&lt;head&gt;</code>. 
+In the second example, the typed links are provided in the HTML's <code>&lt;head&gt;</code> but not in the HTTP <code>Link</code> header.
+</div>
+
+<br />
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Typed links with the landing page as anchor via the HTTP <code>Link</code> header</td>
+</tr>
+<tr>
+<td>
+<pre>
+$ curl --head "https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I"
+
+HTTP/1.1 200 OK
+Date: Fri, 25 Feb 2022 15:31:22 GMT
+Content-Type: text/html
+Content-Length: 25414
+Link: &lt;https://doi.org/10.34894/SRSB8I&gt; ; rel="cite-as"
+Link: &lt;https://dataverse.nl/api/access/datafile/192732&gt; ; rel="item" ; type="application/pdf"
+Link: &lt;https://dataverse.nl/api/access/datafile/192733&gt; ; rel="item" ; type="application/x-spss-sav"
+Link: &lt;https://doi.org/10.34894/SRSB8I&gt; ; rel="describedby" ; type="application/vnd.citationstyles.csl+json"
+Link: &lt;https://dataverse.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.34894/SRSB8I&gt; 
+      ; rel="describedby" ; type="application/json+ld"
+</pre>
+</td>
+</tr>
+</table>
+</div>
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Typed links with the landing page as anchor via HTML <code>&lt;link&gt;</code> elements</td>
+</tr>
+<tr>
+<td>
+<pre>
+$ curl --include "https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I"
+
+HTTP/1.1 200 OK
+Date: Fri, 25 Feb 2022 15:31:22 GMT
+Content-Type: text/html
+Content-Length: 25414
+
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;link rel="cite-as" href="https://doi.org/10.34894/SRSB8I"&gt;
+  &lt;link rel="item" type="application/pdf" href="https://dataverse.nl/api/access/datafile/192732"&gt;
+  &lt;link rel="item" type="application/x-spss-sav" href="https://dataverse.nl/api/access/datafile/192733"&gt;
+  &lt;link rel="describedby" type="application/vnd.citationstyles.csl+json" href="https://doi.org/10.34894/SRSB8I" &gt;  
+  &lt;link rel="describedby" type="application/json+ld" 
+           href="https://dataverse.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.34894/SRSB8I"&gt;
+  ...
+</pre>
+</td>
+</tr>
+</table>
+</div>
+
+
+<h4><a name="examples2"></a>4.2. Example of typed links by-reference</h4>
+
+<div class=" ">
+In this approach, a single <a href="linkset">Link Set</a> contains all typed links. 
+This Link Set is made discoverable through the provision of <code>linkset</code> links  
+on the landing page. 
+</div>
+
+<br />
+
+<div class=" ">
+For the landing page,  
+this can be done using the HTTP <code>Link</code> header and/or via <code>&lt;link&gt;</code> element's in the HTML's <code>&lt;head&gt;</code>. 
+The below example illustrates the latter approach through the inclusion of two <code>linkset</code> 
+links pointing to different serializations of the Link Set. 
+Note that the response also contains the <a href="#level1a">by-value</a> links 
+that have the landing page as anchor.
+</div>
+
+<br />
+
+<div class=" ">
+For the purpose of the examples, we will assume that:
+<ul>
+<li>an <code>application/linkset+json</code> Link Set is provided at 
+<code>https://dataverse.nl/api/datasets/linkset/1?persistentId=doi:10.34894/SRSB8I</code></li>
+<li>an <code>application/linkset</code> Link Set is provided at 
+<code>https://dataverse.nl/api/datasets/linkset/2?persistentId=doi:10.34894/SRSB8I</code></li>
+</ul> 
+</div>
+
+<br />
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Landing page provides <code>linkset</code> links in HTTP <code>Link</code> header</td>
+</tr>
+<tr>
+<td>
+<pre>
+$ curl --head "https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I"
+
+HTTP/1.1 200 OK
+Date: Fri, 25 Feb 2022 15:33:15 GMT
+Content-Type: text/html
+Content-Length: 25414
+Link: &lt;https://doi.org/10.34894/SRSB8I&gt; ; rel="cite-as"
+Link: &lt;https://dataverse.nl/api/access/datafile/192732&gt; ; rel="item" ; type="application/pdf"
+Link: &lt;https://dataverse.nl/api/access/datafile/192733&gt; ; rel="item" ; type="application/x-spss-sav"
+Link: &lt;https://doi.org/10.34894/SRSB8I&gt; ; rel="describedby" ; type="application/vnd.citationstyles.csl+json"
+Link: &lt;https://dataverse.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.34894/SRSB8I&gt; 
+      ; rel="describedby" ; type="application/json+ld"
+Link: &lt;https://dataverse.nl/api/datasets/linkset/1?persistentId=doi:10.34894/SRSB8I&gt; 
+      ; rel="linkset" ; type="application/linkset+json" 
+Link: &lt;https://dataverse.nl/api/datasets/linkset/2?persistentId=doi:10.34894/SRSB8I&gt; 
+      ; rel="linkset" ; type="application/linkset" 
+</pre>
+</td>
+</tr>
+</table>
+</div>
+
+<br />
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Landing page provides <code>linkset</code> links in HTML <code>&lt;link&gt;</code></td>
+</tr>
+<tr>
+<td>
+<pre>
+$ curl --include "https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I"
+
+HTTP/1.1 200 OK
+Date: Fri, 25 Feb 2022 15:33:15 GMT
+Content-Type: text/html
+Content-Length: 25414
+
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;link rel="cite-as" href="https://doi.org/10.34894/SRSB8I"&gt;
+  &lt;link rel="item" type="application/pdf" href="https://dataverse.nl/api/access/datafile/192732"&gt;
+  &lt;link rel="item" type="application/x-spss-sav" href="https://dataverse.nl/api/access/datafile/192733"&gt;
+  &lt;link rel="describedby" type="application/vnd.citationstyles.csl+json" href="https://doi.org/10.34894/SRSB8I" &gt;  
+  &lt;link rel="describedby" type="application/json+ld" 
+           href="https://dataverse.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.34894/SRSB8I"&gt;
+  &lt;link rel="linkset" type="application/linkset+json" 
+           href="https://dataverse.nl/api/datasets/linkset/1?persistentId=doi:10.34894/SRSB8I"&gt;
+  &lt;link rel="linkset" type="application/linkset" 
+           href="https://dataverse.nl/api/datasets/linkset/2?persistentId=doi:10.34894/SRSB8I"&gt;
+  ...
+</pre>
+</td>
+</tr>
+</table>
+</div>
+
+<div class=" ">
+An actual Link Set is obtained by issuing an HTTP GET on a URI discovered as described above. The below examples show responses 
+to requests issued against <code>https://dataverse.nl/api/datasets/linkset/1?persistentId=doi:10.34894/SRSB8I</code> (<code>application/linkset+json</code> serialization) 
+and <code>https://dataverse.nl/api/datasets/linkset/2?persistentId=doi:10.34894/SRSB8I</code> (<code>application/linkset</code> serialization), respectively. 
+<br /><br />
+Note that:
+<ul>
+<li>the <code>application/linkset+json</code> serialization is described in detail in <a href="https://datatracker.ietf.org/doc/draft-ietf-httpapi-linkset/">Linkset: Media Types and a Link Relation Type for Link Sets</a></li>
+<li>the <code>application/linkset</code> serialization is the same as the payload of an HTTP Link header that contains one or more links, with the only difference that the 
+<code>application/linkset</code> does allow for line breaks whereas the Link header payload does not</li>
+<li>for all typed links, both link context and link target must be explicitly provided and expressed as absolute URIs</li>
+</ul>
+ 
+</div>
+
+<br /><br />
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Typed links via a Link Set in <code>application/linkset+json</code> serialization</td>
+</tr>
+<tr>
+<td>
+<pre>
+$ curl --include -H "Accept: application/linkset+json" "https://dataverse.nl/api/datasets/linkset/1?persistentId=doi:10.34894/SRSB8I"
+
+HTTP/1.1 200 OK
+Date: Fri, 25 Feb 2022 15:56:44 GMT
+Server: Apache-Coyote/1.1
+Content-Length: 844
+Content-Type: application/linkset+json
+Connection: close
+
+{
+  "linkset": [
+    {
+      "anchor": "https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I",
+      "cite-as": [
+        {
+          "href": "https://doi.org/10.34894/SRSB8I"
+        }
+      ],
+      "item": [
+        {
+          "href": "https://dataverse.nl/api/access/datafile/192732",
+          "type": "application/pdf"
+        },
+        {
+          "href": "https://dataverse.nl/api/access/datafile/192733",
+          "type": "application/x-spss-sav"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://doi.org/10.34894/SRSB8I",
+          "type": "application/vnd.citationstyles.csl+json"
+        },
+        {
+          "href": "https://dataverse.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.34894/SRSB8I",
+          "type": "application/json+ld"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</table>
+</div>
+
+<div class=" ">
+<table class="table" >
+<tr>
+<td style="width: 80%;">Typed links via a Link Set in <code>application/linkset</code> serialization</td>
+</tr>
+<tr>
+<td>
+<pre>
+$ curl --include -H "Accept: application/linkset" "https://dataverse.nl/api/datasets/linkset/2?persistentId=doi:10.34894/SRSB8I"
+
+HTTP/1.1 200 OK
+Date: Fri, 25 Feb 2022 15:56:44 GMT
+Server: Apache-Coyote/1.1
+Content-Length: 931
+Content-Type: application/linkset
+Connection: close
+
+&lt;https://doi.org/10.34894/SRSB8I&gt; 
+    ; rel="cite-as" 
+    ; anchor="https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I", 
+&lt;https://dataverse.nl/api/access/datafile/192732&gt; 
+    ; rel="item" ; type="application/pdf" 
+    ; anchor="https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I", 
+&lt;https://dataverse.nl/api/access/datafile/192733&gt; 
+    ; rel="item" ; type="application/x-spss-sav" 
+    ; anchor="https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I",
+&lt;https://doi.org/10.34894/SRSB8I&gt; 
+    ; rel="describedby" ; type="application/vnd.citationstyles.csl+json" 
+    ; anchor="https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I",
+&lt;https://dataverse.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.34894/SRSB8I&gt; 
+    ; rel="describedby" ; type="application/json+ld" 
+    ; anchor="https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I"
+</pre>
+</td>
+</tr>
+</table>
+</div>
+
+
+
+
+
+
+
+
+<br />
+
+
+
+
+</div>
+            </div> <!-- /container -->
+
+            <div class="footer" id="footer">
+            </div>
+
+    </body>
+</html>

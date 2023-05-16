@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>Landing Page Patterns - Signposting the Scholarly Web</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+
+        <script>
+          SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement || function(toElement) {
+              return toElement.getScreenCTM().inverse().multiply(this.getScreenCTM());
+          };
+        $.get("/static/menu.html", function(data) {
+            $("#signposting-menu").html(data);
+        });
+        $.get("/static/footer.html", function(data) {
+            $("#footer").html(data);
+        });
+
+        </script>
+    
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/lodash.min.js"></script>
+        <script src="/static/js/backbone-min.js"></script>
+
+    </head>
+
+    <body>
+
+        <!-- Static navbar -->
+         <div id="signposting-menu"></div>
+
+        <div class="container">
+
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <div class="row featurette">
+                    <div>
+                        <h3>Landing Page Pattern</h3>
+                        <h4 class="text-muted">Signposting the Scholarly Web</h4>
+                        <p class="lead">
+                        Use <a href=“https://www.iana.org/assignments/link-relations/link-relations.xhtml”>typed links</a> in 
+                        <a href=“http://tools.ietf.org/html/rfc5988”>HTTP Link headers</a> to help machines 
+                        find the resources that make up a publication, to 
+                        determine what the nature of each resource is (landing page, article, 
+                        dataset, ...), and what the identifying HTTP URI of the publication is.
+                        <br /><br />
+                        The following relation types are used in the Landing Page pattern:
+                        <ul>
+                        <li>To convey the identifier of the publication: <code>persistent-id</code></li>
+                        <li>To connect the resources that make up a publication: <code>item</code>, <code>collection</code></li>
+                        <li>To convey the type of a resource that is part of a publication: <code>type</code></li>
+                        </ul>
+                        In addition, the following attributes may be used on typed links:
+                        <ul>
+                        <li>To express the media type of the linked resource: <code>type</code></li>
+                        <li>To convey what the nature of a linked resource is (landing page, article, 
+                        dataset, ...): <code>sem-type</code>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Select your portal's pattern and inspect examples to find out how to implement Signposting:</h3>
+            <div class="row" style="text-align: center;">
+                <div class="col-md-6">
+                    <div class="col6">
+                        <h3 class="patterntype">DOI/Handle => Landing Page => Publication Resources</h3>
+                        <p>
+                        Like: 
+                        <a href="/landing_patterns/acm/">ACM</a>, 
+                        <a href="/landing_patterns/biorxiv/">bioRxiv</a>, 
+                        <a href="/landing_patterns/cambridge/">Cambridge University Press</a>,
+                        <a href="/landing_patterns/dspace/">DSpace</a>,<br/>
+                        <a href="/landing_patterns/elsevier/">Elsevier</a>,
+                        <a href="/landing_patterns/harvard_dataverse/">Harvard Dataverse</a>, 
+                        <a href="/landing_patterns/science/">Science</a>
+                        </p>
+                        <div id="patterna" class="patternbox"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col6">
+                        <h3 class="patterntype">DOI/Handle => Publication => Other Publication Resources</h3>
+                        <p>
+                        Like: 
+                        <a href="/landing_patterns/nature/">Nature</a>,
+                        <a href="/landing_patterns/jama/">Journal of the American Medical Association</a>,<br/>
+                        <a href="/landing_patterns/plos/">PLoS One</a>,
+                        <a href="/landing_patterns/royal_society/">Royal Society Publishing</a>
+                        </p>
+                        <div id="patternb" class="patternbox"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="text-align: center;">
+                <div class="col-md-6">
+                    <div class="col6">
+                        <h3 class="patterntype">Stable Repository Identifier => Landing Page => Publication Resources</h3>
+                        <p>
+                        Like:
+                        <a href="/landing_patterns/eprints/">EPrints</a>,
+                        <a href="/landing_patterns/ssrn-no-doi/">SSRN (without DOI)</a>
+                        </p>
+                        <div id="patterne" class="patternbox"></div>
+                    </div>
+                </div>
+            </div>  
+            <div class="row" style="text-align: center;">
+                <div class="col-md-6">
+                    <div class="col6">
+                        <h3 class="patterntype">Landing Page => Publication Resources</h3>
+                        <p>
+                        Like: 
+                        <a href="/landing_patterns/arxiv/">arXiv</a>, 
+                        <a href="/landing_patterns/hydra/">Hydra</a>
+                        </p>
+                        <div id="patternc" class="patternbox"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col6">
+                        <h3 class="patterntype">Publication => Other Publication Resources</h3>
+                        <p>
+                        Like: 
+                        <a href="/landing_patterns/code4lib/">code4lib</a>,
+                        <a href="/landing_patterns/college-and-research-libraries">College &amp; Research Libraries News</a>
+                        </p>
+                        <div id="patternd" class="patternbox"></div>
+                    </div>
+                </div>
+            </div>
+          
+
+        </div> <!-- /container -->
+
+            <div class="footer" id="footer">
+            </div>
+
+    <link rel="stylesheet" href="/static/css/joint.min.css" />
+    <script src="/static/js/joint.min.js"></script>
+    <script src="/static/js/patternvis.js"></script>
+    <script>
+        var model_files = {
+            'patterna': '/models/landing-page-example-pid-leading-to-landing-page.json',
+            'patternb': '/models/landing-page-example-pid-leading-to-article.json',
+            'patternc': '/models/landing-page-example-nopid-with-landing-page.json',
+            'patternd': '/models/landing-page-example-nopid-article-only.json',
+            'patterne': '/models/landing-page-example-internal-pid-with-landing-page.json'
+        }
+
+        $.each (Object.keys(model_files), function(index, divid) {
+            $.getJSON(model_files[divid], function(data) {
+                startGraphing(divid, 'landing', 'nodesonly', data);
+            });
+        });
+
+        </script>
+
+
+    </body>
+</html>

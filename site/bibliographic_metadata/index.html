@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>Bibliographic Metadata - Signposting the Scholarly Web</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/signposting.js"></script>
+
+        <script>
+
+$(function() {
+    load_header_footer();
+});
+        </script>
+
+    </head>
+
+    <body>
+
+        <!-- Static navbar -->
+        <div id="signposting-menu"></div>
+
+        <div class="container">
+
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="row">
+                <div class="jumbo">
+                    <h3 style="margin: 0; margin-bottom: 10px;">Bibliographic Metadata</h3>
+                    <h4 class="text-muted">Signposting the Scholarly Web</h4>
+                    <div class="">
+                        Use <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">Typed Links</a> in 
+                        <a href="http://tools.ietf.org/html/rfc5988">HTTP Link headers</a> to help machines 
+                        find the bibliographic metadata that describe a publication. 
+                        <br /><br />
+                        Several metadata resources may exist, each expressed according to a different format. Each such metadata resource should be published at a URI that supports HTTP GET. Currently, many portals exist where this is not the case. Also, the format of each metadata resource should be expressed unambiguously in its HTTP response header. When it comes to bibliographic metadata resources, there is currently
+                        little uniformity out there. We propose <a href="/conventions/#bibliographic">some conventions</a> to start addressing that problem.
+                        <br /><br />
+                        The following relation types are used in the Bibliographic Metadata pattern:
+                        <ul>
+                            <li>To link to and from bibliographic metadata, respectively: <code>describedby</code>, <code>describes</code></li>
+                        </ul>
+                        In addition, the following attributes should be used on Typed Links:
+                        <ul>
+                            <li>To express the media type of the linked resource: <code>type</code></li>
+                            <li>To provide details regarding the <a href="https://tools.ietf.org/html/rfc6906#section-3">profile</a> of the linked resource, for example, when several 
+                                linked resources have the same media type: <code>formats</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
+                    <h3 style="margin: 0; margin-bottom: 10px;">Bibliographic Metadata Approaches</h3>
+                    <h4 class="text-muted">Select your portal's approach and inspect how to implement Signposting:</h4>
+                    <div class="" style="padding: 10px;">
+                        <ul>
+                            <li>
+                                <b>DOI &#10142; Landing Page &#10142; Bibliographic Resources</b>
+                                <p>
+                                The publication is identified by a DOI, which redirects to a landing page. The landing page links to resources that are part of the publication and also to bibliographic metadata that describes the publication. <br/>
+                                <a  href="/bibliographic_metadata/springer/">Example &raquo;</a>
+                                </p>
+                            </li>
+                            <li>
+                                <b>DOI &#10142; Publication &#10142; Bibliographic Resources</b>
+                                <p>
+                                The publication is identified by a DOI, which redirects to an HTML rendering of an article. The latter links to other resources that are part of the publication and also to bibliographic metadata that describes the publication. <br/>
+                                <a href="/bibliographic_metadata/plos/">Example &raquo;</a>
+                                </p>                                
+                            </li>
+                            <li>
+                                <b>Landing Page &#10142; Bibliographic Resources</b>
+                                <p>
+                                The publication is not identified by a DOI. The typical entry point for a publication in the portal is a landing page, which links to resources that are part of the publication and also to bibliographic metadata that describes the publication.
+                                <br/>
+                                <a href="/bibliographic_metadata/eprints/">Example 1 &raquo;</a> &nbsp;
+                                <a href="/bibliographic_metadata/hydra/">Example 2 &raquo;</a>
+                                </p>
+                            </li>
+                            <li>
+                                <b>Publication &#10142; Bibliographic Resources</b>
+                                <p>
+                                The publication is not identified by a DOI. The typical entry point for a publication in the portal is an HTML rendering of an article, which links to other resources that are part of the publication and also to bibliographic metadata that describes the publication.
+                                <br/>
+                                <a href="/bibliographic_metadata/crln/">Example &raquo;</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /container -->
+
+        <div class="footer" id="footer">
+        </div>
+
+    </body>
+</html>

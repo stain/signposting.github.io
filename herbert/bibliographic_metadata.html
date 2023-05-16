@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>Bibliographic Metadata - Signposting the Scholarly Web</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+
+        <script>
+          SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement || function(toElement) {
+              return toElement.getScreenCTM().inverse().multiply(this.getScreenCTM());
+          };
+
+        $.get("/static/menu.html", function(data) {
+            $("#signposting-menu").html(data);
+        });
+
+        $.get("/static/footer.html", function(data) {
+            $("#footer").html(data);
+        });
+        </script>
+    
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/lodash.min.js"></script>
+        <script src="/static/js/backbone-min.js"></script>
+
+    </head>
+
+    <body>
+
+        <!-- Static navbar -->
+         <div id="signposting-menu"></div>
+
+        <div class="container">
+
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <div class="row featurette">
+                        <h3>Bibliographic Metadata</h3>
+                        <h4 class="text-muted">Signposting the Scholarly Web</h4>
+                        <p class="lead">
+                        Use <a href=“https://www.iana.org/assignments/link-relations/link-relations.xhtml”>typed links</a> in 
+                        <a href=“http://tools.ietf.org/html/rfc5988”>HTTP Link headers</a> to help machines 
+                        find the bibliographic metadata that describe a publication. 
+                        <br /><br />Several metadata resources may exist, each expressed according to a different format. 
+                        Each such metadata resource 
+                        should be published at a distinct URI that supports HTTP GET.
+                        <br /><br />
+                        The following relation types are used in the Bibliographic Metadata pattern:
+                        <ul>
+                        <li>To link to and from bibliographic metadata: <code>describedby</code>, <code>describes</code></li>
+                        </ul>
+                        In addition, the following attributes may be used on typed links:
+                        <ul>
+                        <li>To express the media type of the linked resource: <code>type</code></li>
+                        <li>To provide further details about the media type of the linked resource, for example, when several 
+                        linked resources have the same media type: <code>profile</code></li>
+                        <li>To convey what the nature of a linked resource is (landing page, article, 
+                        dataset, ...): <code>sem-type</code>
+                        </ul>
+                        </p>
+                </div>
+            </div>
+
+            <h3>Select your portal's pattern and inspect examples to find out how to implement Signposting:</h3>
+
+            <div class="row" style="text-align: center;">
+                <div class="col-md-6">
+                    <div class="col6">
+                        <h3>DOI => Landing Page => Bibliographic Resources</h3>
+                        <p>
+                        Like:
+                        <a href="/bibliographic_patterns/acm/">ACM</a>, 
+                        <a href="/bibliographic_patterns/biorxiv/">bioRxiv</a>, 
+                        <a href="/bibliographic_patterns/dryad/">Dryad</a>,
+                        <a href="/bibliographic_patterns/figshare/">Figshare</a>,
+                        <a href="/bibliographic_patterns/science/">Science</a>,
+                        <a href="/bibliographic_patterns/springer/">Springer</a>
+                        </p>
+                        <div id="patterna" class="patternbox"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col6">
+                        <h3>DOI => Publication => Bibliographic Resources</h3>
+                        <p>
+                        Like: 
+                        <!-- <a href="/bibliographic_patterns/dlib/">D-Lib Magazine</a>, -->
+                        <a href="/bibliographic_patterns/nature/">Nature</a>, 
+                        <a href="/bibliographic_patterns/oxford/">Oxford University Press</a>,                         
+                        <a href="/bibliographic_patterns/plos/">PLoS One</a>
+                        </p>
+                        <div id="patternb" class="patternbox"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="text-align: center;">           
+                <div class="col-md-6">
+                    <div class="col6">
+                        <h3>Handle or Stable Local Identifier => Landing Page => Bibliographic Resources</h3>
+                        Like:
+                        <a href="/bibliographic_patterns/dspace/">Dspace</a>,
+                        <a href="/bibliographic_patterns/eprints/">EPrints</a>
+                        <div id="patterne" class="patternbox"></div>
+                    </div>
+                </div>           
+                <div class="col-md-6">
+                    <div class="col6">
+                        <p>
+                        <h3>Landing Page => Bibliographic Resources</h3>
+                        Like:
+                        <a href="/bibliographic_patterns/arxiv/">arXiv</a>,
+                        <a href="/bibliographic_patterns/hydra/">Hydra</a>
+                        </p>
+                        <div id="patternc" class="patternbox"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="text-align: center;">           
+                 <div class="col-md-6">
+                    <div class="col6">
+                        <h3>Publication => Bibliographic Resources</h3>
+                        <p>
+                        Like:
+                        <a href="/bibliographic_patterns/college-and-research-libraries/">College &amp; Research Libraries News</a>
+                        </p>
+                        <div id="patternd" class="patternbox"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+
+        </div> <!-- /container -->
+
+
+            <div class="footer" id="footer">
+            </div>
+    <link rel="stylesheet" href="/static/css/joint.min.css" />
+    <script src="/static/js/joint.min.js"></script>
+    <script src="/static/js/patternvis.js"></script>
+    <script>
+        var model_files = {
+            'patterna': '/models/bibliographic-page-example-doi-leading-to-landing-page.json',
+            'patternb': '/models/bibliographic-page-example-doi-leading-to-article.json',
+            'patternc': '/models/bibliographic-page-example-nodoi-with-landing-page.json',
+            'patternd': '/models/bibliographic-page-example-nodoi-with-article.json',
+            'patterne': '/models/bibliographic-page-example-pid-leading-to-landing-page.json'
+        }
+
+        $.each (Object.keys(model_files), function(index, divid) {
+            $.getJSON(model_files[divid], function(data) {
+                startGraphing(divid, 'bibliographic', 
+                    'nodesonly', data);
+            });
+        });
+
+    </script>
+
+
+    </body>
+</html>

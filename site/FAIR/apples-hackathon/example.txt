@@ -1,0 +1,46 @@
+<https://dataverse.nl/api/datasets/linkset?persistentId=doi:10.34894/SRSB8I ; rel="linkset";type="application/linkset+json"
+
+
+@data{SRSB8I_2021,
+author = {Goldberg, Anna},
+publisher = {DataverseNL},
+title = {{Addiction in Dutch criminal cases}},
+year = {2021},
+version = {V1},
+doi = {10.34894/SRSB8I},
+url = {https://doi.org/10.34894/SRSB8I}
+}
+
+doi: https://doi.org/10.34894/SRSB8I
+
+landing page: https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/SRSB8I
+
+spss file - application/x-spss-sav: https://dataverse.nl/api/access/datafile/192733
+
+pdf file - application/pdf: https://dataverse.nl/api/access/datafile/192732
+
+local metadata - application/json+ld ?????? https://dataverse.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.34894/SRSB8I ???? could it be this is not accessible via curl ?????
+
+remote metadata - application/vnd.citationstyles.csl+json : <https://doi.org/10.5072/FK2/NY5HAH>;rel="describedby";type="application/vnd.citationstyles.csl+json"
+
+==================================================================
+
+10:~ herbert$ curl -I https://dv59.sd.di.huc.knaw.nl/dataset.xhtml?persistentId=doi:10.5072/FK2/NY5HAH
+HTTP/2 200 
+server: nginx
+date: Fri, 18 Feb 2022 08:38:40 GMT
+content-type: text/html;charset=UTF-8
+x-powered-by: Servlet/4.0 JSP/2.3 (Payara Server  5.2021.5 #badassfish Java/Red Hat, Inc./11)
+set-cookie: JSESSIONID=bfbb6946d9cc597f300c32f42cdd; Path=/; HttpOnly
+link: <https://dataverse.org/>;rel="author",<https://author1.com>;rel="author",<https://author2.com>;rel="author", <https://doi.org/10.5072/FK2/NY5HAH>;rel="cite-as", <https://dv59.sd.di.huc.knaw.nl/api/access/datafile/35>;rel="item";type="image/png",<https://dv59.sd.di.huc.knaw.nl/api/access/datafile/36>;rel="item";type="image/png", <https://doi.org/10.5072/FK2/NY5HAH>;rel="describedby";type="application/vnd.citationstyles.csl+json",<https://dv59.sd.di.huc.knaw.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.5072/FK2/NY5HAH>;rel="describedby";type="application/json+ld", <https://schema.org/AboutPage>;rel="type",<https://schema.org/Dataset>;rel="type", http://creativecommons.org/publicdomain/zero/1.0;rel="license", <https://dv59.sd.di.huc.knaw.nl/api/datasets/:persistentId/versions/2.0/linkset?persistentId=doi:10.5072/FK2/NY5HAH> ; rel="linkset";type="application/linkset+json"
+
+
+https://dv59.sd.di.huc.knaw.nl/api/access/datafile/35
+
+
+https://dv59.sd.di.huc.knaw.nl/dataset.xhtml?persistentId=doi:10.5072/FK2/NY5HAH
+
+
+https://dataverse.nl/api/access/datafile/192732
+
+

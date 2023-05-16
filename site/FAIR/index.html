@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>FAIR Signposting Profile - Signposting the Scholarly Web</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/signposting.js"></script>
+        <script src="/static/js/lodash.min.js"></script>
+        <script src="/static/js/backbone-min.js"></script>
+ <style type="text/css">       
+ol.nested-counter-list {
+  counter-reset: item;
+}
+
+ol.nested-counter-list li {
+  display: block;
+}
+
+ol.nested-counter-list li::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+ol.nested-counter-list ol {
+  counter-reset: item;
+}
+</style>        
+        
+        <!-- RobustLinks CSS -->
+		<link rel="stylesheet" type="text/css" href="https://doi.org/10.25776/z58z-r575" />
+		<!-- RobustLinks Javascript -->
+		<script type="text/javascript" src="https://doi.org/10.25776/h1fa-7a28"></script>
+        <script>   
+$(function() {
+    load_header_footer();
+});
+        </script>
+    </head>
+
+    <body>
+
+        <!-- Static navbar -->
+        <div id="signposting-menu"></div>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="jumbo">
+                <div class="row">
+                        <h3>FAIR Signposting Profile</h3>
+                        <h5>
+                        Prepared by: Herbert Van de Sompel, Martin 
+Klein, Shawn Jones, Michael L. Nelson, 
+                        Simeon Warner, Anusuriya Devaraju, Robert Huber,
+ Wilko Steinhoff, Vyacheslav Tykhonov, Luc Boruta, Enno Meijers, 
+                        Stian Soiland-Reyes, Mark Wilkinson
+                        </h5>
+                        <h5>This version, created 20230512: <a href="https://urldefense.com/v3/__https://www.signposting.org/FAIR/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYzJ-mB$" data-versionurl="https://web.archive.org/web/20230513/https://www.signposting.org/FAIR/" data-versiondate="2022-07-27">https://www.signposting.org/FAIR/</a><span role="navigation" aria-label="RLElement"><ul><li aria-label="RLOuter"><div class="robustLinks dropDownButton RLIcon"></div><a href="" aria-haspopup="true" class="robustLinks dropDownButton RLArrow" aria-controls="RL_prcam1ibs"></a><ul class="RLMenu" id="RL_prcam1ibs" aria-hidden="true"><li><div><a class="robustLinks RLItem" href="https://urldefense.com/v3/__https://www.signposting.org/FAIR/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYzJ-mB$">Current version of page</a></div></li><li><div><a class="robustLinks RLItem" href="https://urldefense.com/v3/__https://web.archive.org/web/20220727051056/https:/*www.signposting.org/FAIR/__;Lw!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYBEEwq-N$">Version archived on 2022-07-27</a></div></li><li><div><a class="robustLinks RLItem" href="https://urldefense.com/v3/__http://timetravel.mementoweb.org/memento/20220727000000/https:/*www.signposting.org/FAIR/__;Lw!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPO74xw2$">Version archived near 2022-07-27</a></div></li><li><div><a class="robustLinks RLItem" href="https://urldefense.com/v3/__https://robustlinks.mementoweb.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOzoDVbW$"><span style="text-decoration: underline; color:#0000ff"><img src="index_files/robustlinks-16px.png">Robustify Your Links!</span></a></div></li></ul></li></ul></span> </h5>
+<h5>Previous version, created 20220727: <a href="https://urldefense.com/v3/__https://www.signposting.org/FAIR/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYzJ-mB$" data-versionurl="https://web.archive.org/web/20230511135654/https://signposting.org/FAIR/" data-versiondate="2022-07-27">https://www.signposting.org/FAIR/</a><span role="navigation" aria-label="RLElement"><ul><li aria-label="RLOuter"><div class="robustLinks dropDownButton RLIcon"></div><a href="" aria-haspopup="true" class="robustLinks dropDownButton RLArrow" aria-controls="RL_p28i81zc3"></a><ul class="RLMenu" id="RL_p28i81zc3" aria-hidden="true"><li><div><a class="robustLinks RLItem" href="https://urldefense.com/v3/__https://www.signposting.org/FAIR/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYzJ-mB$">Current version of page</a></div></li><li><div><a class="robustLinks RLItem" href="https://urldefense.com/v3/__https://web.archive.org/web/202204221090712/https:/*www.signposting.org/FAIR/__;Lw!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYGGEivMq$">Version archived on 2022-04-21</a></div></li><li><div><a class="robustLinks RLItem" href="https://urldefense.com/v3/__http://timetravel.mementoweb.org/memento/20220421000000/https:/*www.signposting.org/FAIR/__;Lw!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYH3RyA89$">Version archived near 2022-04-21</a></div></li><li><div><a class="robustLinks RLItem" href="https://urldefense.com/v3/__https://robustlinks.mementoweb.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOzoDVbW$"><span style="text-decoration: underline; color:#0000ff"><img src="index_files/robustlinks-16px.png">Robustify Your Links!</span></a></div></li></ul></li></ul></span></h5>
+						<h5>Please provide feedback in the <a href="https://urldefense.com/v3/__https://github.com/hvdsomp/signposting__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYA9_G2a7$">GitHub Signposting repository</a></h5>
+						<br>
+                        <div class="">
+                             This page details a concrete recipe that 
+platforms that host research outputs (e.g. data repositories, 
+                             institutional repositories, publisher 
+platforms, etc.) can follow to implement <a href="https://urldefense.com/v3/__http://signposting.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYEYFYlbY$">Signposting</a>, 
+                             a lightweight yet powerful approach to increase the <a href="https://urldefense.com/v3/__https://doi.org/10.1038/sdata.2016.18__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYIfWQHB8$">FAIR</a>ness of scholarly objects. 
+                             <br>
+                             <br>
+                             Landing pages support humans that interact 
+with scholarly objects on the web, 
+                             providing descriptive metadata and links to
+ content. These pages are not optimized for 
+                             use by machine agents that navigate the 
+scholarly web. For example, how can a robot 
+                             determine which links on the myriad of 
+landing pages lead to content and which to 
+                             metadata? Signposting caters to machine 
+agents by providing this information, and more, 
+                             in a standards-based way. 
+                             It contributes to FAIR's Findable, 
+Accessible, and Reusable by uniformly 
+                             conveying to machines 
+                             what the persistent identifier of a 
+scholarly object is, 
+                             where its landing page is, 
+                             where and what its content is, 
+                             where metadata that describes it is, and 
+                             what the persistent identifier of its 
+author is. 
+                             It conveys this by means of meaningful 
+links 
+                             that have web locations (HTTP URIs) as 
+their target. As such it does significantly  
+                             more than merely providing the 
+                             information. It invites machine agents to 
+follow the links to 
+                             their target location on the web, and 
+hopefully find further information and links there. It essentially 
+provides them with a map to guide their 
+                             travels across the scholarly web. 
+Signposting contributes to FAIR's 
+                             Interoperable through its uniform approach 
+and because it is entirely based on widely implemented 
+                             web protocols specified in IETF RFCs. As 
+such, the interoperability that results from 
+                             adopting it is not restricted to the 
+scholarly landscape but encompasses the web at large.  
+                             <br><br>
+                             The recipe provided in this document takes a
+ gradual approach towards increasing FAIRness for scholarly 
+                             resources by means of Signposting: 
+                             <ul>
+                                 <li><a href="#level1">Level 1</a> requires providing a minimal set of typed links via  
+                             HTTP <code>Link</code> headers and/or HTML <code>&lt;link&gt;</code> elements. 
+                             Despite its simplicity, it already significantly improves the ability of 
+                             machine agents to navigate the scholarly web. </li>
+                                 <li><a href="#level2">Level 2</a> 
+requires providing a comprehensive set of 
+                             typed links via a Link Set and making that 
+Link Set discoverable. 
+                             It increases the action radius of machine 
+agents and provides them with a complete map of a scholarly object.
+                             </li></ul>
+                             <i>"Signposting has a ridiculously low cost of entry (if you serve scholarly content over HTTP, you're already almost there)""</i> - <a href="https://urldefense.com/v3/__https://orcid.org/0000-0003-0557-1155__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYE4oq_Ro$">Luc Boruta</a> in 
+                             <a href="https://urldefense.com/v3/__https://github.com/hvdsomp/signposting/issues/12__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOMGn8IL$">GitHub feedback</a> on this document.
+                             <br>
+                             <br>
+							Make it so!
+                         </div>
+                    </div>
+            </div>
+            
+<h3><a name="toc"></a>Table of Contents</h3>
+
+<div class=" ">
+<ol class="nested-counter-list">
+<li><a href="#intro">Introduction</a>
+<ol>
+<li><a href="#intro1">A Scholarly Object on the Web</a></li>
+<li><a href="#intro2">Typed Links</a></li>
+<li><a href="#reltypes">Typed Links in the FAIR Signposting Profile</a></li>
+<li><a href="#linksetrec">Typed Links Provided in Link Sets</a></li>
+</ol>
+</li>
+<li><a href="#recipe">Recipes for Implementing the FAIR Signposting Profile</a>
+<ol>
+<li><a href="#level1">Level 1 - A Minimal Set of Typed Links via the HTTP <code>Link</code> header and/or HTML <code>&lt;link&gt;</code></a></li>
+<ol>
+<li><a href="#level1a">Level 1 - Typed Links Pertaining to the Landing Page</a></li>
+<li><a href="#level1b">Level 1 - Typed Links Pertaining to Content Resources and Metadata Resources</a></li>
+</ol>
+<li><a href="#level2">Level 2 - A Comprehensive Set of Typed Links via a Link Set</a></li>
+<ol>
+<li><a href="#level2a">Level 2 - Typed Links Pertaining to the Landing Page</a></li>
+<li><a href="#level2b">Level 2 - Typed Links Pertaining to Content Resources</a></li>
+<li><a href="#level2c">Level 2 - Typed Links Pertaining to Metadata Resources</a></li>
+</ol>
+</ol>
+</li>
+<li><a href="#examples">Examples</a>
+<ol>
+<li><a href="#examples1">Examples Level 1</a></li>
+<li><a href="#examples2">Examples Level 2</a></li>
+</ol>
+</li>
+</ol>
+</div>
+            
+<h3><a name="intro"></a>1. Introduction</h3>
+                            
+<h4><a name="intro1"></a>1.1. A Scholarly Object on the Web</h4>
+
+
+<div class=" ">
+It has become common to publish scholarly objects on the web as a set of web resources, 
+each equipped with an HTTP URI. A <b>scholarly object</b> typically has:
+<ul>
+<li>A <b>persistent identifier</b>, e.g. a <a href="https://urldefense.com/v3/__https://www.doi.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYJDif4Ly$">DOI</a> or <a href="https://urldefense.com/v3/__https://www.handle.net/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYDxfikxo$">handle</a> expressed as an HTTP URI.
+</li><li>A <b>landing page</b> that is reachable by dereferencing the persistent identifier and following HTTP redirects. 
+The landing page typically describes the scholarly object and provides links to its content resources. 
+Note that, in some cases, such as articles published in HTML, the landing page actually represents content of the resource. 
+For the purpose of the recipe it still is referred to as the landing page.</li>
+<li>One or more <b>content resources</b> that provide the actual content
+ of the scholarly object, such as a PDF article, a CSV dataset, a ZIPped
+ software repository, a dynamically generated map.</li> 
+<li><b>Metadata</b> that describes the scholarly object in one or more formats.</li>
+</ul>
+</div>	
+
+
+
+<div class=" ">
+A scholarly object has one or more <b>authors</b>, each of which increasingly has a persistent identifier, e.g. an 
+    <a href="https://urldefense.com/v3/__https://orcid.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOmrAd5h$">ORCID</a>, <a href="https://urldefense.com/v3/__https://ror.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYO4ggdMD$">ROR</a>, or <a href="https://urldefense.com/v3/__https://isni.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPBLUXEe$">ISNI</a> expressed as an HTTP URI. 
+Use of a scholarly object is typically also subject to a <b>license</b>, which typically can be identified by means of an HTTP URI. 
+</div>	
+
+<br>
+
+                 <div style="text-align: center;">
+                        <img src="basic.png" alt="scholarly object on the web" width="500">
+                        </div>
+               <br>
+   
+   <!--
+<div class=" ">With this regard, this document uses the following terminology:
+                <ul>
+                <li>
+                <b>Landing page</b>: The HTML page that results from dereferencing the persistent identifier 
+                (e.g. DOI expressed as an HTTP URI) of a scholarly object. The landing page typically 
+                describes the scholarly object and provides links to its content resources. In some cases it 
+                 is a content resource itself.
+                </li>
+                <li>
+                <b>Content resource</b>: A content resource provides the actual content of the scholarly object, 
+                it is e.g. a PDF article, a CSV dataset, a ZIPped software repository.
+                </li>
+               <li>
+                <b>Scholarly object</b>: The union of the landing page and all the content resources.
+                </li>
+                </ul>
+</div>           
+  -->
+                
+                <h4><a name="intro2"></a>1.2. Typed Links</h4>
+                
+<div class=" ">Typed links are more expressive than plain <code>href</code> links in HTML. They actually express 
+                the nature of the relationship between the <b>origin</b> and the <b>target</b> of the link. 
+                Note that, in this document, the term 
+                <b>origin</b> is used as an intuitive synonym for the term <b>link context</b>, which is used 
+                in the <a href="https://urldefense.com/v3/__https://tools.ietf.org/html/rfc8288*section-2__;Iw!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYIpaPBwL$">Web Linking</a> RFC8288 that defines typed web links. 
+</div>  
+
+<br>
+
+<div class=" ">The 
+                <a href="https://urldefense.com/v3/__https://www.iana.org/assignments/link-relations/link-relations.xhtml__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYB4GlP0O$">IANA Link Relation 
+                Registry</a> lists a wide range of relation types that are described in 
+                formal specifications such as IETF RFCs. Using relation types from that Registry 
+                yields web-scale interoperability and therefore the FAIR Signposting Profile builds on it. 
+</div>
+                
+<div class=" ">There are 3 approaches to convey typed links:
+                <ol>
+                <li>For HTML pages: Using the HTML <code>&lt;link&gt;</code> element 
+                in the <code>head</code> section of the HTML.</li>
+                <li>For web resources of any media type: Using <code>Link</code> in 
+                the HTTP response header.</li>
+                
+                <li>For web resources of any media type: Using a standalone document called a <code>Link Set</code> 
+                 that is made discoverable by means of a typed link with the <code>linkset</code> 
+                relation type. More details on <code>Link Set</code> are provided in <a href="https://urldefense.com/v3/__https://signposting.org/FAIR/linksetrec__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYFba9j2J$">Section 1.4</a></li>
+                </ol>
+</div>
+    
+<div class=" ">Approach (2) has significant advantages:
+                <ul>
+                <li>The approach can uniformly be used for any web resource, 
+                not only for the landing page but also for any type of content resource. 
+                Machine agents only need to look in one place 
+                to find guidance for the next destination in their travels.</li>
+                <li>In addition to being available via <code>HTTP GET</code> requests, 
+                the HTTP header that contains <code>Link</code> is accessible via the 
+                <code>HTTP HEAD</code> request, which only returns transaction metadata not 
+                a resource representation. As such machine agents can obtain a map for their journey 
+                by issuing a HTTP HEAD even against resources that have access restrictions. 
+                All the while saving bandwidth and hence energy.</li>
+                <li>Typed links conveyed via <code>Link</code> in the HTTP header allow one to 
+                explicitly indicate the origin of the link. This allows having any resource as link origin,
+                not just the resource that the machine agent interacts with  
+                as is the case with <code>&lt;link&gt;</code> in HTML. As a result, links provided via 
+                <code>Link</code> in the HTTP header of the landing page can also contain links that  
+                have content resources as link origin.
+                </li>
+                </ul>
+</div>
+                
+<div class=" ">Approach (3) has the same advantages as approach (2) but additionally allows to convey large numbers of links 
+without running the risk that the HTTP header becomes too large to be handled by the web server.
+</div>
+                
+<h4><a name="reltypes"></a>1.3. Typed Links in the FAIR Signposting Profile</h4>
+                
+<div class=" ">The Relation Types that are used for the FAIR Signposting Profile as a means to 
+                                meaningfully interlink resources that represent a scholarly artifact on the web 
+                                are shown in the below table. 
+                                The general description of their meaning is based on the more formal language used in 
+                                the specification that define them. Their specific use for the 
+                                FAIR Signposting Profile is provided in the descriptions of <a href="#level1">Level 1</a> and 
+                                <a href="#level2">Level 2</a>, below.
+</div>
+
+<br>
+
+<div class="">
+                    <table class="table">
+                        <tbody><tr>
+                            <td style="width: 25%;"><b>Relation Type</b></td>
+                            <td><b>Description</b></td>
+                        </tr>
+                        <tr>
+                            <td><code>author</code></td>
+                            <td>The target of the link is a URI for an author of the resource that is the origin of the link. 
+                        </td></tr>
+                        <tr>
+                            <td><code>cite-as</code></td>
+                            <td>The target of the link is a persistent URI for the resource that is the origin of the link.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>describedby</code></td>
+                            <td>The target of the link provides metadata that describes the resource that is the origin of the link. 
+                           </td>
+                        </tr>
+                        <td><code>describes</code></td>
+                            <td>The origin of the link is a resource that provides metadata that describes the resource that is the target of the link. It is the inverse of the <code>describedby</code> relation type.
+                           </td>
+                        </tr>
+                        <tr>
+                            <td><code>type</code></td>
+                            <td>The target of the link is the URI for a class of resources to which the resource that is the origin of the link belongs.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>The target of the link is the URI of a license that applies to the resource that is the origin of the link.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>item</code></td>
+                            <td>The origin of the link is a collection of resources and 
+                            the target of the link is a resource that belongs to that collection.
+							It is the inverse of the <code>collection</code> relation type.
+                            </td>
+                        </tr>
+                       <tr>
+                        </tr><tr>
+                            <td><code>collection</code></td>
+                            <td>The origin of the link is a resource that belongs to a collection and the target of the link is 
+                            the collection to which it belongs.
+                            It is the inverse of the <code>item</code> relation type.</td>
+                
+                    </tr></tbody></table>
+</div>
+                
+<h4><a name="linksetrec"></a>1.4. Typed Links Provided in Link Sets</h4>
+                
+<div class=" ">Link Sets are specified in RFC9264,  
+                <a href="https://urldefense.com/v3/__https://www.rfc-editor.org/rfc/rfc9264.html__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAu5MylS$">Linkset: Media Types and a Link Relation Type for Link Sets</a>:
+                <ul>
+                <li>
+                A Link Set is a collection of typed links, including links pertaining to the resource that 
+                makes the set of links discoverable. 
+                </li> 
+                <li>
+                A Link Set is made discoverable by means of a typed link with the <code>linkset</code> 
+                relation type registered in the <a href="https://urldefense.com/v3/__https://www.iana.org/assignments/link-relations/link-relations.xhtml__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYB4GlP0O$">IANA Link Relation 
+                Registry</a>. A <code>type</code> attribute on that link conveys the media type that is 
+                used to serialize the Link Set.
+                </li>
+                <li>
+                Two approaches exist to serialize a Link Set: one is JSON-based (media type <code>application/json+linkset</code>) 
+                and the other uses the same format as the payload of the HTTP <code>Link</code> header 
+                (media type <code>application/linkset</code>).
+                </li>
+                <li>For all typed links in a Link Set, both link origin and link target must be explicitly provided and expressed as 
+                absolute URIs. This allows to unambiguously interpret a Link Set without the need to 
+                save contextual information such as the URI where it is published.
+                </li>
+				</ul>
+</div>                
+                 
+<div style="text-align: center;">
+<img src="linkset_basics.png" alt="Link Sets" width="500">
+</div>
+                               
+<h3><a name="recipe"></a>2. Recipes for Implementing the FAIR Signposting Profile</h3>
+
+<div class=" ">This section describes two complementary approaches to 
+convey typed links: the Level 1 and Level 2 recipes. 
+They differ regarding the way in which typed links are conveyed and 
+regarding the extent of the set of typed links that is conveyed:
+<ul>
+<li>How typed links are conveyed:</li>
+<ul>
+<li>Level 1: Typed links are conveyed <b>by value</b> in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element.</li>
+<li>Level 2: Typed links are conveyed <b>by reference</b> in a <a href="#linksetrec">link set</a>, which is made discoverable by means of a link with the 
+<code>linkset</code> relation type in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element.</li>
+</ul>
+<li>How comprehensive the set of typed links is:</li>
+<ul>
+<li>Level 1: A <b>minimal set</b> of typed links with the landing page (mandatory), the content resources (recommended), and the metadata resources (recommended) as link origin.</li>
+<li>Level 2: A <b>comprehensive set</b> of typed links with the landing page (mandatory), the content resources (mandatory), and the metadata resources (mandatory) as link origin.</li>
+</ul>
+</ul>
+</div>
+
+<div class=" ">Implementing Level 1 of the recipe entails:
+</div>
+                
+<h4><a name="level1"></a>2.1. Level 1 - A Minimal Set of Typed Links via the HTTP <code>Link</code> header and/or HTML <code>&lt;link&gt;</code></h4>
+
+<div class=" ">Implementing Level 1 of the recipe entails:
+                <ul>
+ 				<li>Mandatory - Providing a minimal set of typed links that have the landing page 
+                as link origin. These links are conveyed in the landing page's HTTP <code>Link</code> header 
+                and/or using <code>&lt;link&gt;</code> elements in the <code>&lt;head&gt;</code> of the HTML of the landing page. 
+                See <a href="#level1a">Section 2.1.1.</a>
+                </li>
+                <li>Recommended - For each content resource, providing a minimal set of typed links with that resource 
+                as link origin. These links are conveyed in the content resources' HTTP <code>Link</code> header. 
+                See <a href="#level1b">Section 2.1.2.</a> This is recommended rather than mandatory because cases exist 
+                whereby content resources are hosted on a different platform than the 
+                landing page; modifying HTTP headers on these platforms may not be possible.
+                </li>
+                <li>Recommended - For each metadata resource, providing a minimal set of typed links with that resource 
+                as link origin. These links are conveyed in the metadata resources' HTTP <code>Link</code> header. 
+                See <a href="#level1b">Section 2.1.2.</a> This is recommended rather than mandatory because cases exist 
+                whereby metadata resources are hosted on a different platform than the 
+                landing page; modifying HTTP headers on these platforms may not be possible.
+                </li>
+                </ul>
+</div>
+                
+<div class=" ">This Level aims for uniformity for machine agents that navigate scholarly resources. 
+                The limitation for the number of links that must be provided 
+             avoids that HTTP headers become too large. 
+</div>
+
+<h5><a name="level1a"></a>2.1.1. Level 1 - Typed Links Pertaining to the Landing Page</h5>
+                
+<div class=" ">The below image and table show the links with the <b>landing page</b> as link 
+                	origin that are to be provided when implementing 
+                	Level 1 of this recipe. In the image:
+                	<ul>
+                	<li>Solid green lines indicate links that must be provided.</li>
+                	<li>Dashed green lines indicate links that must be provided, whenever possible; 
+                	see the table for more information.</li>
+                	</ul>
+                	Examples are provided in <a href="#examples1">Section 3.1</a>.
+</div>
+                	
+<div style="text-align: center;">
+<img src="level1.png" alt="Level 1 of FAIR Signposting, Landing Page" width="500">
+</div>
+                        
+<div class="">
+                    <table class="table">
+                        <tbody><tr>
+                            <td style="width: 25%;"><b>Link Relation Type</b></td>
+                            <td style="width: 25%;"><b> Link Cardinality</b></td>
+                            <td><b>Comment</b></td>
+                        </tr>
+                        <tr>
+                            <td><code>author</code></td>
+                            <td>0 or more</td>
+                            <td>For each author of the scholarly object 
+that has a persistent identifier (e.g. ORCID expressed as HTTP URI), 
+                             provide a link that has the 
+landing page as link origin and the persistent identifier 
+                            of the author as target. 
+                             Be aware that the number of 
+authors for a scholarly object can be large. 
+                            As such, in order to avoid the risk of the 
+HTTP header becoming too large, it may be safer to provide links for a limited number of authors in the HTTP header and to provide them for all  
+                           when using Link 
+Sets in <a href="#level2">Level 2</a>. 
+                             </td>
+                        </tr>
+                        <tr>
+                            <td><code>cite-as</code></td>
+                            <td>1</td>
+                            <td>Provide a link that has the persistent identifier  
+                            of the scholarly object (e.g. DOI expressed as an HTTP URI) as target.</td>
+                        </tr>
+                        <tr>
+                            <td><code>describedby</code></td>
+                            <td>1 or more</td>
+                            <td>Provide one or more links that have the URI of metadata that describes the scholarly object 
+                            in a commonly used format as target. 
+                             On each link, provide the media type of the metadata in the <code>type</code> 
+                            attribute. Common media types include
+                            <br><code>application/x-bibtex</code> (BibTeX), 
+                            <br><code>application/vnd.citationstyles.csl+json</code> (CiteProc JSON), 
+                            <br><code>application/x-research-info-systems</code> (RIS), 
+                            <br><code>application/vnd.datacite.datacite+xml</code> (DataCite XML), 
+                            <br><code>application/vnd.datacite.datacite+json</code> (DataCite JSON), 
+                            <br><code>application/vnd.jats+xml</code> (JATS),
+                            <br><code>application/vnd.codemeta.ld+json</code> (Codemeta),
+                            <br><code>text/x-bibliography</code> (Formatted text citation).
+                            <br>Many other bibliographic formats are in use that have <code>text/plain</code>, 
+                            <code>application/xml</code>, <code>application/json</code>, or <code>application/ld+json</code> as media type.
+                            When providing metadata that describes the scholarly object using these media types, use <code>profile</code> 
+                            as an 
+                <a href="https://urldefense.com/v3/__https://datatracker.ietf.org/doc/html/rfc8288*section-3.4.2__;Iw!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYDhPa7o-$">extension target attribute</a> on the link to convey, by means of an HTTP URI, the specific format of the metadata. For example, for 
+                            metadata expressed as <code>application/xml</code>, provide the XML Namespace URI in the <code>profile</code> 
+                            extension attribute. 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>type</code></td>
+                            <td>2 (in most cases) or 1</td>
+                            <td>Provide a <em>first</em> link that has as target 
+                            the <a href="https://urldefense.com/v3/__https://schema.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYO47jt3M$">schema.org</a> 
+                            term (HTTP URI) for a <a href="https://urldefense.com/v3/__https://schema.org/CreativeWork__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYIvUPcgk$">Creative Work</a> that best  
+                            characterizes the scholarly object as a whole. For example, provide <code><a href="https://urldefense.com/v3/__https://schema.org/ScholarlyArticle__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOjgxNJy$">https://schema.org/ScholarlyArticle</a></code> 
+                            in case the object is a scholarly paper; provide <code><a href="https://urldefense.com/v3/__https://schema.org/Dataset__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPIUtBNb$">https://schema.org/Dataset</a></code> if it is a dataset. 
+                            If no appropriate term is available in 
+                            <code><a href="https://urldefense.com/v3/__https://schema.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYO47jt3M$">https://schema.org/</a></code>, select one (HTTP URI) from a commonly used ontology. 
+                            <br>
+                            Provide a <em>second</em> link that has as target 
+                            <code><a href="https://urldefense.com/v3/__https://schema.org/AboutPage__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAR-LQSV$">https://schema.org/AboutPage</a></code> in
+ the common case where an actual landing page is concerned. 
+                            Do not provide this second link in case a 
+content resource is concerned, i.e. do not provide 
+                            this second link when the persistent 
+identifier of the scholarly object directly resolves to a content 
+resource, such 
+                            as an HTML article, without presenting an 
+intermediate landing page.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>0 or 1</td>
+                            <td>If the license under which the scholarly object is made available is known, 
+                            provide a link that has as target the URI of that license. 
+                            Common licenses used are those provided by the <a href="https://urldefense.com/v3/__https://creativecommons.org/share-your-work/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAEki8Al$">Creative Commons</a>. 
+                            <!-- Discussion ongoing, see <a href="https://github.com/hvdsomp/signposting/issues/11">https://github.com/hvdsomp/signposting/issues/11</a>.
+                            -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>item</code></td>
+                            <td>0 or more</td>
+                            <td>The landing page is modeled as a collection of content resources. 
+                            As such, provide links that have content resources 
+                            (e.g. the PDF article, the CSV dataset, the ZIPped software repository)
+                            as target. 
+                            Use the <code>type</code> attribute on each link to convey the media type 
+                            of the content resource. 
+                            If specificity beyond the media type is required to indicate the nature of a content resource, 
+                            use <code>profile</code> 
+                            as an 
+                            <a href="https://urldefense.com/v3/__https://datatracker.ietf.org/doc/html/rfc8288*section-3.4.2__;Iw!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYDhPa7o-$">extension target attribute</a> on the link to convey, 
+                            by means of an HTTP URI, the more specific format of the content resource. 
+                
+                            Be aware that the number of content resources for a scholarly object can be unpredictably large. 
+                            As such, in order to avoid the risk of the HTTP header becoming too large, it may be safer 
+                            to only provide links for a limited number of content resources in the HTTP header and provide links for all when using Link Sets in <a href="#level2">Level 2</a>.
+                            </td>
+                        </tr>
+                    </tbody></table>
+</div>
+       
+       <h5><a name="level1b"></a>2.1.2. Level 1 - Typed Links Pertaining to Content Resources and Metadata Resources</h5>
+       
+       <div class=" ">The below image and table show the links with <b>content resources</b> 
+       and <b>metadata resources</b> as link 
+                	origin that need to be provided when implementing Level 1 of this recipe. 
+                	In the image: 
+                	<ul>
+                	<li>Dashed green lines indicate links that must be provided, whenever possible, i.e. when it is 
+                	possible to modify the HTTP headers for content/metadata resources. </li>
+                	<li>Dot-dashed black lines 
+                	indicate links that must only be provided in case they convey 
+                	 information that is different from what is conveyed for the 
+                	scholarly object as a whole by means of the link with the same link relation type ("type" in this case) 
+                	on the landing page; see the table for further 
+                	information with this regard. </li>
+                	</ul>
+                	Examples are provided in <a href="#examples1">Section 3.1</a>.
+</div>         
+
+<div style="text-align: center;">
+<img src="level12.png" alt="Level 1 of FAIR Signposting, Content Resources" width="500">
+</div>
+                
+<div class="">
+                    <table class="table">
+                        <tbody><tr>
+                            <td style="width: 25%;"><b>Link Relation Type</b></td>
+                            <td style="width: 25%;"><b> Link Cardinality</b></td>
+                            <td><b>Comment</b></td>
+                        </tr>
+                        <tr>
+                            <td><code>describes</code></td>
+                            <td>1</td>
+                            <td>For each metadata resource, provide a link that has the metadata resource as origin and the landing page as target.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>type</code></td>
+                            <td>0 or 1</td>
+                            <td>
+                            Provide a link only if the type of the 
+content resource differs from the type that best characterizes the 
+scholarly object as a whole. 
+                            In this case, provide a link that has as 
+target 
+                            the <a href="https://urldefense.com/v3/__https://schema.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYO47jt3M$">schema.org</a> 
+                            term (HTTP URI) for a <a href="https://urldefense.com/v3/__https://schema.org/CreativeWork__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYIvUPcgk$">Creative Work</a> that best  
+                            characterizes the content resource. If no appropriate term is available in 
+                            <code><a href="https://urldefense.com/v3/__https://schema.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYO47jt3M$">https://schema.org/</a></code>, select one (HTTP URI) from a commonly used ontology. 
+                            For example, if the scholarly object as a whole is best characterized as a 
+                            scholarly paper (<code><a href="https://urldefense.com/v3/__https://schema.org/ScholarlyArticle__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOjgxNJy$">https://schema.org/ScholarlyArticle</a></code> type is provided at the landing page), and the content resource is a dataset,
+                            provide a link that has <code><a href="https://urldefense.com/v3/__https://schema.org/Dataset__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPIUtBNb$">https://schema.org/Dataset</a></code> as target. 
+                            </td>
+                        </tr>
+                        <!--
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>1</td>
+                            <td>Discussion ongoing, see <a href="https://github.com/hvdsomp/signposting/issues/11">https://github.com/hvdsomp/signposting/issues/11</a>.
+                            </td>
+                        </tr>
+                        -->
+                        <tr>
+                            <td><code>collection</code></td>
+                            <td>1</td>
+                            <td>For each content resource, provide a link that has the content resource as origin and the landing page as target.
+                            </td>
+                        </tr>
+                    </tbody></table>
+</div>
+
+
+ <h4><a name="level2"></a>2.2. Level 2 - A Comprehensive Set of Typed Links via a Link Set</h4>
+ 
+<div class=" ">Implementing Level 2 of the recipe entails:
+ 				<ul>
+ 				<li>Mandatory - Providing a Link Set with a comprehensive collection of 
+ 				typed links, consisting of:
+ 				<ul>
+ 				<li>Links with the landing page as link origin. See <a href="#level2a">Section 2.2.1.</a>
+ 				</li>
+ 				<li>Links with the content resources and metadata resources as link origin. See <a href="#level2b">Section 2.2.2.</a> and <a href="#level2c">Section 2.2.3.</a>, respectively.
+ 				</li>
+ 				</ul>
+ 				</li><li>Mandatory - Making this Link Set discoverable by providing a <code>linkset</code> link 
+                in the landing page's HTTP <code>Link</code> header and/or in <code>&lt;link&gt;</code> in the HTML page's <code>&lt;head&gt;</code> 
+                (solid green line in the below image). 
+                The media type used to represent the Link Set must be conveyed in the <code>type</code> attribute on the link. 
+                Examples are provided in <a href="#examples2">Section 3.2</a>.</li>
+                <li>Recommended - Making this Link Set discoverable by providing a <code>linkset</code> link in 
+                 the HTTP <code>Link</code> header of the content resources and metadata resources. 
+                The media type used to represent the Link Set must be conveyed in the <code>type</code> attribute on the link. 
+                This link is recommended (dashed green line in the below image) rather than mandatory because cases exist 
+                whereby content/metadata resources are hosted on a different platform than the 
+                landing page; modifying HTTP headers on these platforms may not be possible. 
+                Examples are provided in <a href="#examples2">Section 3.2</a>.</li>
+ 				</ul>
+</div>
+
+<div class=" ">The Link Set that is made available at Level 2 combines links that 
+               have the landing page as link origin (<a href="#level2a">Section 2.2.1.</a>), links that have each of the 
+                content resources as link origin (<a href="#level2b">Section 2.2.2.</a>), and links that have each of the 
+                metadata resources as link origin (<a href="#level2c">Section 2.2.3.</a>). 
+                Such a Link Set provides machine agents with a complete map of the scholarly object and is easily cacheable. 
+                The below image illustrates the approach.
+</div>
+                
+                
+<div style="text-align: center;">
+<img src="linkset_merged.png" alt="Link Sets Merged" width="500">
+</div>
+
+ <h5><a name="level2a"></a>2.2.1. Level 2 - Typed Links Pertaining to the Landing Page</h5>
+   
+                
+<div class=" ">The below image and table show the links with the landing page as link 
+                	origin that must be conveyed in a Link Set when implementing 
+                	<a href="#level2">Level 2</a> of this recipe. In the image:
+                	<ul>
+                	<li>Solid green lines indicate links that must be provided.</li>
+                	<li>Dashed green lines indicate links that must be provided, whenever possible; see the table for further 
+                	information with this regard.</li>
+                	</ul>
+                	Examples are provided in <a href="#examples2">Section 3.2</a>.
+</div>
+                                                               
+<div style="text-align: center;">
+<img src="linkset_level2.png" alt="Link Set, Landing Page links" width="500">
+</div>
+ 				
+<div class="">
+                    <table class="table">
+                        <tbody><tr>
+                            <td style="width: 25%;"><b>Link Relation Type</b></td>
+                            <td style="width: 25%;"><b> Link Cardinality</b></td>
+                            <td><b>Comment</b></td>
+                        </tr>
+                        <tr>
+                            <td><code>author</code></td>
+                            <td>0 or more</td>
+                            <td>For each author of the scholarly object 
+that has a persistent identifier (e.g. ORCID expressed as HTTP URI) 
+                            provide a link that has the landing page as 
+origin and the persistent identifier as target. Only if none of the 
+authors have a persistent identifier 
+                            should there be no links with this relation 
+type.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cite-as</code></td>
+                            <td>1</td>
+                            <td>Provide a link that has the landing page as origin and the persistent identifier (e.g. DOI expressed as an HTTP URI) 
+                            of the scholarly object as target.</td>
+                        </tr>
+                       <tr>
+                            <td><code>describedby</code></td>
+                            <td>1 or more</td>
+                            <td>Provide one or more links that have the landing page as origin and the 
+                            URI of metadata that describes the scholarly object 
+                            in a commonly used format as target. 
+                             On each link, provide the media type of the metadata in the <code>type</code> 
+                            attribute. For common media types see the description of <code>describedby</code> 
+                            in <a href="#level1">Level 1</a>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>type</code></td>
+                            <td>2 (in most cases) or 1</td>
+                            <td>Provide a <em>first</em> link that has as target 
+                            the <a href="https://urldefense.com/v3/__https://schema.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYO47jt3M$">schema.org</a> 
+                            term (HTTP URI) for a <a href="https://urldefense.com/v3/__https://schema.org/CreativeWork__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYIvUPcgk$">Creative Work</a> that best  
+                            characterizes the scholarly object as a whole. For example, provide <code><a href="https://urldefense.com/v3/__https://schema.org/ScholarlyArticle__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOjgxNJy$">https://schema.org/ScholarlyArticle</a></code> 
+                            in case the object is a scholarly paper; provide <code><a href="https://urldefense.com/v3/__https://schema.org/Dataset__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPIUtBNb$">https://schema.org/Dataset</a></code> if it is a dataset. 
+                            If no appropriate term is available in 
+                            <code><a href="https://urldefense.com/v3/__https://schema.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYO47jt3M$">https://schema.org/</a></code>, select one (HTTP URI) from a commonly used ontology. 
+                            <br>
+                            Provide a <em>second</em> link that has as target 
+                            <code><a href="https://urldefense.com/v3/__https://schema.org/AboutPage__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAR-LQSV$">https://schema.org/AboutPage</a></code> in
+ the common case where an actual landing page is concerned. 
+                            Do not provide this second link in case a 
+content resource is concerned, i.e. do not provide 
+                            this second link when the persistent 
+identifier of the scholarly object directly resolves to a content 
+resource, such 
+                            as an HTML article, without presenting an 
+intermediate landing page.</td>
+                        </tr>
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>0 or 1</td>
+                            <td>If the license under which the scholarly object is made available is known, 
+                            provide a link that has as target the URI of that license. 
+                            Common licenses used are those provided by the <a href="https://urldefense.com/v3/__https://creativecommons.org/share-your-work/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAEki8Al$">Creative Commons</a>. 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>item</code></td>
+                            <td>1 or more</td>
+                            <td>For each content resource, provide a link that has the landing page as origin and the 
+                            content resource (e.g. the PDF article, the CSV dataset, the ZIPped software repository) 
+                            as target. Use the <code>type</code> 
+attribute on each link to convey the media type 
+                            of the content resource. If specificity 
+beyond the media type is required to indicate the nature of a content 
+resource, 
+                            use <code>profile</code> 
+                            as an 
+                            <a href="https://urldefense.com/v3/__https://datatracker.ietf.org/doc/html/rfc8288*section-3.4.2__;Iw!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYDhPa7o-$">extension target attribute</a> on the link to convey, 
+                            by means of an HTTP URI, the more specific format of the content resource. 
+                            </td>
+                        </tr>
+                    </tbody></table>
+</div>
+ 
+  <h5><a name="level2b"></a>2.2.2. Level 2 - Typed Links Pertaining to Content Resources</h5>
+                
+<div class=" ">The below image and table show the links 
+               that must be conveyed in a Link Set for each content resource when implementing 
+                	<a href="#level2">Level 2</a> of this recipe.                 	<ul>
+                	<li>Solid green lines indicate links that must be provided.</li>
+                	<li>Dashed green lines indicate links that must be provided, whenever possible; see the table for further 
+                	information with this regard.</li>
+                	<li>Dot-dashed black lines 
+                	indicate links that must only be provided in case they convey 
+                	 information that is different from what is conveyed for the 
+                	scholarly object as a whole by means of links with the same link relation type (respectively 
+                	"author", "cite-as", "describedby", "license", and "type") 
+                	on the landing page; see the table for further 
+                	information with this regard.</li>
+                	</ul>
+                	Examples are provided in <a href="#examples2">Section 3.2.</a>
+</div>
+                
+                
+<div style="text-align: center;">
+<img src="linkset_level3.png" alt="Link Set, Content Resource links" width="500">
+</div>
+                
+<div class="">
+                    <table class="table">
+                        <tbody><tr>
+                            <td style="width: 25%;"><b>Link Relation Type</b></td>
+                            <td style="width: 25%;"><b> Link Cardinality</b></td>
+                            <td><b>Comment</b></td>
+                        </tr>
+                        <tr>
+                            <td><code>author</code></td>
+                            <td>0 or more</td>
+                            <td>Provide links only if the content 
+resource 
+                            has authorship that is distinct from that of
+ the scholarly object as a whole. In this case,  
+                            for each author of the content resource that
+ has a persistent identifier (e.g. ORCID expressed as HTTP URI), 
+                            provide a link with with the content 
+resource as origin and that persistent identifier as target. 
+                            Do not provide links that express the 
+authorship of the scholarly object as a whole.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cite-as</code></td>
+                            <td>0 or 1</td>
+                            <td>Provide a link only if the content 
+resource has a persistent identifier 
+                            that is distinct from the persistent 
+identifier of the scholarly object as a whole. In this case,  
+                            provide a link that has the content resource
+ as origin and the persistent identifier of the content resource (e.g. 
+handle expressed as an HTTP URI) 
+                            as target. 
+                            Do not provide a link that expresses the 
+persistent identifier of the scholarly object as a whole.</td>
+                        </tr>
+                        <tr>
+                            <td><code>describedby</code></td>
+                            <td>0 or more</td>
+                            <td>Provide links only if the content 
+resource is described by metadata that is distinct 
+                            from the metadata that describes the 
+scholarly object as a whole. In this case, provide 
+                            one or more links that has the content 
+resource as origin and the URI of metadata that describes the content 
+resource 
+                            in a commonly used format as target. 
+                            On each link, provide the media type of the 
+metadata in the <code>type</code> 
+                            attribute. For common media types see the description of <code>describedby</code> 
+                            in <a href="#level1">Level 1</a>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>type</code></td>
+                            <td>0 or 1</td>
+                            <td>
+                            Provide a link only if the type of the 
+content resource differs from the type that best characterizes the 
+scholarly object 
+                            as a whole. 
+                            In this case, provide a link that has as 
+target 
+                            the <a href="https://urldefense.com/v3/__https://schema.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYO47jt3M$">schema.org</a> 
+                            term (HTTP URI) for a <a href="https://urldefense.com/v3/__https://schema.org/CreativeWork__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYIvUPcgk$">Creative Work</a> that best  
+                            characterizes the content resource. If no appropriate term is available in 
+                            <code><a href="https://urldefense.com/v3/__https://schema.org/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYO47jt3M$">https://schema.org/</a></code>, select one (HTTP URI) from a commonly used ontology. 
+                            For example, if the scholarly object as a whole is best characterized as a 
+                            scholarly paper (<code><a href="https://urldefense.com/v3/__https://schema.org/ScholarlyArticle__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOjgxNJy$">https://schema.org/ScholarlyArticle</a></code> type is provided at the landing page) 
+                            and the content resource is a dataset
+                            provide a link that has <code><a href="https://urldefense.com/v3/__https://schema.org/Dataset__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPIUtBNb$">https://schema.org/Dataset</a></code> as target. 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>0 or 1</td>
+                            <td>Provide a link only if the content resource is made available under a license 
+                            that is distinct from the license that applies to the scholarly object as a whole. In this case,  
+                            provide a link that has the content resource as origin and the URI of the license under which 
+                            the content resource (e.g. a <a href="https://urldefense.com/v3/__https://creativecommons.org/share-your-work/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAEki8Al$">Creative Commons</a> license URI) is made available as target. 
+                            Do not provide a link that expresses the license of the scholarly object as a whole.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>collection</code></td>
+                            <td>1</td>
+                            <td>Provide a link that has the content resource as origin and the landing page as target.
+                            </td>
+                        </tr>
+                    </tbody></table>
+</div>				
+
+             
+
+             
+              <h5><a name="level2c"></a>2.2.3. Level 2 - Typed Links Pertaining to Metadata Resources</h5>
+                
+<div class=" ">The below image and table show the links 
+               that must be conveyed in a Link Set for each metadata resource when implementing 
+                	<a href="#level2">Level 2</a> of this recipe.                 	
+                	<ul>
+                	<li>Solid green lines indicate links that must be provided.</li>
+                	</ul>
+                	Examples are provided in <a href="#examples2">Section 3.2.</a>
+</div>
+                
+                
+<div style="text-align: center;">
+<img src="linkset_level4.png" alt="Link Set, Metadata Resource links" width="500">
+</div>
+                
+<div class="">
+                    <table class="table">
+                        <tbody><tr>
+                            <td style="width: 25%;"><b>Link Relation Type</b></td>
+                            <td style="width: 25%;"><b> Link Cardinality</b></td>
+                            <td><b>Comment</b></td>
+                        </tr>
+                        <tr>
+                            <td><code>describes</code></td>
+                            <td>1</td>
+                            <td>For each metadata resource, provide a link that has the metadata resource as origin and the landing page as target.</td>
+                        </tr>
+                    </tbody></table>
+</div>		
+             
+             
+             
+             
+    
+             
+             
+             
+             
+                
+
+<h3><a name="examples"></a>3. Examples</h3>
+
+<div class=" ">
+This section shows examples for providing typed links and Link Sets for 
+<a href="#level">Level 1</a> and <a href="#level2">Level 2</a> 
+of the FAIR Signposting Profile. Throughout the examples, the fictitious scholarly object
+as shown in the below table is used.
+</div>
+
+<br>
+
+<div class=" ">
+<table class="table">
+                        <tbody><tr>
+                            <td style="width: 45%;"><b>Scholarly Object Resources</b></td>
+                            <td style="width: 35%;"><b>HTTP URI</b></td>
+                            <td><b>Media Type</b></td>
+                        </tr>
+                        <tr>
+                            <td>Persistent Identifier</td>
+                            <td><a href="https://urldefense.com/v3/__https://doi.org/10.1234/56789__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYGby9aB2$">https://doi.org/10.1234/56789</a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Landing Page</td>
+                            <td><a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a></td>
+                            <td>text/html</td>
+                        </tr>
+                        <tr>
+                            <td>Content Resource 1 - Article</td>
+                            <td><a href="https://urldefense.com/v3/__https://example.org/file/7507/1__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYCaPUglZ$">https://example.org/file/7507/1</a></td>
+                            <td>application/pdf</td>
+                        </tr>
+                        <tr>
+                        <td>Content Resource 2 - Dataset</td>
+                            <td><a href="https://urldefense.com/v3/__https://example.org/file/7507/2__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYDOCI3X9$">https://example.org/file/7507/2</a></td>
+                            <td>text/csv</td>
+                        </tr>
+                        <tr>
+                       <td>Content Resource 3 - ZIPped Software Repository</td>
+                            <td><a href="https://urldefense.com/v3/__https://gitmodo.io/johnd/ct.zip__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNyh7EY7$">https://gitmodo.io/johnd/ct.zip</a></td>
+                            <td>application/zip</td>
+                        </tr>
+                        <tr>
+                        <td>Metadata Description 1</td>
+                            <td><a href="https://urldefense.com/v3/__https://example.org/meta/7507/bibtex__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOxYawV_$">https://example.org/meta/7507/bibtex</a></td>
+                            <td>application/x-bibtex</td>
+                        </tr>
+                        <tr>
+                        <td>Metadata Description 2</td>
+                            <td><a href="https://urldefense.com/v3/__https://example.org/meta/7507/datacite__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYK10LPkp$">https://example.org/meta/7507/datacite</a></td>
+                            <td>application/vnd.datacite.datacite+json</td>
+                        </tr>
+                        <tr>
+                       <td>Metadata Description 3</td>
+                            <td><a href="https://urldefense.com/v3/__https://example.org/meta/7507/citeproc__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYLWjbqi9$">https://example.org/meta/7507/citeproc</a></td>
+                            <td>application/vnd.citationstyles.csl+json</td>
+                        </tr>
+						<tr>
+                        <td>Author 1 Persistent Identifier</td>
+                            <td><a href="https://urldefense.com/v3/__https://orcid.org/0000-0002-1825-0097__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYD0TVIcN$">https://orcid.org/0000-0002-1825-0097</a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        <td>Author 2 Persistent Identifier</td>
+                            <td><a href="https://urldefense.com/v3/__https://isni.org/isni/0000002251201436__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYMoj7zRb$">https://isni.org/isni/0000002251201436</a></td>
+                            <td></td>
+                        </tr>
+</tbody></table>
+</div>
+
+<div class=" ">
+Other resources involved in signposting the fictitious scholarly object are shown in the table below.
+</div>
+
+<br>
+
+<div class=" ">
+<table class="table">
+                        <tbody><tr>
+                            <td style="width: 45%;"><b>Other Signposting Resources</b></td>
+                            <td style="width: 35%;"><b>HTTP URI</b></td>
+                            <td><b>Media Type</b></td>
+                        </tr>
+                        <tr>
+                            <td>Type of Landing Page</td>
+                            <td><a href="https://urldefense.com/v3/__https://schema.org/AboutPage__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAR-LQSV$">https://schema.org/AboutPage</a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Type of Content Resource 1 - Article</td>
+                            <td><a href="https://urldefense.com/v3/__https://schema.org/ScholarlyArticle__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOjgxNJy$">https://schema.org/ScholarlyArticle</a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Type of Content Resource 2 - Dataset</td>
+                            <td><a href="https://urldefense.com/v3/__https://schema.org/Dataset__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPIUtBNb$">https://schema.org/Dataset</a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Type of Content Resource 3 - ZIPped Software Repository</td>
+                            <td><a href="https://urldefense.com/v3/__https://schema.org/SoftwareSourceCode__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYHdTnPpY$">https://schema.org/SoftwareSourceCode</a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>License for scholarly object</td>
+                            <td><a href="https://urldefense.com/v3/__https://creativecommons.org/licenses/by/4.0/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPBvoepG$">https://creativecommons.org/licenses/by/4.0/</a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                        <td>Link Set</td>
+                            <td><a href="https://urldefense.com/v3/__https://example.org/linkset/7507/json__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYFpVM7CI$">https://example.org/linkset/7507/json</a></td>
+                            <td>application/linkset+json</td>
+                        </tr>
+                        <tr>
+                       <td>Link Set</td>
+                            <td><a href="https://urldefense.com/v3/__https://example.org/linkset/7507/lset__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYFisHMjf$">https://example.org/linkset/7507/lset</a></td>
+                            <td>application/linkset</td>
+                        </tr>
+</tbody></table>
+</div>
+
+<h4><a name="examples1"></a>3.1. Examples Level 1</h4>
+
+<div class=" ">At <a href="#level1">Level 1</a>, a minimal set of typed links pertaining to the landing page must be provided. This can be done  
+in the page's HTTP <code>Link</code> header and/or in <code>&lt;link&gt;</code> elements in the <code>&lt;head&gt;</code> section of that page's HTML. 
+Remember that typed links in the HTTP <code>Link</code> header are accessible 
+via both HTTP HEAD and GET, while links in the HTML are only accessible via HTTP GET.
+Each content resource should also provide a minimal set of links pertaining to itself. This should be done via the  
+resource's HTTP <code>Link</code> header.
+</div>
+
+<br>
+
+<div class=" ">When using the <code>Link</code> header approach, 
+the required typed links can be conveyed in a single the HTTP <code>Link</code> header 
+or using multiple <code>Link</code> headers, one header per link. Line breaks must not be used 
+in <code>Link</code> headers as they are not allowed per <a href="https://urldefense.com/v3/__https://tools.ietf.org/html/rfc7230*section-3.2__;Iw!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYB0gGZAc$">RFC7230</a>; 
+only whitespaces and tabs are supported as separators. 
+</div>
+
+<br>
+
+<div class=" ">
+The below examples show responses to an HTTP GET request issued against 
+the URI of the landing page of our fictitious scholarly object. 
+In the first example, the HTTP header approach is used to convey the 
+typed links, with all links provided in a single <code>Link</code> header. 
+Note that the same links could simultaneously be provided via <code>&lt;link&gt;</code> elements in the HTML's <code>&lt;head&gt;</code>. 
+In the second example, the typed links are provided in the HTML's <code>&lt;head&gt;</code> but not in the HTTP <code>Link</code> header.
+</div>
+
+<br>
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Level 1 typed links pertaining to the landing page via the HTTP <code>Link</code> header</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -i "<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 19:19:22 GMT
+Content-Type: text/html
+Content-Length: 25414
+Link: &lt;<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23f*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYByAwj-6$">https://doi.org/10.5061/dryad.5d23f&gt;</a> ; rel="cite-as" , &lt;<a href="https://urldefense.com/v3/__https://schema.org/ScholarlyArticle*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAhEug7h$">https://schema.org/ScholarlyArticle&gt;</a> ; rel="type" , 
+&lt;<a href="https://urldefense.com/v3/__https://schema.org/AboutPage*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYM9dxPf4$">https://schema.org/AboutPage&gt;</a> ; rel="type" , &lt;<a href="https://urldefense.com/v3/__https://orcid.org/0000-0002-1825-0097*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOx-8GRE$">https://orcid.org/0000-0002-1825-0097&gt;</a> ; rel="author" , 
+&lt;<a href="https://urldefense.com/v3/__https://example.org/meta/7507/bibtex*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYJxzDjQ_$">https://example.org/meta/7507/bibtex&gt;</a> ; rel="describedby" ; type="application/x-bibtex" , 
+&lt;<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23f*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYByAwj-6$">https://doi.org/10.5061/dryad.5d23f&gt;</a> ; rel="describedby" ; type="application/vnd.datacite.datacite+json" , 
+&lt;<a href="https://urldefense.com/v3/__https://creativecommons.org/licenses/by/4.0/*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYIiPpCrW$">https://creativecommons.org/licenses/by/4.0/&gt;</a> ; rel="license" ,
+&lt;<a href="https://urldefense.com/v3/__https://example.org/file/7507/1*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYP4IYTX4$">https://example.org/file/7507/1&gt;</a> ; rel="item" ; type="application/pdf" , 
+&lt;<a href="https://urldefense.com/v3/__https://example.org/file/7507/2*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYKmjq7XL$">https://example.org/file/7507/2&gt;</a> ; rel="item" ; type="text/csv" , 
+&lt;<a href="https://urldefense.com/v3/__https://gitmodo.io/johnd/ct.zip*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOAs6hNh$">https://gitmodo.io/johnd/ct.zip&gt;</a> ; rel="item" ; type="application/zip"
+
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  ...
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Level 1 typed links pertaining to the landing page via HTML <code>&lt;link&gt;</code> elements</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -i "<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 19:19:48 GMT
+Content-Type: text/html
+Content-Length: 25414
+
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;link rel="cite-as" href="<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYFsD7HVX$">https://doi.org/10.5061/dryad.5d23"&gt;</a>
+  &lt;link rel="type" href="<a href="https://urldefense.com/v3/__https://schema.org/ScholarlyArticle*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPE2JXlG$">https://schema.org/ScholarlyArticle"&gt;</a>
+  &lt;link rel="type" href="<a href="https://urldefense.com/v3/__https://schema.org/AboutPage*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYGJIRIZW$">https://schema.org/AboutPage"&gt;</a>
+  &lt;link rel="author" href="<a href="https://urldefense.com/v3/__https://orcid.org/0000-0002-1825-0097*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYHe7YCPX$">https://orcid.org/0000-0002-1825-0097"&gt;</a>
+  &lt;link rel="describedby" type="application/x-bibtex" href="<a href="https://urldefense.com/v3/__https://example.org/meta/7507/bibtex__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOxYawV_$">https://example.org/meta/7507/bibtex</a>" &gt;  
+  &lt;link rel="describedby" type="application/vnd.datacite.datacite+json" href="<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23f*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYEAb2Xqg$">https://doi.org/10.5061/dryad.5d23f"&gt;</a>
+  &lt;link rel="license" href="<a href="https://urldefense.com/v3/__https://creativecommons.org/licenses/by/4.0/*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYN6uYGMK$">https://creativecommons.org/licenses/by/4.0/"&gt;</a>
+  &lt;link rel="item" type="application/pdf" href="<a href="https://urldefense.com/v3/__https://example.org/file/7507/1*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAufk2BS$">https://example.org/file/7507/1"&gt;</a>
+  &lt;link rel="item" type="text/csv" href="<a href="https://urldefense.com/v3/__https://example.org/file/7507/2*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYIXaticF$">https://example.org/file/7507/2"&gt;</a>
+  &lt;link rel="item" type="application/zip" href="<a href="https://urldefense.com/v3/__https://gitmodo.io/johnd/ct.zip*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYMMQfP-7$">https://gitmodo.io/johnd/ct.zip"&gt;</a>
+  ...
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class=" ">
+The below examples show responses to an HTTP HEAD request issued against the URI of a content resource 
+(respectively, "Content Resource 1 - Article" and "Content Resource 2 - Dataset") of our fictitious scholarly object. 
+Typed links are provided in the resource's HTTP header because that approach can uniformly be used 
+for resources of any media type. Note that Content Resource 1 does not provide a <code>type</code> link because 
+its type coincides with that of the scholarly object as a whole and that type is expressed at the level of the 
+landing page. Content Resource 2, however, has a different type and expresses it by means of a <code>type</code> link.
+</div>
+
+<br>
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Level 1 typed links pertaining to the Article content resource via the HTTP <code>Link</code> header</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "<a href="https://urldefense.com/v3/__https://example.org/file/7507/1__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYCaPUglZ$">https://example.org/file/7507/1</a>"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 19:21:29 GMT
+Content-Type: application/pdf
+Content-Length: 36588
+Link: &lt;<a href="https://urldefense.com/v3/__https://example.org/page/7507*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYBMjN7HS$">https://example.org/page/7507&gt;</a> ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Level 1 typed links pertaining to the Dataset content resource via the HTTP <code>Link</code> header</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "<a href="https://urldefense.com/v3/__https://example.org/file/7507/2__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYDOCI3X9$">https://example.org/file/7507/2</a>"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 20:03:49 GMT
+Content-Type: text/csv
+Content-Length: 4285
+Link: &lt;<a href="https://urldefense.com/v3/__https://example.org/page/7507*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYBMjN7HS$">https://example.org/page/7507&gt;</a> ; rel="collection" ; type="text/html" , 
+&lt;<a href="https://urldefense.com/v3/__https://schema.org/Dataset*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYJLNz63J$">https://schema.org/Dataset&gt;</a> ; rel="type"
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+
+<div class=" ">
+The below example shows the response to an HTTP HEAD request issued against the URI of a metadata resource 
+of our fictitious scholarly object. The typed link is provided in the resource's HTTP header because that approach can uniformly be used 
+for resources of any media type. 
+</div>
+
+<br>
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Level 1 typed links pertaining to a metadata resource via the HTTP <code>Link</code> header</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "<a href="https://urldefense.com/v3/__https://example.org/meta/7507/bibtex__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOxYawV_$">https://example.org/meta/7507/bibtex</a>"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 19:24:33 GMT
+Content-Type: application/x-bibtex
+Content-Length: 120
+Link: &lt;<a href="https://urldefense.com/v3/__https://example.org/page/7507*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYBMjN7HS$">https://example.org/page/7507&gt;</a> ; rel="describes" ; type="text/html"
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+
+<h4><a name="examples2"></a>3.2. Examples Level 2</h4>
+
+<div class=" ">
+At <a href="#level2">Level 2</a>, a single Link Set contains a comprehensive set of links pertaining to the landing page, all 
+content resources, and all metadata resources. This Link Set is made available through the provision of <code>linkset</code> links  
+by both the landing page and each of the content/metadata resources. 
+</div>
+
+<br>
+
+<div class=" ">
+For the landing page,  
+this can be done using the HTTP <code>Link</code> header and/or via <code>&lt;link&gt;</code> element's in the HTML's <code>&lt;head&gt;</code>. 
+The below example illustrates the latter approach through the inclusion of two <code>linkset</code> 
+links pointing to different serializations of the Link Set. 
+Note that the response also contains the <a href="#level1a">Level 1</a> links 
+pertaining to the landing page.
+</div>
+
+<br>
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Landing page provides <code>linkset</code> links</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -i "<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 19:19:22 GMT
+Content-Type: text/html
+Content-Length: 25785
+
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;link rel="cite-as" href="<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYFsD7HVX$">https://doi.org/10.5061/dryad.5d23"&gt;</a>
+  &lt;link rel="type" href="<a href="https://urldefense.com/v3/__https://schema.org/ScholarlyArticle*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPE2JXlG$">https://schema.org/ScholarlyArticle"&gt;</a>
+  &lt;link rel="type" href="<a href="https://urldefense.com/v3/__https://schema.org/AboutPage*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYGJIRIZW$">https://schema.org/AboutPage"&gt;</a>
+  &lt;link rel="author" href="<a href="https://urldefense.com/v3/__https://orcid.org/0000-0002-1825-0097*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYHe7YCPX$">https://orcid.org/0000-0002-1825-0097"&gt;</a>
+  &lt;link rel="describedby" type="application/x-bibtex" href="<a href="https://urldefense.com/v3/__https://example.org/meta/7507/bibtex__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOxYawV_$">https://example.org/meta/7507/bibtex</a>" &gt;  
+  &lt;link rel="describedby" type="application/vnd.datacite.datacite+json" href="<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23f*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYEAb2Xqg$">https://doi.org/10.5061/dryad.5d23f"&gt;</a>
+  &lt;link rel="license" href="<a href="https://urldefense.com/v3/__https://creativecommons.org/licenses/by/4.0/*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYN6uYGMK$">https://creativecommons.org/licenses/by/4.0/"&gt;</a>
+  &lt;link rel="linkset" type="application/linkset" href="<a href="https://urldefense.com/v3/__https://example.org/linkset/7507/lset*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYLHaNxu1$">https://example.org/linkset/7507/lset"&gt;</a>
+  &lt;link rel="linkset" type="application/linkset+json" href="<a href="https://urldefense.com/v3/__https://example.org/linkset/7507/json*22*3E__;JSU!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOogkbzo$">https://example.org/linkset/7507/json"&gt;</a>
+  ...
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class=" ">
+Each content and metadata resource should also make the Link Set discoverable by means of a <code>linkset</code> link. 
+The only way to do so uniformly for resources of any media type is by using the HTTP <code>Link</code> header approach.
+The below example illustrates this for Content Resource 1 (Article) of our fictitious scholarly object. 
+It shows the response to an HTTP HEAD issued against that resource's URI. Note that the response also contains the <a href="#level1b">Level 1</a> links 
+pertaining to the content resource.
+</div>
+
+<br>
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Content resource provides <code>linkset</code> links</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "<a href="https://urldefense.com/v3/__https://example.org/file/7507/1__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYCaPUglZ$">https://example.org/file/7507/1</a>"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 20:14:29 GMT
+Content-Type: application/pdf
+Content-Length: 36588
+Link: &lt;<a href="https://urldefense.com/v3/__https://example.org/linkset/7507/1/lset*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOszVtp9$">https://example.org/linkset/7507/1/lset&gt;</a> ; rel="linkset" ; type="application/linkset" , 
+&lt;<a href="https://urldefense.com/v3/__https://example.org/linkset/7507/1/json*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYJAv6iPH$">https://example.org/linkset/7507/1/json&gt;</a> ; rel="linkset" ; type="application/linkset+json" ,
+&lt;<a href="https://urldefense.com/v3/__https://example.org/page/7507*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYBMjN7HS$">https://example.org/page/7507&gt;</a> ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class=" ">
+An actual Link Set is obtained by issuing an HTTP GET on a URI discovered as described above. The below examples show responses 
+to requests issued against <code><a href="https://urldefense.com/v3/__https://example.org/linkset/7507/json__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYFpVM7CI$">https://example.org/linkset/7507/json</a></code> (<code>application/linkset+json</code> serialization) 
+and <code><a href="https://urldefense.com/v3/__https://example.org/linkset/7507/lset__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYFisHMjf$">https://example.org/linkset/7507/lset</a></code> (<code>application/linkset</code> serialization), respectively. Note that 
+it is possible to allow clients to interpret this JSON as JSON-LD by:
+<ul>
+<li>Publishing a JSON-LD context document.</li>
+<li>Making the JSON-LD context document discoverable by providing a typed link  
+with the <code><a href="https://urldefense.com/v3/__http://www.w3.org/ns/json-ld*context__;Iw!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYJWrIiKR$">http://www.w3.org/ns/json-ld#context</a></code> relation type in the HTTP <code>Link</code> header of the Link Set.</li>
+</ul>
+This is shown in detail in Appendix B of the <a href="https://urldefense.com/v3/__https://datatracker.ietf.org/doc/draft-ietf-httpapi-linkset/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYCUsqFtY$">Linkset</a> Internet Draft.
+</div>
+
+<br>
+
+<div class=" ">
+As indicated in <a href="#level2b">Section 2.2.2.</a>, 
+if a content resource has distinct a persistent identifier, type, authorship, or descriptive metadata it can be provided 
+in the Link Set using <code>cite-as</code>, <code>type</code>, <code>author</code>, and <code>describedby</code>
+ links, respectively, with the URI of the 
+content resource as anchor. But such links must not be used if these 
+properties are shared with the scholarly object as a whole. 
+Note the way the anchor of each link is provided explicitly in the <code>application/linkset</code> serialization to avoid 
+ambiguous interpretation.
+</div>
+
+
+
+<br>
+
+
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Level 2 typed links via a Link Set in <code>application/linkset+json</code> serialization</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -i "<a href="https://urldefense.com/v3/__https://example.org/linkset/7507/1/json__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYEob6iAF$">https://example.org/linkset/7507/1/json</a>"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 20:23:44 GMT
+Server: Apache-Coyote/1.1
+Content-Length: 2608
+Content-Type: application/linkset+json
+Connection: close
+
+{
+  "linkset": [
+    {
+      "anchor": "<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>",
+      "cite-as": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23f__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYLLAoZVB$">https://doi.org/10.5061/dryad.5d23f</a>"
+        }
+      ],
+      "type": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://schema.org/ScholarlyArticle__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOjgxNJy$">https://schema.org/ScholarlyArticle</a>"
+        },
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://schema.org/AboutPage__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAR-LQSV$">https://schema.org/AboutPage</a>"
+        }
+      ],
+      "author": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://orcid.org/0000-0002-1825-0097__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYD0TVIcN$">https://orcid.org/0000-0002-1825-0097</a>"
+        },
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://isni.org/isni/0000002251201436__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYMoj7zRb$">https://isni.org/isni/0000002251201436</a>"
+        }
+      ],
+      "item": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://example.org/file/7507/1__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYCaPUglZ$">https://example.org/file/7507/1</a>",
+          "type": "application/pdf"
+        },
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://example.org/file/7507/2__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYDOCI3X9$">https://example.org/file/7507/2</a>",
+          "type": "text/csv"
+        },
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://gitmodo.io/johnd/ct.zip__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNyh7EY7$">https://gitmodo.io/johnd/ct.zip</a>",
+          "type": "application/zip"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://example.org/meta/7507/bibtex__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOxYawV_$">https://example.org/meta/7507/bibtex</a>",
+          "type": "application/x-bibtex"
+        },
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23f__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYLLAoZVB$">https://doi.org/10.5061/dryad.5d23f</a>",
+          "type": "application/vnd.datacite.datacite+json"
+        },
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://example.org/meta/7507/citeproc__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYLWjbqi9$">https://example.org/meta/7507/citeproc</a>",
+          "type": "application/vnd.citationstyles.csl+json"
+        }
+      ],
+      "license": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://creativecommons.org/licenses/by/4.0/__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPBvoepG$">https://creativecommons.org/licenses/by/4.0/</a>"
+        }
+      ]
+    },
+    {
+      "anchor": "<a href="https://urldefense.com/v3/__https://example.org/file/7507/1__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYCaPUglZ$">https://example.org/file/7507/1</a>",
+      "collection": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "<a href="https://urldefense.com/v3/__https://example.org/file/7507/2__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYDOCI3X9$">https://example.org/file/7507/2</a>",
+      "collection": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>",
+          "type": "text/html"
+        }
+      ],
+      "type": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://schema.org/Dataset__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYPIUtBNb$">https://schema.org/Dataset</a>"
+        }
+      ]
+    },
+    {
+      "anchor": "<a href="https://urldefense.com/v3/__https://gitmodo.io/johnd/ct.zip__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNyh7EY7$">https://gitmodo.io/johnd/ct.zip</a>",
+      "collection": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>",
+          "type": "text/html"
+        }
+      ],
+      "type": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://schema.org/SoftwareSourceCode__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYHdTnPpY$">https://schema.org/SoftwareSourceCode</a>"
+        }
+      ]
+    },
+    {
+      "anchor": "<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23f__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYLLAoZVB$">https://doi.org/10.5061/dryad.5d23f</a>",
+      "describes": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "<a href="https://urldefense.com/v3/__https://example.org/meta/7507/bibtex__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOxYawV_$">https://example.org/meta/7507/bibtex</a>",
+      "describes": [
+        {
+          "href": "<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Level 2 typed links via a Link Set in <code>application/linkset</code> serialization</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -i "<a href="https://urldefense.com/v3/__https://example.org/linkset/7507/lset__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYFisHMjf$">https://example.org/linkset/7507/lset</a>"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 20:22:19 GMT
+Server: Apache-Coyote/1.1
+Content-Length: 2247
+Content-Type: application/linkset
+Connection: close
+
+&lt;<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23f*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYByAwj-6$">https://doi.org/10.5061/dryad.5d23f&gt;</a> ; rel="cite-as" ; anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" , 
+&lt;<a href="https://urldefense.com/v3/__https://schema.org/ScholarlyArticle*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYAhEug7h$">https://schema.org/ScholarlyArticle&gt;</a> ; rel="type" ; anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" , 
+&lt;<a href="https://urldefense.com/v3/__https://schema.org/AboutPage*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYM9dxPf4$">https://schema.org/AboutPage&gt;</a> ; rel="type" ; anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" , 
+&lt;<a href="https://urldefense.com/v3/__https://orcid.org/0000-0002-1825-0097*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOx-8GRE$">https://orcid.org/0000-0002-1825-0097&gt;</a> ; rel="author" ; anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" , 
+&lt;<a href="https://urldefense.com/v3/__https://isni.org/isni/0000002251201436*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYGZYtq8J$">https://isni.org/isni/0000002251201436&gt;</a> ; rel="author" ; anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" ,
+&lt;<a href="https://urldefense.com/v3/__https://example.org/file/7507/1*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYP4IYTX4$">https://example.org/file/7507/1&gt;</a> ; rel="item" ; type="application/pdf" ; anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" , 
+&lt;<a href="https://urldefense.com/v3/__https://example.org/file/7507/2*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYKmjq7XL$">https://example.org/file/7507/2&gt;</a> ; rel="item" ; type="text/csv" ; anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" , 
+&lt;<a href="https://urldefense.com/v3/__https://gitmodo.io/johnd/ct.zip*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOAs6hNh$">https://gitmodo.io/johnd/ct.zip&gt;</a> ; rel="item" ; type="application/zip" ; anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" ,
+&lt;<a href="https://urldefense.com/v3/__https://example.org/meta/7507/bibtex*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYJxzDjQ_$">https://example.org/meta/7507/bibtex&gt;</a> ; rel="describedby" ; type="application/x-bibtex" 
+; anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" , &lt;<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23f*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYByAwj-6$">https://doi.org/10.5061/dryad.5d23f&gt;</a> ; rel="describedby" ; 
+type="application/vnd.datacite.datacite+json" ; anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" , 
+&lt;<a href="https://urldefense.com/v3/__https://example.org/meta/7507/citeproc*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYGk7oQP7$">https://example.org/meta/7507/citeproc&gt;</a> ; rel="describedby" ; type="application/vnd.citationstyles.csl+json" ; 
+anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" , &lt;<a href="https://urldefense.com/v3/__https://creativecommons.org/licenses/by/4.0/*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYIiPpCrW$">https://creativecommons.org/licenses/by/4.0/&gt;</a> ; rel="license" ; 
+anchor="<a href="https://urldefense.com/v3/__https://example.org/page/7507__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNYY4RiO$">https://example.org/page/7507</a>" , &lt;<a href="https://urldefense.com/v3/__https://example.org/page/7507*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYBMjN7HS$">https://example.org/page/7507&gt;</a> ; rel="collection" ; type="text/html" ; 
+anchor="<a href="https://urldefense.com/v3/__https://example.org/file/7507/1__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYCaPUglZ$">https://example.org/file/7507/1</a>" , &lt;<a href="https://urldefense.com/v3/__https://example.org/page/7507*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYBMjN7HS$">https://example.org/page/7507&gt;</a> ; rel="collection" ; 
+type="text/html" ; anchor="<a href="https://urldefense.com/v3/__https://example.org/file/7507/2__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYDOCI3X9$">https://example.org/file/7507/2</a>" , &lt;<a href="https://urldefense.com/v3/__https://schema.org/Dataset*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYJLNz63J$">https://schema.org/Dataset&gt;</a> ; rel="type" ; 
+anchor="<a href="https://urldefense.com/v3/__https://example.org/file/7507/2__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYDOCI3X9$">https://example.org/file/7507/2</a>" , &lt;<a href="https://urldefense.com/v3/__https://example.org/page/7507*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYBMjN7HS$">https://example.org/page/7507&gt;</a> ; rel="collection" ; type="text/html" ; 
+anchor="<a href="https://urldefense.com/v3/__https://gitmodo.io/johnd/ct.zip__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNyh7EY7$">https://gitmodo.io/johnd/ct.zip</a>" , &lt;<a href="https://urldefense.com/v3/__https://schema.org/SoftwareSourceCode*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYGqNHMhK$">https://schema.org/SoftwareSourceCode&gt;</a> ; rel="type" ; 
+anchor="<a href="https://urldefense.com/v3/__https://gitmodo.io/johnd/ct.zip__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYNyh7EY7$">https://gitmodo.io/johnd/ct.zip</a>" &lt;<a href="https://urldefense.com/v3/__https://example.org/page/7507*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYBMjN7HS$">https://example.org/page/7507&gt;</a> ; rel="describes" ; type="text/html" ; 
+anchor="<a href="https://urldefense.com/v3/__https://doi.org/10.5061/dryad.5d23f__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYLLAoZVB$">https://doi.org/10.5061/dryad.5d23f</a>" , &lt;<a href="https://urldefense.com/v3/__https://example.org/page/7507*3E__;JQ!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYBMjN7HS$">https://example.org/page/7507&gt;</a> ; rel="describes" ; type="text/html" ; 
+anchor="<a href="https://urldefense.com/v3/__https://example.org/meta/7507/bibtex__;!!Bt8fGhp8LhKGRg!GHdsY3vjG35J37hckv2JeYQNieNz4bNh_-mkNZ5gnfcZ_HHsnmmMeHqY7UvTNMtzgt6YXzsAO1Yo_tKvYOxYawV_$">https://example.org/meta/7507/bibtex</a>"
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+</div>
+            </div> <!-- /container -->
+
+            <div class="footer" id="footer">
+            </div>
+
+    
+
+</body></html>
