@@ -48,13 +48,14 @@ $(function() {
                             <h3 style="margin: 0; margin-bottom: 10px;">Signposting the Scholarly Web</h3>
                             <p class="">
                             Landing pages support humans that interact with scholarly objects on the web, providing descriptive metadata and links to content. 
-                            These pages are not optimized for use by machine agents that navigate the scholarly web. 
-                            For example, how can a robot determine which links on the myriad of landing pages lead to content and which to metadata? 
+                            But those pages are not optimized for use by machine agents that navigate the scholarly web. 
+                            For example, how can a robot determine which links on a landing page lead to content and which to metadata? 
+		            And, how can a bot distinguish those links from the myriad of other links on the page?
                             Signposting caters to machine agents by providing this information, and more, in a standards-based way, using <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">Typed Links</a> 
                             as a means to clarify patterns that occur repeatedly in scholarly portals.
                             As an administrator of platforms that host research outputs (e.g. data repositories, institutional repositories, publisher platforms, etc.), 
-				    you can help machines to navigate the information systems you manage by implementing 
-                             some of the Signposting Patterns listed on this site. Or, even better, by implementing the 
+		            you can help machines to navigate the information systems you manage by implementing 
+                            some of the Signposting Patterns listed on this site. Or, even better, by implementing the 
                             <a href="https://signposting.org/FAIR/">FAIR Signposting Profile</a> that provides concrete recipes aimed at uniformity across systems. 
                             </p>
                             
@@ -71,7 +72,7 @@ $(function() {
                          Typed links, as used in Signposting, can be provided in 
                             <a href="http://tools.ietf.org/html/rfc5988">HTTP Link headers</a>, 
                             <a href="https://www.w3.org/wiki/HTML/Elements/link">HTML link elements</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Sets</a>.  
-                            This example uses the HTTP Link header approach:
+                            This example, as well as the examples in the Patterns section of this site, uses the HTTP Link header approach:
                             <br/><br/>
                         Herbert Van de Sompel and Michael L. Nelson are the authors of the paper with DOI 
                         <a href="https://doi.org/10.1045/november2015-vandesompel">https://doi.org/10.1045/november2015-vandesompel</a>; 
@@ -81,7 +82,7 @@ $(function() {
                         The publisher can express authorship information in a machine-friendly way by providing <code>author</code> links 
                         in a Link header provided in the response to an HTTP HEAD/GET issued against that URL. 
                         The publisher can additionally convey the persistent identifier of the paper by using a 
-                        <code>cite-as</code> link:
+                        <code>cite-as</code> link. These links allow a bot to follow their nose to find pertinent additional information pertaining to the paper:
                         <br /><br />
 
                         <div class="code">
@@ -114,9 +115,8 @@ $(function() {
                     for machine access, in which case each portal exposes their own. But
                     how about some uniform approaches to allow machines to interact with
                     scholarly portals?
-                    <br/>
-                    <br/>
-
+			</p>
+			<p class="">
                     Understanding that resources are scarce, Signposting proposes a really
                     simple approach, based on <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">Typed Links</a>,
                     to clarify patterns that occur repeatedly in scholarly portals. Typed
@@ -125,7 +125,6 @@ $(function() {
                     from the landing page?", "Where to find the BibTeX metadata that
                     describes the publication", "What is the ORCID of the author of this
                     publication", ...
-
                     </p>
                     <p class="">
                     Signposting is not a formal standardization effort. It's just an
@@ -134,17 +133,15 @@ $(function() {
                     on specifications to improve on the interoperability status quo, and
                     witnessing some specifications being adopted and others not. Those
                     scarce resources, you know.
-                    <br/>
-                    <br/>
-
+			</p>
+			<p class="">
                     The Signposting approach is fully aligned with hypermedia (REST, HATEOAS)
                     lines of thinking regarding web interoperability. Implementation of a
                     pattern should be straightforward and would help machines
                     significantly. Which would allow the emergence of new applications that make the life of a reader easier. 
                     Meaning great Return On Investment.
-                    <br/>
-                    <br/>
-
+			</p>
+			<p class="">
                     Please share feedback on the <a href="https://groups.google.com/forum/#!forum/signposting">Signposting Google Group</a>.
                     </p>
                     
