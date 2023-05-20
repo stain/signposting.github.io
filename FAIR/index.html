@@ -201,11 +201,11 @@ each equipped with an HTTP URI. A <b>scholarly object</b> typically has:
 </li><li>A <b>landing page</b> that is reachable by dereferencing the persistent identifier and following HTTP redirects. 
 The landing page typically describes the scholarly object and provides links to its content resources. 
 Note that, in some cases, such as articles published in HTML, the landing page actually represents content of the resource. 
-For the purpose of the recipe it still is referred to as the landing page.</li>
+For the purpose of the recipes it still is referred to as the landing page.</li>
 <li>One or more <b>content resources</b> that provide the actual content
  of the scholarly object, such as a PDF article, a CSV dataset, a ZIPped
  software repository, a dynamically generated map.</li> 
-<li>One or more <b>metadata resources</b> that describes the scholarly object in commonly used formats.</li>
+<li>One or more <b>metadata resources</b> that describe the scholarly object in commonly used formats.</li>
 <li>Other <b>identifiers</b> that pertain to the scholarly object. This includes:
 	<ul>
 		<li>Identifiers for <b>authors</b>, e.g. 
@@ -420,12 +420,12 @@ regarding the extent of the set of typed links that is conveyed:
 </ul>
 </div>
 
-<div class=" ">Implementing Level 1 of the recipe entails:
+<div class=" ">Implementing the Level 1 recipe entails:
 </div>
                 
 <h4><a name="level1"></a>2.1. Level 1 - A Minimal Set of Typed Links via the HTTP <code>Link</code> header and/or HTML <code>&lt;link&gt;</code></h4>
 
-<div class=" ">Implementing Level 1 of the recipe entails:
+<div class=" ">Implementing the Level 1 recipe entails:
                 <ul>
  				<li>Mandatory - Providing a minimal set of typed links that have the landing page 
                 as link origin. These links are conveyed in the landing page's HTTP <code>Link</code> header 
@@ -652,7 +652,7 @@ target
 
  <h4><a name="level2"></a>2.2. Level 2 - A Comprehensive Set of Typed Links via a Link Set</h4>
  
-<div class=" ">Implementing Level 2 of the recipe entails:
+<div class=" ">Implementing the Level 2 recipe entails:
  				<ul>
  				<li>Mandatory - Providing a Link Set with a comprehensive collection of 
  				typed links, consisting of:
@@ -694,8 +694,8 @@ target
    
                 
 <div class=" ">The below image and table show the links with the landing page as link 
-                	origin that must be conveyed in a Link Set when implementing 
-                	<a href="#level2">Level 2</a> of this recipe. In the image:
+                	origin that must be conveyed in a Link Set when implementing the 
+                	<a href="#level2">Level 2</a> recipe. In the image:
                 	<ul>
                 	<li>Solid green lines indicate links that must be provided.</li>
                 	<li>Dashed green lines indicate links that must be provided, whenever possible; see the table for further 
