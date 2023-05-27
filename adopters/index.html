@@ -55,19 +55,20 @@ $(function() {
 
                                 <br/><br/>
                                 <ul>
-                                	<li><a href="#pythonclient">FAIR Signposting Python client</a></li>
-                                	<li><a href="#rubyclient">Ruby Web Link parsing gem</a></li>
-                                	<li><a href="#benchmarks">FAIR Signposting benchmarks</a></li>
-                                	<li><a href="#dataverse">Dataverse FAIR Signposting support</a></li>
-                                	<li><a href="#dspace7">DSpace 7 FAIR Signposting support</a></li>
-                                	<li><a href="#ojs">Open Journal System FAIR Signposting support</a></li>
+                                	<li><a href="#benchmarks">Benchmarks for FAIR Signposting</a></li>
+                                	<li><a href="#dans">DANS EASY</a></li>
                                 	<li><a href="#datacite_search">DataCite Search and DataCite Commons</a></li>
-                                    <li><a href="#pangaea">Pangaea</a></li>
+                                	<li><a href="#dataverse">Dataverse FAIR Signposting</a></li>
+                                	<li><a href="#dspace7">DSpace 7 FAIR Signposting</a></li>
+                                	<li><a href="#dspacecris">DSpace-CRIS</a></li>
+                                	<li><a href="#ojs">Open Journal System FAIR Signposting</a></li>
+                                	<li><a href="#pangaea">Pangaea</a></li>
+                                	<li><a href="#pythonclient">Python client for FAIR Signposting </a></li>
+                                	<li><a href="#radareu">Radar (Research Data Repository) FAIR Signposting</a></li>
+                                	<li><a href="#rubyclient">Ruby Web Link parsing gem</a></li>
+                                	<li><a href="#ucd_digital_library">UCD Digital Library</a></li>
                                     <li><a href="#unt_digital_library">UNT Digital Library</a></li> 
-                                    <li><a href="#ucd_digital_library">UCD Digital Library</a></li> 
-                                    <li><a href="#dans">DANS</a></li>
-                                    <li><a href="#dspacecris">DSpace-CRIS</a></li>
-                                    <li><a href="#workflowhub">WorkflowHub</a></li>
+                                    <li><a href="#workflowhub">WorkflowHub</a></li>                          
                                 </ul>
                             </div>
                         </div>
@@ -83,7 +84,7 @@ $(function() {
 
             <div class="row featurette">
             
-            <h3><a name="pythonclient"></a>FAIR Signposting Python client</h3>
+            <h3><a name="pythonclient"></a>Python client for FAIR Signposting </h3>
                             <div>
                     This <a href="https://signposting.readthedocs.io/en/latest/readme.html">Python library</a> helps client to discover links that follow the signposting conventions, most notably <a href="https://signposting.org/FAIR/">FAIR Signposting</a>. This can then be used to navigate between persistent identifiers, 
     				HTML landing pages, file downloads/items, structured metadata. As <a href="https://signposting.readthedocs.io/en/latest/usage.html">this example</a> shows, the library works by inspecting the HTTP messages for Link headers from a given URI
@@ -99,7 +100,7 @@ $(function() {
                    It also handles unusual cases, such as having multiple relation types in a single link and dealing with 204 or 410 response where there is no message body.
                 </div>
                 
-                <h3><a name="benchmarks"></a>FAIR Signposting benchmarks</h3>
+                <h3><a name="benchmarks"></a>Benchmarks for FAIR Signposting</h3>
                             <div>
                     The <a href="https://s11.no/2022/a2a-fair-metrics/">Apples-to-Apples FAIR Signposting</a> page gives access to a set of benchmarks that clients can use to test their capabilities for extracting Signposting links.
                     The benchmarks cover cases whereby web links are provided in HTTP Link headers, HTML &lt;link&gt; elements, 
@@ -108,13 +109,13 @@ $(function() {
                    FAIR Signposting compliance.
                 </div>
                 
-                            <h3><a name="dataverse"></a>Dataverse FAIR Signposting support</h3>
+                            <h3><a name="dataverse"></a>Dataverse FAIR Signposting</h3>
                             <div>
                     Starting with the 06/2023 release v5.14, the <a href="https://dataverse.org/">Dataverse</a> data repository software supports the FAIR Signposting Profile. It supports 
                     exposing links by means of the HTTP Link header as well as using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. At the time of writing, the Dataverse software is used by nearly 100 data repositories, worldwide.
                 </div>
                 
-                   <h3><a name="dspace7"></a>DSpace 7 FAIR Signposting support</h3>
+                   <h3><a name="dspace7"></a>DSpace 7 FAIR Signposting</h3>
                             <div>
                     Starting with release 7.6, the <a href="https://wiki.lyrasis.org/display/DSDOC7x">DSpace 7</a> repository software supports the FAIR Signposting Profile. 
                     It supports 
@@ -122,7 +123,48 @@ $(function() {
                 
                 </div>
                 
-                            <h3><a name="ojs"></a>The <a href="">Open Journal System</a> FAIR Signposting Profile support</h3>
+                
+                 <h3><a name="radareu"></a>Radar (Research Data Repository) FAIR Signposting</h3>
+                <div>
+                    The <a href="https://www.radar-service.eu/radar/en/home">Radar</a> research data repository operated by the 
+                    FIZ Karlsruhe Leibniz Institute for Information Infrastructure supports FAIR Signposting by providing typed links in the HTTP Link 
+                    header of landing pages of archived datasets. The below example shows an HTTP GET on a landing page and (a subset of) the resulting HTTP response headers.
+                    <br/>
+                    <br/>
+                    <code>curl -I &quot;https://www.radar-service.eu/radar/en/dataset/yHWPudieWdGxmEnU.A%2BT-matrix%2BBased%2BApproach%2BHomogenize%2BArtificial%2BMaterials&quot;</code>
+                    <br/>
+                    <br/>          
+                    <code>
+                        HTTP/1.1 200</br>
+						Date: Sat, 27 May 2023 07:00:44 GMT</br>
+						Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips</br>
+						Link: &lt;https://doi.org/10.35097/856&gt;</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"cite-as"</b></br>
+						Link: &lt;https://opensource.org/licenses/MIT&gt;</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"license"</b></br>
+						Link: &lt;https://orcid.org/0000-0002-8173-3761&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"author"</b></br>
+						Link: &lt;https://www.radar-service.eu/radar-backend/archives/yHWPudieWdGxmEnU/versions/1/content&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"item"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/x-tar"</b></br>
+						Link: &lt;https://www.radar-service.eu/radar/en/export/yHWPudieWdGxmEnU/exportdatacite&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/vnd.datacite.datacite+xml"</b></br>
+						Link: &lt;https://www.radar-service.eu/radar/en/export/yHWPudieWdGxmEnU/exportbibtex&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/x-bibtex"</b></br>
+						Link: &lt;https://www.radar-service.eu/radar/en/export/yHWPudieWdGxmEnU/exportradarmetadata&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"text/xml"</b></br>
+						Content-Type: text/html;charset=UTF-8</br>
+						Content-Language: en</br>
+                    </code>
+                </div>
+                
+                
+                
+                
+                            <h3><a name="ojs"></a>The Open Journal System FAIR Signposting Profile</h3>
                             <div>
                     Version v2.x and v3.x of the <a href="https://openjournalsystems.com/">Open Journal System</a> software for journal publishing support the FAIR Signposting Profile. They do so by 
                     exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. At the time of writing, the hosted version of the Open Journal System publishes over 500 journals for publishers worldwide.</div> 
