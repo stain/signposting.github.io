@@ -1266,9 +1266,9 @@ by both the landing page and each of the content/metadata resources.
 <div class=" ">
 For the landing page,  
 this can be done using the HTTP <code>Link</code> header and/or via <code>&lt;link&gt;</code> element's in the HTML's <code>&lt;head&gt;</code>. 
-The below example illustrates the latter approach through the inclusion of two <code>linkset</code> 
+The below examples illustrate both approaches. Each shows the inclusion of two <code>linkset</code> 
 links pointing to different serializations of the Link Set. 
-Note that the response also contains the <a href="#level1a">Level 1</a> links 
+Note that the responses also contain the <a href="#level1a">Level 1</a> links 
 pertaining to the landing page.
 </div>
 
@@ -1277,7 +1277,43 @@ pertaining to the landing page.
 <div class=" ">
 <table class="table">
 <tbody><tr>
-<td style="width: 80%;">Landing page provides <code>linkset</code> links</td>
+<td style="width: 80%;">Link Sets made discoverable by the landing page using the HTTP <code>Link</code> header</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -i "https://example.org/page/7507"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 19:19:22 GMT
+Content-Type: text/html
+Content-Length: 25414
+Link: &lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="cite-as" , &lt;https://schema.org/ScholarlyArticle&gt; ; rel="type" , 
+&lt;https://schema.org/AboutPage&gt; ; rel="type" , &lt;https://orcid.org/0000-0002-1825-0097&gt; ; rel="author" , 
+&lt;https://example.org/meta/7507/bibtex&gt; ; rel="describedby" ; type="application/x-bibtex" , 
+&lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="describedby" ; type="application/vnd.datacite.datacite+json" , 
+&lt;https://creativecommons.org/licenses/by/4.0/&gt; ; rel="license" ,
+&lt;https://example.org/file/7507/1&gt; ; rel="item" ; type="application/pdf" , 
+&lt;https://example.org/file/7507/2&gt; ; rel="item" ; type="text/csv" , 
+&lt;https://gitmodo.io/johnd/ct.zip&gt; ; rel="item" ; type="application/zip" , 
+&lt;https://example.org/linkset/7507/lset&gt; ; rel="linkset" ; type="application/linkset" , 
+&lt;https://example.org/linkset/7507/json&gt; ; rel="linkset" ; type="application/linkset+json"
+
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  ...
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<br>
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Link Sets made discoverable by the landing page using HTML <code>link</code> elments</td>
 </tr>
 <tr>
 <td>
