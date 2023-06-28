@@ -214,17 +214,18 @@ $(function() {
                             <td><b>Description</b></td>
                         </tr>
                         <tr>
-                            <td><code>formats</code></td>
+                            <td><code>profile</code></td>
                             <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a>, <a href="/publication_boundary/">Publication Boundary</a></td>
-                            <td>The value of the <code>formats</code> attribute indicates the <a href="https://tools.ietf.org/html/rfc6906#section-3">profile</a> to which the resource that is the 
+                            <td>The value of the <code>profile</code> attribute indicates the <a href="https://tools.ietf.org/html/rfc6906#section-3">profile</a> to which the resource that is the 
                                 target of the link conforms. Generally, a profile is a syntactic and/or semantic constraint that 
                                 applies beyond what can be expressed using the MIME type of the resource. 
-                                The <code>formats</code> attribute is, for example, useful when different 
+                                The <code>profile</code> attribute is, for example, useful when different 
                                 <a href="#bibliographic_resource">Bibliographic Resources</a> have the 
                                 same MIME type (e.g. <code>application/xml</code>) but conform to a different schema. 
-                                The value of the <code>formats</code> attribute is a URI 
-                                that uniquely identifies the format (e.g. <code>XML Schema URI</code>). The <code>formats</code> 
-                                attribute is defined in the <a href="https://datatracker.ietf.org/doc/draft-nottingham-link-hint/">HTTP Link Hints</a> RFC that is in the making.
+                                The value of the <code>profile</code> attribute is a URI 
+                                that uniquely identifies the format (e.g. <code>XML Schema URI</code>). Note that the use of the <code>profile</code> attribute is standardized for certain MIME types, such as  
+                <code>application/ld+json</code>. It is not for many others, including <code>text/plain</code>, 
+                <code>application/xml</code>, and <code>application/json</code> and, as such, its use is a community convention introduced for Signposting.
                             </td>
                         </tr>
                         <!--
@@ -327,7 +328,7 @@ $(function() {
                     <div class="">
                     <table class="table" >
                         <tr>
-                            <td style="width: 25%;"><b>Format</b></td>
+                            <td style="width: 25%;"><b>Bibliographic Format</b></td>
                             <td style="width: 25%;"><b>MIME Type</b></td>
                             <td>&nbsp;</td>
                         </tr>
@@ -351,18 +352,17 @@ $(function() {
                 
                 <p>Many other bibliographic formats are in use and many share <code>text/plain</code>, 
                 <code>application/xml</code>, <code>application/json</code>, or <code>application/ld+json</code> as MIME types. In order to distinguish between 
-                formats of a same MIME type, either a dedicated MIME type should be <a href="http://www.iana.org/form/media-types">registered</a> 
+                bibliographic formats that have the same MIME type, either a dedicated MIME type should be <a href="http://www.iana.org/form/media-types">registered</a> 
                 or a <code>profile</code> attribute 
-                can be used on a <code>describedby</code> link to clarify the format beyond its MIME type. The former allows for content negotiation for 
-                the format, the latter does not. The below table shows how the <code>profile</code> 
-                approach can be used for popular XML-based formats. Note that the use of the profile attribute for 
-                <code>application/ld+json</code> is standardized; it is not for <code>text/plain</code>, 
-                <code>application/xml</code>, <code>application/json</code>.</p>
+                can be used on a <code>describedby</code> link to clarify the bibliographic format beyond its MIME type. The former allows for content negotiation, the latter does not. The below table shows how the <code>profile</code> 
+                approach can be used for popular XML-based formats. Note that the use of the <code>profile</code> attribute is standardized for some MIME types, such as  
+                <code>application/ld+json</code>. It is not for many others, including <code>text/plain</code>, 
+                <code>application/xml</code>, and <code>application/json</code> and, as such, it is a community convention introduced for Signposting.</p>
                 
                  <div class="">
                     <table class="table" >
                         <tr>
-                            <td style="width: 25%;"><b>Format</b></td>
+                            <td style="width: 25%;"><b>Bibliographic Format</b></td>
                             <td style="width: 25%;"><b><code>type</code> Attribute Value</b></td>
                             <td><b><code>profile</code> Attribute Value</b></td>
                         </tr>
