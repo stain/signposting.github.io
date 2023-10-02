@@ -72,12 +72,12 @@ Klein, Shawn Jones, Michael L. Nelson,
  Wilko Steinhoff, Vyacheslav Tykhonov, Luc Boruta, Enno Meijers, 
                         Stian Soiland-Reyes, Mark Wilkinson
                         </h5>
-                        <h5>This version, created 20230519: <a href="https://www.signposting.org/FAIR/"
+                        <h5>This version, created 20231002: <a href="https://www.signposting.org/FAIR/"
+data-versionurl="https://web.archive.org/web/20231002/https://signposting.org/FAIR/"
+data-versiondate="2023-10-02">https://www.signposting.org/FAIR/</a> </h5>
+<h5>Previous version, created 20230519: <a href="https://www.signposting.org/FAIR/"
 data-versionurl="https://web.archive.org/web/20230519072548/https://signposting.org/FAIR/"
-data-versiondate="2023-05-19">https://www.signposting.org/FAIR/</a> </h5>
-<h5>Previous version, created 20220421: <a href="https://www.signposting.org/FAIR/"
-data-versionurl="https://web.archive.org/web/20220727051056/https://www.signposting.org/FAIR/"
-data-versiondate="2022-07-27">https://www.signposting.org/FAIR/</a></h5>
+data-versiondate="2023-05-19">https://www.signposting.org/FAIR/</a></h5>
 						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a></h5>
 						<br>
                         <div class="">
@@ -219,7 +219,7 @@ For the purpose of the recipes it still is referred to as the landing page.</li>
 	<ul>
 		<li>Identifiers for <b>authors</b>, e.g. 
     <a href="https://orcid.org/">ORCID</a> or <a href="https://isni.org/">ISNI</a>, expressed as HTTP URIs.</li>
-		<li>Identifiers of applicable <b>licenses</b>, e.g. <a href="https://creativecommons.org/">Creative Commons</a> licenses, expressed as HTTP URIs.</li>
+		<li>Identifiers of applicable <b>licenses</b>, e.g. <a href="https://creativecommons.org/">Creative Commons</a> licenses expressed as HTTP URIs, preferably using <a href="https://spdx.org/licenses">SPDX</a> license URIs.</li>
 		<li>Identifiers for scholarly object <b>types</b> expressed as HTTP URIs from commonly used vocabularies, e.g. <a href="https://schema.org">schema.org</a>.</li> 
 	</ul>	
 	</li>
@@ -504,8 +504,9 @@ Sets in <a href="#level2">Level 2</a>.
                         <tr>
                             <td><code>cite-as</code></td>
                             <td>1</td>
-                            <td>Provide a link that has the persistent identifier  
-                            of the scholarly object (e.g. DOI expressed as an HTTP URI) as target.</td>
+                            <td>Provide a link that has the persistent identifier of the scholarly object (e.g. DOI expressed as an HTTP URI) as target. 
+                            Note that dereferencing the target of a link with a <code>cite-as</code> relation type must lead to the landing page that provided that <code>cite-as</code> link.
+                            </td>
                         </tr>
                         <tr>
                             <td><code>describedby</code></td>
@@ -532,6 +533,38 @@ Sets in <a href="#level2">Level 2</a>.
                             </td>
                         </tr>
                         <tr>
+                            <td><code>item</code></td>
+                            <td>0 or more</td>
+                            <td>The landing page is modeled as a collection of content resources. 
+                            As such, provide links that have content resources 
+                            (e.g. the PDF article, the CSV dataset, the ZIPped software repository)
+                            as target. 
+                            Use the <code>type</code> attribute on each link to convey the media type 
+                            of the content resource. 
+                            If specificity beyond the media type is required to indicate the nature of a content resource, 
+                            use <code>profile</code> 
+                            as an 
+                            <a href="https://datatracker.ietf.org/doc/html/rfc8288#section-3.4.2">extension target attribute</a> on the link to convey, 
+                            by means of an HTTP URI, the more specific format of the content resource. 
+                
+                            Be aware that the number of content resources for a scholarly object can be unpredictably large. 
+                            As such, in order to avoid the risk of the HTTP header becoming too large, it may be safer 
+                            to only provide links for a limited number of content resources in the HTTP header and provide links for all when using Link Sets in <a href="#level2">Level 2</a>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>0 or 1</td>
+                            <td>If the license under which the scholarly object is made available is known, 
+                            provide a link that has as target the URI of that license. 
+                            Valid licenses include the ones listed at <a href="https://spdx.org/licenses/">SPDX</a>, 
+                            in which case the use of an SPDX license identifier 
+                            (e.g. <code>https://spdx.org/licenses/CC0-1.0</code>, not https://spdx.org/licenses/CC0-1.0.html) is encouraged. 
+                            But licenses may also include other means of expressing permissions to use the object 
+                            such as terms of service.
+                            </td>
+                        </tr>
+                        <tr>
                             <td><code>type</code></td>
                             <td>2 (in most cases) or 1</td>
                             <td>Provide a <em>first</em> link that has as target 
@@ -552,36 +585,6 @@ identifier of the scholarly object directly resolves to a content
 resource, such 
                             as an HTML article, without presenting an 
 intermediate landing page.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>license</code></td>
-                            <td>0 or 1</td>
-                            <td>If the license under which the scholarly object is made available is known, 
-                            provide a link that has as target the URI of that license. 
-                            Common licenses used are those provided by the <a href="https://creativecommons.org/share-your-work/">Creative Commons</a>. 
-                            <!-- Discussion ongoing, see <a href="https://github.com/hvdsomp/signposting/issues/11">https://github.com/hvdsomp/signposting/issues/11</a>.
-                            -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>item</code></td>
-                            <td>0 or more</td>
-                            <td>The landing page is modeled as a collection of content resources. 
-                            As such, provide links that have content resources 
-                            (e.g. the PDF article, the CSV dataset, the ZIPped software repository)
-                            as target. 
-                            Use the <code>type</code> attribute on each link to convey the media type 
-                            of the content resource. 
-                            If specificity beyond the media type is required to indicate the nature of a content resource, 
-                            use <code>profile</code> 
-                            as an 
-                            <a href="https://datatracker.ietf.org/doc/html/rfc8288#section-3.4.2">extension target attribute</a> on the link to convey, 
-                            by means of an HTTP URI, the more specific format of the content resource. 
-                
-                            Be aware that the number of content resources for a scholarly object can be unpredictably large. 
-                            As such, in order to avoid the risk of the HTTP header becoming too large, it may be safer 
-                            to only provide links for a limited number of content resources in the HTTP header and provide links for all when using Link Sets in <a href="#level2">Level 2</a>.
                             </td>
                         </tr>
                     </tbody></table>
@@ -617,10 +620,29 @@ intermediate landing page.
                             <td style="width: 25%;"><b> Link Cardinality</b></td>
                             <td><b>Comment</b></td>
                         </tr>
+                            <tr>
+                            <td><code>collection</code></td>
+                            <td>1</td>
+                            <td>For each content resource, provide a link that has the content resource as origin and the landing page as target.
+                            </td>
+                        </tr>
                         <tr>
                             <td><code>describes</code></td>
                             <td>1</td>
                             <td>For each metadata resource, provide a link that has the metadata resource as origin and the landing page as target.
+                            </td>
+                        </tr>
+                           <tr>
+                            <td><code>license</code></td>
+                            <td>0 or 1</td>
+                            <td>Provide a link only if the content resource is made available under a license 
+                            that is distinct from the license that applies to the scholarly object as a whole. 
+                            In this case, provide a link that has as target the URI of that license. 
+                            Valid licenses include the ones listed at <a href="https://spdx.org/licenses/">SPDX</a>, 
+                            in which case the use of an SPDX license identifier 
+                            (e.g. <code>https://spdx.org/licenses/CC0-1.0</code>, not https://spdx.org/licenses/CC0-1.0.html) is encouraged. 
+                            But licenses may also include other means of expressing permissions to use the object 
+                            such as terms of service. Do not provide a link that expresses the license of the scholarly object as a whole.
                             </td>
                         </tr>
                         <tr>
@@ -639,20 +661,6 @@ target
                             For example, if the scholarly object as a whole is best characterized as a 
                             scholarly paper (<code>https://schema.org/ScholarlyArticle</code> type is provided at the landing page), and the content resource is a dataset,
                             provide a link that has <code>https://schema.org/Dataset</code> as target. 
-                            </td>
-                        </tr>
-                        <!--
-                        <tr>
-                            <td><code>license</code></td>
-                            <td>1</td>
-                            <td>Discussion ongoing, see <a href="https://github.com/hvdsomp/signposting/issues/11">https://github.com/hvdsomp/signposting/issues/11</a>.
-                            </td>
-                        </tr>
-                        -->
-                        <tr>
-                            <td><code>collection</code></td>
-                            <td>1</td>
-                            <td>For each content resource, provide a link that has the content resource as origin and the landing page as target.
                             </td>
                         </tr>
                     </tbody></table>
@@ -738,8 +746,9 @@ type.</td>
                         <tr>
                             <td><code>cite-as</code></td>
                             <td>1</td>
-                            <td>Provide a link that has the landing page as origin and the persistent identifier (e.g. DOI expressed as an HTTP URI) 
-                            of the scholarly object as target.</td>
+                            <td>Provide a link that has the persistent identifier of the scholarly object (e.g. DOI expressed as an HTTP URI) as target. 
+                            Note that dereferencing the target of a link with a <code>cite-as</code> relation type must lead to the landing page that provided that <code>cite-as</code> link.
+                            </td>
                         </tr>
                        <tr>
                             <td><code>describedby</code></td>
@@ -750,6 +759,35 @@ type.</td>
                              On each link, provide the media type of the metadata in the <code>type</code> 
                             attribute. For common media types see the description of <code>describedby</code> 
                             in <a href="#level1">Level 1</a>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>item</code></td>
+                            <td>1 or more</td>
+                            <td>For each content resource, provide a link that has the landing page as origin and the 
+                            content resource (e.g. the PDF article, the CSV dataset, the ZIPped software repository) 
+                            as target. Use the <code>type</code> 
+attribute on each link to convey the media type 
+                            of the content resource. If specificity 
+beyond the media type is required to indicate the nature of a content 
+resource, 
+                            use <code>profile</code> 
+                            as an 
+                            <a href="https://datatracker.ietf.org/doc/html/rfc8288#section-3.4.2">extension target attribute</a> on the link to convey, 
+                            by means of an HTTP URI, the more specific format of the content resource. 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>0 or 1</td>
+                            <td>
+                            If the license under which the scholarly object is made available is known, 
+                            provide a link that has as target the URI of that license. 
+                            Valid licenses include the ones listed at <a href="https://spdx.org/licenses/">SPDX</a>, 
+                            in which case the use of an SPDX license identifier 
+                            (e.g. <code>https://spdx.org/licenses/CC0-1.0</code>, not https://spdx.org/licenses/CC0-1.0.html) is encouraged. 
+                            But licenses may also include other means of expressing permissions to use the object 
+                            such as terms of service.
                             </td>
                         </tr>
                         <tr>
@@ -773,30 +811,6 @@ identifier of the scholarly object directly resolves to a content
 resource, such 
                             as an HTML article, without presenting an 
 intermediate landing page.</td>
-                        </tr>
-                        <tr>
-                            <td><code>license</code></td>
-                            <td>0 or 1</td>
-                            <td>If the license under which the scholarly object is made available is known, 
-                            provide a link that has as target the URI of that license. 
-                            Common licenses used are those provided by the <a href="https://creativecommons.org/share-your-work/">Creative Commons</a>. 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>item</code></td>
-                            <td>1 or more</td>
-                            <td>For each content resource, provide a link that has the landing page as origin and the 
-                            content resource (e.g. the PDF article, the CSV dataset, the ZIPped software repository) 
-                            as target. Use the <code>type</code> 
-attribute on each link to convey the media type 
-                            of the content resource. If specificity 
-beyond the media type is required to indicate the nature of a content 
-resource, 
-                            use <code>profile</code> 
-                            as an 
-                            <a href="https://datatracker.ietf.org/doc/html/rfc8288#section-3.4.2">extension target attribute</a> on the link to convey, 
-                            by means of an HTTP URI, the more specific format of the content resource. 
-                            </td>
                         </tr>
                     </tbody></table>
 </div>
@@ -861,6 +875,12 @@ handle expressed as an HTTP URI)
 persistent identifier of the scholarly object as a whole.</td>
                         </tr>
                         <tr>
+                            <td><code>collection</code></td>
+                            <td>1</td>
+                            <td>Provide a link that has the content resource as origin and the landing page as target.
+                            </td>
+                        </tr>
+                        <tr>
                             <td><code>describedby</code></td>
                             <td>0 or more</td>
                             <td>Provide links only if the content 
@@ -875,6 +895,20 @@ resource
 metadata in the <code>type</code> 
                             attribute. For common media types see the description of <code>describedby</code> 
                             in <a href="#level1">Level 1</a>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>0 or 1</td>
+                            <td>Provide a link only if the content resource is made available under a license 
+                            that is distinct from the license that applies to the scholarly object as a whole. 
+                            In this case, provide a link that has as target the URI of that license. 
+                            Valid licenses include the ones listed at <a href="https://spdx.org/licenses/">SPDX</a>, 
+                            in which case the use of an SPDX license identifier 
+                            (e.g. <code>https://spdx.org/licenses/CC0-1.0</code>, not https://spdx.org/licenses/CC0-1.0.html) is encouraged. 
+                            But licenses may also include other means of expressing permissions to use the object 
+                            such as terms of service.
+                            Do not provide a link that expresses the license of the scholarly object as a whole.
                             </td>
                         </tr>
                         <tr>
@@ -895,22 +929,6 @@ target
                             scholarly paper (<code>https://schema.org/ScholarlyArticle</code> type is provided at the landing page) 
                             and the content resource is a dataset
                             provide a link that has <code>https://schema.org/Dataset</code> as target. 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>license</code></td>
-                            <td>0 or 1</td>
-                            <td>Provide a link only if the content resource is made available under a license 
-                            that is distinct from the license that applies to the scholarly object as a whole. In this case,  
-                            provide a link that has the content resource as origin and the URI of the license under which 
-                            the content resource (e.g. a <a href="https://creativecommons.org/share-your-work/">Creative Commons</a> license URI) is made available as target. 
-                            Do not provide a link that expresses the license of the scholarly object as a whole.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>collection</code></td>
-                            <td>1</td>
-                            <td>Provide a link that has the content resource as origin and the landing page as target.
                             </td>
                         </tr>
                     </tbody></table>
@@ -1066,7 +1084,7 @@ Other resources involved in signposting the fictitious scholarly object are show
                         </tr>
                         <tr>
                             <td>License for scholarly object</td>
-                            <td>https://creativecommons.org/licenses/by/4.0/</td>
+                            <td>https://spdx.org/licenses/CC-BY-4.0</td>
                             <td></td>
                         </tr>
                         <tr>
@@ -1131,7 +1149,7 @@ Link: &lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="cite-as" , &lt;https://
 &lt;https://schema.org/AboutPage&gt; ; rel="type" , &lt;https://orcid.org/0000-0002-1825-0097&gt; ; rel="author" , 
 &lt;https://example.org/meta/7507/bibtex&gt; ; rel="describedby" ; type="application/x-bibtex" , 
 &lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="describedby" ; type="application/vnd.datacite.datacite+json" , 
-&lt;https://creativecommons.org/licenses/by/4.0/&gt; ; rel="license" ,
+&lt;https://spdx.org/licenses/CC-BY-4.0&gt; ; rel="license" ,
 &lt;https://example.org/file/7507/1&gt; ; rel="item" ; type="application/pdf" , 
 &lt;https://example.org/file/7507/2&gt; ; rel="item" ; type="text/csv" , 
 &lt;https://gitmodo.io/johnd/ct.zip&gt; ; rel="item" ; type="application/zip"
@@ -1169,7 +1187,7 @@ Content-Length: 25414
   &lt;link rel="author" href="https://orcid.org/0000-0002-1825-0097"&gt;
   &lt;link rel="describedby" type="application/x-bibtex" href="https://example.org/meta/7507/bibtex" &gt;  
   &lt;link rel="describedby" type="application/vnd.datacite.datacite+json" href="https://doi.org/10.5061/dryad.5d23f"&gt;
-  &lt;link rel="license" href="https://creativecommons.org/licenses/by/4.0/"&gt;
+  &lt;link rel="license" href="https://spdx.org/licenses/CC-BY-4.0"&gt;
   &lt;link rel="item" type="application/pdf" href="https://example.org/file/7507/1"&gt;
   &lt;link rel="item" type="text/csv" href="https://example.org/file/7507/2"&gt;
   &lt;link rel="item" type="application/zip" href="https://gitmodo.io/johnd/ct.zip"&gt;
@@ -1300,7 +1318,7 @@ Link: &lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="cite-as" , &lt;https://
 &lt;https://schema.org/AboutPage&gt; ; rel="type" , &lt;https://orcid.org/0000-0002-1825-0097&gt; ; rel="author" , 
 &lt;https://example.org/meta/7507/bibtex&gt; ; rel="describedby" ; type="application/x-bibtex" , 
 &lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="describedby" ; type="application/vnd.datacite.datacite+json" , 
-&lt;https://creativecommons.org/licenses/by/4.0/&gt; ; rel="license" ,
+&lt;https://spdx.org/licenses/CC-BY-4.0&gt; ; rel="license" ,
 &lt;https://example.org/file/7507/1&gt; ; rel="item" ; type="application/pdf" , 
 &lt;https://example.org/file/7507/2&gt; ; rel="item" ; type="text/csv" , 
 &lt;https://gitmodo.io/johnd/ct.zip&gt; ; rel="item" ; type="application/zip" , 
@@ -1342,7 +1360,7 @@ Content-Length: 25785
   &lt;link rel="author" href="https://orcid.org/0000-0002-1825-0097"&gt;
   &lt;link rel="describedby" type="application/x-bibtex" href="https://example.org/meta/7507/bibtex" &gt;  
   &lt;link rel="describedby" type="application/vnd.datacite.datacite+json" href="https://doi.org/10.5061/dryad.5d23f"&gt;
-  &lt;link rel="license" href="https://creativecommons.org/licenses/by/4.0/"&gt;
+  &lt;link rel="license" href="https://spdx.org/licenses/CC-BY-4.0"&gt;
   &lt;link rel="linkset" type="application/linkset" href="https://example.org/linkset/7507/lset"&gt;
   &lt;link rel="linkset" type="application/linkset+json" href="https://example.org/linkset/7507/json"&gt;
   ...
@@ -1487,7 +1505,7 @@ Connection: close
       ],
       "license": [
         {
-          "href": "https://creativecommons.org/licenses/by/4.0/"
+          "href": "https://spdx.org/licenses/CC-BY-4.0"
         }
       ]
     },
@@ -1582,7 +1600,7 @@ Connection: close
 ; anchor="https://example.org/page/7507" , &lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="describedby" ; 
 type="application/vnd.datacite.datacite+json" ; anchor="https://example.org/page/7507" , 
 &lt;https://example.org/meta/7507/citeproc&gt; ; rel="describedby" ; type="application/vnd.citationstyles.csl+json" ; 
-anchor="https://example.org/page/7507" , &lt;https://creativecommons.org/licenses/by/4.0/&gt; ; rel="license" ; 
+anchor="https://example.org/page/7507" , &lt;https://spdx.org/licenses/CC-BY-4.0&gt; ; rel="license" ; 
 anchor="https://example.org/page/7507" , &lt;https://example.org/page/7507&gt; ; rel="collection" ; type="text/html" ; 
 anchor="https://example.org/file/7507/1" , &lt;https://example.org/page/7507&gt; ; rel="collection" ; 
 type="text/html" ; anchor="https://example.org/file/7507/2" , &lt;https://schema.org/Dataset&gt; ; rel="type" ; 
