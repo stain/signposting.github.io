@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>API Catalog - Signposting the Scholarly Web</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/signposting.js"></script>
+        <script src="/static/js/lodash.min.js"></script>
+        <script src="/static/js/backbone-min.js"></script>
+ <style type="text/css">       
+ol.nested-counter-list {
+  counter-reset: item;
+}
+
+ol.nested-counter-list li {
+  display: block;
+}
+
+ol.nested-counter-list li::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+ol.nested-counter-list ol {
+  counter-reset: item;
+}
+</style>        
+        
+        <!-- RobustLinks CSS -->
+		<link rel="stylesheet" type="text/css" href="https://doi.org/10.25776/z58z-r575" />
+		<!-- RobustLinks Javascript -->
+		<script type="text/javascript" src="https://doi.org/10.25776/h1fa-7a28"></script>
+        <script>   
+$(function() {
+    load_header_footer();
+});
+        </script>
+    </head>
+
+    <body>
+
+        <!-- Static navbar -->
+        <div id="signposting-menu"></div>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="jumbo">
+                <div class="row">
+                        <h3>API Catalog: Supporting Discovery of a Repository's Interoperability Affordances</h3>
+                        <h5>
+                        Prepared by: Herbert Van de Sompel, Robert Huber, Martin Klein, Michael L. Nelson, ...
+                        </h5>
+                        <h5>This version, created 20231117: <a href="https://www.signposting.org/API Catalog/"
+data-versionurl="http://web.archive.org/web/20231002073726/https://signposting.org/API Catalog/"
+data-versiondate="2023-10-02">https://www.signposting.org/API Catalog/</a> </h5>
+<!--
+<h5>Previous version, created 20230519: <a href="https://www.signposting.org/API Catalog/"
+data-versionurl="https://web.archive.org/web/20230519072548/https://signposting.org/API Catalog/"
+data-versiondate="2023-05-19">https://www.signposting.org/API Catalog/</a></h5>
+-->
+						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a></h5>
+						<br>
+						<div class="">
+						some brief intro
+						</div>
+						
+<h3><a name="toc"></a>Table of Contents</h3>
+<div class=" ">
+<ol class="nested-counter-list">
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#blocks">Building Blocks</a>
+<ol>
+<li><a href="#linkset">The API Catalog Link Set</a></li>
+<li><a href="#linkrels">Link Relation Types to Point at Machine Interface Descriptions</a></li>
+<li><a href="#discovery">Discovery of the API Catalog Link Set</a></li>
+</ol>
+</li>
+<li><a href="#examples">Examples</a>
+<ol>
+<li><a href="#exlinkset">API Catalog Link Set</a></li>
+<li><a href="#exaffordances">Common Interoperability Affordances</a></li>
+</ol>
+</li>
+</ol>
+</div>
+						
+		<h3><a name="intro"></a>1. Introduction</h3>
+						
+                        <div class="">
+                        This specification details an approach that repositories can use to advertise the interoperability affordances they provide. 
+                        Such affordances can be:
+                        <ul>
+                        <li>Collection-level affordances: Machine interfaces that can be used to interact with the entire repository collection.</li>
+                        <li>Item-level affordances: Affordances that are available when interacting with a single item of the repository collection 
+                        and that are available for each item of the collection.</li>
+                        </ul>
+                         
+                        The approach consists of:
+                        <ul>
+                         <li>Publishing a single JSON <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Set</a> 
+                        that contains links to documentation for each available affordance.</li> 
+                        <li>Making that link set discoverable.</li> 
+                        </ul>
+                        
+                        <div style="text-align: center;">
+<img src="api-catalog.png" alt="API Catalog overview" width="500">
+</div>
+                        
+                        A repository can use the approach, for example, to:
+                        <ul>
+                         <li>indicate what the baseURL of its OAI-PMH interface is,</li>
+                         <li>point to its Sitemap entry point,</li>
+                         <li>indicate the baseURL of a repository-specific API, and link to its machine- and human readable specification,</li>
+                         <li>advertise support for FAIR Signposting,</li>
+                         <li>convey that items from the repository collection can be downloaded as RO-Crates.</li>
+                         </ul>
+                         
+                        The specification leverages the following formal specifications:
+                        <ul>
+                         <li>The <a href="https://datatracker.ietf.org/doc/draft-ietf-httpapi-api-catalog/">api-catalog</a> Internet Draft - This specification defines the <code>api-catalog</code> link relation type that can be used to
+                         point at a machine-actionable document that provides an overview of the machine interfaces for a repository.</li>
+                         <li><a href="https://www.rfc-editor.org/rfc/rfc9264.html">RF9264</a>: Linkset: Media Types and a Link Relation Type for Link Sets - This RFC defines the <code>application/linkset+json</code> document format that can be used to convey a set of typed links.</li>
+                         <li><a href="https://www.rfc-editor.org/rfc/rfc8631.html">RFC8631</a>: Link Relation Types for Web Services - This RFC defines the <code>service-doc</code>, <code>service-desc</code>, and <code>service-meta</code> link relation types that can be used to, respectively, 
+                         link to a human-readable description of a machine interface, a machine-readable description of a machine interface, and additional information pertaining a the machine interface.</li>
+                         </ul>                         
+                         </div>
+                         
+                          
+       <h3><a name="blocks"></a>2. Building Blocks</h3>  
+       
+       <div class="">
+       This section provides a description of the building blocks of the API Catalog approach that can be used to provide details 
+       about the interoperability affordances that are supported by a repository.
+       </div>       
+       
+              <h4><a name="linkset"></a>2.1. The API Catalog Link Set</h4>  
+       
+       <div class="">
+       The API Catalog is a <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Set</a> that is serialized in the <a href="https://www.rfc-editor.org/rfc/rfc9264.html#name-json-document-format-applic"><code>application/linkset+json</code> format</a>. 
+       The content of the Link Set is as follows:
+       <ul>
+       <li>For each interoperability affordance provided by a repository, the Link Set contains a <a href="https://www.rfc-editor.org/rfc/rfc9264.html#name-link-context-object">link context object</a> 
+       with a mandatory <code>anchor</code> member. The URL provided as value of the <code>anchor</code> member depends on the nature of the affordance:</li>
+       <ul>
+       <li>Collection-level affordance: The value of the <code>anchor</code> member is the URL of the machine interface.</li>
+       <li>Item-level affordances: The value of the <code>anchor</code> member is the URL of a sample collection item that illustrates the affordance.</li>
+       </ul>
+       <li>The <code>anchor</code> member is the context for links to resources that provide information about the interoperability affordance. 
+       These links must have the <code>service-doc</code>, <code>service-desc</code>, and <code>service-meta</code> link relation types with semantics 
+       as described in <a href="linkrels">Section 2.2</a>. Links with other link relation types must not be provided.</li>
+       <li>For each link, the <code>type</code> <a href'https://www.rfc-editor.org/rfc/rfc9264.html#name-link-target-attributes">link target attribute</a> 
+       must be used to convey the media type of the resource that is the target of the link. 
+       The <code>profile</code> attribute may be used to provide further specificity regarding the media type.
+       The <code>title</code> attribute may be used to improve human readability of the Link Set, and, if used, must contain the title of the resource that 
+       is the target of the link.
+       </li>
+       <li>All URLs in the Link Set must be absolute URIs; relative URIs must not be used.</li>
+       </ul>
+       </div> 
+       
+       <h4><a name="linkrels"></a>2.2. Link Relation Types to Point at Descriptions of Interoperability Affordances</h4>   
+       
+       <div class="">
+       <a href="https://www.rfc-editor.org/rfc/rfc8631.html">RFC8631</a> defines the following link relation types that are used in an API Catalog Link Set to point at
+       various descriptions of a specific interoperability affordance that is provided by a repository:
+       <ul>
+       <li><code>service-doc</code>: This link relation type is used to point at a human-readable specification of an interoperability affordance. 
+       It can, for example, be used to point at the URI of a specification or 
+       standard, e.g. the <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html">OAI-PMH specification</a>, the <a href="https://www.w3.org/TR/sparql11-query/">SPARQL 1.1 W3C Recommendation</a>, the 
+       <a href="https://signposting.org/FAIR/">FAIR Signposting specification</a>.</li>
+       <li><code>service-desc</code>: This link relation type is used to point at a machine-readable specification of the interoperability affordance. 
+       It can, for example, be used to point at the URI of an <a href="https://swagger.io/specification/">OpenAPI</a> 
+       specification of an API exposed by the repository.</li>
+       <li><code>service-meta</code>: This link relation type is used to point at further details regarding the interoperability affordance. 
+       It can, for example, be used to point at the 
+       <code>Identify</code> endpoint of an OAI-PMH interface or a <a href="http://www.w3.org/TR/sparql11-service-description/">SPARQL 1.1 Service Description</a> document.</li>
+       </ul>
+       </div> 
+       
+       <h4><a name="discovery"></a>2.3. Discovery of the API Catalog Link Set</h4>      
+       
+       <div class="">
+       In order to support discovery of its API Catalog Link Set, a repository:
+       <ul>
+       <li>Must provide a link from the repository's <b>baseURL</b> to the Link Set with the <code>api-catalog</code> link relation type.</li>
+       <li>Must provide this link in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element.</li>
+       <li>Should support issuing a HTTP HEAD against its <b>baseURL</b>.</li>
+       </div> 
+       
+       <h3><a name="examples"></a>3. Examples</h3>
+       
+       
+                     <div class="">
+       blah
+       </div> 
+       
+       <h4><a name="exlinkset"></a>3.1. API Catalog Link Set</h4>
+       
+              <div class="">
+       blah
+       </div> 
+                         
+                       
+                        
+              <h4><a name="exaffordances"></a>3.2. Common Interoperability Affordances</h4>
+       
+              <div class="">
+       blah
+       </div>      
+
+            
+<!--
+
+<div class="">
+                    <table class="table">
+                        <tbody><tr>
+                            <td style="width: 25%;"><b>Relation Type</b></td>
+                            <td><b>Description</b></td>
+                        </tr>
+                        <tr>
+                            <td><code>author</code></td>
+                            <td>The target of the link is a URI for an author of the resource that is the origin of the link. 
+                        </td></tr>
+                        <tr>
+                            <td><code>cite-as</code></td>
+                            <td>The target of the link is a persistent URI for the resource that is the origin of the link.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>describedby</code></td>
+                            <td>The target of the link provides metadata that describes the resource that is the origin of the link. 
+                           </td>
+                        </tr>
+                        <td><code>describes</code></td>
+                            <td>The origin of the link is a resource that provides metadata that describes the resource that is the target of the link. It is the inverse of the <code>describedby</code> relation type.
+                           </td>
+                        </tr>
+                        <tr>
+                            <td><code>type</code></td>
+                            <td>The target of the link is the URI for a class of resources to which the resource that is the origin of the link belongs.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>The target of the link is the URI of a license that applies to the resource that is the origin of the link.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>item</code></td>
+                            <td>The origin of the link is a collection of resources and 
+                            the target of the link is a resource that belongs to that collection.
+							It is the inverse of the <code>collection</code> relation type.
+                            </td>
+                        </tr>
+                       <tr>
+                        </tr><tr>
+                            <td><code>collection</code></td>
+                            <td>The origin of the link is a resource that belongs to a collection and the target of the link is 
+                            the collection to which it belongs.
+                            It is the inverse of the <code>item</code> relation type.</td>
+                
+                    </tr></tbody></table>
+</div>
+         -->
+                
+<!--
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Content resource provides <code>linkset</code> links</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://example.org/file/7507/1"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 20:14:29 GMT
+Content-Type: application/pdf
+Content-Length: 36588
+Link: &lt;https://example.org/linkset/7507/1/lset&gt; ; rel="linkset" ; type="application/linkset" , 
+&lt;https://example.org/linkset/7507/1/json&gt; ; rel="linkset" ; type="application/linkset+json" ,
+&lt;https://example.org/page/7507&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class=" ">
+An actual Link Set is obtained by issuing an HTTP GET on a URI discovered as described above. The below examples show responses 
+to requests issued against <code>https://example.org/linkset/7507/json</code> (<code>application/linkset+json</code> serialization) 
+and <code>https://example.org/linkset/7507/lset</code> (<code>application/linkset</code> serialization), respectively. Note that 
+it is possible to allow clients to interpret this JSON as JSON-LD by:
+<ul>
+<li>Publishing a JSON-LD context document.</li>
+<li>Making the JSON-LD context document discoverable by providing a typed link  
+with the <code>http://www.w3.org/ns/json-ld#context</code> relation type in the HTTP <code>Link</code> header of the Link Set.</li>
+</ul>
+This is shown in detail in Appendix B of the <a href="https://datatracker.ietf.org/doc/draft-ietf-httpapi-linkset/">Linkset</a> Internet Draft.
+</div>
+
+<br>
+
+<div class=" ">
+As indicated in <a href="#level2b">Section 2.2.2.</a>, 
+if a content resource has distinct a persistent identifier, type, authorship, or descriptive metadata it can be provided 
+in the Link Set using <code>cite-as</code>, <code>type</code>, <code>author</code>, and <code>describedby</code>
+ links, respectively, with the URI of the 
+content resource as anchor. But such links must not be used if these 
+properties are shared with the scholarly object as a whole. 
+Note the way the anchor of each link is provided explicitly in the <code>application/linkset</code> serialization to avoid 
+ambiguous interpretation.
+</div>
+
+
+
+<br>
+
+
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Level 2 typed links via a Link Set in <code>application/linkset+json</code> serialization</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -i "https://example.org/linkset/7507/1/json"
+
+HTTP/1.1 200 OK
+Date: Fri, 9 Oct 2020 20:23:44 GMT
+Server: Apache-Coyote/1.1
+Content-Length: 2608
+Content-Type: application/linkset+json
+Connection: close
+
+{
+  "linkset": [
+    {
+      "anchor": "https://example.org/page/7507",
+      "cite-as": [
+        {
+          "href": "https://doi.org/10.5061/dryad.5d23f"
+        }
+      ],
+      "type": [
+        {
+          "href": "https://schema.org/ScholarlyArticle"
+        },
+        {
+          "href": "https://schema.org/AboutPage"
+        }
+      ],
+      "author": [
+        {
+          "href": "https://orcid.org/0000-0002-1825-0097"
+        },
+        {
+          "href": "https://isni.org/isni/0000002251201436"
+        }
+      ],
+      "item": [
+        {
+          "href": "https://example.org/file/7507/1",
+          "type": "application/pdf"
+        },
+        {
+          "href": "https://example.org/file/7507/2",
+          "type": "text/csv"
+        },
+        {
+          "href": "https://gitmodo.io/johnd/ct.zip",
+          "type": "application/zip"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://example.org/meta/7507/bibtex",
+          "type": "application/x-bibtex"
+        },
+        {
+          "href": "https://doi.org/10.5061/dryad.5d23f",
+          "type": "application/vnd.datacite.datacite+json"
+        },
+        {
+          "href": "https://example.org/meta/7507/citeproc",
+          "type": "application/vnd.citationstyles.csl+json"
+        }
+      ],
+      "license": [
+        {
+          "href": "https://spdx.org/licenses/CC-BY-4.0"
+        }
+      ]
+    },
+    {
+      "anchor": "https://example.org/file/7507/1",
+      "collection": [
+        {
+          "href": "https://example.org/page/7507",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://example.org/file/7507/2",
+      "collection": [
+        {
+          "href": "https://example.org/page/7507",
+          "type": "text/html"
+        }
+      ],
+      "type": [
+        {
+          "href": "https://schema.org/Dataset"
+        }
+      ]
+    },
+    {
+      "anchor": "https://gitmodo.io/johnd/ct.zip",
+      "collection": [
+        {
+          "href": "https://example.org/page/7507",
+          "type": "text/html"
+        }
+      ],
+      "type": [
+        {
+          "href": "https://schema.org/SoftwareSourceCode"
+        }
+      ]
+    },
+    {
+      "anchor": "https://doi.org/10.5061/dryad.5d23f",
+      "describes": [
+        {
+          "href": "https://example.org/page/7507",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://example.org/meta/7507/bibtex",
+      "describes": [
+        {
+          "href": "https://example.org/page/7507",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+-->
+
+
+
+
+<br>
+
+
+
+
+</div>
+            </div> <!-- /container -->
+
+            <div class="footer" id="footer">
+            </div>
+
+    
+
+</body></html>
