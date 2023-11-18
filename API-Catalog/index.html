@@ -138,11 +138,11 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
                          
                         The specification leverages the following formal specifications:
                         <ul>
-                         <li>The <a href="https://datatracker.ietf.org/doc/draft-ietf-httpapi-api-catalog/">api-catalog</a> Internet Draft - This specification defines the <code>api-catalog</code> link relation type that can be used to
-                         point at a machine-actionable document that provides an overview of the machine interfaces for a repository.</li>
                          <li><a href="https://www.rfc-editor.org/rfc/rfc9264.html">RF9264</a>: Linkset: Media Types and a Link Relation Type for Link Sets - This RFC defines the <code>application/linkset+json</code> document format that can be used to convey a set of typed links.</li>
                          <li><a href="https://www.rfc-editor.org/rfc/rfc8631.html">RFC8631</a>: Link Relation Types for Web Services - This RFC defines the <code>service-doc</code>, <code>service-desc</code>, and <code>service-meta</code> link relation types that can be used to, respectively, 
                          link to a human-readable description of a machine interface, a machine-readable description of a machine interface, and additional information pertaining a the machine interface.</li>
+                          <li>The <a href="https://datatracker.ietf.org/doc/draft-ietf-httpapi-api-catalog/">api-catalog</a> Internet Draft - This specification defines the <code>api-catalog</code> link relation type that can be used to
+                         point at a machine-actionable document that provides an overview of the machine interfaces for a repository.</li>
                          </ul>                         
                          </div>
                          
@@ -170,8 +170,8 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
        These links must have the <code>service-doc</code>, <code>service-desc</code>, and <code>service-meta</code> link relation types with semantics 
        as described in <a href="linkrels">Section 2.2</a>. Links with other link relation types must not be provided.</li>
        <li>For each link, the <code>type</code> <a href'https://www.rfc-editor.org/rfc/rfc9264.html#name-link-target-attributes">link target attribute</a> 
-       must be used to convey the media type of the resource that is the target of the link. 
-       The <code>profile</code> attribute may be used to provide further specificity regarding the media type.
+       must be used to convey the <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">media type</a> of the resource that is the target of the link. 
+       The <code>profile</code> attribute may be used to provide further specificity regarding the media type, and, if used, must contain a <a href="https://www.rfc-editor.org/rfc/rfc7284.html">profile URI</a>.
        The <code>title</code> attribute may be used to improve human readability of the Link Set, and, if used, must contain the title of the resource that 
        is the target of the link.
        </li>
