@@ -66,7 +66,7 @@ $(function() {
                 <div class="row">
                         <h3>API Catalog: Supporting Discovery of a Repository's Interoperability Affordances</h3>
                         <h5>
-                        Prepared by: Herbert Van de Sompel, Robert Huber, Martin Klein, Michael L. Nelson, ...
+                        Prepared by: Herbert Van de Sompel, Robert Huber, ...
                         </h5>
                         <h5>This version, created 20231118: <a href="https://www.signposting.org/API-Catalog/"
 data-versionurl="http://web.archive.org/web/20231118/https://signposting.org/API-Catalog/"
@@ -122,7 +122,7 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
                         <li>Making that link set discoverable.</li> 
                         </ul>
                         
-                        <div style="text-align: center;">
+                        <div style="text-align: left;">
 <img src="api-catalog.png" alt="API Catalog overview" width="500">
 </div>
 <br />
@@ -229,6 +229,8 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
        attributes as described in <a href="#discovery">Section 2.3</a>. The link's target <code>https://my.repo.org/api-info.json</code> is the URL of the repository's 
        API Catalog Link Set.
        </div> 
+       <br />
+       <br />
        
        <div class=" ">
 <table class="table">
@@ -243,7 +245,10 @@ HTTP/1.1 200 OK
 Date: Sat, 18 Nov 2023 14:43:12 GMT
 Content-Type: text/html
 Content-Length: 2657
-Link: &lt;https://my.repo.org/api-info.json&gt; ; rel="api-catalog" ; type="application/linkset+json" ; profile="https://signposting.org/API-Catalog/" 
+Link: &lt;https://my.repo.org/api-info.json&gt; 
+      ; rel="api-catalog" 
+      ; type="application/linkset+json" 
+      ; profile="https://signposting.org/API-Catalog/" 
 </pre>
 </td>
 </tr>
@@ -271,8 +276,10 @@ Link: &lt;https://my.repo.org/api-info.json&gt; ; rel="api-catalog" ; type="appl
        by the JSON document at <code>https://my.repo.org/api/api-specification.json</code>, which could be an OpenAPI document. 
        It is also detailed in a human-readable manner (<code>service-doc</code> link relation type) by the document at <code>https://my.repo.org/api/api-specification.html</code>.</li>
        </ul>
-       The first 
        </div> 
+       
+              <br />
+       <br />
        
               <div class=" ">
 <table class="table">
@@ -367,11 +374,13 @@ Content-Length: 1326
        are based on actual implementations of these affordances, meaning, they are not fictitious.
        </div>      
 
-<h5><a name="oaipmh"></a>OAI-PMH</h5>
 
 <div class=" ">
 <table class="table">
 <tbody>
+<tr>
+<td style="width: 80%;">OAI-PMH</td>
+</tr>
 <tr>
 <td>
 <pre>
@@ -401,11 +410,12 @@ Content-Length: 1326
 </tbody></table>
 </div>
 
-<h5><a name="sitemap"></a>Sitemap Protocol</h5>
-
 <div class=" ">
 <table class="table">
 <tbody>
+<tr>
+<td style="width: 80%;">Sitemap Protocol</td>
+</tr>
 <tr>
 <td>
 <pre>
@@ -429,11 +439,13 @@ Content-Length: 1326
 </tbody></table>
 </div>
 
-<h5><a name="sitemap"></a>FAIR Signposting</h5>
 
 <div class=" ">
 <table class="table">
 <tbody>
+<tr>
+<td style="width: 80%;">FAIR Signposting</td>
+</tr>
 <tr>
 <td>
 <pre>
@@ -457,11 +469,13 @@ Content-Length: 1326
 </tbody></table>
 </div>
 
-<h5><a name="sitemap"></a>OAI-ORE in RDF/XML</h5>
 
 <div class=" ">
 <table class="table">
 <tbody>
+<tr>
+<td style="width: 80%;">OAI-ORE, RDF/XML serialization</td>
+</tr>
 <tr>
 <td>
 <pre>
@@ -485,11 +499,12 @@ Content-Length: 1326
 </tbody></table>
 </div>
 
-<h5><a name="sitemap"></a>SPARQL</h5>
-
 <div class=" ">
 <table class="table">
 <tbody>
+<tr>
+<td style="width: 80%;">SPARQL 1.1</td>
+</tr>
 <tr>
 <td>
 <pre>
@@ -518,6 +533,9 @@ Content-Length: 1326
 <div class=" ">
 <table class="table">
 <tbody>
+<tr>
+<td style="width: 80%;">RO-Crate</td>
+</tr>
 <tr>
 <td>
 <pre>
