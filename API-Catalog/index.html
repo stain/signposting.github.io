@@ -68,13 +68,13 @@ $(function() {
                         <h5>
                         Prepared by: Herbert Van de Sompel, Robert Huber, Martin Klein, Michael L. Nelson, ...
                         </h5>
-                        <h5>This version, created 20231117: <a href="https://www.signposting.org/API Catalog/"
-data-versionurl="http://web.archive.org/web/20231002073726/https://signposting.org/API Catalog/"
-data-versiondate="2023-10-02">https://www.signposting.org/API Catalog/</a> </h5>
+                        <h5>This version, created 20231118: <a href="https://www.signposting.org/API-Catalog/"
+data-versionurl="http://web.archive.org/web/20231118/https://signposting.org/API-Catalog/"
+data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a> </h5>
 <!--
-<h5>Previous version, created 20230519: <a href="https://www.signposting.org/API Catalog/"
-data-versionurl="https://web.archive.org/web/20230519072548/https://signposting.org/API Catalog/"
-data-versiondate="2023-05-19">https://www.signposting.org/API Catalog/</a></h5>
+<h5>Previous version, created 20231118: <a href="https://www.signposting.org/API-Catalog/"
+data-versionurl="https://web.archive.org/web/20231118/https://signposting.org/API-Catalog/"
+data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
 -->
 						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a></h5>
 						<br>
@@ -198,271 +198,150 @@ data-versiondate="2023-05-19">https://www.signposting.org/API Catalog/</a></h5>
        <h4><a name="discovery"></a>2.3. Discovery of the API Catalog Link Set</h4>      
        
        <div class="">
-       In order to support discovery of its API Catalog Link Set, a repository:
+       In order to support discovery of its API Catalog Link Set, a repository must provide a link from the repository's <b>baseURL</b> to the 
+       API Catalog Link Set with the <code>api-catalog</code> link relation type. This link:
        <ul>
-       <li>Must provide a link from the repository's <b>baseURL</b> to the Link Set with the <code>api-catalog</code> link relation type.</li>
-       <li>Must provide this link in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element.</li>
-       <li>Should support issuing a HTTP HEAD against its <b>baseURL</b>.</li>
+       <li>Must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element.</li>
+       <li>Must have a <code>type</code> attribute with value <code>application/linkset+json</code>.</li>
+       <li>Must have a <code>profile</code> attribute with value <code>https://signposting.org/API-Catalog/</code>.</li>
+       </ul>  
+       Moreover, the repository should support issuing an HTTP HEAD request against its <b>baseURL</b>.</li>
        </div> 
        
        <h3><a name="examples"></a>3. Examples</h3>
        
-       
-                     <div class="">
-       blah
+       <div class="">
+       This section provides two types of examples. 
+       <a href="#exlinkset">Section 3.1</a> illustrates discovery and retrieval of the API Catalog for a fictitious repository.
+       <a href="#exlinkset">Section 3.2</a> shows how common interoperability affordances are handled in an API Catalog. This is done by means of 
+       the URLs of actual affordances as provided by real repositories.
        </div> 
        
-       <h4><a name="exlinkset"></a>3.1. API Catalog Link Set</h4>
-       
-              <div class="">
-       blah
+              <h4><a name="exlinkset"></a>3.1. API Catalog Link Set</h4>
+              
+       <div class="">
+       The below example illustrates how an agent can discover a repository's API Catalo. It shows the response to an HTTP HEAD request 
+       issued against the baseURL of the fictitious repository <code>my.repo.org</code>. The response contains an 
+       HTTP Link header that has a link with the <code>api-catalog</code> link relation type and the mandatory <code>type</code> and <code>profile</code> 
+       attributes as described in <a href="#discovery">Section 2.3</a>. The link's target <code>https://my.repo.org/api-info.json</code> is the URL of the repository's 
+       API Catalog Link Set.
        </div> 
-                         
-                       
-                        
-              <h4><a name="exaffordances"></a>3.2. Common Interoperability Affordances</h4>
        
-              <div class="">
-       blah
-       </div>      
-
-            
-<!--
-
-<div class="">
-                    <table class="table">
-                        <tbody><tr>
-                            <td style="width: 25%;"><b>Relation Type</b></td>
-                            <td><b>Description</b></td>
-                        </tr>
-                        <tr>
-                            <td><code>author</code></td>
-                            <td>The target of the link is a URI for an author of the resource that is the origin of the link. 
-                        </td></tr>
-                        <tr>
-                            <td><code>cite-as</code></td>
-                            <td>The target of the link is a persistent URI for the resource that is the origin of the link.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>describedby</code></td>
-                            <td>The target of the link provides metadata that describes the resource that is the origin of the link. 
-                           </td>
-                        </tr>
-                        <td><code>describes</code></td>
-                            <td>The origin of the link is a resource that provides metadata that describes the resource that is the target of the link. It is the inverse of the <code>describedby</code> relation type.
-                           </td>
-                        </tr>
-                        <tr>
-                            <td><code>type</code></td>
-                            <td>The target of the link is the URI for a class of resources to which the resource that is the origin of the link belongs.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>license</code></td>
-                            <td>The target of the link is the URI of a license that applies to the resource that is the origin of the link.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>item</code></td>
-                            <td>The origin of the link is a collection of resources and 
-                            the target of the link is a resource that belongs to that collection.
-							It is the inverse of the <code>collection</code> relation type.
-                            </td>
-                        </tr>
-                       <tr>
-                        </tr><tr>
-                            <td><code>collection</code></td>
-                            <td>The origin of the link is a resource that belongs to a collection and the target of the link is 
-                            the collection to which it belongs.
-                            It is the inverse of the <code>item</code> relation type.</td>
-                
-                    </tr></tbody></table>
-</div>
-         -->
-                
-<!--
-<div class=" ">
+       <div class=" ">
 <table class="table">
 <tbody><tr>
-<td style="width: 80%;">Content resource provides <code>linkset</code> links</td>
+<td style="width: 80%;">HTTP HEAD against a repository's baseURL: request and response</td>
 </tr>
 <tr>
 <td>
-<pre>$ curl -I "https://example.org/file/7507/1"
+<pre>$ curl -I "https://my.repo.org"
 
 HTTP/1.1 200 OK
-Date: Fri, 9 Oct 2020 20:14:29 GMT
-Content-Type: application/pdf
-Content-Length: 36588
-Link: &lt;https://example.org/linkset/7507/1/lset&gt; ; rel="linkset" ; type="application/linkset" , 
-&lt;https://example.org/linkset/7507/1/json&gt; ; rel="linkset" ; type="application/linkset+json" ,
-&lt;https://example.org/page/7507&gt; ; rel="collection" ; type="text/html"
+Date: Sat, 18 Nov 2023 14:43:12 GMT
+Content-Type: text/html
+Content-Length: 2657
+Link: &lt;https://my.repo.org/api-info.json&gt; ; rel="api-catalog" ; type="application/linkset+json" ; profile="https://signposting.org/API-Catalog/" 
 </pre>
 </td>
 </tr>
 </tbody></table>
 </div>
 
-<div class=" ">
-An actual Link Set is obtained by issuing an HTTP GET on a URI discovered as described above. The below examples show responses 
-to requests issued against <code>https://example.org/linkset/7507/json</code> (<code>application/linkset+json</code> serialization) 
-and <code>https://example.org/linkset/7507/lset</code> (<code>application/linkset</code> serialization), respectively. Note that 
-it is possible to allow clients to interpret this JSON as JSON-LD by:
-<ul>
-<li>Publishing a JSON-LD context document.</li>
-<li>Making the JSON-LD context document discoverable by providing a typed link  
-with the <code>http://www.w3.org/ns/json-ld#context</code> relation type in the HTTP <code>Link</code> header of the Link Set.</li>
-</ul>
-This is shown in detail in Appendix B of the <a href="https://datatracker.ietf.org/doc/draft-ietf-httpapi-linkset/">Linkset</a> Internet Draft.
-</div>
-
-<br>
-
-<div class=" ">
-As indicated in <a href="#level2b">Section 2.2.2.</a>, 
-if a content resource has distinct a persistent identifier, type, authorship, or descriptive metadata it can be provided 
-in the Link Set using <code>cite-as</code>, <code>type</code>, <code>author</code>, and <code>describedby</code>
- links, respectively, with the URI of the 
-content resource as anchor. But such links must not be used if these 
-properties are shared with the scholarly object as a whole. 
-Note the way the anchor of each link is provided explicitly in the <code>application/linkset</code> serialization to avoid 
-ambiguous interpretation.
-</div>
-
-
-
-<br>
-
-
-
-<div class=" ">
+       <div class="">
+       In the below example, the agent retrieves the API Catalog by issuing an HTTP GET against the URL <code>https://my.repo.org/api-info.json</code> 
+       that it just discovered. The Link Set in the response contains four <code>anchor</code> members, indicating that the repository provides 
+       details about four interoperability affordances:
+       <ul>
+       <li>The affordance at <code>https://my.repo.org/oaipmh</code> is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
+       by the document at <code>https://www.openarchives.org/OAI/openarchivesprotocol.html</code>, which is the OAI-PMH specification.  
+       Further information about the repository's OAI-PMH implementation is provided by means of a link with the 
+       <code>service-meta</code> link relation type that points at the URL for the Identify request against the OAI-PMH interface.</li>
+       <li>The affordance at <code>https://my.repo.org/sitemap/index.xml</code> is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
+       by the document at <code>https://www.sitemaps.org/protocol.html</code>, which is the Sitemap protocol specification. No further information is provided 
+       for this affordance.</li>
+       <li>The affordance at <code>https://my.repo.org/sparql11</code> is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
+       by the document at <code>https://www.w3.org/TR/sparql11-query/</code>, which is the SPARQL 1.1 W3C Recommendation. No further information is provided 
+       for this affordance. Further information about the repository's SPARQL end-point is provided by means of a link with the 
+       <code>service-meta</code> link relation type that points at the URL of a 
+       <a href="https://www.w3.org/TR/sparql11-service-description/">SPARQL Description</a> document.</li>
+       <li>The affordance at <code>https://my.repo.org/api</code> is detailed in a machine-readable manner (<code>service-desc</code> link relation type) 
+       by the JSON document at <code>https://my.repo.org/api/api-specification.json</code>, which could be an OpenAPI document. 
+       It is also detailed in a human-readable manner (<code>service-doc</code> link relation type) by the document at <code>https://my.repo.org/api/api-specification.html</code>.</li>
+       </ul>
+       The first 
+       </div> 
+       
+              <div class=" ">
 <table class="table">
 <tbody><tr>
-<td style="width: 80%;">Level 2 typed links via a Link Set in <code>application/linkset+json</code> serialization</td>
+<td style="width: 80%;">HTTP GET against the URL of a repository's API Catalog: request and response</td>
 </tr>
 <tr>
 <td>
-<pre>$ curl -i "https://example.org/linkset/7507/1/json"
+<pre>$ curl -i "https://my.repo.org/api-info.json"
 
 HTTP/1.1 200 OK
-Date: Fri, 9 Oct 2020 20:23:44 GMT
-Server: Apache-Coyote/1.1
-Content-Length: 2608
+Date: Sat, 18 Nov 2023 14:44:07 GMT
 Content-Type: application/linkset+json
-Connection: close
+Content-Length: 1326
 
 {
   "linkset": [
     {
-      "anchor": "https://example.org/page/7507",
-      "cite-as": [
+      "anchor": "https://my.repo.org/oaipmh",
+      "service-doc": [
         {
-          "href": "https://doi.org/10.5061/dryad.5d23f"
+          "href": "https://www.openarchives.org/OAI/openarchivesprotocol.html",
+          "type": "text/html",
+          "title": "Open Archives Initiative - Protocol for Metadata Harvesting - v.2.0"
         }
       ],
-      "type": [
+      "service-meta": [
         {
-          "href": "https://schema.org/ScholarlyArticle"
-        },
-        {
-          "href": "https://schema.org/AboutPage"
-        }
-      ],
-      "author": [
-        {
-          "href": "https://orcid.org/0000-0002-1825-0097"
-        },
-        {
-          "href": "https://isni.org/isni/0000002251201436"
-        }
-      ],
-      "item": [
-        {
-          "href": "https://example.org/file/7507/1",
-          "type": "application/pdf"
-        },
-        {
-          "href": "https://example.org/file/7507/2",
-          "type": "text/csv"
-        },
-        {
-          "href": "https://gitmodo.io/johnd/ct.zip",
-          "type": "application/zip"
-        }
-      ],
-      "describedby": [
-        {
-          "href": "https://example.org/meta/7507/bibtex",
-          "type": "application/x-bibtex"
-        },
-        {
-          "href": "https://doi.org/10.5061/dryad.5d23f",
-          "type": "application/vnd.datacite.datacite+json"
-        },
-        {
-          "href": "https://example.org/meta/7507/citeproc",
-          "type": "application/vnd.citationstyles.csl+json"
-        }
-      ],
-      "license": [
-        {
-          "href": "https://spdx.org/licenses/CC-BY-4.0"
+          "href": "https://my.repo.org/oaipmh?verb=Identify",
+          "type": "application/xml"
         }
       ]
     },
     {
-      "anchor": "https://example.org/file/7507/1",
-      "collection": [
+      "anchor": "https://my.repo.org/sitemap/index.xml",
+      "service-doc": [
         {
-          "href": "https://example.org/page/7507",
-          "type": "text/html"
+          "href": "https://www.sitemaps.org/protocol.html",
+          "type": "text/html",
+          "title": "sitemaps.org - Protocol"
         }
       ]
     },
     {
-      "anchor": "https://example.org/file/7507/2",
-      "collection": [
+      "anchor": "https://my.repo.org/sparql11",
+      "service-doc": [
         {
-          "href": "https://example.org/page/7507",
-          "type": "text/html"
+          "href": "https://www.w3.org/TR/sparql11-query/",
+          "type": "text/html",
+          "title": "SPARQL 1.1 Query Language"
         }
       ],
-      "type": [
+      "service-meta": [
         {
-          "href": "https://schema.org/Dataset"
+          "href": "https://my.repo.org/sparql11/description.xml",
+          "type": "application/rdf+xml"
         }
       ]
     },
     {
-      "anchor": "https://gitmodo.io/johnd/ct.zip",
-      "collection": [
+      "anchor": "https://my.repo.org/api",
+      "service-desc": [
         {
-          "href": "https://example.org/page/7507",
-          "type": "text/html"
+          "href": "https://my.repo.org/api/openapi.yml",
+          "type": "application/yaml"
         }
       ],
-      "type": [
+      "service-doc": [
         {
-          "href": "https://schema.org/SoftwareSourceCode"
-        }
-      ]
-    },
-    {
-      "anchor": "https://doi.org/10.5061/dryad.5d23f",
-      "describes": [
-        {
-          "href": "https://example.org/page/7507",
-          "type": "text/html"
-        }
-      ]
-    },
-    {
-      "anchor": "https://example.org/meta/7507/bibtex",
-      "describes": [
-        {
-          "href": "https://example.org/page/7507",
-          "type": "text/html"
+          "href": "https://my.repo.org/api/api-specification.html",
+          "type": "text/html",
+          "title": "My Repo API"
         }
       ]
     }
@@ -473,7 +352,193 @@ Connection: close
 </tr>
 </tbody></table>
 </div>
--->
+       
+
+                         
+                       
+                        
+              <h4><a name="exaffordances"></a>3.2. Common Interoperability Affordances</h4>
+       
+              <div class="">
+       This section shows what entries in an API Catalog Link Set look like for common interoperability affordances. The example entries 
+       are based on actual implementations of these affordances, meaning, they are not fictitious.
+       </div>      
+
+<h5><a name="oaipmh"></a>OAI-PMH</h5>
+
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td>
+<pre>
+{
+  "linkset": [
+    {
+      "anchor": "https://export.arxiv.org/oai2",
+      "service-doc": [
+        {
+          "href": "https://www.openarchives.org/OAI/openarchivesprotocol.html",
+          "type": "text/html",
+          "title": "Open Archives Initiative - Protocol for Metadata Harvesting - v.2.0"
+        }
+      ],
+      "service-meta": [
+        {
+          "href": "https://export.arxiv.org/oai2?verb=Identify",
+          "type": "application/xml"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<h5><a name="sitemap"></a>Sitemap Protocol</h5>
+
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td>
+<pre>
+{
+  "linkset": [
+    {
+      "anchor": "???",
+      "service-doc": [
+        {
+          "href": "https://www.sitemaps.org/protocol.html",
+          "type": "text/html",
+          "title": "sitemaps.org - Protocol"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<h5><a name="sitemap"></a>FAIR Signposting</h5>
+
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td>
+<pre>
+{
+  "linkset": [
+    {
+      "anchor": "https://doi.pangaea.de/10.1594/PANGAEA.867908",
+      "service-doc": [
+        {
+          "href": "https://signposting.org/FAIR/",
+          "type": "text/html",
+          "title": "FAIR Signposting Profile - Signposting the Scholarly Web"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<h5><a name="sitemap"></a>OAI-ORE in RDF/XML</h5>
+
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td>
+<pre>
+{
+  "linkset": [
+    {
+      "anchor": "https://ssh.datastations.nl/dataset.xhtml?persistentId=doi:10.17026/dans-29r-wyyr",
+      "service-doc": [
+        {
+          "href": "https://www.openarchives.org/ore/1.0/rdfxml",
+          "type": "text/html",
+          "title": "ORE User Guide - Resource Map Implementation in RDF/XML"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<h5><a name="sitemap"></a>SPARQL</h5>
+
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td>
+<pre>
+{
+  "linkset": [
+    {
+      "anchor": "???",
+      "service-doc": [
+        {
+          "href": "https://www.w3.org/TR/sparql11-query/",
+          "type": "text/html",
+          "title": "SPARQL 1.1 Query Language"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<h5><a name="sitemap"></a>RO-Crate</h5>
+
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td>
+<pre>
+{
+  "linkset": [
+    {
+      "anchor": "???",
+      "service-doc": [
+        {
+          "href": "https://w3id.org/ro/crate/1.1",
+          "type": "text/html",
+          "title": "RO-Crate 1.1 | Research Object Crate (RO-Crate)"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+            
+
 
 
 
