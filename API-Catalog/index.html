@@ -274,6 +274,10 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
        <li>The affordance at <code>https://my.repo.org/api</code> is detailed in a machine-readable manner (<code>service-desc</code> link relation type) 
        by the JSON document at <code>https://my.repo.org/api/api-specification.json</code>, which could be an OpenAPI document. 
        It is also detailed in a human-readable manner (<code>service-doc</code> link relation type) by the document at <code>https://my.repo.org/api/api-specification.html</code>.</li>
+        <li>The last affordance is illustrated by means of item <code>https://my.repo.org/item/747369/</code> of the repository collection. 
+        It is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
+       by the document <code>https://signposting.org/FAIT/</code>, which is the FAIR Signposting specification. 
+      </li>
        </ul>
        </div> 
        
@@ -291,7 +295,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 HTTP/1.1 200 OK
 Date: Sat, 18 Nov 2023 14:44:07 GMT
 Content-Type: application/linkset+json
-Content-Length: 1326
+Content-Length: 1809
 
 {
   "linkset": [
@@ -350,6 +354,16 @@ Content-Length: 1326
           "href": "https://my.repo.org/api/api-specification.html",
           "type": "text/html",
           "title": "My Repo API"
+        }
+      ]
+    },
+    {
+      "anchor": "https://my.repo.org/item/747369/",
+      "service-doc": [
+        {
+          "href": "https://signposting.org/FAIR/",
+          "type": "text/html",
+          "title": "FAIR Signposting Profile - Signposting the Scholarly Web"
         }
       ]
     }
