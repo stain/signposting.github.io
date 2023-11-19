@@ -80,7 +80,7 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
 						<br>
 						<div class="">
 						In order to meet FAIR expectations, repositories provide affordances to support Finding, Accessing, Interoperating, and Reusing 
-						the objects they manage. Some affordances focus on supporting machine interaction with scholarly content and 
+						the items they manage. Some affordances focus on supporting machine interaction with scholarly content and 
 						entail implementing common specifications as well as repository-specific machine interfaces. 
 						Discovering whether and which interoperability affordances are provided by a repository remains a challenge. 
 						Some specifications describe how to advertise a compliant interface, but, the discovery approach is  
@@ -172,7 +172,8 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
        with a mandatory <code>anchor</code> member. The URL provided as value of the <code>anchor</code> member depends on the nature of the affordance:</li>
        <ul>
        <li>Collection-level affordance: The value of the <code>anchor</code> member is the URL of the machine interface.</li>
-       <li>Item-level affordances: The value of the <code>anchor</code> member is the URL of a sample collection item that illustrates the affordance.</li>
+       <li>Item-level affordances: The value of the <code>anchor</code> member is the URL of a sample collection item that illustrates the affordance. 
+       If more than one item-level affordance exists, each must be illustrated by means of a different collection item.</li>
        </ul>
        <li>The <code>anchor</code> member is the context for links to resources that provide information about the interoperability affordance. 
        These links must have the <code>service-doc</code>, <code>service-desc</code>, and <code>service-meta</code> link relation types with semantics 
@@ -271,10 +272,10 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
        by the document at &lt;https://www.openarchives.org/OAI/openarchivesprotocol.html&gt;, which is the OAI-PMH specification.  
        Further information about the repository's OAI-PMH implementation is provided by means of a link with the 
        <code>service-meta</code> link relation type that points at the URL for the Identify request against the OAI-PMH interface.</li>
-       <li>The affordance at <&lt;https://my.repo.org/sitemap/index.xml&gt; is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
-       by the document at <&lt;https://www.sitemaps.org/protocol.html&gt;, which is the Sitemap protocol specification. No further information is provided 
+       <li>The affordance at &lt;https://my.repo.org/sitemap/index.xml&gt; is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
+       by the document at &lt;https://www.sitemaps.org/protocol.html&gt;, which is the Sitemap protocol specification. No further information is provided 
        for this affordance.</li>
-       <li>The affordance at &lt;>https://my.repo.org/sparql11&gt; is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
+       <li>The affordance at &lt;https://my.repo.org/sparql11&gt; is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
        by the document at &lt;https://www.w3.org/TR/sparql11-query/&gt;, which is the SPARQL 1.1 W3C Recommendation. No further information is provided 
        for this affordance. Further information about the repository's SPARQL end-point is provided by means of a link with the 
        <code>service-meta</code> link relation type that points at the URL of a 
@@ -282,7 +283,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
        <li>The affordance at &lt;https://my.repo.org/api&gt; is detailed in a machine-readable manner (<code>service-desc</code> link relation type) 
        by the JSON document at &lt;https://my.repo.org/api/api-specification.json&gt;, which could be an OpenAPI document. 
        It is also detailed in a human-readable manner (<code>service-doc</code> link relation type) by the document at &lt;https://my.repo.org/api/api-specification.html&gt;.</li>
-        <li>The last affordance is illustrated by means of item <code>https://my.repo.org/item/747369/</code> of the repository collection. 
+        <li>The last affordance is illustrated by means of item &lt;https://my.repo.org/item/747369/&gt; of the repository collection. 
         It is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
        by the document &lt;https://signposting.org/FAIR/&gt;, which is the FAIR Signposting specification. 
       </li>
