@@ -79,7 +79,15 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
 						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a></h5>
 						<br>
 						<div class="">
-						some brief intro
+						In order to meet FAIR expectations, repositories provide affordances to support Finding, Accessing, Interoperating, and Reusing 
+						the objects they manage. Some affordances focus on supporting machine interaction with scholarly content and 
+						entail implementing common specifications as well as repository-specific machine interfaces. 
+						Discovering whether and which interoperability affordances are provided by a repository remains a challenge. 
+						Some specifications describe how to advertise a compliant interface, but, the discovery approach is  
+						different for different specifications. Other specifications don't detail an approach to discover a compliant interface 
+						and rely on a central registry instead. For yet other specifications, no way to advertise compliance exists. 
+						This document describes an approach that repositories can uniformly use to advertise the interoperability affordances 
+						they provide.  
 						</div>
 						</div>
 						</div>
@@ -226,7 +234,7 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
        The below example illustrates how an agent can discover a repository's API Catalo. It shows the response to an HTTP HEAD request 
        issued against the baseURL of the fictitious repository <code>my.repo.org</code>. The response contains an 
        HTTP Link header that has a link with the <code>api-catalog</code> link relation type and the mandatory <code>type</code> and <code>profile</code> 
-       attributes as described in <a href="#discovery">Section 2.3</a>. The link's target <code>https://my.repo.org/api-info.json</code> is the URL of the repository's 
+       attributes as described in <a href="#discovery">Section 2.3</a>. The link's target &lt;https://my.repo.org/api-info.json&gt; is the URL of the repository's 
        API Catalog Link Set.
        </div> 
        <br />
@@ -255,28 +263,28 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 </div>
 
        <div class="">
-       In the below example, the agent retrieves the API Catalog by issuing an HTTP GET against the URL <code>https://my.repo.org/api-info.json</code> 
+       In the below example, the agent retrieves the API Catalog by issuing an HTTP GET against the URL &lt;https://my.repo.org/api-info.json&gt; 
        that it just discovered. The Link Set in the response contains four <code>anchor</code> members, indicating that the repository provides 
        details about four interoperability affordances:
        <ul>
-       <li>The affordance at <code>https://my.repo.org/oaipmh</code> is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
-       by the document at <code>https://www.openarchives.org/OAI/openarchivesprotocol.html</code>, which is the OAI-PMH specification.  
+       <li>The affordance at &lt;https://my.repo.org/oaipmh&gt; is detailed in a human-readable manner (<code>service-doc</code> link relation type)   
+       by the document at &lt;https://www.openarchives.org/OAI/openarchivesprotocol.html&gt;, which is the OAI-PMH specification.  
        Further information about the repository's OAI-PMH implementation is provided by means of a link with the 
        <code>service-meta</code> link relation type that points at the URL for the Identify request against the OAI-PMH interface.</li>
-       <li>The affordance at <code>https://my.repo.org/sitemap/index.xml</code> is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
-       by the document at <code>https://www.sitemaps.org/protocol.html</code>, which is the Sitemap protocol specification. No further information is provided 
+       <li>The affordance at <&lt;https://my.repo.org/sitemap/index.xml&gt; is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
+       by the document at <&lt;https://www.sitemaps.org/protocol.html&gt;, which is the Sitemap protocol specification. No further information is provided 
        for this affordance.</li>
-       <li>The affordance at <code>https://my.repo.org/sparql11</code> is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
-       by the document at <code>https://www.w3.org/TR/sparql11-query/</code>, which is the SPARQL 1.1 W3C Recommendation. No further information is provided 
+       <li>The affordance at &lt;>https://my.repo.org/sparql11&gt; is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
+       by the document at &lt;https://www.w3.org/TR/sparql11-query/&gt;, which is the SPARQL 1.1 W3C Recommendation. No further information is provided 
        for this affordance. Further information about the repository's SPARQL end-point is provided by means of a link with the 
        <code>service-meta</code> link relation type that points at the URL of a 
        <a href="https://www.w3.org/TR/sparql11-service-description/">SPARQL Description</a> document.</li>
-       <li>The affordance at <code>https://my.repo.org/api</code> is detailed in a machine-readable manner (<code>service-desc</code> link relation type) 
-       by the JSON document at <code>https://my.repo.org/api/api-specification.json</code>, which could be an OpenAPI document. 
-       It is also detailed in a human-readable manner (<code>service-doc</code> link relation type) by the document at <code>https://my.repo.org/api/api-specification.html</code>.</li>
+       <li>The affordance at &lt;https://my.repo.org/api&gt; is detailed in a machine-readable manner (<code>service-desc</code> link relation type) 
+       by the JSON document at &lt;https://my.repo.org/api/api-specification.json&gt;, which could be an OpenAPI document. 
+       It is also detailed in a human-readable manner (<code>service-doc</code> link relation type) by the document at &lt;https://my.repo.org/api/api-specification.html&gt;.</li>
         <li>The last affordance is illustrated by means of item <code>https://my.repo.org/item/747369/</code> of the repository collection. 
         It is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
-       by the document <code>https://signposting.org/FAIT/</code>, which is the FAIR Signposting specification. 
+       by the document &lt;https://signposting.org/FAIR/&gt;, which is the FAIR Signposting specification. 
       </li>
        </ul>
        </div> 
