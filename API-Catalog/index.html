@@ -213,18 +213,46 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
        </div> 
        <br />
        
-       <h4><a name="discovery"></a>2.3. Discovery of the API Catalog Link Set</h4>      
+       <h4><a name="discovery"></a>2.3. Discovery of the API Catalog Link Set</h4>     
+       
+              <div class="">
+              The <a href="https://datatracker.ietf.org/doc/draft-ietf-httpapi-api-catalog/">api-catalog</a> 
+              Internet Draft specifies two ways in which an API Catalog can be discovered:
+              <uL>
+              <li>Using the <code>api-catalog</code> link relation type.</li>
+              <li>Using the well-known URI <code>/.well-known/api-catalog</code>.</li>
+
+              </ul>
+              Both approaches should be used simultaneously to support discovery of the API Catalog Link Set. 
+              At least one approach must be used.
+              </div> 
+              
+             <h5><a name="link"></a>2.3.1. using the api-catalog link relation typ</h5> 
        
        <div class="">
-       In order to support discovery of its API Catalog Link Set, a repository must provide a link from the repository's <b>baseURL</b> to the 
+       In order to support discovery of its API Catalog Link Set, a repository should provide a link from the repository's <b>baseURL</b> to the 
        API Catalog Link Set with the <code>api-catalog</code> link relation type. This link:
        <ul>
        <li>Must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element.</li>
        <li>Must have a <code>type</code> attribute with value <code>application/linkset+json</code>.</li>
        <li>Must have a <code>profile</code> attribute with value <code>https://signposting.org/API-Catalog/</code>.</li>
        </ul>  
-       Moreover, the repository should support issuing an HTTP HEAD request against its <b>baseURL</b>.</li>
+       The repository must support issuing an HTTP HEAD request against its <b>baseURL</b>.</li>
        </div> 
+              
+              <h5><a name="wellknown"></a>2.3.2. Using the /.well-known/api-catalog</h5>  
+              
+               <div class="">
+               The behavior for a repository's <code>/.well-known/api-catalog</code> URI should be as follows:
+               <ul>
+               <li>When a repository at <b>baseURL</b> receives an HTTP GET request against <b>baseURL</b>/.well-known/api-catalog, 
+               the request must resolve to its the API Catalog Link Set serialized in the <code>application/linkset+json</code> format.</li>
+               <li>When a repository at <b>baseURL</b> receives an HTTP HEAD request against <b>baseURL</b>/.well-known/api-catalog, 
+               the request must resolve to a response that contains an HTTP Link header with a link that uses the <code>api-catalog</code> link relation 
+               type to point at the repository's API Catalog Link Set. further details about this link are provided in <a href="#link">Section 2.3.1</a>.</li>
+               </div>
+              
+
        
        <h3><a name="examples"></a>3. Examples</h3>
        
