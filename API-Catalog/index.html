@@ -118,29 +118,7 @@ data-versiondate="2023-11-19">https://www.signposting.org/API-Catalog/</a> </h5>
 						
                         <div class="">
                         This specification details an approach that repositories can use to advertise the interoperability affordances they provide. 
-                        Such affordances can be:
-                        <ul>
-                        <li>Repository-level affordances: Machine interfaces that can be used to interact with the repository as a whole.</li>
-                        <li>Item-level affordances: Affordances that are available when interacting with a single item managed by the repository  
-                        and that are consistently available for each item.</li>
-                        </ul>
-                         
-                        The approach consists of:
-                        <ul>
-                         <li>Publishing a single JSON <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Set</a> 
-                        that contains links to documentation for each available affordance.</li> 
-                        <li>Making that Link Set discoverable via the repository <b>baseURL</b>, that is, 
-                        the URL at which the repository is accessible.</li> 
-                        </ul>
-                        
-                        <br />
-                        
-                        <div style="text-align: center;">
-<img src="api-catalog.png" alt="API Catalog approach overview" width="800">
-</div>
-<br />
-                                                <div class="">
-                        A repository can use the approach, for example, to:
+                         A repository can use the approach, for example, to:
                         <ul>
                          <li>indicate what the URL of its OAI-PMH interface is,</li>
                          <li>point to a Sitemap that lists the items managed by the repository,</li>
@@ -148,7 +126,33 @@ data-versiondate="2023-11-19">https://www.signposting.org/API-Catalog/</a> </h5>
                          <li>advertise support for FAIR Signposting,</li>
                          <li>convey that items managed by the repository can be downloaded as RO-Crates.</li>
                          </ul>
+                         </div>
                          
+                        <div class="">
+                        The approach consists of:
+                        <ul>
+                         <li>Publishing a single JSON <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Set</a> 
+                        that contains links to documentation for each available affordance.</li> 
+                        <li>Making that Link Set discoverable via the repository <b>baseURL</b>, that is, 
+                        the URL at which the repository is accessible.</li> 
+                        </ul>
+                        </div>
+                        
+                        <div style="text-align: center;">
+<img src="api-catalog.png" alt="API Catalog approach overview" width="800">
+</div>
+<br />
+                        
+                        <div class="">
+                        Interoperability affordances that can be advertised using the approach can be:
+                        <ul>
+                        <li>Repository-level affordances: Machine interfaces that can be used to interact with the repository as a whole.</li>
+                        <li>Item-level affordances: Affordances that are available when interacting with a single item managed by the repository  
+                        and that are consistently available for each item.</li>
+                        </ul>
+                         </div>
+
+                                                <div class="">
                         The approach leverages the following formal specifications:
                         <ul>
                          <li><a href="https://www.rfc-editor.org/rfc/rfc9264.html">RF9264</a>: Linkset: Media Types and a Link Relation Type for Link Sets - This RFC defines the <code>application/linkset+json</code> document format that can be used to convey a set of typed links.</li>
