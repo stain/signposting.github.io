@@ -120,16 +120,17 @@ data-versiondate="2023-11-19">https://www.signposting.org/API-Catalog/</a> </h5>
                         This specification details an approach that repositories can use to advertise the interoperability affordances they provide. 
                         Such affordances can be:
                         <ul>
-                        <li>Collection-level affordances: Machine interfaces that can be used to interact with the entire repository collection.</li>
-                        <li>Item-level affordances: Affordances that are available when interacting with a single item of the repository collection 
-                        and that are available for each item of the collection.</li>
+                        <li>Repository-level affordances: Machine interfaces that can be used to interact with the repository as a whole.</li>
+                        <li>Item-level affordances: Affordances that are available when interacting with a single item managed by the repository  
+                        and that are consistently available for each item.</li>
                         </ul>
                          
                         The approach consists of:
                         <ul>
                          <li>Publishing a single JSON <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Set</a> 
                         that contains links to documentation for each available affordance.</li> 
-                        <li>Making that link set discoverable.</li> 
+                        <li>Making that Link Set discoverable via the repository <b>baseURL</b>, that is, 
+                        the URL at which the repository is accessible.</li> 
                         </ul>
                         
                         <br />
@@ -141,11 +142,11 @@ data-versiondate="2023-11-19">https://www.signposting.org/API-Catalog/</a> </h5>
                                                 <div class="">
                         A repository can use the approach, for example, to:
                         <ul>
-                         <li>indicate what the baseURL of its OAI-PMH interface is,</li>
-                         <li>point to a Sitemap that lists its collection items,</li>
-                         <li>indicate the baseURL of a repository-specific API,</li>
+                         <li>indicate what the URL of its OAI-PMH interface is,</li>
+                         <li>point to a Sitemap that lists the items managed by the repository,</li>
+                         <li>indicate the URL of a repository-specific API,</li>
                          <li>advertise support for FAIR Signposting,</li>
-                         <li>convey that items from the repository collection can be downloaded as RO-Crates.</li>
+                         <li>convey that items managed by the repository can be downloaded as RO-Crates.</li>
                          </ul>
                          
                         The approach leverages the following formal specifications:
@@ -177,10 +178,10 @@ data-versiondate="2023-11-19">https://www.signposting.org/API-Catalog/</a> </h5>
        <li>For each interoperability affordance provided by a repository, the Link Set contains a <a href="https://www.rfc-editor.org/rfc/rfc9264.html#name-link-context-object">link context object</a> 
        with a mandatory <code>anchor</code> member. The URL provided as value of the <code>anchor</code> member depends on the nature of the affordance:</li>
        <ul>
-       <li>Collection-level affordance: The value of the <code>anchor</code> member is the URL of the machine interface. 
+       <li>Repository-level affordance: The value of the <code>anchor</code> member is the URL of the machine interface. 
        If more than one affordance of the same type exist, a distinct <code>anchor</code> member must be used for each.</li>
-       <li>Item-level affordances: The value of the <code>anchor</code> member is the URL of a sample collection item that illustrates the affordance. 
-       If more than one item-level affordance exists, each must be illustrated by means of a different collection item.</li>
+       <li>Item-level affordances: The value of the <code>anchor</code> member is the URL of a sample item that illustrates the affordance. 
+       If more than one item-level affordance exists, each must be illustrated by means of a different item.</li>
        </ul>
        <li>The <code>anchor</code> member is the context for links to resources that provide information about the interoperability affordance. 
        Links with the <code>service-doc</code>, <code>service-desc</code>, and <code>service-meta</code> link relation types can be provided; the semantics 
@@ -224,10 +225,14 @@ data-versiondate="2023-11-19">https://www.signposting.org/API-Catalog/</a> </h5>
               <uL>
               <li>Using the <code>api-catalog</code> link relation type.</li>
               <li>Using the well-known URI <code>/.well-known/api-catalog</code>.</li>
-
               </ul>
+              </div>
+              <div class="">
               Both approaches should be used simultaneously to support discovery of the API Catalog Link Set. 
               At least one approach must be used.
+              <br />
+              Both approaches leverage the repository <b>baseURL</b>, i.e. the URL where the repository is accessible. Depending on 
+              the situation, a baseURL could e.g. be of the form https://example.org, https://example.org/database1, https://example.org/data/archive2.
               </div> 
               
              <h5><a name="disclink"></a>2.3.1. Using the api-catalog link relation type</h5> 
@@ -320,7 +325,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
        <li>The affordance at &lt;https://my.repo.org/api&gt; is detailed in a machine-readable manner (<code>service-desc</code> link relation type) 
        by the JSON document at &lt;https://my.repo.org/api/api-specification.json&gt;, which could be an OpenAPI document. 
        It is also detailed in a human-readable manner (<code>service-doc</code> link relation type) by the document at &lt;https://my.repo.org/api/api-specification.html&gt;.</li>
-        <li>The last affordance is illustrated by means of item &lt;https://my.repo.org/item/747369/&gt; of the repository collection. 
+        <li>The last affordance is illustrated by means of item &lt;https://my.repo.org/item/747369/&gt; managed by the repository. 
         It is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
        by the document &lt;https://signposting.org/FAIR/&gt;, which is the FAIR Signposting specification. 
       </li>
