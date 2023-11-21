@@ -66,16 +66,14 @@ $(function() {
                 <div class="row">
                         <h3>API Catalog: Supporting Discovery of a Repository's Interoperability Affordances</h3>
                         <h5>
-                        Prepared by: Herbert Van de Sompel, Robert Huber, Michael L. Nelson, ...
+                        Prepared by: Herbert Van de Sompel, Robert Huber, Michael L. Nelson, Martin Klein, ...
                         </h5>
-                        <h5>This version, created 20231120: <a href="https://www.signposting.org/API-Catalog/"
+                        <h5>This version, created 20231121: <a href="https://www.signposting.org/API-Catalog/"
+data-versionurl="http://web.archive.org/web/20231121/https://signposting.org/API-Catalog/"
+data-versiondate="2023-11-21">https://www.signposting.org/API-Catalog/</a> </h5>
+                        <h5>Previous version, created 20231129: <a href="https://www.signposting.org/API-Catalog/"
 data-versionurl="http://web.archive.org/web/20231119115625/https://signposting.org/API-Catalog/"
-data-versiondate="2023-11-20">https://www.signposting.org/API-Catalog/</a> </h5>
-<!--
-<h5>Previous version, created 20231118: <a href="https://www.signposting.org/API-Catalog/"
-data-versionurl="https://web.archive.org/web/20231118/https://signposting.org/API-Catalog/"
-data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
--->
+data-versiondate="2023-11-29">https://www.signposting.org/API-Catalog/</a> </h5>
 						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a></h5>
 						<br>
 						<div class="">
@@ -144,13 +142,13 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
                         A repository can use the approach, for example, to:
                         <ul>
                          <li>indicate what the baseURL of its OAI-PMH interface is,</li>
-                         <li>point to its Sitemap entry point,</li>
-                         <li>indicate the baseURL of a repository-specific API, and link to its machine- and human readable specification,</li>
+                         <li>point to a Sitemap that lists its collection items,</li>
+                         <li>indicate the baseURL of a repository-specific API,</li>
                          <li>advertise support for FAIR Signposting,</li>
                          <li>convey that items from the repository collection can be downloaded as RO-Crates.</li>
                          </ul>
                          
-                        The specification leverages the following formal specifications:
+                        The approach leverages the following formal specifications:
                         <ul>
                          <li><a href="https://www.rfc-editor.org/rfc/rfc9264.html">RF9264</a>: Linkset: Media Types and a Link Relation Type for Link Sets - This RFC defines the <code>application/linkset+json</code> document format that can be used to convey a set of typed links.</li>
                          <li><a href="https://www.rfc-editor.org/rfc/rfc8631.html">RFC8631</a>: Link Relation Types for Web Services - This RFC defines the <code>service-doc</code>, <code>service-desc</code>, and <code>service-meta</code> link relation types that can be used to, respectively, 
@@ -185,8 +183,8 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
        If more than one item-level affordance exists, each must be illustrated by means of a different collection item.</li>
        </ul>
        <li>The <code>anchor</code> member is the context for links to resources that provide information about the interoperability affordance. 
-       These links must have the <code>service-doc</code>, <code>service-desc</code>, and <code>service-meta</code> link relation types with semantics 
-       as described in <a href="linkrels">Section 2.2</a>. Links with other link relation types must not be provided.</li>
+       Links with the <code>service-doc</code>, <code>service-desc</code>, and <code>service-meta</code> link relation types can be provided; the semantics 
+       of these relation types are described in <a href="linkrels">Section 2.2</a>. Links with other link relation types must not be provided.</li>
        <li>For each link, the <code>type</code> <a href'https://www.rfc-editor.org/rfc/rfc9264.html#name-link-target-attributes">link target attribute</a> 
        must be used to convey the <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">media type</a> of the resource that is the target of the link. 
        The <code>profile</code> attribute may be used to provide further specificity regarding the media type, and, if used, must contain a <a href="https://www.rfc-editor.org/rfc/rfc7284.html">profile URI</a>.
@@ -238,11 +236,11 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
        In order to support discovery of its API Catalog Link Set, a repository should provide a link from the repository's <b>baseURL</b> to the 
        API Catalog Link Set with the <code>api-catalog</code> link relation type. This link:
        <ul>
-       <li>Must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element.</li>
+       <li>Must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element. 
+       If provided in the HTTP <code>Link</code> header, both HTTP HEAD and HTTP GET requests must provide the <code>api-catalog</code> link. </li>
        <li>Must have a <code>type</code> attribute with value <code>application/linkset+json</code>.</li>
        <li>Must have a <code>profile</code> attribute with value <code>https://signposting.org/API-Catalog/</code>.</li>
        </ul>  
-       The repository must support issuing an HTTP HEAD request against its <b>baseURL</b>.</li>
        </div> 
               
               <h5><a name="discwellknown"></a>2.3.2. Using the /.well-known/api-catalog URI</h5>  
@@ -272,7 +270,7 @@ data-versiondate="2023-11-18">https://www.signposting.org/API-Catalog/</a></h5>
               <h4><a name="exlinkset"></a>3.1. API Catalog Link Set</h4>
               
        <div class="">
-       The below example illustrates how an agent can discover a repository's API Catalo. It shows the response to an HTTP HEAD request 
+       The below example illustrates how an agent can discover a repository's API Catalog. It shows the response to an HTTP HEAD request 
        issued against the baseURL of the fictitious repository <code>my.repo.org</code>. The response contains an 
        HTTP Link header that has a link with the <code>api-catalog</code> link relation type and the mandatory <code>type</code> and <code>profile</code> 
        attributes as described in <a href="#discovery">Section 2.3</a>. The link's target &lt;https://my.repo.org/api-info.json&gt; is the URL of the repository's 
@@ -305,8 +303,8 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 
        <div class="">
        In the below example, the agent retrieves the API Catalog by issuing an HTTP GET against the URL &lt;https://my.repo.org/api-info.json&gt; 
-       that it just discovered. The Link Set in the response contains four <code>anchor</code> members, indicating that the repository provides 
-       details about four interoperability affordances:
+       that it just discovered. The Link Set in the response contains five <code>anchor</code> members, indicating that the repository provides 
+       details about five interoperability affordances:
        <ul>
        <li>The affordance at &lt;https://my.repo.org/oaipmh&gt; is detailed in a human-readable manner (<code>service-doc</code> link relation type)   
        by the document at &lt;https://www.openarchives.org/OAI/openarchivesprotocol.html&gt;, which is the OAI-PMH specification.  
@@ -316,8 +314,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
        by the document at &lt;https://www.sitemaps.org/protocol.html&gt;, which is the Sitemap protocol specification. No further information is provided 
        for this affordance.</li>
        <li>The affordance at &lt;https://my.repo.org/sparql11&gt; is detailed in a human-readable manner (<code>service-doc</code> link relation type) 
-       by the document at &lt;https://www.w3.org/TR/sparql11-query/&gt;, which is the SPARQL 1.1 W3C Recommendation. No further information is provided 
-       for this affordance. Further information about the repository's SPARQL end-point is provided by means of a link with the 
+       by the document at &lt;https://www.w3.org/TR/sparql11-query/&gt;, which is the SPARQL 1.1 W3C Recommendation. Further information about the repository's SPARQL end-point is provided by means of a link with the 
        <code>service-meta</code> link relation type that points at the URL of a 
        <a href="https://www.w3.org/TR/sparql11-service-description/">SPARQL Description</a> document.</li>
        <li>The affordance at &lt;https://my.repo.org/api&gt; is detailed in a machine-readable manner (<code>service-desc</code> link relation type) 
@@ -693,7 +690,6 @@ Content-Length: 1809
 </tr>
 </tbody></table>
 </div>  
-
 
 <div class=" ">
 <table class="table">
