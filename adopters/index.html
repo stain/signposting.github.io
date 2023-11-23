@@ -62,6 +62,7 @@ $(function() {
                                 	<li><a href="#dataverse">Dataverse FAIR Signposting</a></li>
                                 	<li><a href="#dspace7">DSpace 7 FAIR Signposting</a></li>
                                 	<li><a href="#dspacecris">DSpace-CRIS</a></li>
+                                	<li><a href="#eurac">eurac research Environmental Data Platform</a></li>
                                 	<li><a href="#ojs">Open Journal System FAIR Signposting</a></li>
                                 	<li><a href="#pangaea">Pangaea</a></li>
                                 	<li><a href="#pythonclient">Python client for FAIR Signposting </a></li>
@@ -132,6 +133,34 @@ $(function() {
                 
                 </div>
                 
+                                                <h3><a name="eurac"></a>eurac research Environmental Data Platform</h3>
+					<div>
+                    The <a href="https://edp-portal.eurac.edu/discovery/">eurac research Environmental Data Platform</a> 
+                    supports FAIR Signposting by means of Link Sets that are discoverable by means of <code>linkset</code> links 
+                    provided in both the HTTP Link 
+                    header and HTML &lt;links&gt; element of dataset landing pages. The below example shows an HTTP HEAD on a landing page URI and 
+                    (part of) the response header.
+                    <br/>
+                    <br/>
+                    <code>curl -I &quot;https://edp-portal.eurac.edu/discovery/16367c6a-534a-11ec-b0a3-02000a08f41d&quot;</code>
+                    <br/>
+                    <br/>          
+                    <code>
+                    HTTP/1.1 200 OK</br>
+					Date: Thu, 23 Nov 2023 08:50:53 GMT</br>
+					Server: nginx/1.18.0 (Ubuntu)</br>
+					Link: &lt;https://edp-portal.eurac.edu/discovery/linkset/16367c6a-534a-11ec-b0a3-02000a08f41d&gt; </br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"linkset"</b> ; type="application/linkset+json", </br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://edp-portal.eurac.edu/discovery/jsonld/16367c6a-534a-11ec-b0a3-02000a08f41d&gt;  </br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b> ; type="application/ld+json" </br>
+					Content-Type: text/html; charset=utf-8</br>
+					Content-Length: 19479</br>
+                    </code>
+                </div>
+                <div>
+                An HTTP GET on <a href="https://edp-portal.eurac.edu/discovery/linkset/16367c6a-534a-11ec-b0a3-02000a08f41d">https://edp-portal.eurac.edu/discovery/linkset/16367c6a-534a-11ec-b0a3-02000a08f41d</a> 
+                returns a Link Set in application/linkset+json format.
+                </div>
                 
                  <h3><a name="radareu"></a>Radar (Research Data Repository) FAIR Signposting</h3>
                 <div>
