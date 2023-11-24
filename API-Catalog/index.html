@@ -111,8 +111,8 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
 <ol>
 <li><a href="#exdiscovery">Discovery</a>
 <ol>
-<li><a href="exwellknown">Discovery via the /.well-known/api-catalog URI</a></li>
-<li><a href="exlink">Discovery via an api-catalog link</a></li>
+<li><a href="#exwellknown">Discovery via the /.well-known/api-catalog URI</a></li>
+<li><a href="#exlink">Discovery via an api-catalog link</a></li>
 </ol>
 </li>
 <li><a href="#exlinkset">API Catalog Link Set</a>
@@ -203,7 +203,9 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
        If more than one affordance of the same type exist, a distinct <code>anchor</code> member must be used for each.</li>
        <li>Object-level affordances: The value of the <code>anchor</code> member is the URL of the <a href="https://signposting.org/FAIR/#scholobject">landing page</a> 
        of a single example object managed by the repository that illustrates the affordance. 
-       If more than one object-level affordance exists, each must be illustrated by means of a different example object.</li>
+       If more than one object-level affordance exists, each must be illustrated by means of a different example object.
+       Only object-level affordances that are consistently available for each object managed by the repository must be considered.
+       </li>
        </ul>
        <li>The <code>anchor</code> member is the context for links to resources that provide information about the interoperability affordance. 
        Links with the <code>service-doc</code>, <code>service-desc</code>, and <code>service-meta</code> link relation types can be provided; the semantics 
@@ -495,7 +497,8 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
        the value of the <code>anchor</code> member is the URL of the <a href="https://signposting.org/FAIR/#scholobject">landing page</a>
         of a single example object managed by the repository that illustrates the affordance. 
        When multiple object-level interoperability affordances are listed in an API Catalog, each must be illustrated by means of the 
-       <a href="https://signposting.org/FAIR/#scholobject">landing page</a> URL of a different example object:
+       <a href="https://signposting.org/FAIR/#scholobject">landing page</a> URL of a different example object. 
+       Only object-level affordances that are consistently available for each object managed by the repository must be listed in the API Catalog.
        <ul>
        <li>The first affordance is illustrated by means of an example object managed by the repository that 
        has landing page URL &lt;https://my.repo.org/item/747369/&gt; . 
