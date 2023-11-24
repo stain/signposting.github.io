@@ -111,14 +111,14 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
 <ol>
 <li><a href="#exdiscovery">Discovery</a>
 <ol>
-<li><a href="exwellknown"><Discovery via the /.well-known/api-catalog URI</a></li>
+<li><a href="exwellknown">Discovery via the /.well-known/api-catalog URI</a></li>
 <li><a href="exlink">Discovery via an api-catalog link</a></li>
 </ol>
 </li>
 <li><a href="#exlinkset">API Catalog Link Set</a>
 <ol>
-<li><a href="exrepo">Repository-Level Affordances</a></li>
-<li><a href="exobject">Object-Level Affordances</a></li>
+<li><a href="#exrepo">Repository-Level Affordances</a></li>
+<li><a href="#exobject">Object-Level Affordances</a></li>
 </ol>
 </li>
 <li><a href="#exaffordances">API Catalog Entries for Selected Interoperability Affordances</a></li>
@@ -339,13 +339,14 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
     <div class="">
     The <a href="#exwellknown">previous example</a> shows how a client discovers an <code>api-catalog</code> link 
     by interacting with the <code>/.well-known/api-catalog</code> URI and can follow that link to retrieve the API Catalog. 
-    But <code>api-catalog</code> links can also be provided at the level of landing pages of objects managed by a repository. 
+    But <code>api-catalog</code> links can also be provided at the level of <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> 
+    of objects managed by a repository. 
     This is especially helpful when determining the repository's <b>baseURL</b> from landing page URLs is not trivial.
     </div>
            <br />
         <div class="">
        The below example shows an agent issuing an HTTP HEAD request 
-       issued against the landing page URL &lt;https://my.repo.org/item/747369/&gt; of an object managed by the fictitious repository &lt;>my.repo.org&gt;. 
+        against the landing page URL &lt;https://my.repo.org/item/747369/&gt; of an object managed by the fictitious repository &lt;my.repo.org&gt;. 
        The response contains an HTTP Link header that has a link with the <code>api-catalog</code> link relation type 
        and the mandatory <code>type</code> and <code>profile</code> 
        attributes as described in <a href="#discovery">Section 2.3</a>. 
