@@ -107,19 +107,22 @@ data-versiondate="2023-11-21">https://www.signposting.org/API-Catalog/</a> </h5>
 </li>
 <li><a href="#examples">Examples</a>
 <ol>
-<li><a href="#exdiscovery">Discovery</a></li>
+<li><a href="#exdiscovery">Discovery</a>
 <ol>
-<li><a href="exwellknown"></a>Discovery via the /.well-known/api-catalog URI</li>
-<li><a href="exlink"></a>3.1. Discovery via an api-catalog link</li>
+<li><a href="exwellknown"><Discovery via the /.well-known/api-catalog URI</a></li>
+<li><a href="exlink">Discovery via an api-catalog link</a></li>
 </ol>
-<li><a href="#exlinkset">API Catalog Link Set</a></li>
+</li>
+<li><a href="#exlinkset">API Catalog Link Set</a>
 <ol>
-<li><a href="exrepo"></a>Repository-level</li>
-<li><a href="exobject"></a>Object-level</li>
+<li><a href="exrepo">Repository-Level Affordances</a></li>
+<li><a href="exobject">Object-Level Affordances</a></li>
 </ol>
+</li>
 <li><a href="#exaffordances">API Catalog Entries for Selected Interoperability Affordances</a></li>
 </ol>
 </li>
+<li><a href="#excatalogs">API Catalogs for Selected Interoperability Affordances</a></li>
 </ol>
 </div>
 						
@@ -196,7 +199,8 @@ data-versiondate="2023-11-21">https://www.signposting.org/API-Catalog/</a> </h5>
        <ul>
        <li>Repository-level affordance: The value of the <code>anchor</code> member is the URL of the machine interface. 
        If more than one affordance of the same type exist, a distinct <code>anchor</code> member must be used for each.</li>
-       <li>Object-level affordances: The value of the <code>anchor</code> member is the URL of the <a href="https://signposting.org/FAIR/#scholobject">landing page</a> of one example object managed by the repository that illustrates the affordance. 
+       <li>Object-level affordances: The value of the <code>anchor</code> member is the URL of the <a href="https://signposting.org/FAIR/#scholobject">landing page</a> 
+       of one example object managed by the repository that illustrates the affordance. 
        If more than one object-level affordance exists, each must be illustrated by means of a different example object.</li>
        </ul>
        <li>The <code>anchor</code> member is the context for links to resources that provide information about the interoperability affordance. 
@@ -300,7 +304,7 @@ data-versiondate="2023-11-21">https://www.signposting.org/API-Catalog/</a> </h5>
                      This section illustrates discovery of an API Catalog using the <code>well-know URI</code> and <code>api-catalog</code> link approaches. 
                      </div>
                      
-        	              <h5><a name="exwellknown"></a>3.1. Discovery via the /.well-known/api-catalog URI</h5>
+        	              <h5><a name="exwellknown"></a>3.1.1. Discovery via the /.well-known/api-catalog URI</h5>
         	              
         	              <div class="">
        The below example illustrates how an agent can discover a repository's API Catalog using the well-know URI approach. 
@@ -336,7 +340,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 </tbody></table>
 </div>       	              
         	              
-        	             <h5><a name="exlink"></a>3.1. Discovery via an api-catalog link</h5>
+        	             <h5><a name="exlink"></a>3.1.2. Discovery via an api-catalog link</h5>
         	             
     <div class="">
     The <a href="exwellknown">previous example</a> shows how a client discovers an <code>api-catalog</code> link 
@@ -379,12 +383,18 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 </tbody></table>
 </div>
 
+      <h4><a name="exlinkset"></a>3.2. API Catalog Link Set</h4>  
               
-       
+                     <div class="">
+                     This section illustrates API Catalogs that have repository-level and object-level entries, respectively. 
+                     In actual API Catalogs, these entries can be combined. But, here, they are shown separately for increased clarity.
+                     </div>
+                     
+        	              <h5><a name="exrepo"></a>3.2.1. Repository-Level Affordances</h5>
+        	              
        <div class="">
-       In the below example, the agent retrieves the API Catalog by issuing an HTTP GET against the URL &lt;https://my.repo.org/api-info.json&gt; 
-       that it just discovered. The Link Set in the response contains five <code>anchor</code> members, indicating that the repository provides 
-       details about five interoperability affordances:
+       The below example shows an API Catalog listing only repository-level interoperability affordances. For such affordances, 
+       the value of the <code>anchor</code> member is the URL where the affordance is accessible:
        <ul>
        <li>The affordance at &lt;https://my.repo.org/oaipmh&gt; is detailed in a human-readable manner (<code>service-doc</code> link relation type)   
        by the document at &lt;https://www.openarchives.org/OAI/openarchivesprotocol.html&gt;, which is the OAI-PMH specification.  
@@ -400,29 +410,19 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
        <li>The affordance at &lt;https://my.repo.org/api&gt; is detailed in a machine-readable manner (<code>service-desc</code> link relation type) 
        by the JSON document at &lt;https://my.repo.org/api/api-specification.json&gt;, which could be an OpenAPI document. 
        It is also detailed in a human-readable manner (<code>service-doc</code> link relation type) by the document at &lt;https://my.repo.org/api/api-specification.html&gt;.</li>
-        <li>The last affordance is illustrated by means of object &lt;https://my.repo.org/item/747369/&gt; managed by the repository. 
-        It is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
-       by the document &lt;https://signposting.org/FAIR/&gt;, which is the FAIR Signposting specification. 
-      </li>
        </ul>
        </div> 
        
        <br />
        
-              <div class=" ">
+<div class=" ">
 <table class="table">
 <tbody><tr>
-<td style="width: 80%;">HTTP GET against the URL of a repository's API Catalog: request and response</td>
+<td style="width: 80%;">An API Catalog listing only repository-level affordances</td>
 </tr>
 <tr>
 <td>
-<pre>$ curl -i "https://my.repo.org/api-info.json"
-
-HTTP/1.1 200 OK
-Date: Sat, 18 Nov 2023 14:44:07 GMT
-Content-Type: application/linkset+json
-Content-Length: 1809
-
+<pre>
 {
   "linkset": [
     {
@@ -482,16 +482,6 @@ Content-Length: 1809
           "title": "My Repo API"
         }
       ]
-    },
-    {
-      "anchor": "https://my.repo.org/item/747369/",
-      "service-doc": [
-        {
-          "href": "https://signposting.org/FAIR/",
-          "type": "text/html",
-          "title": "FAIR Signposting Profile - Signposting the Scholarly Web"
-        }
-      ]
     }
   ]
 }
@@ -501,11 +491,72 @@ Content-Length: 1809
 </tbody></table>
 </div>
        
-
-                                 <h4><a name="exlinkset"></a>3.2. API Catalog Link Set</h4>      
-                       
+       
+               	              <h5><a name="exobject"></a>3.2.2. Object-Level Affordances</h5>
+               	              
+           <div class="">
+       The below example shows an API Catalog listing only object-level interoperability affordances. 
+		For such affordances, 
+       the value of the <code>anchor</code> member is the URL of the <a href="https://signposting.org/FAIR/#scholobject">landing page</a>
+        of an example object managed by the repository that illustrates the affordance. 
+       When multiple object-level interoperability affordances are listed in an API Catalog, each must be illustrated by means of the 
+       <a href="https://signposting.org/FAIR/#scholobject">landing page</a> URL of a different example object:
+       <ul>
+       <li>The first affordance is illustrated by means of an example object managed by the repository that 
+       has landing page URL &lt;https://my.repo.org/item/747369/&gt; . 
+        It is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
+       by the document &lt;https://signposting.org/FAIR/&gt;, which is the FAIR Signposting specification. 
+      </li>
+      <li>The second affordance is illustrated by means of a different example object managed by the repository that 
+       has landing page URL &lt;https://my.repo.org/item/008375/&gt; . 
+        It is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
+       by the document &lt;https://w3id.org/ro/crate/1.1&gt;, which is the RO-Crate 1.1 specification. 
+      </li>
+       </ul>
+       </div>            	              
+               	              
+           <br />
+       
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">An API Catalog listing only object-level affordances</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "linkset": [
+        {
+      "anchor": "https://my.repo.org/item/747369/",
+      "service-doc": [
+        {
+          "href": "https://signposting.org/FAIR/",
+          "type": "text/html",
+          "title": "FAIR Signposting Profile - Signposting the Scholarly Web"
+        }
+      ]
+    },
+    {
+      "anchor": "https://my.repo.org/item/008375/",
+      "service-doc": [
+        {
+          "href": "https://w3id.org/ro/crate/1.1",
+          "type": "text/html",
+          "title": "RO-Crate 1.1 | Research Object Crate (RO-Crate)"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>                       
+                                                    
                         
-              <h4><a name="exaffordances"></a>3.2. Common Interoperability Affordances</h4>
+              <h4><a name="exaffordances"></a>3.3. API Catalog Entries for Selected Interoperability Affordances</h4>
        
               <div class="">
        This section provides an overview of the entries to use in an API Catalog Link Set for a range of interoperability affordances. 
@@ -768,7 +819,7 @@ Content-Length: 1809
 
 
 
-
+              <h4><a name="excatalogs"></a>Appendix: API Catalog Examples for Selected Interoperability Affordances</h4>
 
 <div class=" ">
 <table class="table">
