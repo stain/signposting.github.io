@@ -238,10 +238,7 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
        
        <h4><a name="discovery"></a>2.3. Discovery of the API Catalog Link Set</h4>   
        
-                               <div style="text-align: center;">
-<img src="api-catalog.png" alt="API Catalog approach overview" width="800">
-</div>
-<br />  
+
        
                      <div class="">
                      A repository's API Catalog can be discovered via the <b>root-URL</b> of a repository. 
@@ -254,11 +251,16 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
                      is &lt;https://repository.myuniversity.edu&gt;.</li>
                      </ul>
                      </div>
+                     
+                                                    <div style="text-align: center;">
+<img src="api-catalog.png" alt="API Catalog approach overview" width="800">
+</div>
+<br />  
        
               <div class="">
               Two discovery approaches leverage the <b>root-URL</b>, the <code>/.well-known/api-catalog</code> 
               and the <code>api-catalog</code> link, detailed in Sections <a href="#discwellknown">2.3.1.</a> and <a href="#disclinkroot">2.3.2.</a>, 
-              respectively. These approaches should be used simultaneously and least one of the root-level approaches must be used.  Moreover, 
+              respectively. These approaches should be used simultaneously and least one must be used.  Moreover, 
               the repository's API Catalog can also be made discoverable by means of <code>api-catalog</code> links at the 
               <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> of objects managed by the repository; this is detailed 
               in Section <a href="#disclinkobject">2.3.3.</a>
