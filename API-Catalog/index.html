@@ -69,7 +69,7 @@ $(function() {
                         Prepared by: Herbert Van de Sompel, Robert Huber, Michael L. Nelson, Martin Klein, ...
                         </h5>
                         <h5>This version, created 20231124: <a href="https://www.signposting.org/API-Catalog/"
-data-versionurl="http://web.archive.org/web/20231124/https://signposting.org/API-Catalog/"
+data-versionurl="http://web.archive.org/web/20231124130706/https://signposting.org/API-Catalog/"
 data-versiondate="2023-11-24">https://www.signposting.org/API-Catalog/</a> </h5>
                         <h5>Previous version, created 20231123: <a href="https://www.signposting.org/API-Catalog/"
 data-versionurl="http://web.archive.org/web/20231123155600/https://signposting.org/API-Catalog/"
@@ -232,7 +232,7 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
        standard, e.g. the <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html">OAI-PMH specification</a>, the <a href="https://www.w3.org/TR/sparql11-query/">SPARQL 1.1 W3C Recommendation</a>, the 
        <a href="https://signposting.org/FAIR/">FAIR Signposting specification</a>.</li>
        <li><code>service-desc</code>: This link relation type is used to point at a machine-readable specification of the interoperability affordance. 
-       It can, for example, be used to point at the URI of an <a href="https://swagger.io/specification/">OpenAPI</a> 
+       It can, for example, be used to point at the URI of an <a href="https://swagger.io/specification/">OpenAPI</a> or <a href="https://restdesc.org/">RESTdesc</a>
        specification of an API exposed by the repository.</li>
        <li><code>service-meta</code>: This link relation type is used to point at further details regarding the interoperability affordance. 
        It can, for example, be used to point at the 
@@ -573,7 +573,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                         <tr>
                             <td>Affordance type</td>
                             <td>object-level</td>
-                            </tr>
+                        </tr>
                         <tr>
                             <td>svc-desc</td>
                             <td>not used</td>
@@ -582,6 +582,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>svc-doc</td>
                             <td>https://signposting.org/FAIR/</td>
                         </tr>
+                        <tr>
                         <td>service-meta</td>
                             <td>not used</td>
                         </tr>
@@ -593,6 +594,66 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                         </tr>
+                        
+                       <tr>
+                            <td style="width: 25%;"><b>Affordance</b></td>
+                            <td><b>IIIF Presentation API 3.0</b></td>
+                        </tr>
+                        <tr>
+                            <td>Affordance type</td>
+                            <td>object-level</td>
+                        </tr>
+                        <tr>
+                            <td>svc-desc</td>
+                            <td>not used</td>
+                        </tr>
+                        <tr>
+                            <td>svc-doc</td>
+                            <td>https://iiif.io/api/presentation/3.0/</td>
+                        </tr>
+                        <tr>
+                        <td>service-meta</td>
+                            <td>not used</td>
+                        </tr>
+                        <tr>
+                            <td>Example entry</td>
+                            <td><a href="#biblissimaiiif">Biblissima</a></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        
+                                               <tr>
+                            <td style="width: 25%;"><b>Affordance</b></td>
+                            <td><b>Linked Data Notifications Inbox</b></td>
+                        </tr>
+                        <tr>
+                            <td>Affordance type</td>
+                            <td>repository-level</td>
+                        </tr>
+                        <tr>
+                            <td>svc-desc</td>
+                            <td>not used</td>
+                        </tr>
+                        <tr>
+                            <td>svc-doc</td>
+                            <td>https://www.w3.org/TR/ldn/</td>
+                        </tr>
+                        <tr>
+                        <td>service-meta</td>
+                            <td>not used</td>
+                        </tr>
+                        <tr>
+                            <td>Example entry</td>
+                            <td><a href="#fictitiousldn">Fictitious</a></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        
+                        
                         
                        <tr>
                             <td style="width: 25%;"><b>Affordance</b></td>
@@ -610,6 +671,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>svc-doc</td>
                             <td>https://datatracker.ietf.org/doc/rfc7089/</td>
                         </tr>
+                        <tr>
                         <td>service-meta</td>
                             <td>not used</td>
                         </tr>
@@ -629,7 +691,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                         <tr>
                             <td>Affordance type</td>
                             <td>object-level</td>
-                            </tr>
+                        </tr>
                         <tr>
                             <td>svc-desc</td>
                             <td>not used</td>
@@ -638,6 +700,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>svc-doc</td>
                             <td>https://www.openarchives.org/ore/1.0/rdfxml</td>
                         </tr>
+                        <tr>
                         <td>service-meta</td>
                             <td>not used</td>
                         </tr>
@@ -692,6 +755,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>svc-doc</td>
                             <td>URL of HTML pages describing the API</td>
                         </tr>
+                        <tr>
                         <td>service-meta</td>
                             <td>not used</td>
                         </tr>
@@ -719,6 +783,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>svc-doc</td>
                             <td>https://w3id.org/ro/crate/1.1</td>
                         </tr>
+                        <tr>
                         <td>service-meta</td>
                             <td>not used</td>
                         </tr>
@@ -746,6 +811,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>svc-doc</td>
                             <td>https://www.sitemaps.org/protocol.html</td>
                         </tr>
+                        <tr>
                         <td>service-meta</td>
                             <td>not used</td>
                         </tr>
@@ -801,6 +867,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>svc-doc</td>
                             <td>https://signposting.org/API-Catalog/</td>
                         </tr>
+                        <tr>
                         <td>service-meta</td>
                             <td>not used</td>
                         </tr>
@@ -848,6 +915,67 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 </tr>
 </tbody></table>
 </div>
+
+
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<a name="biblissimaiiif"></a>
+<td style="width: 80%;">IIIF Presentation API, Biblissima</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "linkset": [
+    {
+      "anchor": "https://demos.biblissima.fr/florus/manuscrits-florus/mirador/",
+      "service-doc": [
+        {
+          "href": "https://iiif.io/api/presentation/3.0/",
+          "type": "text/html",
+          "title": "Presentation API 3.0 —  IIIF | International Image Interoperability Framework"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+
+<tr>
+<a name="fictitiousldn"></a>
+<td style="width: 80%;">Linked Data Notification Inbox, Fictitious</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "linkset": [
+    {
+      "anchor": "https://my.repo.org/ldn/inbox/",
+      "service-doc": [
+        {
+          "href": "https://www.w3.org/TR/ldn/",
+          "type": "text/html",
+          "title": "Linked Data Notifications"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+
 
 <div class=" ">
 <table class="table">
