@@ -101,8 +101,9 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
 <li><a href="#linkrels">Link Relation Types to Point at Machine Interface Descriptions</a></li>
 <li><a href="#discovery">Discovery of the API Catalog Link Set</a>
 <ol>
-<li><a href="#disclink">Using the api-catalog link relation type</a></li>
-<li><a href="#discwellknown">Using the /.well-known/api-catalog URI</a></li>
+<li><a href="#discwellknown">/.well-known/api-catalog at the root-URL</a></li>
+<li><a href="#disclinkroot">api-catalog link at the root-URL</a></li>
+<li><a href="#disclinkobject">api-catalog link at the landing page</a></li>
 </ol>
 </li>
 </ol>
@@ -148,24 +149,18 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
                         <ul>
                          <li>Publishing a single JSON <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Set</a> 
                         that contains links to documentation for each available affordance.</li> 
-                        <li>Making that Link Set discoverable via the repository <b>baseURL</b>, that is, 
-                        the URL at which the repository is accessible on the web.</li> 
+                        <li>Making that Link Set discoverable.</li> 
                         </ul>
                         </div>
                         
                         <br />
                         
-                        <div style="text-align: center;">
-<img src="api-catalog.png" alt="API Catalog approach overview" width="800">
-</div>
-<br />
-                        
                         <div class="">
                         Interoperability affordances that can be advertised using the approach can be:
                         <ul>
-                        <li>Repository-level affordances: Machine interfaces that can be used to interact with the repository as a whole.</li>
-                        <li>Object-level affordances: Affordances that are available when interacting with a single <a href="https://signposting.org/FAIR/#scholobject">scholarly object</a> managed by the repository  
-                        and that are consistently available for each object.</li>
+                        <li>Repository-level affordances: Machine interfaces that can be used to interact with the repository as a whole, e.g. The aforementioned OAI-PMH interface.</li>
+                        <li>Object-level affordances: Affordances that are available when interacting with a single <a href="https://signposting.org/FAIR/#scholobject">scholarly object</a> managed by the repository, 
+                        e.g. the aforementioned support for FAIR Signposting.</li>
                         </ul>
                          </div>
 
@@ -241,28 +236,51 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
        </div> 
        <br />
        
-       <h4><a name="discovery"></a>2.3. Discovery of the API Catalog Link Set</h4>     
+       <h4><a name="discovery"></a>2.3. Discovery of the API Catalog Link Set</h4>   
+       
+                               <div style="text-align: center;">
+<img src="api-catalog.png" alt="API Catalog approach overview" width="800">
+</div>
+<br />  
+       
+                     <div class="">
+                     A repository's API Catalog can be discovered via the <b>root-URL</b> of a repository. 
+                     The <b>root-URL</b> is the top of the repository's path's hierarchy. 
+                     For example:
+                     <ul>
+                     <li>For a repository at URL &lt;https://myuniversity.edu/repository/home&gt; the root-URL 
+                     is &lt;https://myuniversity.edu&gt;.</li>
+                     <li>For a repository at URL &lt;https://repository.myuniversity.edu/home&gt; the root-URL 
+                     is &lt;https://repository.myuniversity.edu&gt;.</li>
+                     </ul>
+                     </div>
        
               <div class="">
-              The <a href="https://datatracker.ietf.org/doc/draft-ietf-httpapi-api-catalog/">api-catalog</a> 
-              Internet Draft specifies two ways in which an API Catalog can be discovered:
-              <uL>
-              <li>Using the <code>api-catalog</code> link relation type.</li>
-              <li>Using the well-known URI <code>/.well-known/api-catalog</code>.</li>
-              </ul>
+              Two discovery approaches leverage the <b>root-URL</b>, the <code>/.well-known/api-catalog</code> 
+              and the <code>api-catalog</code> link, detailed in Sections <a href="#discwellknown">2.3.1.</a> and <a href="#disclinkroot">2.3.2.</a>, 
+              respectively. These approaches should be used simultaneously and least one of the root-level approaches must be used.  Moreover, 
+              the repository's API Catalog can also be made discoverable by means of <code>api-catalog</code> links at the 
+              <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> of objects managed by the repository; this is detailed 
+              in Section <a href="#disclinkobject">2.3.3.</a>
               </div>
-              <div class="">
-              Both approaches should be used simultaneously to support discovery of the API Catalog Link Set. 
-              At least one approach must be used.
-              <br />
-              Both approaches leverage the repository <b>baseURL</b>, i.e. the URL where the repository is accessible. Depending on 
-              the situation, a baseURL could e.g. be of the form https://example.org, https://example.org/database1, https://example.org/data/archive2.
-              </div> 
+
               
-             <h5><a name="disclink"></a>2.3.1. Using the api-catalog link relation type</h5> 
+                            <h5><a name="discwellknown"></a>2.3.1. /.well-known/api-catalog at the root-URL</h5>  
+              
+               <div class="">
+               The behavior for a repository's <code>/.well-known/api-catalog</code> URI should be as follows:
+               <ul>
+               <li>When a repository with <b>root-URL</b> receives an HTTP GET request against <b>root-URL</b>/.well-known/api-catalog, 
+               the request must resolve to its the API Catalog Link Set serialized in the <code>application/linkset+json</code> format.</li>
+               <li>When a repository with <b>root-URL</b> receives an HTTP HEAD request against <b>root-URL</b>/.well-known/api-catalog, 
+               the request must resolve to a response that contains an HTTP Link header with a link that uses the <code>api-catalog</code> link relation 
+               type to point at the repository's API Catalog Link Set. Further details about this link are provided in <a href="#disclinkroot">Section 2.3.2</a>.</li>
+               </div>
+              
+             <h5><a name="disclinkroot"></a>2.3.2. api-catalog link at the root-URL</h5> 
        
        <div class="">
-       In order to support discovery of its API Catalog Link Set, a repository should provide a link from the repository's <b>baseURL</b> to the 
+       In order to support discovery of its API Catalog Link Set, a repository should provide a link from its <b>root-URL</b> to the 
        API Catalog Link Set with the <code>api-catalog</code> link relation type. This link:
        <ul>
        <li>Must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element. 
@@ -272,25 +290,18 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
        </ul>  
        </div> 
        
+                    <h5><a name="disclinkobject"></a>2.3.3. api-catalog link at the landing page</h5> 
+       
        <div class="">
-       Moreover, repositories should consider to also provide an <code>api-catalog</code> link with the same characteristics, 
-       pointing from landing pages of objects managed by the repository to the API Catalog Link Set. 
-       This is especially helpful when determining the repository's <b>baseURL</b> from landing page URLs is not trivial.
+       Repositories should consider to also provide an <code>api-catalog</code> link 
+       pointing from landing pages of objects managed by the repository to the API Catalog Link Set. Such a link:
+        <ul>
+       <li>Must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element. 
+       If provided in the HTTP <code>Link</code> header, both HTTP HEAD and HTTP GET requests must provide the <code>api-catalog</code> link. </li>
+       <li>Must have a <code>type</code> attribute with value <code>application/linkset+json</code>.</li>
+       <li>Must have a <code>profile</code> attribute with value <code>https://signposting.org/API-Catalog/</code>.</li>
+       </ul> 
        </div>
-              
-              <h5><a name="discwellknown"></a>2.3.2. Using the /.well-known/api-catalog URI</h5>  
-              
-               <div class="">
-               The behavior for a repository's <code>/.well-known/api-catalog</code> URI should be as follows:
-               <ul>
-               <li>When a repository at <b>baseURL</b> receives an HTTP GET request against <b>baseURL</b>/.well-known/api-catalog, 
-               the request must resolve to its the API Catalog Link Set serialized in the <code>application/linkset+json</code> format.</li>
-               <li>When a repository at <b>baseURL</b> receives an HTTP HEAD request against <b>baseURL</b>/.well-known/api-catalog, 
-               the request must resolve to a response that contains an HTTP Link header with a link that uses the <code>api-catalog</code> link relation 
-               type to point at the repository's API Catalog Link Set. Further details about this link are provided in <a href="#disclink">Section 2.3.1</a>.</li>
-               </div>
-              
-
        
        <h3><a name="examples"></a>3. Examples</h3>
        
@@ -300,12 +311,12 @@ data-versiondate="2023-11-23">https://www.signposting.org/API-Catalog/</a> </h5>
                      This section illustrates discovery of an API Catalog using the <code>well-know URI</code> and <code>api-catalog</code> link approaches. 
                      </div>
                      
-        	              <h5><a name="exwellknown"></a>3.1.1. Discovery via the /.well-known/api-catalog URI</h5>
+        	              <h5><a name="exwellknown"></a>3.1.1. Discovery via /.well-known/api-catalog at the root-URL</h5>
         	              
         	              <div class="">
        The below example illustrates how an agent can discover a repository's API Catalog using the well-know URI approach. 
-       It shows the response to an HTTP HEAD request issued against the <code>/.well-known/api-catalog</code> URI at the <b>baseURL</b> of the fictitious repository 
-       &lt;my.repo.org&gt;. 
+       It shows the response to an HTTP HEAD request issued against the <code>/.well-known/api-catalog</code> URI at the <b>root-URL</b> 
+       &lt;https://my.repo.org/&gt; of the fictitious repository &lt;https://my.repo.org/home/&gt;. 
        The response contains an HTTP Link header that has a link with the <code>api-catalog</code> link relation type and the mandatory <code>type</code> and <code>profile</code> 
        attributes as described in <a href="#discovery">Section 2.3</a>. 
        The link's target &lt;https://my.repo.org/api-info.json&gt; is the URL of the repository's API Catalog Link Set. The client can proceed by issuing an 
@@ -343,12 +354,11 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
     by interacting with the <code>/.well-known/api-catalog</code> URI and can follow that link to retrieve the API Catalog. 
     But <code>api-catalog</code> links can also be provided at the level of <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> 
     of objects managed by a repository. 
-    This is especially helpful when determining the repository's <b>baseURL</b> from landing page URLs is not trivial.
     </div>
            <br />
         <div class="">
        The below example shows an agent issuing an HTTP HEAD request 
-        against the landing page URL &lt;https://my.repo.org/item/747369/&gt; of an object managed by the fictitious repository &lt;my.repo.org&gt;. 
+        against the landing page URL &lt;https://my.repo.org/item/747369/&gt; of an object managed by the fictitious repository &lt;https://my.repo.org/home/&gt;. 
        The response contains an HTTP Link header that has a link with the <code>api-catalog</code> link relation type 
        and the mandatory <code>type</code> and <code>profile</code> 
        attributes as described in <a href="#discovery">Section 2.3</a>. 
