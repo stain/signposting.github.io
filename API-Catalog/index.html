@@ -69,11 +69,11 @@ $(function() {
                         Prepared by: Herbert Van de Sompel, Robert Huber, Michael L. Nelson, Martin Klein, Andrea Bollini, ...
                         </h5>
 
-                        <h5>Previous version, created 20231126: <a href="https://www.signposting.org/API-Catalog/"
+                        <h5>This version, created 20231126: <a href="https://www.signposting.org/API-Catalog/"
 data-versionurl="http://web.archive.org/web/20231126/https://signposting.org/API-Catalog/"
 data-versiondate="2023-11-26">https://www.signposting.org/API-Catalog/</a> </h5>
-                        <h5>Previous version, created 20231124: <a href="https://www.signposting.org/API-Catalog/"
-data-versionurl="http://web.archive.org/web/20231124130706/https://signposting.org/API-Catalog/"
+                        <h5>Previous version, created 20231124: <a href="http://web.archive.org/web/20231124130706/https://signposting.org/API-Catalog/"
+data-originalurl="https://www.signposting.org/API-Catalog/"
 data-versiondate="2023-11-24">https://www.signposting.org/API-Catalog/</a> </h5>
 						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a></h5>
 						<br>
@@ -154,8 +154,6 @@ data-versiondate="2023-11-24">https://www.signposting.org/API-Catalog/</a> </h5>
                         </ul>
                         </div>
                         
-                        <br />
-                        
                         <div class="">
                         Interoperability affordances that can be advertised using the approach can be:
                         <ul>
@@ -184,7 +182,6 @@ data-versiondate="2023-11-24">https://www.signposting.org/API-Catalog/</a> </h5>
        This section provides a description of the building blocks of the API Catalog approach that can be used to provide details 
        about the interoperability affordances that are supported by a repository.
        </div>       
-       <br />
        
               <h4><a name="linkset"></a>2.1. The API Catalog Link Set</h4>  
        
@@ -215,7 +212,6 @@ data-versiondate="2023-11-24">https://www.signposting.org/API-Catalog/</a> </h5>
        <li>All URLs in the Link Set must be absolute URIs; relative URIs must not be used.</li>
        </ul>
        </div> 
-       <br />
        
        <h4><a name="linkrels"></a>2.2. Link Relation Types to Point at Descriptions of Interoperability Affordances</h4>   
        
@@ -235,7 +231,6 @@ data-versiondate="2023-11-24">https://www.signposting.org/API-Catalog/</a> </h5>
        <code>Identify</code> endpoint of an OAI-PMH interface or a <a href="http://www.w3.org/TR/sparql11-service-description/">SPARQL 1.1 Service Description</a> document.</li>
        </ul>
        </div> 
-       <br />
        
        <h4><a name="discovery"></a>2.3. Discovery of the API Catalog Link Set</h4>   
        
@@ -253,13 +248,14 @@ data-versiondate="2023-11-24">https://www.signposting.org/API-Catalog/</a> </h5>
                      </ul>
                      </div>
                      
+  <br />                   
                                                     <div style="text-align: center;">
 <img src="api-catalog.png" alt="API Catalog approach overview" width="800">
 </div>
 <br />  
        
               <div class="">
-              Two discovery approaches leverage the <b>root-URL</b>, the <code>/.well-known/api-catalog</code> 
+              Two discovery approaches leverage the <b>root-URL</b>: the <code>/.well-known/api-catalog</code> 
               and the <code>api-catalog</code> link, detailed in Sections <a href="#discwellknown">2.3.1.</a> and <a href="#disclinkroot">2.3.2.</a>, 
               respectively. These approaches should be used simultaneously and least one must be used.  Moreover, 
               the repository's API Catalog can also be made discoverable by means of <code>api-catalog</code> links at the 
@@ -526,7 +522,6 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
        </ul>
        </div>            	              
                	              
-           <br />
        
 <div class=" ">
 <table class="table">
