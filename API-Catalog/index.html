@@ -69,12 +69,13 @@ $(function() {
                         Prepared by: Herbert Van de Sompel, Robert Huber, Michael L. Nelson, Martin Klein, Andrea Bollini, ...
                         </h5>
 
-                        <h5>This version, created 20231126: <a href="https://signposting.org/API-Catalog/"
-data-versionurl="http://web.archive.org/web/20231126/https://signposting.org/API-Catalog/"
-data-versiondate="2023-11-26">https://signposting.org/API-Catalog/</a> </h5>
-                        <h5><a href="http://web.archive.org/web/20231124130706/https://signposting.org/API-Catalog/"
+                        <h5>This version, created 20231128: <a href="https://signposting.org/API-Catalog/"
+data-versionurl="https://web.archive.org/web/20231128/https://signposting.org/API-Catalog/"
+data-versiondate="2023-11-28">https://signposting.org/API-Catalog/</a> </h5>
+                        <h5><a href="https://signposting.org/API-Catalog/"
+data-versionurl="https://web.archive.org/web/20231128132212/https://signposting.org/API-Catalog/"
 data-originalurl="https://www.signposting.org/API-Catalog/"
-data-versiondate="2023-11-24">Previous version</a>, created 20231124</h5>
+data-versiondate="2023-11-26">Previous version</a>, created 20231126</h5>
 						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a></h5>
 						<br>
 						<div class="">
@@ -194,10 +195,9 @@ data-versiondate="2023-11-24">Previous version</a>, created 20231124</h5>
        <ul>
        <li>Repository-level affordance: The value of the <code>anchor</code> member is the URL of the machine interface. 
        If more than one affordance of the same type exist, a distinct <code>anchor</code> member must be used for each.</li>
-       <li>Object-level affordances: The value of the <code>anchor</code> member is the URL of the <a href="https://signposting.org/FAIR/#scholobject">landing page</a> 
+       <li>Object-level affordances: The value of the <code>anchor</code> member is the URL of <a href="https://signposting.org/FAIR/#scholobject">the constituent resource</a> of  
        of a single example object managed by the repository that illustrates the affordance. 
-       If more than one object-level affordance exists, each must be illustrated by means of a different example object.
-       Only object-level affordances that are consistently available for each object managed by the repository must be considered.
+       If more than one object-level affordance exists, each should be illustrated by means of a different example object.
        </li>
        </ul>
        <li>The <code>anchor</code> member is the context for links to resources that provide information about the interoperability affordance. 
@@ -257,10 +257,10 @@ data-versiondate="2023-11-24">Previous version</a>, created 20231124</h5>
               <div class="">
               Two discovery approaches leverage the <b>root-URL</b>: the <code>/.well-known/api-catalog</code> 
               and the <code>api-catalog</code> link, detailed in Sections <a href="#discwellknown">2.3.1.</a> and <a href="#disclinkroot">2.3.2.</a>, 
-              respectively. These approaches should be used simultaneously and least one must be used.  Moreover, 
+              respectively. Moreover, 
               the repository's API Catalog can also be made discoverable by means of <code>api-catalog</code> links at the 
               <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> of objects managed by the repository; this is detailed 
-              in Section <a href="#disclinkobject">2.3.3.</a>
+              in Section <a href="#disclinkobject">2.3.3</a>. These approaches should be used simultaneously and least one must be used.  
               </div>
 
               
@@ -503,20 +503,20 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
            <div class="">
        The below example shows an API Catalog listing only object-level interoperability affordances. 
 		For such affordances, 
-       the value of the <code>anchor</code> member is the URL of the <a href="https://signposting.org/FAIR/#scholobject">landing page</a>
+       the value of the <code>anchor</code> member is the URL of the <a href="https://signposting.org/FAIR/#scholobject">constituent resource</a>
         of a single example object managed by the repository that illustrates the affordance. 
-       When multiple object-level interoperability affordances are listed in an API Catalog, each must be illustrated by means of the 
-       <a href="https://signposting.org/FAIR/#scholobject">landing page</a> URL of a different example object. 
-       Only object-level affordances that are consistently available for each object managed by the repository must be listed in the API Catalog.
+       When multiple object-level interoperability affordances are listed in an API Catalog, each should be illustrated by means of 
+       a different example object. 
        <ul>
-       <li>The first affordance is illustrated by means of an example object managed by the repository that 
-       has landing page URL &lt;https://my.repo.org/item/747369/&gt; . 
-        It is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
-       by the document &lt;https://signposting.org/FAIR/&gt;, which is the FAIR Signposting specification. 
+       <li>To illustrate the first object-level affordance, FAIR Signposting, the landing page URL &lt;https://my.repo.org/item/747369/&gt; of 
+       an example object managed by the repository is used as value of the <code>anchor</code> member, because Signposting links are 
+       consistently provided at landing pages. 
+        The FAIR Signposting affordance is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
+       by the document &lt;https://signposting.org/FAIR/&gt;. 
       </li>
-      <li>The second affordance is illustrated by means of a different example object managed by the repository that 
-       has landing page URL &lt;https://my.repo.org/item/008375/&gt; . 
-        It is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
+      <li>To illustrate the second object-level affordance, RO-Crate, the URL &lt;https://my.repo.org/item/747369/crate/&gt; of an actual RO-Crate 
+       rendering of an example object managed by the repository is used as value of the <code>anchor</code> member.
+      The RO-Crate affordance is detailed in a human-readable manner (<code>service-desc</code> link relation type) 
        by the document &lt;https://w3id.org/ro/crate/1.1&gt;, which is the RO-Crate 1.1 specification. 
       </li>
        </ul>
@@ -544,7 +544,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
       ]
     },
     {
-      "anchor": "https://my.repo.org/item/008375/",
+      "anchor": "https://my.repo.org/item/008375/crate/",
       "service-doc": [
         {
           "href": "https://w3id.org/ro/crate/1.1",
@@ -631,8 +631,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                         </tr>
-                        
-                                               <tr>
+                        <tr>
                             <td style="width: 25%;"><b>Affordance</b></td>
                             <td><b>Linked Data Notifications Inbox</b></td>
                         </tr>
@@ -660,9 +659,6 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                         </tr>
-                        
-                        
-                        
                        <tr>
                             <td style="width: 25%;"><b>Affordance</b></td>
                             <td><b>Memento</b></td>
@@ -1028,7 +1024,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 {
   "linkset": [
     {
-      "anchor": "https://ssh.datastations.nl/dataset.xhtml?persistentId=doi:10.17026/dans-29r-wyyr",
+      "anchor": "https://ssh.datastations.nl/api/datasets/export?exporter=OAI_ORE&persistentId=doi%3A10.17026/dans-29r-wyyr",
       "service-doc": [
         {
           "href": "https://www.openarchives.org/ore/1.0/rdfxml",
@@ -1132,7 +1128,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 {
   "linkset": [
     {
-      "anchor": "https://www.rohub.org/80e2215b-49cb-456e-9ae9-803f3bcdbba3",
+      "anchor": "https://api.rohub.org/api/ros/80e2215b-49cb-456e-9ae9-803f3bcdbba3/crate/download/",
       "service-doc": [
         {
           "href": "https://w3id.org/ro/crate/1.1",
