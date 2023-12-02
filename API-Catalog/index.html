@@ -66,7 +66,7 @@ $(function() {
                 <div class="row">
                         <h3>API Catalog: Supporting Discovery of a Repository's Interoperability Affordances</h3>
                         <h5>
-                        Prepared by: Herbert Van de Sompel, Robert Huber, Michael L. Nelson, Martin Klein, Andrea Bollini, Enno Meijers, ...
+                        Prepared by: Herbert Van de Sompel, Robert Huber, Michael L. Nelson, Martin Klein, Andrea Bollini, Enno Meijers, Petr Knoth, Paul Walk, ...
                         </h5>
 
                         <h5>This version, created 20231128: <a href="https://signposting.org/API-Catalog/"
@@ -153,9 +153,9 @@ $(function() {
                          <li>Publishing a single API Catalog, which is a JSON <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Set</a> 
                         that contains links to documentation for each available affordance. 
                         The API Catalog has static content for as long as a repository’s interoperability affordances don’t change.</li> 
-                        <li>Making the API Catalog discoverable using established approaches: 
+                        <li>Making the API Catalog discoverable using established approaches: a dedicated
                         <a href="https://www.rfc-editor.org/rfc/rfc8615.html">well-known URI</a> and 
-                        <a href="https://www.rfc-editor.org/rfc/rfc8288.html">typed links</a>.</li> 
+                        <a href="https://www.rfc-editor.org/rfc/rfc8288.html">typed link</a>.</li> 
                         </ul>
                         </div>
                         
@@ -262,8 +262,10 @@ $(function() {
               Two discovery approaches leverage the <b>root-URL</b>: the <code>/.well-known/api-catalog</code> 
               and the <code>api-catalog</code> link, detailed in Sections <a href="#discwellknown">2.3.1.</a> and <a href="#disclinkroot">2.3.2.</a>, 
               respectively. Moreover, 
-              the repository's API Catalog can also be made discoverable by means of <code>api-catalog</code> links at the 
-              <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> of objects managed by the repository; this is detailed 
+              the repository's API Catalog can be made discoverable by means of <code>api-catalog</code> links at the 
+              <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> of objects managed by the repository. This approach, 
+              which is especially of interest when implementing discoverability at the <b>root-URL</b> is not possible,  
+             is detailed 
               in Section <a href="#disclinkobject">2.3.3</a>. These approaches should be used simultaneously and least one must be used.  
               </div>
 
@@ -297,7 +299,9 @@ $(function() {
        
        <div class="">
        Repositories should consider to also provide an <code>api-catalog</code> link 
-       pointing from landing pages of objects managed by the repository to the API Catalog Link Set. Such a link:
+       pointing from landing pages of objects managed by the repository to the API Catalog Link Set. 
+       This approach is especially of interest when implementing discoverability at the <b>root-URL</b> is not possible.
+       An <code>api-catalog</code> link at a landing page:
         <ul>
        <li>Must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element. 
        If provided in the HTTP <code>Link</code> header, both HTTP HEAD and HTTP GET requests must provide the <code>api-catalog</code> link. </li>
