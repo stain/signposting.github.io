@@ -68,6 +68,7 @@ $(function() {
                                 	<li><a href="#pangaea">Pangaea</a></li>
                                 	<li><a href="#pythonclient">Python client for FAIR Signposting </a></li>
                                 	<li><a href="#radareu">Radar (Research Data Repository) FAIR Signposting</a></li>
+                                	<li><a href="#rioxx">RIOXX v3 metadata format</a></li>
                                 	<li><a href="#rubyclient">Ruby Web Link parsing gem</a></li>
                                 	<li><a href="#ucd_digital_library">UCD Digital Library</a></li>
                                     <li><a href="#unt_digital_library">UNT Digital Library</a></li> 
@@ -137,7 +138,7 @@ $(function() {
                 
                                             <h3><a name="dri"></a>Digital Repository Ireland</h3>
                     <div>
-                    The <a href="https://repository.dri.ie/">Digital Repository Ireland</a> supports FAIR Signposting Profile by  
+                    The <a href="https://repository.dri.ie/">Digital Repository Ireland</a> supports the FAIR Signposting Profile by  
                     exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. 
                     </div> 
                     <br/>
@@ -479,6 +480,20 @@ $(function() {
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/json+ld"</b><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://iiif.io/api/presentation/2.1/"</b><br>
                     </code>
+                </div>
+                
+                            <h3><a name="rioxx"></a>RIOXX version 3 metadata format</h3>
+                            <div>
+                    <a href="https://rioxx.net/about/">Rioxx</a> has been developed for institutional repositories to share metadata about the scholarly resources they contain. 
+                    Originally designed to meet the reporting requirements of Research Councils UK (RCUK), 
+                    RIOXX has also proven to be generally useful as a standard for sharing metadata between repositories and network services 
+                    such as large-scale metadata aggregators like <a href="https://core.ac.uk/">CORE</a>. <a href="https://rioxx.net/profiles/v3-0-final/">RIOXX version 3</a> 
+                    recommends using FAIR Signposting to assist machine agents in navigating from the landing page to the relevant resources. But, additionally, 
+                    it fully aligns with the Signposting perspective, giving the landing page URI a central role by providing it in <code>dc:identifier</code>, 
+                    and by conveying various metadata elements by means of <code>dc:relation</code> links that are typed in the 
+                    same way as recommended by Signposting, e.g. <code>cite-as</code> to point at the persistent identifier of the object provided by the institutional repository,  
+                    <code>item</code> to point at content resources, etc. 
+            
                 </div>
 
 
