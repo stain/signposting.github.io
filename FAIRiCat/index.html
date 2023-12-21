@@ -290,7 +290,7 @@ $(function() {
                <li>When a repository with <b>root-URL</b> receives an HTTP GET request against <b>root-URL</b>/.well-known/api-catalog, 
                the request must resolve to its the FAIRiCat Link Set serialized in the <code>application/linkset+json</code> format.</li>
                <li>When a repository with <b>root-URL</b> receives an HTTP HEAD request against <b>root-URL</b>/.well-known/api-catalog, 
-               the request must resolve to a response that contains an HTTP Link header with a link that uses the <code>api-catalog</code> link relation 
+               the request should resolve to a response that contains an HTTP Link header with a link that uses the <code>api-catalog</code> link relation 
                type to point at the repository's FAIRiCat Link Set. Further details about this link are provided in <a href="#disclinkroot">Section 2.3.2</a>.</li>
                </div>
               
