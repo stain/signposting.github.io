@@ -792,9 +792,10 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                             <td>&nbsp;</td>
                         </tr> 
                         
+                        
                         <tr>
                             <td style="width: 25%;"><b>Affordance</b></td>
-                            <td><b>OpenSearch 2.11</b></td>
+                            <td><b>OpenSearch 1.1</b></td>
                         </tr>
                         <tr>
                             <td>Affordance type</td>
@@ -802,18 +803,18 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                         </tr>
                         <tr>
                             <td>svc-desc</td>
-                            <td>not used</td>
+                            <td>URL of the OpenSearch Description Document</td>
                         </tr>
                         <tr>
                             <td>svc-doc</td>
-                            <td>https://opensearch.org/docs/2.11/</td>
+                            <td>https://github.com/dewitt/opensearch/blob/master/opensearch-1-1-draft-6.md</td>
                         </tr>
                         <tr>
                         <td>service-meta</td>
                             <td>not used</td>
                         </tr>
                         <tr>
-                            <td>Example entry</td>
+                            <td><a href="#openarchieven">Open Archieven</a></td>
                             <td></td>
                         </tr>
                         <tr>
@@ -854,7 +855,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
                         
                          <tr>
                             <td style="width: 25%;"><b>Affordance</b></td>
-                            <td><b>RSS</b></td>
+                            <td><b>RSS 2.0</b></td>
                         </tr>
                         <tr>
                             <td>Affordance type</td>
@@ -1207,6 +1208,45 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 <table class="table">
 <tbody>
 <tr>
+<a name="openarchieven"></a>
+<td style="width: 80%;">OpenSearch 1.1, Open Archieven</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "linkset": [
+    {
+      "anchor": "https://www.openarch.nl/search.php",
+      "service-desc": [
+        {
+          "href": "https://www.openarchieven.nl/opensearch/nl.xml",
+          "type": "application/xml"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://github.com/dewitt/opensearch/blob/master/opensearch-1-1-draft-6.md",
+          "type": "text/markdown",
+          "title": "OpenSearch 1.1 Draft 6"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+
+
+
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
 <a name="rohubrocrate"></a>
 <td style="width: 80%;">RO-Crate, ROhub</td>
 </tr>
@@ -1338,7 +1378,10 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 
 <br>
 
-
+<!-- example FAIRiCats:
+https://www.openarchieven.nl/.well-known/api-catalog
+https://datasetregister.netwerkdigitaalerfgoed.nl/.well-known/api-catalog
+-->
 
 
 </div>
