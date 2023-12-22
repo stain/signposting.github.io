@@ -116,8 +116,7 @@ $(function() {
 <li><a href="#discovery">Discovery of the FAIRiCat Link Set</a>
 <ol>
 <li><a href="#discwellknown">/.well-known/api-catalog at the root-URL</a></li>
-<li><a href="#disclinkroot">api-catalog link at the root-URL</a></li>
-<li><a href="#disclinkobject">api-catalog link at landing pages</a></li>
+<li><a href="#disclinkroot">api-catalog links</a></li>
 </ol>
 </li>
 </ol>
@@ -255,8 +254,11 @@ $(function() {
                      <div class="">
                      A repository's FAIRiCat Link Set can be discovered in two ways: 
                      <ul>
-                     <li>Via the <code>/.well-known/api-catalog</code> URI at the <b>root-URL</b> of a repository; this approach is discussed in <a href="#discwellknown">2.3.1.</a></li>
-                     <li>Via <code>api-catalog</code> links provided at the <b>root-URL</b> of a repository and other repository URLs; this approach is discussed in <a href="#disclinkroot">2.3.2.</a></li>
+                     <li>Via the <code>/.well-known/api-catalog</code> URI at the <b>root-URL</b> of a repository; 
+                     this approach is discussed in <a href="#discwellknown">Section 2.3.1.</a></li>
+                     <li>Via <code>api-catalog</code> links provided for various repository resources, i.e. its <b>root-URL</b>, its 
+                         <b>repository-entry-URL</b>, and the <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> of the scholarly objects it manages; 
+                         this approach is discussed in <a href="#disclinkroot">Section 2.3.2.</a></li>
                      </ul>
                      The approaches described in these respective sections should be used simultaneously, and at least one of the approaches must be implemented.
                      </div>
@@ -290,7 +292,7 @@ $(function() {
              
               <div class="">
              Links with the <code>api-catalog</code> link relation type may be provided for various repository resources, i.e. its <b>root-URL</b>, its 
-             <b>repository-entry-URL</b>, and the landing pages of the scholarly objects it manages. Such links:
+             <b>repository-entry-URL</b>, and the <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> of the scholarly objects it manages. Such links:
        <ul>
        <li>Must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element. 
        If provided in the HTTP <code>Link</code> header, both HTTP HEAD and HTTP GET requests must provide the <code>api-catalog</code> link.</li>
@@ -302,7 +304,7 @@ $(function() {
         <div class="">
        This is the expected behavior for the various repository resources for which <code>api-catalog</code> links can be provided:
              <ul>
-             <li><b>root-URL</b>: For repositories that implement the well-know URI approach described in <a href="#discwellknown">2.3.1.</a>, 
+             <li><b>root-URL</b>: For repositories that implement the well-know URI approach described in <a href="#discwellknown">Section 2.3.1.</a>, 
              an HTTP HEAD request against &lt;root-URL/.well-known/api-catalog&gt;, 
                should resolve to a response that contains an HTTP Link header with a link that uses the <code>api-catalog</code> link relation 
                type that points at the repository's FAIRiCat Link Set; the <code>type</code> and <code>profile</code> attributes must be as mentioned above.
