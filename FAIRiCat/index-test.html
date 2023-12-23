@@ -302,7 +302,7 @@ $(function() {
        </div>
        
         <div class="">
-       This is the expected behavior for the various repository resources for which <code>api-catalog</code> links can be provided:
+       The expected behavior for the various repository resources for which <code>api-catalog</code> links can be provided is as follows:
              <ul>
              <li><b>root-URL</b>: For repositories that implement the well-know URI approach described in <a href="#discwellknown">Section 2.3.1.</a>, 
              an HTTP HEAD request against &lt;root-URL/.well-known/api-catalog&gt;, 
@@ -316,11 +316,12 @@ $(function() {
              This link must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element. 
              If provided in the HTTP <code>Link</code> header, both HTTP HEAD and HTTP GET requests must provide the link. 
              The <code>type</code> and <code>profile</code> attributes on the link must be as mentioned above.</li>
-             <li><b>Landing page URLs</b>: Repositories may consider to also provide an <code>api-catalog</code> link 
+             <li><b>Landing page URLs</b>: Repositories may consider to also provide <code>api-catalog</code> links 
             pointing from the landing pages of objects managed by the repository to the FAIRiCat Link Set. 
             This approach is of interest when implementing discoverability of the FAIRiCat at both the <b>root-URL</b> and 
-            <b>repository-entry-URL</b> is impossible. The manner in which these links are provided for HTTP HEAD/GET as well as the link attributes
-            are the same as discussed for the <b>repository-entry-URL</b>.
+            <b>repository-entry-URL</b> is impossible. These links must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element of the 
+            landing pages. If provided in the HTTP <code>Link</code> header, both HTTP HEAD and HTTP GET requests must provide the link. 
+             The <code>type</code> and <code>profile</code> attributes on the links must be as mentioned above.
             </li>
              </ul>
              </div>
