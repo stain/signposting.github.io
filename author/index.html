@@ -50,7 +50,9 @@ $(function() {
                         To help machines discover (information about) the authors of a <a href="http://signposting.org/conventions/#scholobject">scholarly object</a>, use the <code>author</code> 
                         <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation type</a> 
                         to link from the object's <a href="http://signposting.org/conventions/#scholobject">landing page</a> 
-                        to a URI that identifies an author of the object. 
+                        to a URI that identifies an author of the object. Author identifiers that are conveyed on links with the <code>author</code> 
+                        relation type should be HTTP URIs chosen from namespaces that are widely supported by the community, 
+                        such as <a href="https://orcid.org">ORCID</a>, <a href="https://viaf.org">VIAF</a>, and <a href="https://www.isni.org">ISNI</a>.
                         <br /><br />                        
                         The below examples illustrate the use of <code>author</code> links in the 
                         <a href="http://tools.ietf.org/html/rfc5988">HTTP Link header</a> of a landing page. But <code>author</code> links can also be provided in 
@@ -67,7 +69,7 @@ $(function() {
                             <li>
                                 <b>Landing Page &#10142; Author Identifier HTTP URI</b>
                                 <p>
-                                Provide links to authors from the Publication's <a href="http://signposting.org/conventions/#scholobject">landing page</a>.<br/>
+                                Provide links to authors from the scholarly object's <a href="http://signposting.org/conventions/#scholobject">landing page</a>.<br/>
                                 <a  href="/author/springer/">Example 1 &raquo;</a> &nbsp; <a  href="/author/eprints/">Example 2 &raquo;</a>
                                 </p>
                             </li>
