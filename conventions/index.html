@@ -169,65 +169,47 @@ For simplicity, this is still referred to as the landing page.</li>
                         <tr>
                             <td><code>author</code></td>
                             <td><a href="/author/">Author</a></td>
-                            <td>The resource that is the target of the link is a web resource that identifies the author of the publication. In the Author pattern, the <a href="#identifier">Identifying HTTP URI</a>, the <a href="#entry_page">Entry Page</a>, and the <a href="#publication_resource">Publication Resource</a> links to the Author of the publication using the <code>author</code> relation type. The <code>author</code> relation type may be repeated if there are multiple authors for a publication. 
+                            <td>The target of the link is a URI for an author of the resource that is the origin of the link.</td>
                         </tr>
-                        <tr>
-                            <td><code>collection</code></td>
-                            <td><a href="/publication_boundary/">Publication Boundary</a></td>
-                            <td>The resource that is the target of the link is a collection to which the resource that provides the link belongs. 
-                                In the Publication Boundary pattern, 
-                                the <a href="#entry_page">Entry Page</a> is modeled as a collection. 
-                                Each <a href="#publication_resource">Publication Resource</a> link to the <a href="#entry_page">Entry Page</a> 
-                                using the <code>collection</code> relation type.</td>
-                        </tr>
-                        <tr>
-                            <td><code>describedby</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a></td>
-                            <td>The resource that is the target of the link is a description of the resource that provides the link. 
-                                In the Bibliographic Metadata pattern, the <a href="#entry_page">Entry Page</a> 
-                                links to a <a href="#bibliographic_resource">Bibliographic Resource</a> 
-                                using the <code>describedby</code> relation type.</td>
-                        </tr>
-                        <tr>
-                            <td><code>describes</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a></td>
-                            <td>The resource that is the target of the link is described by the resource that provides the link. 
-                                In the Bibliographic Metadata pattern, a <a href="#bibliographic_resource">Bibliographic Resource</a> links to the 
-                                <a href="#entry_page">Entry Page</a> using the <code>describes</code> 
-                                relation type.</td>
-                        </tr>
-                        <tr>
-                            <td><code>item</code></td>
-                            <td><a href="/publication_boundary/">Publication Boundary</a></td>
-                            <td>The resource that is the target of the link belongs to a collection, 
-                                which is the resource that provides the link.  In the Publication Boundary pattern, 
-                                the <a href="#entry_page">Entry Page</a> is modeled as a collection. 
-                                It links to each <a href="#publication_resource">Publication Resource</a> using the <code>item</code> relation type.
-                            </td>
-                        </tr>
-                        <tr>
+                                                <tr>
                             <td><code>cite-as</code></td>
-                            <td><a href="/publication_boundary/">Publication Boundary</a>, <a href="/identifier/">Identifier</a></td>
-                            <td>The resource that is the target of the link is the Identifying HTTP URI of the resource that 
-                                provides the link. In the Publication Boundary pattern, each <a href="#publication_resource">Publication Resource</a> links 
-                                to the <a href="#identifier">Identifying HTTP URI</a> 
-                                using the <code>cite-as</code> relation type. In the Identifier pattern, the <a href="#author_description_page">Author Description Page</a> links to the preferred 
-                                <a href="#author_identifier">Author Identifier</a> using the <code>cite-as</code> relation type. 
-                                </td>
+                            <td><a href="/identifier/">Identifier</a></td>
+                            <td>The target of the link is a persistent URI for the resource that is the origin of the link.</td>
+                        </tr>
+                       <tr>
+                            <td><code>describedby</code></td>
+                            <td><a href="/bibliographic_metadata/">Metadata Resources</a></td>
+                            <td>The target of the link provides metadata that describes the resource that is the origin of the link.</td>
+                        </tr>
+                       <tr>
+                            <td><code>describes</code></td>
+                            <td><a href="/bibliographic_metadata/">Metadata Resources</a></td>
+                            <td>The origin of the link is a resource that provides metadata that describes the resource that is the target of the link. It is the inverse of the <code>describedby</code> relation type. </td>
                         </tr>
                         <tr>
                             <td><code>type</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a>, <a href="/publication_boundary/">Publication Boundary</a>, <a href="/resource_type/">Resource Type</a></td>
-                            <td>The resource that is the target of the link indicates the nature of the resource that provides the link, 
-                                e.g. whether it is a landing page, a publication, a dataset, ... In the Publication Boundary pattern, 
-                                the <a href="#entry_page">Entry Page</a> and each <a href="#publication_resource">Publication Resource</a> 
-                                uses a link with the <code>type</code> relation type to express its own nature. In the Bibliographic 
-                                Metadata pattern, each <a href="#bibliographic_resource">Bibliographic Resource</a> uses this relation type 
-                                to indicate its descriptive nature. Values to be used are listed in the section 
-                                <a href="#type">URIs to express the nature of a scholarly resource</a>.
-                                In the Resource Type pattern, the <a href="#identifier">Identifying HTTP URI</a> and the <a href="#author_identifier">Author Identifier</a> expresses their resource type using <code>type</code>. 
-
-                                </td>
+                            <td><a href="/resource_type/">Resource Type</a></td>
+                            <td>The target of the link is the URI for a class of resources to which the resource that is the origin of the link belongs.</td>
+                        <tr>
+                        <tr>
+                            <td><code>license</code></td>
+                            <td>Resource License</td>
+                            <td>The target of the link is the URI of a license that applies to the resource that is the origin of the link.</td>
+                        </tr>
+                        <tr>
+                            <td><code>item</code></td>
+                            <td><a href="/content_resources/">Content Resources</a></td>
+                            <td>The origin of the link is a collection of resources and the target of the link is a resource that belongs to that collection. 
+                            It is the inverse of the <code>collection</code> relation type. In Signposting, the landing page of a scholarly object is modeled 
+                            as a collection of content resources.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>collection</code></td>
+                            <td><a href="/content_resources/">Content Resources</a></td>
+                            <td>The origin of the link is a resource that belongs to a collection and the target of the link is the collection to which it belongs. 
+                            It is the inverse of the <code>item</code> relation type. In Signposting, the landing page of a scholarly object is modeled 
+                            as a collection of content resources.</td>
                         </tr>
                     </table>
                 </div>
@@ -247,13 +229,19 @@ For simplicity, this is still referred to as the landing page.</li>
                             <td><b>Description</b></td>
                         </tr>
                         <tr>
+                            <td><code>type</code></td>
+                            <td><a href="/bibliographic_metadata/">Metadata Resources</a>, <a href="/content_resources/">Content Resources</a></td>
+                            <td>The value of the <code>type</code> attribute conveys the MIME type of the resource 
+                                that is the target of the link on which the attribute is used.</td>
+                        </tr>
+                        <tr>
                             <td><code>profile</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a>, <a href="/publication_boundary/">Publication Boundary</a></td>
+                            <td><a href="/bibliographic_metadata/">Metadata Resources</a>, <a href="/content_resources/">Content Resources</a></td>
                             <td>The value of the <code>profile</code> attribute indicates the <a href="https://tools.ietf.org/html/rfc6906#section-3">profile</a> to which the resource that is the 
                                 target of the link conforms. Generally, a profile is a syntactic and/or semantic constraint that 
                                 applies beyond what can be expressed using the MIME type of the resource. 
                                 The <code>profile</code> attribute is, for example, useful when different 
-                                <a href="#bibliographic_resource">Bibliographic Resources</a> have the 
+                                <a href="#scholobject">metadata resources</a> have the 
                                 same MIME type (e.g. <code>application/xml</code>) but conform to a different schema. 
                                 The value of the <code>profile</code> attribute is a URI 
                                 that uniquely identifies the format (e.g. <code>XML Schema URI</code>). Note that the use of the <code>profile</code> attribute is standardized for certain MIME types, such as  
@@ -261,83 +249,10 @@ For simplicity, this is still referred to as the landing page.</li>
                 <code>application/xml</code>, and <code>application/json</code> and, as such, its use is a community convention introduced for Signposting.
                             </td>
                         </tr>
-                        <!--
-                        <tr>
-                            <td><code>sem-type</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a>, <a href="/landing_page/">Landing Page</a></td>
-                            <td>The value of the <code>sem-type</code> attribute conveys the nature of the resource 
-                                that is the target of the link on which the attribute is used. 
-                                Values to be used are listed in the section 
-                                <a href="#type">URIs to express the nature of a scholarly resource</a>. 
-                                The <code>sem-type</code> 
-                                attribute will be defined in the <a href="https://github.com/mnot/I-D/tree/gh-pages/link-hint">HTTP Link Hints</a> RFC that is in the making.</td>
-                        </tr>
-                        -->
-                        <tr>
-                            <td><code>type</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a>, <a href="/publication_boundary/">Publication Boundary</a></td>
-                            <td>The value of the <code>type</code> attribute conveys the MIME type of the resource 
-                                that is the target of the link on which the attribute is used.</td>
-                        </tr>
                     </table>
                 </div>
 
-                <!--
-                <h3><a name="type"></a>URIs to express the nature of a scholarly resource</h3>
 
-            <p>The below table lists URIs to be used to convey the nature of a scholarly web resource. These URIs 
-            are used:</p>
-            <ul>
-            <li>With the <code>type</code> relation type: A resource provides a link with the <code>type</code> relation type to 
-            express its own nature. That target of that link is one of the URIs listed below.</li>
-            <li>For the <code>sem-type</code> attribute: A resource provides a link (using any relation type) with a 
-            <code>sem-type</code> attribute to express the nature of the linked resource. The value of that attribute 
-            is one of the URIs listed below.</li>
-            </ul>
-
-                <p>In order to keep things simple, and to achieve broad interoperability, 
-                only very coarse expressions of scholarly resource type are used. They originate in the 
-                COAR
-                <a href="https://wiki.surfnet.nl/display/standards/info-eu-repo">info:eu-repo/</a> and 
-                JISC/UKOLN/cetis <a href="http://www.ukoln.ac.uk/repositories/digirep/index/Eprints_Type_Vocabulary_Encoding_Scheme">eprint</a> vocabularies.</p>
-
-                <div class="">
-                    <table class="table" >
-                        <tr>
-                            <td style="width: 50%;"><b>Value</b></td>
-                            <td><b>Description</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>info:eu-repo/semantics/dataset</code></td>
-                            <td>This is the value for a <a href="#publication_resource">Publication Resource</a> that is a dataset.</td>
-                        </tr>
-                        <tr>
-                            <td><code>info:eu-repo/semantics/descriptiveMetadata</code></td>
-                            <td>This is the value for <a href="#bibliographic_resource">Bibliographic Resources</a>.</td>
-                        </tr>
-                        <tr>
-                            <td><code>info:eu-repo/semantics/humanStartPage</code></td>
-                            <td>This is the value for the Landing Page. Do not use it for an <a href="#entry_page">Entry Page</a> 
-                                that is an HTML version of a publication.</td>
-                        </tr>
-                        <tr>
-                            <td><code>http://purl.org/eprint/type/ScholarlyText</code></td>
-                            <td>This is the value for a <a href="#publication_resource">Publication Resource</a> 
-                            that is a scholarly text that primarily consists of words for reading. It is used for a variety of 
-                            textual scholarly works including journal articles, conference papers, preprints, thesis, books, etc. 
-                            An <a href="http://www.ukoln.ac.uk/repositories/digirep/index/Eprints_Type_Vocabulary_Encoding_Scheme">enumeration</a> is available. 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>info:eu-repo/semantics/objectFile</code></td>
-                            <td>This is the value for a <a href="#publication_resource">Publication Resource</a> that can not be 
-                                characterized as any of the other types of <a href="#publication_resource">Publication Resources</a> 
-                                listed in this table. </td>
-                        </tr>
-                    </table>
-                </div>
-                -->
 
                 <h3><a name="bibliographic"></a>Bibliographic Metadata Formats</h3>
 
@@ -354,14 +269,14 @@ For simplicity, this is still referred to as the landing page.</li>
                 practice to <a href="http://www.crosscite.org/cn/">access bibliographic metadata using content negotiation</a> on the basis  
                 of unregistered MIME types for three formats. Since Signposting is all about 
                 pragmatism it uses these de-facto MIME types for interoperability; they are listed in the below table. 
-                These MIME types are used in <code>describedby</code> links that point to <a href="#bibliographic_resource">Bibliographic Resources</a> 
+                These MIME types are used in <code>describedby</code> links that point to <a href="#bibliographic_resource">Bibliographic Metadata Resources</a> 
                 and should be expressed by a client in the <code>Accept</code> HTTP Request header when accessing the URI that is the target 
                 of a <code>describedby</code> link.</p>
                 
                     <div class="">
                     <table class="table" >
                         <tr>
-                            <td style="width: 25%;"><b>Bibliographic Format</b></td>
+                            <td style="width: 25%;"><b>Bibliographic Metadata Format</b></td>
                             <td style="width: 25%;"><b>MIME Type</b></td>
                             <td>&nbsp;</td>
                         </tr>
@@ -387,7 +302,7 @@ For simplicity, this is still referred to as the landing page.</li>
                 <code>application/xml</code>, <code>application/json</code>, or <code>application/ld+json</code> as MIME types. In order to distinguish between 
                 bibliographic formats that have the same MIME type, either a dedicated MIME type should be <a href="http://www.iana.org/form/media-types">registered</a> 
                 or a <code>profile</code> attribute 
-                can be used on a <code>describedby</code> link to clarify the bibliographic format beyond its MIME type. The former allows for content negotiation, the latter does not. The below table shows how the <code>profile</code> 
+                can be used on a <code>describedby</code> link to clarify the metadata format beyond its MIME type. The former allows for content negotiation, the latter does not. The below table shows how the <code>profile</code> 
                 approach can be used for popular XML-based formats. Note that the use of the <code>profile</code> attribute is standardized for some MIME types, such as  
                 <code>application/ld+json</code>. It is not for many others, including <code>text/plain</code>, 
                 <code>application/xml</code>, and <code>application/json</code> and, as such, it is a community convention introduced for Signposting.</p>
@@ -395,7 +310,7 @@ For simplicity, this is still referred to as the landing page.</li>
                  <div class="">
                     <table class="table" >
                         <tr>
-                            <td style="width: 25%;"><b>Bibliographic Format</b></td>
+                            <td style="width: 25%;"><b>Bibliographic Metadata Format</b></td>
                             <td style="width: 25%;"><b><code>type</code> Attribute Value</b></td>
                             <td><b><code>profile</code> Attribute Value</b></td>
                         </tr>

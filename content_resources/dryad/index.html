@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.17), see www.w3.org">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/static/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href=
+  "/static/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href=
+  "/static/images/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href=
+  "/static/images/favicon-16x16.png">
+
+  <title>Publication Boundary - Signposting the Scholarly
+  Web</title><!-- Bootstrap core CSS -->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet" type=
+  "text/css">
+  <link href="/static/css/signposting.css" rel="stylesheet" type=
+  "text/css"><!-- Custom styles for this template -->
+
+  <script src="/static/js/jquery.min.js" type="text/javascript">
+</script>
+  <script src="/static/js/bootstrap.min.js" type="text/javascript">
+</script>
+  <script src="/static/js/signposting.js" type="text/javascript">
+</script>
+  <script type="text/javascript">
+$(function() {
+    load_header_footer();
+  });
+  </script>
+</head>
+
+<body>
+  <!-- Static navbar -->
+
+  <div id="signposting-menu"></div>
+
+  <div class="container">
+    <!-- Main component for a primary marketing message or call to action -->
+
+    <div class="row">
+      <div class="jumbo">
+        <!-- <div style="display: inline-block; width: 89%;"> -->
+
+        <h3 id="publisher-name">Publication Boundary</h3>
+
+        <h4 class="text-muted" id="pattern-sub-heading">Landing
+        Page ➞ Publication Resources</h4>
+
+        <p class="" id="publisher-description"></p>
+
+        <p>The use of Typed Links in the HTTP Link header is
+        illustrated for the paper:</p>
+
+        <div class="code" style=
+        'font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 16px;'>
+<p id="citation"><span style="font-variant: small-caps;">Ryder, T. B. and Sillett, T. S.</span>. Data from: Climate, demography, and lek stability in an Amazonian bird, 2016. <em>Dryad Digital Repository</em>. <a href="https://doi.org/10.5061/dryad.5d23f">https://doi.org/10.5061/dryad.5d23f</a>.</p>
+        </div>
+
+        <p id="summary"></p>
+
+        <p>This is a summary of the links that should be provided:</p>
+
+        <ul>
+          <li>The Landing Page should have links with the
+          <code>item</code> relation type pointing at each <a href=
+          "/conventions/#publication_resource">Publication
+          Resource</a>.</li>
+
+          <li>Each <code>item</code> link should have a
+          <code>type</code> attribute to express the MIME type of
+          the resource that is the target of the link.</li>
+
+          <li>Each <a href=
+          "/conventions/#publication_resource">Publication
+          Resource</a> should link back with the
+          <code>collection</code> relation type at the Landing
+          Page.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="jumbo" style=
+      "background: #fff; border-bottom: 0px; border-radius: 0px;">
+        <h3 style="margin:0; margin-bottom: 10px;">Link Headers for
+        the Publication Boundary pattern</h3>
+      </div>
+    </div>
+
+    <div class="pagebreak"></div>
+
+    <div class="row plain-row" style="border-bottom: 0px;" id=
+    "publication_boundary">
+      <img src=
+      "/static/images/publication_boundary_landingpage_data.png" alt=
+      "Visualization of link relations" style=
+      "border: 1px #000 solid;" class="example-graphs lvl2-graphs">
+
+      <div id="boundaryheaders" class="link_headers">
+        <div>
+          <br>
+          <br>
+
+          <div style=
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd"><br>
+          The HTTP Link header to express boundary for the
+          <b>Landing Page URI</b><br>
+            <tt>http://datadryad.org/resource/doi:10.5061/dryad.5d23f</tt>
+            is:<br>
+
+            <div style="background: #fff; margin: 0 10px;">
+              <br>
+              <code>curl -I &quot;http://datadryad.org/resource/doi:10.5061/dryad.5d23f&quot;</code>
+              <br>
+              <br>
+
+              <code>Link: &lt;http://datadryad.org/bitstream/handle/10255/dryad.98510/PIPFIL_Mark_Models.zip&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/zip"</b>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://datadryad.org/bitstream/handle/10255/dryad.98509/PIPFIL_M_BCI.csv&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"text/csv"</b>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://datadryad.org/bitstream/handle/10255/dryad.98508/PIPFIL_MALES%20for%20MULTI.xlsx&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"</b></code>
+
+              <!-- XLSX MIME type as per https://technet.microsoft.com/en-us/library/ee309278(office.12).aspx, 
+              also exists at http://www.iana.org/assignments/media-types/media-types.xhtml and
+              http://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet -->
+            </div>
+          </div>
+
+          <div style=
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
+            The HTTP Link header to express boundary for the
+            <b>Data ZIP URI</b><br>
+            <tt>http://datadryad.org/bitstream/handle/10255/dryad.98510/PIPFIL_Mark_Models.zip</tt>
+            is:<br>
+
+            <div style="background: #fff; margin: 0 10px;">
+              <br>
+              <code>curl -I &quot;http://datadryad.org/bitstream/handle/10255/dryad.98510/PIPFIL_Mark_Models.zip&quot;</code>
+              <br>
+              <br>
+
+              <code>Link: &lt;http://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
+            </div>
+          </div>
+
+          <div style=
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
+            The HTTP Link header to express boundary for the
+            <b>Data CSV URI</b><br>
+            <tt>http://datadryad.org/bitstream/handle/10255/dryad.98509/PIPFIL_M_BCI.csv</tt>
+            is:<br>
+
+            <div style="background: #fff; margin: 0 10px;">
+              <br>
+              <code>curl -I &quot;http://datadryad.org/bitstream/handle/10255/dryad.98509/PIPFIL_M_BCI.csv&quot;</code>
+              <br>
+              <br>
+              <code>Link: &lt;http://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
+            </div>
+          </div>
+
+          <div style=
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
+            The HTTP Link header to express boundary for the
+            <b>Data XLSX URI</b><br>
+            <tt>http://datadryad.org/bitstream/handle/10255/dryad.98508/PIPFIL_MALES%20for%20MULTI.xlsx</tt>
+            is:<br>
+
+            <div style="background: #fff; margin: 0 10px;">
+              <br>
+              <code>curl -I &quot;http://datadryad.org/bitstream/handle/10255/dryad.98508/PIPFIL_MALES%20for%20MULTI.xlsx&quot;</code>
+              <br>
+              <br>
+              <code>Link: &lt;http://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pagebreak"></div>
+  </div><!-- /container -->
+
+  <div class="footer" id="footer"></div>
+</body>
+</html>
