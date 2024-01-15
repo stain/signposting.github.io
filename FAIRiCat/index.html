@@ -147,7 +147,7 @@ $(function() {
 						
                         <div class="">
                         This specification details the FAIR Interoperability Catalog - FAIRiCat in short - approach that repositories 
-                        that manage <a href="https://signposting.org/FAIR/#scholobject">scholarly objects</a> 
+                        that manage <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> 
                         can use to advertise the interoperability affordances they provide. 
                          A repository can use the FAIRiCat approach, for example, to:
                         <ul>
@@ -175,7 +175,7 @@ $(function() {
                         Interoperability affordances that can be advertised using the approach can be:
                         <ul>
                         <li>Repository-level affordances: Machine interfaces that can be used to interact with the repository as a whole, e.g. the aforementioned OAI-PMH interface.</li>
-                        <li>Object-level affordances: Affordances that are available when interacting with a single <a href="https://signposting.org/FAIR/#scholobject">scholarly object</a> managed by the repository, 
+                        <li>Object-level affordances: Affordances that are available when interacting with a single <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> managed by the repository, 
                         e.g. the aforementioned support for FAIR Signposting.</li>
                         </ul>
                          </div>
@@ -258,7 +258,7 @@ $(function() {
                      <li>Via the <code>/.well-known/api-catalog</code> URI at the <b>root-URL</b> of a repository; 
                      this approach is discussed in <a href="#discwellknown">Section 2.3.1.</a></li>
                      <li>Via <code>api-catalog</code> links provided for various repository resources, i.e. its <b>root-URL</b>, its 
-                         <b>repository-entry-URL</b>, and the <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> of the scholarly objects it manages; 
+                         <b>repository-entry-URL</b>, and the <a href="https://signposting.org/conventions/#scholobject">landing pages</a> of the scholarly objects it manages; 
                          this approach is discussed in <a href="#disclinkroot">Section 2.3.2.</a></li>
                      </ul>
                      The approaches described in these respective sections should be used simultaneously, and at least one of the approaches must be implemented.
@@ -293,7 +293,7 @@ $(function() {
              
               <div class="">
              Links with the <code>api-catalog</code> link relation type may be provided for various repository resources, i.e. its <b>root-URL</b>, its 
-             <b>repository-entry-URL</b>, and the <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> of the scholarly objects it manages. Such links:
+             <b>repository-entry-URL</b>, and the <a href="https://signposting.org/conventions/#scholobject">landing pages</a> of the scholarly objects it manages. Such links:
        <ul>
        <li>Must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element. 
        If provided in the HTTP <code>Link</code> header, both HTTP HEAD and HTTP GET requests must provide the <code>api-catalog</code> link.</li>
@@ -382,7 +382,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
     <div class="">
     The <a href="#exwellknown">previous example</a> shows how a client discovers an <code>api-catalog</code> link 
     by interacting with the <code>/.well-known/api-catalog</code> URI and can follow that link to retrieve the FAIRiCat. 
-    But <code>api-catalog</code> links can also be provided at the level of <a href="https://signposting.org/FAIR/#scholobject">landing pages</a> 
+    But <code>api-catalog</code> links can also be provided at the level of <a href="https://signposting.org/conventions/#scholobject">landing pages</a> 
     of objects managed by a repository. 
     </div>
            <br />
@@ -534,7 +534,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
            <div class="">
        The below example shows a FAIRiCat listing only object-level interoperability affordances. 
 		For such affordances, 
-       the value of the <code>anchor</code> member is the URL of the <a href="https://signposting.org/FAIR/#scholobject">constituent resource</a>
+       the value of the <code>anchor</code> member is the URL of the <a href="https://signposting.org/conventions/#scholobject">constituent resource</a>
         of a single example object managed by the repository that illustrates the affordance. 
        When multiple object-level interoperability affordances are listed in a FAIRiCat, each should be illustrated by means of 
        a different example object:

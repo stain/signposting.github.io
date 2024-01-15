@@ -50,7 +50,7 @@ $(function() {
                              This page provides an overview of a variety of proposed conventions to be used for the Signposting patterns.
                              <br/><br/>
                              <ul>
-                                 <li><a href="#terminology">Terminology</a></li>
+                                 <li><a href="#scholobject">A Scholarly Object on the Web</a></li>
                                  <li><a href="#relation_types">Relation Types for Typed Links</a></li>
                                  <li><a href="#attributes">Attributes for Typed Links</a></li>
                                  <!--<li><a href="#type">URIs to express the nature of a scholarly resource</a></li>-->
@@ -69,7 +69,38 @@ $(function() {
             </div>
 
             <div class="row featurette">
-                <h3><a name="terminology"></a>Terminology</h3>
+                <h3><a name="scholobject"></a>A Scholarly Object on the Web</h3>
+                
+                <div class=" ">
+It has become common to publish scholarly objects on the web as a set of web resources, 
+each equipped with an HTTP URI. A <b>scholarly object</b> typically has:
+<ul>
+<li>A <b>persistent identifier</b>, e.g. a <a href="https://www.doi.org/">DOI</a> or <a href="https://www.handle.net/">handle</a> expressed as an HTTP URI.
+</li><li>A <b>landing page</b> that is reachable by dereferencing the persistent identifier and following HTTP redirects. 
+The landing page typically describes the scholarly object and provides links to its content resources. 
+Note that, in some cases, such as articles published in HTML, the landing page actually represents content of the resource. 
+For the purpose of the recipes it still is referred to as the landing page.</li>
+<li>One or more <b>content resources</b> that provide the actual content
+ of the scholarly object, such as a PDF article, a CSV dataset, a ZIPped
+ software repository, a dynamically generated map.</li> 
+<li>One or more <b>metadata resources</b> that describe the scholarly object in commonly used formats.</li>
+<li>Other <b>identifiers</b> that pertain to the scholarly object, including:
+	<ul>
+		<li>Identifiers for <b>authors</b>, e.g. 
+    <a href="https://orcid.org/">ORCID</a> or <a href="https://isni.org/">ISNI</a>, expressed as HTTP URIs.</li>
+		<li>Identifiers of applicable <b>licenses</b>, e.g. <a href="https://creativecommons.org/">Creative Commons</a> licenses expressed as HTTP URIs, preferably using <a href="https://spdx.org/licenses">SPDX</a> license URIs.</li>
+		<li>Identifiers for scholarly object <b>types</b> expressed as HTTP URIs from commonly used vocabularies, e.g. <a href="https://schema.org">schema.org</a>.</li> 
+	</ul>	
+	</li>
+</ul>
+</div>	
+
+<br>
+                 <div style="text-align: center;">
+                        <img src="basic.png" alt="scholarly object on the web" width="500">
+                        </div>
+               <br>
+                <!-- 
                 <div class="">
                     <table class="table" >
                         <tr>
@@ -119,6 +150,8 @@ $(function() {
 
                     </table>
                 </div>
+                
+                -->
 
                 <h3><a name="relation_types"></a>Relation Types for Typed Links</h3>
 
