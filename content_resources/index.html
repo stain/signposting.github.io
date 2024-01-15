@@ -48,7 +48,7 @@ $(function() {
                          <div class="">
                         To help machines discover the content resources of a <a href="http://signposting.org/conventions/#scholobject">scholarly object</a>, use the <code>item</code> 
                         <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation type</a> 
-                        to link from the object's landing page to a URI that identifies actual content of the object. 
+                        to link from the object's landing page to a URI where actual content of the object is accessible. 
                         <br /><br />       
                         To help machines that landed on a content resource of a <a href="http://signposting.org/conventions/#scholobject">scholarly object</a> discover its landing page, 
                         use the <code>collection</code> 
@@ -62,11 +62,10 @@ $(function() {
                         resource that is the target of the link; see <a href="https://signposting.org/conventions/#attributes">Conventions</a> for further details.</li>
                         <li>The <code>profile</code> attribute is used to provide further details regarding the <a href="https://tools.ietf.org/html/rfc6906#section-3">profile</a> of the media type of the 
                         linked resource; see <a href="https://signposting.org/conventions/#attributes">Conventions</a> for further details.</li>
-                        </ul>
-                        <br /><br />                 
-                        The below examples illustrate the use of <code>item</code> links in the 
-                        <a href="http://tools.ietf.org/html/rfc5988">HTTP Link header</a> of HTML landing pages. But <code>item</code> links can also be provided in 
-                        that page's HTML <code>link</code> element and/or in a <a href="https://signposting.org/FAIR/#linksetrec">Link Set</a> that is discoverable from the landing page. 
+                        </ul>               
+                        The below examples illustrate the use of <code>item</code> and <code>collection</code> links in  
+                        <a href="http://tools.ietf.org/html/rfc5988">HTTP Link headers</a>. <code>item</code> links can also be provided in 
+                        a landing page's HTML <code>link</code> element and/or in a <a href="https://signposting.org/FAIR/#linksetrec">Link Set</a> that is discoverable from the landing page. 
                         However, since most content resources are not HTML, <code>collection</code> links can typically only be provided in the <a href="http://tools.ietf.org/html/rfc5988">HTTP Link header</a> 
                         of content resources and/or in a <a href="https://signposting.org/FAIR/#linksetrec">Link Set</a> that is discoverable from the content resource.
                     </div>
@@ -76,14 +75,13 @@ $(function() {
 
             <div class="row">
                 <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
-                    <h3 style="margin: 0; margin-bottom: 10px;">Publication Boundary Approaches</h3>
-                    <h4 class="text-muted">Select your portal's approach and inspect how to implement Signposting</h4>
+                    <h3 style="margin: 0; margin-bottom: 10px;">Content Resource Scenarios</h3>
                     <div class="" style="padding: 10px;">
                         <ul>
                             <li>
-                                <b>Landing Page &#10142; Publication Resources</b>
+                                <b>Landing Page &#10142; Content Resources</b>
                                 <p>
-                                The typical entry point for a publication in the portal is a landing page, which links to resources that are part of the publication such as various renderings of an article, supplementary information, data, etc. <br/>
+                                A typical landing page for a scholarly object links to resources that make up its actual content such as various renderings of an article, supplementary information, data, etc. <br/>
                                 <a href="/content_resources/oxford/">Example 1 &raquo;</a> &nbsp; 
                                 <a href="/content_resources/eprints/">Example 2 &raquo;</a> &nbsp;
                                 <a href="/content_resources/dryad/">Example 3 &raquo;</a> &nbsp;
@@ -91,9 +89,9 @@ $(function() {
                                 </p>
                             </li>
                             <li>
-                                <b>Publication &#10142; Other Publication Resources</b>
+                                <b>Publication (Landing Page) &#10142; Other Publication Resources</b>
                                 <p>
-                                The typical entry point for a publication in the portal is an HTML rendering of an article, which links to other resources that are part of the publication such as different renderings of an article, supplementary information, data, etc. <br/>
+                                Sometimes a landing page for a scholarly object is an HTML rendering of an article, which links to other resources that make up the object's content such as different renderings of an article, supplementary information, data, etc. <br/>
                                 <a href="/content_resources/nature/">Example &raquo;</a>
                                 </p>
                             </li>

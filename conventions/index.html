@@ -78,8 +78,8 @@ each equipped with an HTTP URI. A <b>scholarly object</b> typically has:
 <li>A <b>persistent identifier</b>, e.g. a <a href="https://www.doi.org/">DOI</a> or <a href="https://www.handle.net/">handle</a> expressed as an HTTP URI.
 </li><li>A <b>landing page</b> that is reachable by dereferencing the persistent identifier and following HTTP redirects. 
 The landing page typically describes the scholarly object and provides links to its content resources. 
-Note that, in some cases, such as articles published in HTML, the landing page actually represents content of the resource. 
-For simplicity, this is still referred to as the landing page.</li>
+In some cases, such as articles published in HTML, the landing page actually represents content of the resource. 
+For simplicity, this is still referred to as the landing page. Essentially, Signposting uses the term landing page for the resource to which the object's persistent identifier resolves.</li>
 <li>One or more <b>content resources</b> that provide the actual content
  of the scholarly object, such as a PDF article, a CSV dataset, a ZIPped
  software repository, a dynamically generated map.</li> 
@@ -266,10 +266,10 @@ For simplicity, this is still referred to as the landing page.</li>
                 <p>Preferably, MIME types for bibliographic metadata formats should be 
                 <a href="http://www.iana.org/form/media-types">registered</a>. 
                 But CrossRef, DataCite, and mEDRA have established an interoperable 
-                practice to <a href="http://www.crosscite.org/cn/">access bibliographic metadata using content negotiation</a> on the basis  
+                practice to <a href="https://citation.crosscite.org/docs.html">access bibliographic metadata using content negotiation</a> on the basis  
                 of unregistered MIME types for three formats. Since Signposting is all about 
                 pragmatism it uses these de-facto MIME types for interoperability; they are listed in the below table. 
-                These MIME types are used in <code>describedby</code> links that point to <a href="#bibliographic_resource">Bibliographic Metadata Resources</a> 
+                These MIME types are used in <code>describedby</code> links that point to bibliographic metadata resources 
                 and should be expressed by a client in the <code>Accept</code> HTTP Request header when accessing the URI that is the target 
                 of a <code>describedby</code> link.</p>
                 
