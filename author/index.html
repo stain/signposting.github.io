@@ -13,7 +13,7 @@
         <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
 
-        <title>Author - Signposting the Scholarly Web</title>
+        <title>Author pattern - Signposting the Scholarly Web</title>
 
         <!-- Bootstrap core CSS -->
         <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -44,25 +44,17 @@ $(function() {
             <!-- Main component for a primary marketing message or call to action -->
             <div class="row">
                 <div class="jumbo">
-                    <h3 style="margin: 0; margin-bottom: 10px;">Authors</h3>
+                    <h3 style="margin: 0; margin-bottom: 10px;">Author Pattern</h3>
                     <h4 class="text-muted">Signposting the Scholarly Web</h4>
                     <div class="">
-                        Use <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">Typed Links</a> in 
-                        <a href="http://tools.ietf.org/html/rfc5988">HTTP Link headers</a> to help machines 
-                        find the authors of a publication.
-                        <br /><br />
-                        The following relation type is used in the Author pattern:
-                        <ul>
-                            <li>To link from an <a href="http://signposting.org/conventions/#identifier">Identifying HTTP URI</a>, 
-                            a <a href="http://signposting.org/conventions/#repository_uri">Repository Stable HTTP URI</a>, or 
-                            an <a href="http://signposting.org/conventions/#entry_page">Entry Page</a> to a URI identifying the author: <code>author</code>. 
-                            Author identifiers that are conveyed on links with the "author" relation type should be HTTP URIs 
-                            chosen from namespaces that are widely supported by the community, such as 
-                            <a href="http://orcid.org">ORCID</a>, <a href="http://viaf.org">VIAF</a>, and <a href="http://www.isni.org/">ISNI</a>.</li>
-                            <!--
-                            <li>To link from an <a href="http://signposting.org/conventions/#author_page">Author Page</a> in a repository or a service to a URI identifying the author: <code>identifier</code></li> 
-                            -->
-                        </ul>
+                        To help machines discover (information about) the authors of a <a href="http://signposting.org/conventions/#scholobject">scholarly object</a>, use the <code>author</code> 
+                        <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation type</a> 
+                        to link from the object's <a href="http://signposting.org/conventions/#scholobject">landing page</a> 
+                        to a URI that identifies an author of the object. 
+                        <br /><br />                        
+                        The below examples illustrate the use of <code>author</code> links in the 
+                        <a href="http://tools.ietf.org/html/rfc5988">HTTP Link header</a> of a landing page. But <code>author</code> links can also be provided in 
+                        that page's HTML <code>link</code> element and/or in a <a href="https://signposting.org/FAIR/#linksetrec">Link Set</a> that is discoverable from the landing page.
                     </div>
                 </div>
             </div>
@@ -73,38 +65,12 @@ $(function() {
                     <div class="" style="padding: 10px;">
                         <ul>
                             <li>
-                                <b>DOI/Handle &#10142; Author Identifying HTTP URI</b>
+                                <b>Landing Page &#10142; Author Identifier HTTP URI</b>
                                 <p>
-                                Provide links to authors from the <a href="http://signposting.org/conventions/#identifier">Identifying HTTP URI</a> such as a DOI URI or a Handle URI of a publication.<br/>
-                                <a  href="/author/dlib/">Example 1 &raquo;</a> &nbsp;
-                                <a  href="/author/ughent/">Example 2 &raquo;</a>
+                                Provide links to authors from the Publication's <a href="http://signposting.org/conventions/#scholobject">landing page</a>.<br/>
+                                <a  href="/author/springer/">Example 1 &raquo;</a> &nbsp; <a  href="/author/eprints/">Example 2 &raquo;</a>
                                 </p>
                             </li>
-                            <li>
-                                <b>Entry Page &#10142; Author Identifying HTTP URI</b>
-                                <p>
-                                Provide links to authors from the Publication's <a href="http://signposting.org/conventions/#entry_page">Entry page</a>.<br/>
-                                <a  href="/author/springer/">Example &raquo;</a>
-                                </p>
-                            </li>
-                            <li>
-                                <b>Repository Stable HTTP URI &#10142; Author Identifying HTTP URI</b>
-                                <p>
-                                Provide links to authors from the Publication's <a href="http://signposting.org/conventions/#repository_uri">Repository Stable HTTP URI</a>.<br/>
-                                <a  href="/author/eprints/">Example &raquo;</a>
-                                </p>
-                            </li>
-                            <!--
-                            <li>
-                                <b>Author Page &#10142; Author</b>
-                                <p>
-                                A page that describes an author in a portal (e.g. repository, service, research information system) provides a link to identify the author.
-                                <br/>
-                                <a href="/author/figshare/">Example 1 &raquo;</a> &nbsp;
-                                <a href="/author/dtu/">Example 2 &raquo;</a>
-                                </p>
-                            </li>
-                            -->
                         </ul>
                     </div>
                 </div>
