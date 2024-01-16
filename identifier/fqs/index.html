@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href=
   "/static/images/favicon-16x16.png">
 
-  <title>Identifier - Signposting the Scholarly Web</title>
+  <title>Identifier Pattern Scenario - Signposting the Scholarly Web</title>
   <!-- Bootstrap core CSS -->
   <link href="/static/css/bootstrap.min.css" rel="stylesheet" type=
   "text/css">
@@ -49,9 +49,9 @@ $(function() {
       <div class="jumbo">
         <div style="display: inline-block; width: 89%;">
           <h3 id="publisher-name" style=
-          "margin: 0; margin-bottom: 10px;">Identifier</h3>
+          "margin: 0; margin-bottom: 10px;">Identifier Pattern Scenario</h3>
 
-          <h4 class="text-muted" id="pattern-sub-heading">URN ➞ Landing Page</h4>
+          <h4 class="text-muted" id="pattern-sub-heading">Landing Page ➞ URN NBN</h4>
 
           <p class="" id="publisher-description"></p>
 
@@ -63,7 +63,7 @@ $(function() {
           <p id="citation"><span style="font-variant: small-caps;">Lawrence, J., Kaplan, I., and Collard, A.</span> 
 Understanding the Perspectives of Refugee Unaccompanied Minors Using a Computer-Assisted Interview.
 <em>Forum Qualitative Sozialforschung 17</em>, 2 (2016), 1-19.
-<a href="http://nbn-resolving.de/urn:nbn:de:0114-fqs160268">http://nbn-resolving.de/urn:nbn:de:0114-fqs160268</a>.
+<a href="https://nbn-resolving.de/urn:nbn:de:0114-fqs160268">https://nbn-resolving.de/urn:nbn:de:0114-fqs160268</a>.
 </p>
           </div>
 
@@ -72,9 +72,9 @@ Understanding the Perspectives of Refugee Unaccompanied Minors Using a Computer-
           <p>This is a summary of the links that should be provided:</p>
 
           <ul>
-            <li>The Landing Page should provide a link with the
+			<li>The Landing Page should provide a link with the
             <code>cite-as</code> relation type pointing at the
-            HTTP URN URI.</li>
+            HTTP URI rendering of the URN NBN.</li>
           </ul>
         </div>
       </div>
@@ -102,7 +102,7 @@ Understanding the Perspectives of Refugee Unaccompanied Minors Using a Computer-
 
           <div style=
           "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd"><br>
-          The HTTP Link header to express identity for the
+          The HTTP Link header to express the persistent identifier for the scholarly object with
           <b>Landing Page URI</b><br>
             <tt>https://www.qualitative-research.net/index.php/fqs/article/view/2483</tt>
             is:<br>
@@ -113,48 +113,11 @@ Understanding the Perspectives of Refugee Unaccompanied Minors Using a Computer-
               <br>
               <br>
 
-              <code>Link: &lt;http://nbn-resolving.de/urn:nbn:de:0114-fqs160268&gt;<br>
+              <code>Link: &lt;https://nbn-resolving.de/urn:nbn:de:0114-fqs160268&gt;<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
             </div>
           </div>
 
-<!--
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link header to express identity for the
-            <b>Publication HTML URI</b><br>
-            <tt>http://www.qualitative-research.net/index.php/fqs/article/view/2483/3972</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>            
-              <code>curl -I &quot;http://www.qualitative-research.net/index.php/fqs/article/view/2483/3972&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;http://nbn-resolving.de/urn:nbn:de:0114-fqs160268&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link header to express identity for the
-            <b>Publication PDF URI</b><br>
-            <tt>http://www.qualitative-research.net/index.php/fqs/article/download/2483/3973</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>            
-              <code>curl -I &quot;http://www.qualitative-research.net/index.php/fqs/article/download/2483/3973&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;http://nbn-resolving.de/urn:nbn:de:0114-fqs160268&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
-            </div>
-          </div>
--->
 
         </div>
       </div>

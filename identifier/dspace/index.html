@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href=
   "/static/images/favicon-16x16.png">
 
-  <title>Identifier - Signposting the Scholarly Web</title>
+  <title>Identifier Pattern Scenario - Signposting the Scholarly Web</title>
   <!-- Bootstrap core CSS -->
   <link href="/static/css/bootstrap.min.css" rel="stylesheet" type=
   "text/css">
@@ -49,9 +49,9 @@ $(function() {
       <div class="jumbo">
         <div style="display: inline-block; width: 89%;">
           <h3 id="publisher-name" style=
-          "margin: 0; margin-bottom: 10px;">Identifier</h3>
+          "margin: 0; margin-bottom: 10px;">Identifier Pattern Scenario</h3>
 
-          <h4 class="text-muted" id="pattern-sub-heading">Handle ➞ Landing Page</h4>
+          <h4 class="text-muted" id="pattern-sub-heading">Landing Page ➞ Handle</h4>
 
           <p class="" id="publisher-description"></p>
 
@@ -63,9 +63,9 @@ $(function() {
           <p id="citation"><span style="font-variant: small-caps;">Morency, L.-P., Quattoni, A., and Darrell, T.</span> 
 Latent-Dynamic Discriminative Models for Continuous Gesture Recognition. Tech. Rep. MIT-CSAIL-TR-2007-002, 
 Massachusetts Institute of Technology Computer Science and Artificial Intelligence Laboratory, Jan. 2007.
-<a href="http://hdl.handle.net/1721.1/35276">http://hdl.handle.net/1721.1/35276</a>.
+<a href="https://hdl.handle.net/1721.1/35276">https://hdl.handle.net/1721.1/35276</a>.
 
-<!-- labelled as preprint because a later version is published at http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=4270324&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D4270324 --></p>
+<!-- labelled as preprint because a later version is published at https://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=4270324&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D4270324 --></p>
           </div>
 
           <p id="summary"></p>
@@ -73,9 +73,9 @@ Massachusetts Institute of Technology Computer Science and Artificial Intelligen
           <p>This is a summary of the links that should be provided:</p>
 
           <ul>
-            <li>The Landing Page should provide a link with the
+			<li>The Landing Page should provide a link with the
             <code>cite-as</code> relation type pointing at the
-            HTTP Handle URI.</li>
+            HTTP URI rendering of the handle.</li>
           </ul>
         </div>
       </div>
@@ -103,7 +103,7 @@ Massachusetts Institute of Technology Computer Science and Artificial Intelligen
 
           <div style=
           "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd"><br>
-          The HTTP Link header to express identity for the
+          The HTTP Link header to express the persistent identifier for the scholarly object with
           <b>Landing Page URI</b><br>
             <tt>https://dspace.mit.edu/handle/1721.1/35276</tt>
             is:<br>
@@ -114,7 +114,7 @@ Massachusetts Institute of Technology Computer Science and Artificial Intelligen
               <br>
               <br>
 
-              <code>Link: &lt;http://hdl.handle.net/1721.1/35276&gt;<br>
+              <code>Link: &lt;https://hdl.handle.net/1721.1/35276&gt;<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
             </div>
           </div>
@@ -126,16 +126,16 @@ Massachusetts Institute of Technology Computer Science and Artificial Intelligen
           "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
             The HTTP Link header to express identity for the
             <b>Publication PDF URI</b><br>
-            <tt>http://dspace.mit.edu/bitstream/handle/1721.1/35276/MIT-CSAIL-TR-2007-002.pdf</tt>
+            <tt>https://dspace.mit.edu/bitstream/handle/1721.1/35276/MIT-CSAIL-TR-2007-002.pdf</tt>
             is:<br>
 
             <div style="background: #fff; margin: 0 10px;">
               <br>            
-              <code>curl -I &quot;http://dspace.mit.edu/bitstream/handle/1721.1/35276/MIT-CSAIL-TR-2007-002.pdf&quot;</code>
+              <code>curl -I &quot;https://dspace.mit.edu/bitstream/handle/1721.1/35276/MIT-CSAIL-TR-2007-002.pdf&quot;</code>
               <br>
               <br>
 
-              <code>Link: &lt;http://hdl.handle.net/1721.1/35276&gt;<br>
+              <code>Link: &lt;https://hdl.handle.net/1721.1/35276&gt;<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
             </div>
           </div>
@@ -144,16 +144,16 @@ Massachusetts Institute of Technology Computer Science and Artificial Intelligen
           "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
             The HTTP Link header to express identity for the
             <b>Publication PS URI</b><br>
-            <tt>http://dspace.mit.edu/bitstream/handle/1721.1/35276/MIT-CSAIL-TR-2007-002.ps</tt>
+            <tt>https://dspace.mit.edu/bitstream/handle/1721.1/35276/MIT-CSAIL-TR-2007-002.ps</tt>
             is:<br>
 
             <div style="background: #fff; margin: 0 10px;">
               <br>            
-              <code>curl -I &quot;http://dspace.mit.edu/bitstream/handle/1721.1/35276/MIT-CSAIL-TR-2007-002.ps&quot;</code>
+              <code>curl -I &quot;https://dspace.mit.edu/bitstream/handle/1721.1/35276/MIT-CSAIL-TR-2007-002.ps&quot;</code>
               <br>
               <br>
 
-              <code>Link: &lt;http://hdl.handle.net/1721.1/35276&gt;<br>
+              <code>Link: &lt;https://hdl.handle.net/1721.1/35276&gt;<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
             </div>
           </div>

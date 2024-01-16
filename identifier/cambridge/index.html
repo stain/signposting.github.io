@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href=
   "/static/images/favicon-16x16.png">
 
-  <title>Identifier - Signposting the Scholarly Web</title>
+  <title>Identifier Pattern Scenario - Signposting the Scholarly Web</title>
   <!-- Bootstrap core CSS -->
   <link href="/static/css/bootstrap.min.css" rel="stylesheet" type=
   "text/css">
@@ -49,9 +49,9 @@ $(function() {
       <div class="jumbo">
         <div style="display: inline-block; width: 89%;">
           <h3 id="publisher-name" style=
-          "margin: 0; margin-bottom: 10px;">Identifier</h3>
+          "margin: 0; margin-bottom: 10px;">Identifier Pattern Scenario</h3>
 
-          <h4 class="text-muted" id="pattern-sub-heading">DOI ➞ Landing Page</h4>
+          <h4 class="text-muted" id="pattern-sub-heading">Landing Page ➞ DOI</h4>
 
           <p class="" id="publisher-description"></p>
 
@@ -76,7 +76,7 @@ $(function() {
           <ul>
             <li>The Landing Page should provide a link with the
             <code>cite-as</code> relation type pointing at the
-            HTTP DOI URI.</li>
+            HTTP URI rendering of the DOI.</li>
           </ul>
         </div>
       </div>
@@ -104,7 +104,7 @@ $(function() {
 
           <div style=
           "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd"><br>
-          The HTTP Link header to express identity for the
+          The HTTP Link header to express the persistent identifier for the scholarly object with
           <b>Landing Page URI</b><br>
             <tt>https://www.cambridge.org/core/journals/journal-of-nutritional-science/article/vitamin-d3-and-25hydroxyvitamin-d3-in-pork-and-their-relationship-to-vitamin-d-status-in-pigs/E67B8F358A4D6C1F06AB45BC43065007</tt>
             is:<br>
@@ -119,66 +119,6 @@ $(function() {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
             </div>
           </div>
-
-
-
-
-<!--
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link header to express identity for the
-            <b>Publication HTML URI</b><br>
-            <tt>http://journals.cambridge.org/action/displayFulltext?type=6&amp;fid=10107487&amp;jid=JNS&amp;volumeId=5&amp;aid=10107486</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>            
-              <code>curl -I &quot;http://journals.cambridge.org/action/displayFulltext?type=6&amp;fid=10107487&amp;jid=JNS&amp;volumeId=5&amp;aid=10107486&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;https://doi.org/10.1017/jns.2015.28&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link header to express identity for the
-            <b>Publication PDF URI</b><br>
-            <tt>http://journals.cambridge.org/download.php?file=%2FJNS%2FJNS5%2FS2048679015000282a.pdf</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>            
-              <code>curl -I &quot;http://journals.cambridge.org/download.php?file=%2FJNS%2FJNS5%2FS2048679015000282a.pdf&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;https://doi.org/10.1017/jns.2015.28&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link header to express identity for the
-            <b>Publication EPUB URI</b><br>
-            <tt>http://journals.cambridge.org/action/downloadEpub?aid=10107486</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>            
-              <code>curl -I &quot;http://journals.cambridge.org/action/downloadEpub?aid=10107486&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;https://doi.org/10.1017/jns.2015.28&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
-            </div>
-          </div>
--->
 
 
         </div>
