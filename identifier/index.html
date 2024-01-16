@@ -12,7 +12,7 @@
         <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
 
-        <title>Identifier - Signposting the Scholarly Web</title>
+        <title>Identifier Pattern - Signposting the Scholarly Web</title>
 
         <!-- Bootstrap core CSS -->
         <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -43,20 +43,20 @@ $(function() {
             <div class="row">
                 <div class="jumbo">
                     <div class="">
-                        <h3 style="margin: 0; margin-bottom: 10px;">Identifier</h3>
+                        <h3 style="margin: 0; margin-bottom: 10px;">Identifier Pattern</h3>
                         <h4 class="text-muted">Signposting the Scholarly Web</h4>
                         <div class="">
-                            Use <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">Typed Links</a> in 
-                            <a href="http://tools.ietf.org/html/rfc5988">HTTP Link headers</a> to convey the  
-                             preferred <a href="/conventions/#identifier">Identifying HTTP URI</a> of a resource to machines. 
-                            The <a href="/conventions/#identifier">Identifying HTTP URI</a> conveyed in this manner serves as a 
-                             replacement of the URI of the resource that conveys the link and is intended for 
-                             persistent referencing.
-                            <br/><br/>
-                            The following relation type is used in the Identifier pattern: 
-                            <ul>
-                                <li>To convey the preferred <a href="/conventions/#identifier">Identifying HTTP URI</a> of a resource: <code>cite-as</code></li>
-                            </ul>
+						To help machines discover the persistent identifier of a <a href="http://signposting.org/conventions/#scholobject">scholarly object</a>, use the <code>cite-as</code> 
+                        <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation type</a> 
+                        to link from the object's <a href="http://signposting.org/conventions/#scholobject">landing page</a> 
+                        to the URI that persistently identifies the object. Object identifiers that are conveyed on links with the <code>cite-as</code> 
+                        relation type should be HTTP URIs chosen from namespaces that are widely supported by the community, 
+                        such as <a href="https://doi.org">DOI</a>, <a href="http://handle.net/">handle</a>, and <a href="https://arks.org/about/">ark</a> but 
+                        could also be HTTP URIs that are pro-actively kept persistent by the custodians of the objects they identify.
+                        <br /><br />                        
+                        The below examples illustrate the use of <code>cite-as</code> links in the 
+                        <a href="http://tools.ietf.org/html/rfc5988">HTTP Link header</a> of HTML landing pages. But <code>cite-as</code> links can also be provided in 
+                        that page's HTML <code>link</code> element and/or in a <a href="https://signposting.org/FAIR/#linksetrec">Link Set</a> that is discoverable from the landing page.
                         </div>
                     </div>
                 </div>
@@ -71,13 +71,15 @@ $(function() {
                             <li>
                                 <b>DOI/Handle &#10142; Landing Page</b>
                                 <p>
-                                The publication is identified by a DOI or a handle, which redirects to a landing page. The landing page may link to resources that are part of the publication but are not identified by their own individual Identifying HTTP URIs. Examples are various renderings of an article, supplementary information, data, etc. <br/>
+                                The scholarly object is identified by a DOI or a handle, which redirects to a landing page. 
+                                <br/>
                                 <a href="/identifier/cambridge/index.html">Example 1 &raquo;</a>  &nbsp; 
                                 <a href="/identifier/dspace/index.html">Example 2 &raquo;</a> &nbsp;
                                 <a href="/identifier/fqs/index.html">Example 3 &raquo;</a> &nbsp;
                                 <!--<a href="/identifier/dryad/">Example 4 &raquo;</a> &nbsp;-->
                                 </p>
                             </li>
+                            <!--
                             <li>
                                 <b>DOI/Handle &#10142; Landing Page &#10142; Publication Resources with individual Identifying HTTP URI</b>
                                 <p>
@@ -85,20 +87,25 @@ $(function() {
                                 <a href="/identifier/harvard_dataverse/index.html">Example &raquo;</a>
                                 </p>
                             </li>
+                            -->
                             <li>
-                                <b>DOI/Handle &#10142; Publication</b>
+                                <b>DOI/Handle &#10142; Landing Page (which is a Content Resource)</b>
                                 <p>
-                                The publication is identified by a DOI or a handle, which redirects to an HTML rendering of an article. The latter may link to other resources that are not identified by their own individual Identifying HTTP URIs but are part of the publication, such as different renderings of an article, supplementary information, data, etc.<br/>
-                                <a href="/identifier/nature/index.html">Example &raquo;</a>
+                                The scholarly object is identified by a DOI or a handle, which redirects to a landing page, which is an HTML rendering of an article. 
+                                <br/>
+                                <a href="/identifier/plos/index.html">Example &raquo;</a>
                                 </p>
                             </li>
                             <li>
-                                <b>Repository Stable HTTP URI &#10142; Landing Page</b>
+                                <b>Persistent HTTP URI &#10142; Landing Page</b>
                                 <p>
-                                The publication is identified by a dedicated HTTP URI, minted by the portal and intended to be persistent. This stable HTTP URI redirects to a landing page, which may link to resources that are part of the publication but not identified by their own individual Identifying HTTP URIs, such as various renderings of an article, supplementary information, data, etc. <br/>
+                                The scholarly object is identified by an HTTP URI, which is minted by the repository and is pro-actively managed to remain persistent. 
+                                That HTTP URI redirects to a landing page.
+                                <br/>
                                 <a  href="/identifier/eprints/index.html">Example &raquo;</a>
                                 </p>
                             </li>
+                            <!--
                             <li>
                                 <b>Author Description Page &#10142; Author Identifying HTTP URI</b>
                                 <p>
@@ -108,6 +115,7 @@ $(function() {
                                 <a href="/identifier/dtu/">Example 2 &raquo;</a>
                                 </p>
                             </li>
+                            -->
                         </ul>
                     </div>
                 </div>
