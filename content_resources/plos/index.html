@@ -19,7 +19,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href=
   "/static/images/favicon-16x16.png">
 
-  <title>Content Resources Scenario - Signposting the Scholarly Web</title><!-- Bootstrap core CSS -->
+  <title>Content Resources Scenario - Signposting the Scholarly
+  Web</title><!-- Bootstrap core CSS -->
   <link href="/static/css/bootstrap.min.css" rel="stylesheet" type=
   "text/css">
   <link href="/static/css/signposting.css" rel="stylesheet" type=
@@ -52,8 +53,8 @@ $(function() {
 
         <h3 id="publisher-name">Content Resources Scenario</h3>
 
-        <h4 class="text-muted" id="pattern-sub-heading">Landing
-        Page ➞ Content Resources</h4>
+        <h4 class="text-muted" id="pattern-sub-heading">Landing Page (which is a Content Resource)
+        ➞ Other Publication Resources</h4>
 
         <p class="" id="publisher-description"></p>
 
@@ -63,19 +64,17 @@ $(function() {
         <div class="code" style=
         'font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 16px;'>
         <p id="citation"><span style=
-        "font-variant: small-caps;">Stephens, D. C., Kim, H. M.,
-        Kumar, A., Farahat, A., Boykin, D. W., and Poon G. M.
-        K.</span> Pharmacologic efficacy of PU.1 inhibition by
-        heterocyclic dications: a mechanistic analysis. <em>Nucleic
-        Acids Research 44</em>, 9 (Apr. 2016), 4005-4013. <a href=
-        "https://doi.org/10.1093/nar/gkw229">https://doi.org/10.1093/nar/gkw229</a>.</p>
+        "font-variant: small-caps;">Jones, S., Van de Sompel, H., Shankar, H., Klein, M., Tobin, R., and Grover, C.</span> 
+        Scholarly Context Adrift: Three out of Four URI References Lead to Changed Content. <em>PLoS ONE</em>,
+        11(12): e0167475 (2016). <a href=
+        "https://doi.org/10.1371/journal.pone.0167475">https://doi.org/10.1371/journal.pone.0167475</a>.</p>
         </div>
 
         <p id="summary"></p>
 
         <p>This is a summary of the links that should be provided:</p>
 
-                <ul>
+        <ul>
           <li>The Landing Page should have links with the
           <code>item</code> relation type pointing at each Content
           Resource.</li>
@@ -93,18 +92,18 @@ $(function() {
 
     <div class="row">
       <div class="jumbo" style=
-      "background: #fff; border-bottom: 0px; border-radius: 0px;">
-        <h3 style="margin:0; margin-bottom: 10px;">Link Headers for
-        the Content Resources pattern</h3>
+      "background: #fff; border-bottom: 0px solid #ddd; border-radius: 0px;">
+      <h3 style="margin:0; margin-bottom: 10px;">Link Headers for
+      the Content Resources pattern</h3>
       </div>
     </div>
 
     <div class="pagebreak"></div>
 
     <div class="row plain-row" style="border-bottom: 0px;" id=
-    "publication_boundary">
+    "metadata">
       <img src=
-      "/static/images/publication_boundary_landingpage.png" alt=
+      "/static/images/publication_boundary_publication.png" alt=
       "Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs lvl2-graphs">
 
@@ -114,45 +113,22 @@ $(function() {
           <br>
 
           <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd"><br>
-          The HTTP Link header to link to content resources for the
-          <b>Landing Page URI</b><br>
-            <tt>https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501</tt>
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
+         The HTTP Link header to link to content resources for the
+          <b>Landing Page URI</b> (which is also a content resource)<br>
+            <tt>https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475</tt>
             is:<br>
 
             <div style="background: #fff; margin: 0 10px;">
               <br>
-              <code>curl -I &quot;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&quot;</code>
+              <code>curl -I &quot;https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475&quot;</code>
               <br>
-              <br>
-
-              <code>Link: &lt;https://nar.oxfordjournals.org/content/44/9/4005.full&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"text/html"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://nar.oxfordjournals.org/content/44/9/4005.full.pdf&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://nar.oxfordjournals.org/content/suppl/2016/04/12/gkw229.DC1/nar-00308-f-2016-File002.pdf&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-           The HTTP Link header to link back to the landing page for the
-            <b>Publication HTML URI</b><br>
-            <tt>https://nar.oxfordjournals.org/content/44/9/4005.full</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://nar.oxfordjournals.org/content/44/9/4005.full&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
+              <br>            
+              <code>Link: &lt;https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0167475&type=printable&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://doi.org/10.17605/OSF.IO/B6KJZ&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b></code>
             </div>
           </div>
 
@@ -160,34 +136,28 @@ $(function() {
           "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
             The HTTP Link header to link back to the landing page for the
             <b>Publication PDF URI</b><br>
-            <tt>https://nar.oxfordjournals.org/content/44/9/4005.full.pdf</tt>
+            <tt>https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0167475&type=printable</tt>
             is:<br>
 
             <div style="background: #fff; margin: 0 10px;">
               <br>
-              <code>curl -I &quot;https://nar.oxfordjournals.org/content/44/9/4005.full.pdf&quot;</code>
+              <code>curl -I &quot;https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0167475&type=printable&quot;</code>
               <br>
-              <br>
-              <code>Link: &lt;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&gt;<br>
+              <br>            
+              <code>Link: &lt;https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475&gt;<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
             </div>
           </div>
 
           <div style=
           "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link header to link back to the landing page for the
-            <b>Supplemental Item URI</b><br>
-            <tt>https://nar.oxfordjournals.org/content/suppl/2016/04/12/gkw229.DC1/nar-00308-f-2016-File002.pdf</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://nar.oxfordjournals.org/content/suppl/2016/04/12/gkw229.DC1/nar-00308-f-2016-File002.pdf&quot;</code>
-              <br>
-              <br>
-              <code>Link: &lt;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
-            </div>
+            Note that the second content resource that is made discoverable by means of an <code>item</code> link in the HTTP Link header 
+            of the PLoS ONE landing page is a dataset that resides in a remote repository, i.e. OSF. 
+            That content resource is provided by means of the DOI of the remote dataset,
+            which resolves to a landing page in the remote system. It is unlikely that the custodian of that remote dataset would 
+            provide a <code>collection</code> link back to the landing page of the PLoS ONE article. But, Signposting patterns could 
+            be implemented for this remote dataset, allowing machines to find their way to actual data by following <code>item</code> links from 
+            the landing page for the dataset in the remote repository.
           </div>
         </div>
       </div>
