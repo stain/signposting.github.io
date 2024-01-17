@@ -19,7 +19,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href=
   "/static/images/favicon-16x16.png">
 
-  <title>Bibliographic Metadata - Signposting the Scholarly
+  <title>Metadata Resources Scenario - Signposting the Scholarly
   Web</title><!-- Bootstrap core CSS -->
   <link href="/static/css/bootstrap.min.css" rel="stylesheet" type=
   "text/css">
@@ -52,10 +52,10 @@
       <div class="jumbo">
         <!-- <div style="display: inline-block; width: 89%;"> -->
 
-        <h3 id="publisher-name">Bibliographic Metadata</h3>
+        <h3 id="publisher-name">Metadata Resources Scenario</h3>
 
-        <h4 class="text-muted" id="pattern-sub-heading">Publication
-        ➞ Bibliographic Resources</h4>
+        <h4 class="text-muted" id="pattern-sub-heading">Landing Page (which is a Content Resource) 
+        ➞ Metadata Resources</h4>
 
         <p class="" id="publisher-description"></p>
 
@@ -76,23 +76,18 @@
         <p id="summary"></p>
 
         <p>This is a summary of the links that should be provided:</p>
-
         <ul>
-          <li>The <a href="/conventions/#entry_page">Entry Page</a>, which is an HTML rendering of the article,
-          should provide a link with the <code>describedby</code>
-          relation type pointing to each associated <a href=
-          "/conventions/#bibliographic_resource">Bibliographic
-          Resource</a>. Each link should use the <code>type</code>
-          attribute (and the <code>profile</code> attribute, if
-          needed) to specify the metadata <a href=
-          "/conventions/#bibliographic">format</a>.</li>
+          <li>The Landing Page should have links with the
+          <code>describedby</code> relation type pointing at each Metadata
+          Resource that describes the scholarly object. This includes a link to metadata provided by a Persistent Identifier provider 
+          (e.g. CrossRef, DataCite), if applicable.</li>
 
-          <li>Each <a href=
-          "/conventions/#bibliographic_resource">Bibliographic
-          Resource</a> provided by the portal should provide a link
-          with the <code>describes</code> relation type pointing
-          back to the <a href="/conventions/#entry_page">Entry
-          Page</a>.</li>
+          <li>Each <code>describedby</code> link should have 
+          <a href="https://signposting.org/conventions/#attributes">attributes</a> to express the MIME type and possibly profile of
+          the resource that is the target of the link.</li>
+
+          <li>Metadata Resources that are provided by the repository that is the custodian of the scholarly object should link back to its Landing Page 
+          with the <code>describes</code> relation type.</li>
         </ul>
       </div>
     </div>
@@ -101,7 +96,7 @@
       <div class="jumbo" style=
       "background: #fff;">
       <h3 style="margin:0; margin-bottom: 10px;">Link Headers for
-      the Bibliographic Metadata pattern</h3>
+      the Metadata Resources pattern</h3>
       </div>
     </div>
 
@@ -121,7 +116,7 @@
           <div style=
           "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
           The HTTP Link Header to link to metadata from the
-          <b>Publication HTML URI</b><br>
+          <b>Landing Page URI</b>, which is an HTML publication:<br>
             <tt>http://crln.acrl.org/content/77/5/226.full</tt>
             is:<br>
 
@@ -131,12 +126,10 @@
               <br>
               <br>          
               <code>Link: &lt;http://crln.acrl.org/citmgr?type=refman&amp;gca=crlnews%3B77%2F5%2F226&gt;<br>
-
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;
               type=<b>"application/x-research-info-systems"</b>,<br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://crln.acrl.org/citmgr?type=bibtex&amp;gca=crlnews%3B77%2F5%2F226&gt;<br>
-
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-bibtex"</b><br>
               </code>
@@ -145,7 +138,7 @@
 
           <div style=
           "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-            <p>The HTTP Link header to link from the <b>Metadata RIS
+            <p>The HTTP Link header to link from the <b>RIS metadata
             URI</b><br>
             <tt>http://crln.acrl.org/citmgr?type=refman&amp;gca=crlnews%3B77%2F5%2F226</tt>
             is:<br></p>
@@ -164,8 +157,7 @@
 
           <div style=
           "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-            <p>The HTTP Link header to link from the <b>Metadata
-            BibTeX URI</b><br>
+            <p>The HTTP Link header to link from the <b>BibTeX Metadata URI</b><br>
             <tt>http://crln.acrl.org/citmgr?type=bibtex&amp;gca=crlnews%3B77%2F5%2F226</tt>
             is:<br></p>
 
