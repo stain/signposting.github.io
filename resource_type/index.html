@@ -13,7 +13,7 @@
         <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
 
-        <title>Resource Type - Signposting the Scholarly Web</title>
+        <title>Resource Type Pattern - Signposting the Scholarly Web</title>
 
         <!-- Bootstrap core CSS -->
         <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@ $(function() {
             <!-- Main component for a primary marketing message or call to action -->
             <div class="row">
                 <div class="jumbo">
-                    <h3 style="margin: 0; margin-bottom: 10px;">Resource Type</h3>
+                    <h3 style="margin: 0; margin-bottom: 10px;">Resource Type Pattern</h3>
                     <h4 class="text-muted">Signposting the Scholarly Web</h4>
                     
                         <div class="">
@@ -54,7 +54,7 @@ $(function() {
                         to link from the object's <a href="http://signposting.org/conventions/#scholobject">landing page</a> 
                         to a URI for the object's type. A URI for an object's type conveyed on links with the <code>type</code> 
                         relation type should be an HTTP URI chosen from namespaces that are widely supported by the community, 
-                        such as <a href="https://schema.org">schema.org</a> or <a href="https://vocabularies.coar-repositories.org/documentation/resource_types/">COAR Controlled Vocabulary for Resource Types</a>.
+                        such as <a href="https://schema.org">schema.org</a> or the <a href="https://vocabularies.coar-repositories.org/documentation/resource_types/">COAR Controlled Vocabulary for Resource Types</a>.
                         <br /><br />  
                         In case of a traditional landing page that describes the scholarly object, provide two <code>type</code> links, 
                         one to convey that a landing page is concerned (i.e. https://schema.org/AboutPage) 
@@ -76,7 +76,7 @@ $(function() {
                             <li>
                                 <b>Landing Page &#10142; Resource Type</b>
                                 <p>
-                                Express that the scholarly object is an article.<br/>
+                                Express that the scholarly object is an article and flag the landing page as describing the scholarly object.<br/>
                                 <a  href="/resource_type/cambridge/">Example 1 &raquo;</a> &nbsp;
                                 <a  href="/resource_type/dspace/">Example 2 &raquo;</a>
                                 </p>
@@ -84,9 +84,9 @@ $(function() {
                             <li>
                                 <b>Landing Page (which is also a Content Resource) &#10142; Resource Type</b>
                                 <p>
-                                Express that the resource identified by a Repository Stable HTTP URI is a scholarly article.
+                                Express that the scholarly object is an article.
                                 <br/>
-                                <a href="/resource_type/eprints/">Example &raquo;</a>
+                                <a href="/resource_type/plos/">Example &raquo;</a>
                                 </p>
                             </li>
                         </ul>
