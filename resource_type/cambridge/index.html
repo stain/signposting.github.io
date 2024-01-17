@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href=
   "/static/images/favicon-16x16.png">
 
-  <title>Resource Type - Signposting the Scholarly Web</title>
+  <title>Resource Type Scenario - Signposting the Scholarly Web</title>
   <!-- Bootstrap core CSS -->
   <link href="/static/css/bootstrap.min.css" rel="stylesheet" type=
   "text/css">
@@ -49,9 +49,9 @@ $(function() {
       <div class="jumbo">
         <div style="display: inline-block; width: 89%;">
           <h3 id="publisher-name" style=
-          "margin: 0; margin-bottom: 10px;">Resource Type</h3>
+          "margin: 0; margin-bottom: 10px;">Resource Type Scenario</h3>
 
-          <h4 class="text-muted" id="pattern-sub-heading">DOI for Articles</h4>
+          <h4 class="text-muted" id="pattern-sub-heading">Landing Page &#10142; Resource Type</h4>
 
           <p class="" id="publisher-description"></p>
 
@@ -74,9 +74,8 @@ $(function() {
           <p>This is a summary of the links that should be provided:</p>
 
           <ul>
-               <li>The Identifying DOI HTTP URI expresses the type of the resource it identifies with a link that has the the <code>type</code>
-                  relation type and that points at the <a href="http://schema.org/ScholarlyArticle">http://schema.org/ScholarlyArticle</a> term from  
-                  <a href="http://schema.org">schema.org</a>.</li>
+               <li>The Landing Page should have a link with the <code>type</code> relation type to convey the type of the scholarly object.</li>
+               <li>The Landing Page should have a link with the <code>type</code> relation type to convey that it is a landing page.</li>
           </ul>
 
         </div>
@@ -94,7 +93,7 @@ $(function() {
 
     <div class="row plain-row" style="border-bottom: 0px;" id=
     "identifier">
-      <img src="/static/images/resource_type_doi.png"
+      <img src="/static/images/resource_type_landingpage1.png"
       alt="Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs">
 
@@ -106,18 +105,21 @@ $(function() {
           <div style=
           "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd"><br>
           The HTTP Link header to express the relation type for the
-          <b>Identifying HTTP URI</b><br>
-            <tt>https://doi.org/10.1017/jns.2015.28</tt>
+          <b>Landing Page HTTP URI</b><br>
+            <tt>https://www.cambridge.org/core/journals/journal-of-nutritional-science/article/vitamin-d3-and-25hydroxyvitamin-d3-in-pork-and-their-relationship-to-vitamin-d-status-in-pigs/E67B8F358A4D6C1F06AB45BC43065007</tt>
             is:<br>
 
             <div style="background: #fff; margin: 0 10px;">
               <br>
-              <code>curl -I &quot;https://doi.org/10.1017/jns.2015.28&quot;</code>
+              <code>curl -I &quot;https://www.cambridge.org/core/journals/journal-of-nutritional-science/article/vitamin-d3-and-25hydroxyvitamin-d3-in-pork-and-their-relationship-to-vitamin-d-status-in-pigs/E67B8F358A4D6C1F06AB45BC43065007&quot;</code>
               <br>
               <br>
 
               <code>Link: &lt;http://schema.org/ScholarlyArticle&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"type"</b></code>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"type"</b>,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://schema.org/AboutPage&gt;<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"type"</b><br>
+              </code>
             </div>
           </div>
 

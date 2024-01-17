@@ -46,60 +46,49 @@ $(function() {
                 <div class="jumbo">
                     <h3 style="margin: 0; margin-bottom: 10px;">Resource Type</h3>
                     <h4 class="text-muted">Signposting the Scholarly Web</h4>
-                    <div class="">
-                        Use <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">Typed Links</a> in 
-                        <a href="http://tools.ietf.org/html/rfc5988">HTTP Link headers</a> to convey the semantic type of a resource to machines.
-                        <br /><br />
-                        The following relation type is used in the Resource Type pattern:
-                        <ul>
-                            <li>To express the semantic type of an <a href="http://signposting.org/conventions/#identifier">Identifying HTTP URI</a>, a <a href="http://signposting.org/conventions/#repository_uri">Repository Stable HTTP URI</a> or an <a href="http://signposting.org/conventions/#author_identifier">Author Identifying HTTP URI</a>: <code>type</code>. 
-                            To align with web best practice, 
-                             semantic types that are conveyed on links with the "type" relation type should be chosen from the 
-                            <a href="http://schema.org">schema.org</a> ontology. But, additionally, HTTP URIs from other ontologies 
-                            can be chosen if more expressiveness is required.</li>
-                        </ul>
+                    
+                        <div class="">
+                        To convey the type of a <a href="http://signposting.org/conventions/#scholobject">scholarly object</a> (e.g. article, dataset, software) to machines, 
+                        use the <code>type</code> 
+                        <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation type</a> 
+                        to link from the object's <a href="http://signposting.org/conventions/#scholobject">landing page</a> 
+                        to a URI for the object's type. A URI for an object's type conveyed on links with the <code>type</code> 
+                        relation type should be an HTTP URI chosen from namespaces that are widely supported by the community, 
+                        such as <a href="https://schema.org">schema.org</a> or <a href="https://vocabularies.coar-repositories.org/documentation/resource_types/">COAR Controlled Vocabulary for Resource Types</a>.
+                        <br /><br />  
+                        In case of a traditional landing page that describes the scholarly object, provide two <code>type</code> links, 
+                        one to convey that a landing page is concerned (i.e. https://schema.org/AboutPage) 
+                        and one to convey the actual type of the object. In case of a landing page that also is a content resource 
+                        (e.g. an HTML article to which the object's persistent identifier redirects), provide one <code>type</code> link 
+                         to convey the actual type of the object.
+                        <br /><br />                        
+                        The below examples illustrate the use of <code>type</code> links in the 
+                        <a href="http://tools.ietf.org/html/rfc5988">HTTP Link header</a> of HTML landing pages. But <code>type</code> links can also be provided in 
+                        that page's HTML <code>link</code> element and/or in a <a href="https://signposting.org/FAIR/#linksetrec">Link Set</a> that is discoverable from the landing page.
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
-                    <h3 style="margin: 0; margin-bottom: 10px;">Resource Type Approaches</h3>
-                    <h4 class="text-muted">Select a scenario and inspect how to implement Signposting:</h4>
+                    <h3 style="margin: 0; margin-bottom: 10px;">Resource Type Scenarios</h3>
                     <div class="" style="padding: 10px;">
                         <ul>
                             <li>
-                                <b>DOI/Handle for Articles</b>
+                                <b>Landing Page &#10142; Resource Type</b>
                                 <p>
-                                Express that the resource identified by a DOI or a Handle is a scholarly article.<br/>
+                                Express that the scholarly object is an article.<br/>
                                 <a  href="/resource_type/cambridge/">Example 1 &raquo;</a> &nbsp;
                                 <a  href="/resource_type/dspace/">Example 2 &raquo;</a>
                                 </p>
                             </li>
                             <li>
-                                <b>DOI/Handle for Datasets</b>
-                                <p>
-                                Express that the resource identified by a DOI or a Handle is a dataset.
-                                <br/>
-                                <a href="/resource_type/dryad/">Example &raquo;</a>
-                                </p>
-                            </li>
-                            <li>
-                                <b>Repository Stable HTTP URI for Articles</b>
+                                <b>Landing Page (which is also a Content Resource) &#10142; Resource Type</b>
                                 <p>
                                 Express that the resource identified by a Repository Stable HTTP URI is a scholarly article.
                                 <br/>
                                 <a href="/resource_type/eprints/">Example &raquo;</a>
                                 </p>
                             </li>
-                            <li>
-                                <b>Author Identifying HTTP URI</b>
-                                <p>
-                                Express that the Author Identifying HTTP URI identifies a person.
-                                <br/>
-                                <a href="/resource_type/orcid/">Example &raquo;</a>
-                                </p>
-                            </li>
-                        
                         </ul>
                     </div>
                 </div>
