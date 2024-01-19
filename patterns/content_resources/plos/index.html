@@ -98,73 +98,80 @@ $(function() {
       </div>
     </div>
 
-    <div class="pagebreak"></div>
-
     <div class="row plain-row" style="border-bottom: 0px;" id=
     "metadata">
       <img src=
       "/static/images/publication_boundary_publication.png" alt=
       "Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs lvl2-graphs">
+      
+     <br /><br />   
+      
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link to content resources for the
+<b>Landing Page URI</b> (which is also a content resource)<br>
+<tt>https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475"
 
-      <div id="boundaryheaders" class="link_headers">
-        <div>
-          <br>
-          <br>
+Link: &lt;https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0167475&type=printable&gt; ; rel="item" ; type="application/pdf",
+ ;&lt;http://doi.org/10.17605/OSF.IO/B6KJZ&gt; ; rel="item"
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-         The HTTP Link header to link to content resources for the
-          <b>Landing Page URI</b> (which is also a content resource)<br>
-            <tt>https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475</tt>
-            is:<br>
+<br /><br />
 
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475&quot;</code>
-              <br>
-              <br>            
-              <code>Link: &lt;https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0167475&type=printable&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://doi.org/10.17605/OSF.IO/B6KJZ&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b></code>
-            </div>
-          </div>
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>Publication PDF URI</b><br>
+<tt>https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0167475&type=printable</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0167475&type=printable"
 
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link header to link back to the landing page for the
-            <b>Publication PDF URI</b><br>
-            <tt>https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0167475&type=printable</tt>
-            is:<br>
+Link: &lt;https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475&gt; ; rel="collection"
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0167475&type=printable&quot;</code>
-              <br>
-              <br>            
-              <code>Link: &lt;https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
-            </div>
-          </div>
+<br /><br />
 
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            Note that the second content resource that is made discoverable by means of an <code>item</code> link in the HTTP Link header 
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">Note that the second content resource that is made discoverable by means of an <code>item</code> link in the HTTP Link header 
             of the PLoS ONE landing page is a dataset that resides in a remote repository, i.e. OSF. 
             That content resource is provided by means of the DOI of the remote dataset,
             which resolves to a landing page in the remote system. It is unlikely that the custodian of that remote dataset would 
             provide a <code>collection</code> link back to the landing page of the PLoS ONE article. But, Signposting patterns could 
             be implemented for this remote dataset, allowing machines to find their way to actual data by following <code>item</code> links from 
             the landing page for the dataset in the remote repository.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pagebreak"></div>
-  </div><!-- /container -->
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      </div><!-- row -->
+    </div><!-- jumbo -->
+  </div><!-- container -->
 
   <div class="footer" id="footer"></div>
 </body>
