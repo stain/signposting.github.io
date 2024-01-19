@@ -101,16 +101,14 @@ $(function() {
 <tbody>
 <tr>
 <td style="width: 80%;">The HTTP Link header to express the persistent identifier for the scholarly object with
-          <b>Landing Page URI</b><br>
-            <tt>https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475</tt>
-            is:</td>
+<b>Landing Page URI</b><br>
+<tt>https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475</tt> is:</td>
 </tr>
 <tr>
 <td>
-<pre>$ curl "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475"
+<pre>$ curl -I "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475"
 
-Link: &lt;https://doi.org/10.1371/journal.pone.0167475gt; ; rel="cite-as" 
-
+Link: &lt;https://doi.org/10.1371/journal.pone.0167475&gt; ; rel="cite-as" 
 </pre>
 </td>
 </tr>
@@ -118,42 +116,10 @@ Link: &lt;https://doi.org/10.1371/journal.pone.0167475gt; ; rel="cite-as"
 </table>
 </div>
       
-      
-      
 
-  <!--    
-      
-
-      <div id="identifierheaders" class="link_headers">
-        <div>
-          <br>
-          <br>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd"><br>
-          The HTTP Link header to express the persistent identifier for the scholarly object with
-          <b>Landing Page URI</b><br>
-            <tt>https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;https://doi.org/10.1371/journal.pone.0167475&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
-            </div>
-          </div>
-
--->
-        </div>
-      </div>
-    </div>
-
-    <div class="pagebreak"></div>
-  </div><!-- /container -->
+      </div><!-- row -->
+    </div><!-- jumbo -->
+  </div><!-- container -->
 
   <div class="footer" id="footer"></div>
 </body>
