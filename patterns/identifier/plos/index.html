@@ -82,18 +82,46 @@ $(function() {
 
     <div class="row">
       <div class="jumbo" style="background: #fff">
-        <h3 style="margin:0; margin-bottom: 10px;">Link Headers for
-        the Identifier pattern</h3>
+        <h3 style="margin:0; margin-bottom: 10px;">Link Headers for the Identifier pattern</h3>
       </div>
     </div>
 
-    <div class="pagebreak"></div>
+    <br /><br />
 
     <div class="row plain-row" style="border-bottom: 0px;" id=
     "identifier">
       <img src="/static/images/identifier_doi_publication.png"
       alt="Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs">
+      
+      
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">The HTTP Link header to express the persistent identifier for the scholarly object with
+          <b>Landing Page URI</b><br>
+            <tt>https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475</tt>
+            is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0167475"
+
+Link: &lt;https://doi.org/10.1371/journal.pone.0167475gt; ; rel="cite-as" 
+
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      
+      
+
+  <!--    
+      
 
       <div id="identifierheaders" class="link_headers">
         <div>
@@ -118,7 +146,7 @@ $(function() {
             </div>
           </div>
 
-
+-->
         </div>
       </div>
     </div>
