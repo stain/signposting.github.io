@@ -96,37 +96,34 @@ $(function() {
       <img src="/static/images/identifier_doi_landingpage.png"
       alt="Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs">
+      
+      
+     <br /><br />     
+      
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">The HTTP Link header to express the persistent identifier for the scholarly object with
+<b>Landing Page URI</b><br>
+<tt>https://www.cambridge.org/core/journals/journal-of-nutritional-science/article/vitamin-d3-and-25hydroxyvitamin-d3-in-pork-and-their-relationship-to-vitamin-d-status-in-pigs/E67B8F358A4D6C1F06AB45BC43065007</tt>
+is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://www.cambridge.org/core/journals/journal-of-nutritional-science/article/vitamin-d3-and-25hydroxyvitamin-d3-in-pork-and-their-relationship-to-vitamin-d-status-in-pigs/E67B8F358A4D6C1F06AB45BC43065007"
 
-      <div id="identifierheaders" class="link_headers">
-        <div>
-          <br>
-          <br>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd"><br>
-          The HTTP Link header to express the persistent identifier for the scholarly object with
-          <b>Landing Page URI</b><br>
-            <tt>https://www.cambridge.org/core/journals/journal-of-nutritional-science/article/vitamin-d3-and-25hydroxyvitamin-d3-in-pork-and-their-relationship-to-vitamin-d-status-in-pigs/E67B8F358A4D6C1F06AB45BC43065007</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://www.cambridge.org/core/journals/journal-of-nutritional-science/article/vitamin-d3-and-25hydroxyvitamin-d3-in-pork-and-their-relationship-to-vitamin-d-status-in-pigs/E67B8F358A4D6C1F06AB45BC43065007&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;https://doi.org/10.1017/jns.2015.28&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b></code>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-    </div>
-
-    <div class="pagebreak"></div>
-  </div><!-- /container -->
+Link: &lt;https://doi.org/10.1017/jns.2015.28&gt; ; rel="cite-as" 
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      </div><!-- row -->
+    </div><!-- jumbo -->
+  </div><!-- container -->      
 
   <div class="footer" id="footer"></div>
 </body>
