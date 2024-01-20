@@ -99,7 +99,6 @@ $(function() {
       </div>
     </div>
 
-    <div class="pagebreak"></div>
 
     <div class="row plain-row" style="border-bottom: 0px;" id=
     "publication_boundary">
@@ -107,95 +106,74 @@ $(function() {
       "/static/images/publication_boundary_landingpage.png" alt=
       "Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs lvl2-graphs">
+      
+<br /><br />   
+      
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link to content resources for the
+<b>Landing Page URI</b><br>
+<tt>https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501"
 
-      <div id="boundaryheaders" class="link_headers">
-        <div>
-          <br>
-          <br>
+Link: &lt;https://nar.oxfordjournals.org/content/44/9/4005.full&gt; ; rel="item" ; type="text/html",
+ &lt;https://nar.oxfordjournals.org/content/44/9/4005.full.pdf&gt; ; rel="item" ; type="application/pdf",
+ &lt;https://nar.oxfordjournals.org/content/suppl/2016/04/12/gkw229.DC1/nar-00308-f-2016-File002.pdf&gt; ; rel="item" ; type="application/pdf"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>Publication HTML URI</b><br>
+<tt>https://nar.oxfordjournals.org/content/44/9/4005.full</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://nar.oxfordjournals.org/content/44/9/4005.full"
 
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd"><br>
-          The HTTP Link header to link to content resources for the
-          <b>Landing Page URI</b><br>
-            <tt>https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501</tt>
-            is:<br>
+Link: &lt;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>Publication PDF URI</b><br>
+<tt>https://nar.oxfordjournals.org/content/44/9/4005.full.pdf</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://nar.oxfordjournals.org/content/44/9/4005.full.pdf"
 
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&quot;</code>
-              <br>
-              <br>
+Link: &lt;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>Supplemental Item URI</b><br>
+<tt>https://nar.oxfordjournals.org/content/suppl/2016/04/12/gkw229.DC1/nar-00308-f-2016-File002.pdf</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://nar.oxfordjournals.org/content/suppl/2016/04/12/gkw229.DC1/nar-00308-f-2016-File002.pdf"
 
-              <code>Link: &lt;https://nar.oxfordjournals.org/content/44/9/4005.full&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"text/html"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://nar.oxfordjournals.org/content/44/9/4005.full.pdf&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://nar.oxfordjournals.org/content/suppl/2016/04/12/gkw229.DC1/nar-00308-f-2016-File002.pdf&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-           The HTTP Link header to link back to the landing page for the
-            <b>Publication HTML URI</b><br>
-            <tt>https://nar.oxfordjournals.org/content/44/9/4005.full</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://nar.oxfordjournals.org/content/44/9/4005.full&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link header to link back to the landing page for the
-            <b>Publication PDF URI</b><br>
-            <tt>https://nar.oxfordjournals.org/content/44/9/4005.full.pdf</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://nar.oxfordjournals.org/content/44/9/4005.full.pdf&quot;</code>
-              <br>
-              <br>
-              <code>Link: &lt;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link header to link back to the landing page for the
-            <b>Supplemental Item URI</b><br>
-            <tt>https://nar.oxfordjournals.org/content/suppl/2016/04/12/gkw229.DC1/nar-00308-f-2016-File002.pdf</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://nar.oxfordjournals.org/content/suppl/2016/04/12/gkw229.DC1/nar-00308-f-2016-File002.pdf&quot;</code>
-              <br>
-              <br>
-              <code>Link: &lt;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pagebreak"></div>
-  </div><!-- /container -->
-
+Link: &lt;https://nar.oxfordjournals.org/content/early/2016/06/07/nar.gkw501&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      </div><!-- row -->
+    </div><!-- jumbo -->
+  </div><!-- container -->
+  
   <div class="footer" id="footer"></div>
 </body>
 </html>
