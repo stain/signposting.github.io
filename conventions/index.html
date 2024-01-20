@@ -51,9 +51,9 @@ $(function() {
                              <br/><br/>
                              <ul>
                                  <li><a href="#scholobject">A Scholarly Object on the Web</a></li>
+                                 <li><a href="#signpostingmodel">Signposting Modeling of a Scholarly Object on the Web</a></li>
                                  <li><a href="#relation_types">Relation Types for Typed Links</a></li>
                                  <li><a href="#attributes">Attributes for Typed Links</a></li>
-                                 <!--<li><a href="#type">URIs to express the nature of a scholarly resource</a></li>-->
                                  <li><a href="#bibliographic">Bibliographic Metadata Formats</a></li>
                              </ul>
                          </div>
@@ -100,58 +100,52 @@ For simplicity, this is still referred to as the landing page. Essentially, Sign
                         <img src="basic.png" alt="scholarly object on the web" width="500">
                         </div>
                <br>
-                <!-- 
-                <div class="">
-                    <table class="table" >
-                        <tr>
-                            <td style="width: 25%;"><a name="identifier"></a><b>Identifying HTTP URI</b></td>
-                            <td>An HTTP URI that provides a scholarly object with a web identity that is 
-                                intended to be persistent. The intended persistence can be achieved by means of cross-portal  
-                                infrastructure (e.g. DOI, handle, PURL, W3ID, ...). Typically, an Identifying HTTP URI does not provide content itself but rather redirects to another HTTP URI that does.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 25%;"><a name="repository_uri"></a><b>Repository Stable HTTP URI</b></td>
-                            <td>
-                                 An HTTP URI minted by a repository or a portal, and specifically intended to remain stable over time.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a name="entry_page"></a><b>Entry Page</b></td>
-                            <td>The page in a publisher's portal where one typically enters when accessing a 
-                                scholarly publication, usually by following redirects from an Identifying HTTP URI 
-                                or via a search engine result. In some portals, the Entry Page is the landing page, 
-                                in others the Entry Page is an HTML version of the publication.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a name="publication_resource"></a><b>Publication Resource</b></td>
-                            <td>Any web resource that is considered to be an integral part of a publication. 
-                                Typical scholarly publications have several associated Publication Resources, such as a PDF version of an 
-                                article, an HTML version of an article, supplementary information in various formats, datasets, etc.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a name="bibliographic_resource"></a><b>Bibliographic Resource</b></td>
-                            <td>A web resource that describes the publication in a structured manner, for example, using BibTeX or RIS formatting styles. 
-                            The resource is available at a URI that supports <code>HTTP GET</code>.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a name="author_identifier"></a><b>Author Identifying HTTP URI</b></td>
-                            <td>An HTTP URI that identifies the author of a publication and is intended to be persistent. 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a name="author_description_page"></a><b>Author Description Page</b></td>
-                            <td>A web resource that provides information about an author, for example, a resource that lists an author's scholarly publications and other metadata. This resource either could provide information that is maintained by single publisher or a repository, or it could be a service that provides information by aggregating across repositories.
-                            </td>
-                        </tr>
+               
+             <h3><a name="signpostingmodel"></a>Signposting Modeling of a Scholarly Object on the Web</h3>
+             
+ <div class=" ">
+A <a href="#scholobject">Scholarly Object</a> on the Web consists of a range of different kind of resources, each with their own URI. Signposting 
+interconnects these resources in an unambiguous manner by means of links with a limited set of <a href="relation_types">link relation types</a>. 
+These are some core characteristics of the approach:
+<ul>
+<li>
+The landing page, i.e. the resource to which the scholarly object's persistent identifier resolves, takes center stage in the approach. 
+Since landing pages are under control of the custodians of scholarly objects they can make the technical interventions required for 
+Signposting. The approach is not dependent on technical interventions by parties other than the custodians of 
+scholarly objects made accessible in repositories.
+</li>
+<li>
+Links with specific link relation types point from the landing page to various resources that are constituents 
+of the scholarly object, e.g. <code>item</code> links point at content resources, <code>describedby</code> links point at 
+metadata resources, etc. Modeling purists are known to have taken some issue with these links emanating from the landing page, 
+rather than from the persistent identifier of the scholarly object. This choice is justified in two ways. 
+First, it puts custodians of scholarly objects (repository managers) in the driver seat to make the required technical 
+without dependency on external parties. Second, the approach entails an equivalence between the landing page URI 
+and the persistent identifier URI because:
+<ul>
+<li>
+The persistent identifier URI redirects with an <code>HTTP 302 Found</code> to the landing page URI, 
+<a href="https://datatracker.ietf.org/doc/html/rfc9110#name-302-found"a technical approach</a> that, in natural language, translates to 
+"You are looking for the resource identified by the persistent identifier URI. It's not here. 
+But you can find it at the landing page URI."
+</li>
+<li>
+The landing page URI links to the persistent identifier URI with the <code>cite-as</code> link relation type, 
+<a href="https://datatracker.ietf.org/doc/html/rfc8574">a technical approach</a> that, in natural language translates, to 
+"In case you want to reference the landing page, don't do so using the landing page URI. Use the 
+persistent identifier URI instead.
+</li>
+</ul>
+</li>
+<li>
+In order to link from the landing page to content resources it is modeled as a collection. 
+This allows using links with the <code>item</code> relation type to point from the landing page to content resources, 
+and the inverse <code>collection</code> relation type to point back from content resources to the landing page.
+</li>
+</ul>
+</div>	
 
-                    </table>
-                </div>
-                
-                -->
+<br>            
 
                 <h3><a name="relation_types"></a>Relation Types for Typed Links</h3>
 
