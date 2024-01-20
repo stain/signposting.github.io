@@ -94,7 +94,6 @@ $(function() {
       </div>
     </div>
 
-    <div class="pagebreak"></div>
 
     <div class="row plain-row" style="border-bottom: 0px;" id=
     "publication_boundary">
@@ -102,98 +101,166 @@ $(function() {
       "/static/images/publication_boundary_landingpage_data.png" alt=
       "Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs lvl2-graphs">
+      
+<br /><br />   
+      
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link to content resources for the
+<b>Landing Page URI</b><br>
+<tt>https://datadryad.org/resource/doi:10.5061/dryad.5d23f</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://datadryad.org/resource/doi:10.5061/dryad.5d23f"
+
+Link: &lt;https://datadryad.org/bitstream/handle/10255/dryad.98510/PIPFIL_Mark_Models.zip&gt; ; rel="item" ; type="application/zip",
+ &lt;https://datadryad.org/bitstream/handle/10255/dryad.98509/PIPFIL_M_BCI.csv&gt; ; rel="item" ; type="text/csv",
+ &lt;https://datadryad.org/bitstream/handle/10255/dryad.98508/PIPFIL_MALES%20for%20MULTI.xlsx&gt; ; rel="item" ; type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>ZIP file URI</b><br>
+<tt>https://datadryad.org/bitstream/handle/10255/dryad.98510/PIPFIL_Mark_Models.zip</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://nar.oxfordjournals.org/content/44/9/4005.full"
+
+Link: &lt;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>CSV file URI</b><br>
+<tt>https://datadryad.org/bitstream/handle/10255/dryad.98509/PIPFIL_M_BCI.csv</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://nar.oxfordjournals.org/content/44/9/4005.full.pdf"
+
+Link: &lt;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>XLSX file URI</b><br>
+<tt>https://datadryad.org/bitstream/handle/10255/dryad.98508/PIPFIL_MALES%20for%20MULTI.xlsx</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://nar.oxfordjournals.org/content/suppl/2016/04/12/gkw229.DC1/nar-00308-f-2016-File002.pdf"
+
+Link: &lt;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      </div><!-- row -->
+    </div><!-- jumbo -->
+  </div><!-- container -->
+
+<!--
 
       <div id="boundaryheaders" class="link_headers">
         <div>
-          <br>
-          <br>
+          
+          
 
           <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd"><br>
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd">
           The HTTP Link header to link to content resources for the
-          <b>Landing Page URI</b><br>
+          Landing Page URI
             <tt>https://datadryad.org/resource/doi:10.5061/dryad.5d23f</tt>
-            is:<br>
+            is:
 
             <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&quot;</code>
-              <br>
-              <br>
+              
+              curl -I &quot;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&quot;
+              
+              
 
-              <code>Link: &lt;https://datadryad.org/bitstream/handle/10255/dryad.98510/PIPFIL_Mark_Models.zip&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/zip"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://datadryad.org/bitstream/handle/10255/dryad.98509/PIPFIL_M_BCI.csv&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"text/csv"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://datadryad.org/bitstream/handle/10255/dryad.98508/PIPFIL_MALES%20for%20MULTI.xlsx&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"</b></code>
+              Link: &lt;https://datadryad.org/bitstream/handle/10255/dryad.98510/PIPFIL_Mark_Models.zip&gt;
+              ; rel="item"
+              ; type="application/zip",
+              &lt;https://datadryad.org/bitstream/handle/10255/dryad.98509/PIPFIL_M_BCI.csv&gt;
+              ; rel="item"
+              ; type="text/csv",
+              &lt;https://datadryad.org/bitstream/handle/10255/dryad.98508/PIPFIL_MALES%20for%20MULTI.xlsx&gt;
+              ; rel="item"
+              ; type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
-              <!-- XLSX MIME type as per https://technet.microsoft.com/en-us/library/ee309278(office.12).aspx, 
-              also exists at https://www.iana.org/assignments/media-types/media-types.xhtml and
-              https://www.iana.org/assignments/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet -->
+         
             </div>
           </div>
 
           <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;">
             The HTTP Link header to link back to the landing page for the
-            <b>Data ZIP URI</b><br>
+            Data ZIP URI
             <tt>https://datadryad.org/bitstream/handle/10255/dryad.98510/PIPFIL_Mark_Models.zip</tt>
-            is:<br>
+            is:
 
             <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://datadryad.org/bitstream/handle/10255/dryad.98510/PIPFIL_Mark_Models.zip&quot;</code>
-              <br>
-              <br>
+              
+              curl -I &quot;https://datadryad.org/bitstream/handle/10255/dryad.98510/PIPFIL_Mark_Models.zip&quot;
+              
+              
 
-              <code>Link: &lt;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
+              Link: &lt;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt;
+              ; rel="collection"
             </div>
           </div>
 
           <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;">
             The HTTP Link header to link back to the landing page for the
-            <b>Data CSV URI</b><br>
+            Data CSV URI
             <tt>https://datadryad.org/bitstream/handle/10255/dryad.98509/PIPFIL_M_BCI.csv</tt>
-            is:<br>
+            is:
 
             <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://datadryad.org/bitstream/handle/10255/dryad.98509/PIPFIL_M_BCI.csv&quot;</code>
-              <br>
-              <br>
-              <code>Link: &lt;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
+              
+              curl -I &quot;https://datadryad.org/bitstream/handle/10255/dryad.98509/PIPFIL_M_BCI.csv&quot;
+              
+              
+              Link: &lt;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt;
+              ; rel="collection"
             </div>
           </div>
 
           <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;">
             The HTTP Link header to link back to the landing page for the
-            <b>Data XLSX URI</b><br>
+            Data XLSX URI
             <tt>https://datadryad.org/bitstream/handle/10255/dryad.98508/PIPFIL_MALES%20for%20MULTI.xlsx</tt>
-            is:<br>
+            is:
 
             <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://datadryad.org/bitstream/handle/10255/dryad.98508/PIPFIL_MALES%20for%20MULTI.xlsx&quot;</code>
-              <br>
-              <br>
-              <code>Link: &lt;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
+              
+              curl -I &quot;https://datadryad.org/bitstream/handle/10255/dryad.98508/PIPFIL_MALES%20for%20MULTI.xlsx&quot;
+              
+              
+              Link: &lt;https://datadryad.org/resource/doi:10.5061/dryad.5d23f&gt;
+              ; rel="collection"
             </div>
           </div>
         </div>
       </div>
     </div>
+    
+    -->
 
-    <div class="pagebreak"></div>
-  </div><!-- /container -->
+
 
   <div class="footer" id="footer"></div>
 </body>
