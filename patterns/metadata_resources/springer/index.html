@@ -98,7 +98,6 @@
       </div>
     </div>
 
-    <div class="pagebreak"></div>
 
     <div class="row plain-row" style="border-bottom: 0px;" id=
     "metadata">
@@ -106,66 +105,137 @@
       "/static/images/bibliographic_metadata_doi_landingpage.png"
       alt="Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs">
+      
+<br /><br />   
+      
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;"> The HTTP Link Header to link to metadata from the
+<b>Landing Page URI</b><br>
+<tt>https://link.springer.com/article/10.1007%2Fs10958-016-2844-8</tt>
+is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://link.springer.com/article/10.1007%2Fs10958-016-2844-8"
+
+Link: &lt;https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation&gt;
+ ; rel="describedby"
+ ; type="application/x-research-info-systems",
+ &lt;https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation&gt;
+ ; rel="describedby"
+ ; type="application/x-bibtex",
+ &lt;https://doi.org/10.1007/s10958-016-2844-8&gt;
+ ; rel="describedby"
+ ; type="application/vnd.citationstyles.csl+json"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>RIS metadata URI</b><br>
+<tt>https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation"
+
+Link: &lt;https://link.springer.com/article/10.1007%2Fs10958-016-2844-8&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>BibTeX metadata URI</b><br>
+<tt>https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation"
+
+Link: &lt;https://link.springer.com/article/10.1007%2Fs10958-016-2844-8&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">Note that the third metadata resource that is made discoverable by means of a <code>describedby</code> link in the HTTP Link header 
+            of the Springer landing page is available at the external persistent identifier provider Crossref. 
+            It is unlikely that external persistent identifier provider would 
+            provide a <code>describes </code> link back to the landing page of the Springer article. But the persistent identifier does dereference to that 
+            landing page.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      </div><!-- row -->
+    </div><!-- jumbo -->
+  </div><!-- container -->    
+  
+  <!--
 
       <div id="metadataheaders" class="link_headers">
         <div>
-          <br>
-          <br>
+          
+          
 
           <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;">
             The HTTP Link Header to link to metadata from the
-            <b>Landing Page URI</b><br>
+            Landing Page URI
             <tt>https://link.springer.com/article/10.1007%2Fs10958-016-2844-8</tt>
-            is:<br>
+            is:
 
             <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://link.springer.com/article/10.1007%2Fs10958-016-2844-8&quot;</code>
-              <br>
-              <br>
-              <code>Link: &lt;https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-research-info-systems"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-bibtex"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.org/10.1007/s10958-016-2844-8&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/vnd.citationstyles.csl+json"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link header to link from the <b>RIS metadata URI</b><br>
-            <tt>https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation&quot;</code>
-              <br>
-              <br>
-              <code>Link: &lt;https://link.springer.com/article/10.1007%2Fs10958-016-2844-8&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describes"</b></code>
+              
+              curl -I &quot;https://link.springer.com/article/10.1007%2Fs10958-016-2844-8&quot;
+              
+              
+              Link: &lt;https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation&gt;
+              ; rel="describedby"
+              ; type="application/x-research-info-systems",
+              &lt;https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation&gt;
+              ; rel="describedby"
+              ; type="application/x-bibtex",
+              &lt;https://doi.org/10.1007/s10958-016-2844-8&gt;
+              ; rel="describedby"
+              ; type="application/vnd.citationstyles.csl+json"
             </div>
           </div>
 
           <div style=
           "padding-bottom: 10px;border-bottom: 1px solid #ddd;">
-          <br>
-            The HTTP Link header to link from the <b>BibTeX metadata URI</b><br>
-            <tt>https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation</tt>
-            is:<br>
+            The HTTP Link header to link from the RIS metadata URI
+            <tt>https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation</tt>
+            is:
 
             <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation&quot;</code>
-              <br>
-              <br>            
-              <code>Link: &lt;https://link.springer.com/article/10.1007%2Fs10958-016-2844-8&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describes"</b></code>
+              
+              curl -I &quot;https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=refman&amp;flavour=citation&quot;
+              
+              
+              Link: &lt;https://link.springer.com/article/10.1007%2Fs10958-016-2844-8&gt;
+              ; rel="describes"
+            </div>
+          </div>
+
+          <div style=
+          "padding-bottom: 10px;border-bottom: 1px solid #ddd;">
+          
+            The HTTP Link header to link from the BibTeX metadata URI
+            <tt>https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation</tt>
+            is:
+
+            <div style="background: #fff; margin: 0 10px;">
+              
+              curl -I &quot;https://citation-needed.services.springer.com/v2/references/10.1007/s10958-016-2844-8?format=bibtex&amp;flavour=citation&quot;
+              
+                          
+              Link: &lt;https://link.springer.com/article/10.1007%2Fs10958-016-2844-8&gt;
+              ; rel="describes"
             </div>
           </div>
 
@@ -173,8 +243,7 @@
       </div>
     </div>
 
-    <div class="pagebreak"></div>
-  </div><!-- /container -->
+-->
 
   <div class="footer" id="footer"></div>
 </body>
