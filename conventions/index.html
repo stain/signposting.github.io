@@ -163,37 +163,37 @@ and the inverse <code>collection</code> relation type to point back from content
                         </tr>
                         <tr>
                             <td><code>author</code></td>
-                            <td><a href="/author/">Author</a></td>
+                            <td><a href="/patterns/author/">Author</a></td>
                             <td>The target of the link is a URI for an author of the resource that is the origin of the link.</td>
                         </tr>
                                                 <tr>
                             <td><code>cite-as</code></td>
-                            <td><a href="/identifier/">Identifier</a></td>
+                            <td><a href="/patterns/identifier/">Identifier</a></td>
                             <td>The target of the link is a persistent URI for the resource that is the origin of the link.</td>
                         </tr>
                        <tr>
                             <td><code>describedby</code></td>
-                            <td><a href="/bibliographic_metadata/">Metadata Resources</a></td>
+                            <td><a href="/patterns/metadata_resources/">Metadata Resources</a></td>
                             <td>The target of the link provides metadata that describes the resource that is the origin of the link.</td>
                         </tr>
                        <tr>
                             <td><code>describes</code></td>
-                            <td><a href="/bibliographic_metadata/">Metadata Resources</a></td>
+                            <td><a href="/metadata_resources/">Metadata Resources</a></td>
                             <td>The origin of the link is a resource that provides metadata that describes the resource that is the target of the link. It is the inverse of the <code>describedby</code> relation type. </td>
                         </tr>
                         <tr>
                             <td><code>type</code></td>
-                            <td><a href="/resource_type/">Resource Type</a></td>
+                            <td><a href="/patterns/type/">Type</a></td>
                             <td>The target of the link is the URI for a class of resources to which the resource that is the origin of the link belongs.</td>
                         <tr>
                         <tr>
                             <td><code>license</code></td>
-                            <td>Resource License</td>
+                            <td><a href="/patterns/license/">License</a></td>
                             <td>The target of the link is the URI of a license that applies to the resource that is the origin of the link.</td>
                         </tr>
                         <tr>
                             <td><code>item</code></td>
-                            <td><a href="/content_resources/">Content Resources</a></td>
+                            <td><a href="/patterns/content_resources/">Content Resources</a></td>
                             <td>The origin of the link is a collection of resources and the target of the link is a resource that belongs to that collection. 
                             It is the inverse of the <code>collection</code> relation type. In Signposting, the landing page of a scholarly object is modeled 
                             as a collection of content resources.
@@ -201,7 +201,7 @@ and the inverse <code>collection</code> relation type to point back from content
                         </tr>
                         <tr>
                             <td><code>collection</code></td>
-                            <td><a href="/content_resources/">Content Resources</a></td>
+                            <td><a href="/patterns/content_resources/">Content Resources</a></td>
                             <td>The origin of the link is a resource that belongs to a collection and the target of the link is the collection to which it belongs. 
                             It is the inverse of the <code>item</code> relation type. In Signposting, the landing page of a scholarly object is modeled 
                             as a collection of content resources.</td>
@@ -225,13 +225,13 @@ and the inverse <code>collection</code> relation type to point back from content
                         </tr>
                         <tr>
                             <td><code>type</code></td>
-                            <td><a href="/bibliographic_metadata/">Metadata Resources</a>, <a href="/content_resources/">Content Resources</a></td>
+                            <td><a href="/patterns/metadata_resources/">Metadata Resources</a>, <a href="/patterns/content_resources/">Content Resources</a></td>
                             <td>The value of the <code>type</code> attribute conveys the MIME type of the resource 
                                 that is the target of the link on which the attribute is used.</td>
                         </tr>
                         <tr>
                             <td><code>profile</code></td>
-                            <td><a href="/bibliographic_metadata/">Metadata Resources</a>, <a href="/content_resources/">Content Resources</a></td>
+                            <td><a href="/patterns/metadata_resources/">Metadata Resources</a>, <a href="/patterns/content_resources/">Content Resources</a></td>
                             <td>The value of the <code>profile</code> attribute indicates the <a href="https://tools.ietf.org/html/rfc6906#section-3">profile</a> to which the resource that is the 
                                 target of the link conforms. Generally, a profile is a syntactic and/or semantic constraint that 
                                 applies beyond what can be expressed using the MIME type of the resource. 
