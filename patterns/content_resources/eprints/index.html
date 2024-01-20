@@ -101,85 +101,69 @@ $(function() {
       </div>
     </div>
 
-    <div class="pagebreak"></div>
-
     <div class="row plain-row" style="border-bottom: 0px;" id=
     "metadata">
       <img src=
       "/static/images/publication_boundary_landingpage2.png" alt=
       "Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs lvl2-graphs">
+      
+      
+<br /><br />   
+      
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link to content resources for the
+<b>Landing Page URI</b><br>
+<tt>https://eprints.soton.ac.uk/338797</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://eprints.soton.ac.uk/338797"
 
-      <div id="boundaryheaders" class="link_headers">
-        <div>
-          <br>
-          <br>
+Link: &lt;https://eprints.soton.ac.uk/338797/2/PhysRevA.86.031602.pdf&gt; ; rel="item" ; type="application/pdf",
+ &lt;https://eprints.soton.ac.uk/338797/1/cOptLatSOM_pra.pdf&gt; ; rel="item" ; type="application/pdf"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>Publication PDF URI</b><br>
+<tt>https://eprints.soton.ac.uk/338797/2/PhysRevA.86.031602.pdf</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://eprints.soton.ac.uk/338797/2/PhysRevA.86.031602.pdf"
 
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-          The HTTP Link header to link to content resources for the
-          <b>Landing Page URI</b><br>
-            <tt>https://eprints.soton.ac.uk/338797</tt>
-            is:<br>
+Link: &lt;https://eprints.soton.ac.uk/338797&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>Supplemental Item URI</b><br>
+<tt>https://eprints.soton.ac.uk/338797/1/cOptLatSOM_pra.pdf</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://eprints.soton.ac.uk/338797/1/cOptLatSOM_pra.pdf"
 
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://eprints.soton.ac.uk/338797&quot;</code>
-              <br>
-              <br>            
-              <code>Link: &lt;https://eprints.soton.ac.uk/338797/2/PhysRevA.86.031602.pdf&gt;<br>
+Link: &lt;https://eprints.soton.ac.uk/338797&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      </div><!-- row -->
+    </div><!-- jumbo -->
+  </div><!-- container -->
+            
 
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://eprints.soton.ac.uk/338797/1/cOptLatSOM_pra.pdf&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b></code>
-            </div>
-          </div>
 
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-              The HTTP Link header to link back to the landing page for the
-            <b>Publication PDF URI</b><br>
-            <tt>https://eprints.soton.ac.uk/338797/2/PhysRevA.86.031602.pdf</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://eprints.soton.ac.uk/338797/2/PhysRevA.86.031602.pdf&quot;</code>
-              <br>
-              <br>            
-              <code>Link: &lt;https://eprints.soton.ac.uk/338797/&gt;<br>
-
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-              The HTTP Link header to link back to the landing page for the
-            <b>Supplemental Item URI</b><br>
-            <tt>https://eprints.soton.ac.uk/338797/1/cOptLatSOM_pra.pdf</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://eprints.soton.ac.uk/338797/1/cOptLatSOM_pra.pdf&quot;</code>
-              <br>
-              <br>            
-              <code>Link: &lt;https://eprints.soton.ac.uk/338797/&gt;<br>
-
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b></code>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="pagebreak"></div>
-  </div><!-- /container -->
-
-  <div class="footer" id="footer"></div>
+<div class="footer" id="footer"></div>
 </body>
 </html>
