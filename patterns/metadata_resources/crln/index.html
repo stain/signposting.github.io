@@ -70,7 +70,7 @@
         Rutgers University Art Library Exhibition Spaces.
         <em>College &amp; Research Libraries News 77</em>, 5 (May
         2016), 226–230. <a href=
-        "http://crln.acrl.org/content/77/5/226.full">http://crln.acrl.org/content/77/5/226.full</a>.:</p>
+        "https://crln.acrl.org/content/77/5/226.full">https://crln.acrl.org/content/77/5/226.full</a>.:</p>
         </div>
 
         <p id="summary"></p>
@@ -78,16 +78,16 @@
         <p>This is a summary of the links that should be provided:</p>
         <ul>
           <li>The Landing Page should have links with the
-          <code>describedby</code> relation type pointing at each Metadata
+          describedby relation type pointing at each Metadata
           Resource that describes the scholarly object. This includes a link to metadata provided by a Persistent Identifier provider 
           (e.g. CrossRef, DataCite), if applicable.</li>
 
-          <li>Each <code>describedby</code> link should have 
+          <li>Each describedby link should have 
           <a href="https://signposting.org/conventions/#attributes">attributes</a> to express the MIME type and possibly profile of
           the resource that is the target of the link.</li>
 
           <li>Metadata Resources that are provided by the repository that is the custodian of the scholarly object should link back to its Landing Page 
-          with the <code>describes</code> relation type.</li>
+          with the describes relation type.</li>
         </ul>
       </div>
     </div>
@@ -100,84 +100,70 @@
       </div>
     </div>
 
-    <div class="pagebreak"></div>
-
     <div class="row plain-row" style="border-bottom: 0px;" id="metadata">
       <img src=
       "/static/images/bibliographic_metadata_publication.png" alt=
       "Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs lvl2-graphs">
+      
+<br /><br />   
+      
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;"> The HTTP Link Header to link to metadata from the
+Landing Page URI, which is an HTML publication,
+<tt>https://crln.acrl.org/content/77/5/226.full</tt>
+is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://crln.acrl.org/content/77/5/226.full"
 
-      <div id="metadataheaders" class="link_headers">
-        <div>
-          <br>
-          <br>
+Link: &lt;https://crln.acrl.org/citmgr?type=refman&amp;gca=crlnews%3B77%2F5%2F226&gt;
+ ; rel="describedby"
+ ; type="application/x-research-info-systems",
+ &lt;https://crln.acrl.org/citmgr?type=bibtex&amp;gca=crlnews%3B77%2F5%2F226&gt;
+ ; rel="describedby"
+ ; type="application/x-bibtex"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+RIS metadata URI
+<tt>https://crln.acrl.org/citmgr?type=refman&amp;gca=crlnews%3B77%2F5%2F226</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://journals.plos.org/plosone/article/citation/ris?id=10.1371%2Fjournal.pone.0115253"
 
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-          The HTTP Link Header to link to metadata from the
-          <b>Landing Page URI</b>, which is an HTML publication:<br>
-            <tt>http://crln.acrl.org/content/77/5/226.full</tt>
-            is:<br>
+Link: &lt;https://crln.acrl.org/content/77/5/226.full&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+BibTeX metadata URI
+<tt>https://journals.plos.org/plosone/article/citation/bibtex?id=10.1371%2Fjournal.pone.0115253</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://crln.acrl.org/citmgr?type=bibtex&amp;gca=crlnews%3B77%2F5%2F226"
 
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;http://crln.acrl.org/content/77/5/226.full&quot;</code>
-              <br>
-              <br>          
-              <code>Link: &lt;http://crln.acrl.org/citmgr?type=refman&amp;gca=crlnews%3B77%2F5%2F226&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;
-              type=<b>"application/x-research-info-systems"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://crln.acrl.org/citmgr?type=bibtex&amp;gca=crlnews%3B77%2F5%2F226&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-bibtex"</b><br>
-              </code>
-            </div>
-          </div>
+Link: &lt;https://crln.acrl.org/content/77/5/226.full&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      </div><!-- row -->
+    </div><!-- jumbo -->
+  </div><!-- container -->    
 
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-            <p>The HTTP Link header to link from the <b>RIS metadata
-            URI</b><br>
-            <tt>http://crln.acrl.org/citmgr?type=refman&amp;gca=crlnews%3B77%2F5%2F226</tt>
-            is:<br></p>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;http://crln.acrl.org/citmgr?type=refman&amp;gca=crlnews%3B77%2F5%2F226&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;http://crln.acrl.org/content/77/5/226.full&gt;<br>
-
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describes"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-            <p>The HTTP Link header to link from the <b>BibTeX Metadata URI</b><br>
-            <tt>http://crln.acrl.org/citmgr?type=bibtex&amp;gca=crlnews%3B77%2F5%2F226</tt>
-            is:<br></p>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;http://crln.acrl.org/citmgr?type=bibtex&amp;gca=crlnews%3B77%2F5%2F226&quot;</code>
-              <br>
-              <br>          
-
-              <code>Link: &lt;http://crln.acrl.org/content/77/5/226.full&gt;<br>
-
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describes"</b></code>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pagebreak"></div>
-  </div><!-- /container -->
 
   <div class="footer" id="footer"></div>
 </body>
