@@ -90,50 +90,42 @@
       </div>
     </div>
 
-    <div class="pagebreak"></div>
-
     <div class="row plain-row" style="border-bottom: 0px;" id=
     "metadata">
       <img src=
       "/static/images/author_entry_page.png"
       alt="Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs">
+      
+      
+ <br /><br />  
+      
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">The HTTP Link Header to link to the authors from the
+<b>Landing Page URI</b><br>
+<tt>https://link.springer.com/article/10.1007%2Fs00799-016-0185-3</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://link.springer.com/article/10.1007%2Fs00799-016-0185-3"
 
-      <div id="metadataheaders" class="link_headers">
-        <div>
-          <br>
-          <br>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd;"><br>
-            The HTTP Link Header to link to the authors from the
-            <b>Landing Page URI</b><br>
-            <tt>https://link.springer.com/article/10.1007%2Fs00799-016-0185-3</tt>
-            is:<br>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://link.springer.com/article/10.1007%2Fs00799-016-0185-3&quot;</code>
-              <br>
-              <br>
-              <code>Link: &lt;https://orcid.org/0000-0003-4018-5153&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://orcid.org/0000-0002-2787-7166&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://orcid.org/0000-0003-3749-8116&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
-              </code>
-            </div>
-          </div>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="pagebreak"></div>
-  </div><!-- /container -->
+Link: &lt;https://orcid.org/0000-0003-4018-5153&gt; ; rel="author" ,
+ &lt;https://orcid.org/0000-0002-2787-7166&gt; ; rel="author" ,
+ &lt;https://orcid.org/0000-0003-3749-8116&gt; ; rel="author"
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      </div><!-- row -->
+    </div><!-- jumbo -->
+  </div><!-- container -->
+      
 
   <div class="footer" id="footer"></div>
 </body>
