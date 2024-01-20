@@ -110,9 +110,8 @@ These are some core characteristics of the approach:
 <ul>
 <li>
 The landing page, i.e. the resource to which the scholarly object's persistent identifier resolves, takes center stage in the approach. 
-Since landing pages are under control of the custodians of scholarly objects they can make the technical interventions required for 
-Signposting. The approach is not dependent on technical interventions by parties other than the custodians of 
-scholarly objects made accessible in repositories.
+Since landing pages are under control of the custodians of scholarly objects, the approach is not dependent on technical interventions 
+by parties other than those custodians, e.g. repository managers.
 </li>
 <li>
 Links with specific link relation types point from the landing page to various resources that are constituents 
@@ -124,21 +123,23 @@ without dependency on external parties. Second, the approach entails an equivale
 and the persistent identifier URI because:
 <ul>
 <li>
-The persistent identifier URI redirects with an <code>HTTP 302 Found</code> to the landing page URI, 
-<a href="https://datatracker.ietf.org/doc/html/rfc9110#name-302-found"a technical approach</a> that, in natural language, translates to 
+The persistent identifier URI redirects with an <code>HTTP 302 Found</code> to the landing page URI. 
+In natural language, this <a href="https://datatracker.ietf.org/doc/html/rfc9110#name-302-found">technical approach</a> 
+translates to 
 "You are looking for the resource identified by the persistent identifier URI. It's not here. 
 But you can find it at the landing page URI."
 </li>
 <li>
-The landing page URI links to the persistent identifier URI with the <code>cite-as</code> link relation type, 
-<a href="https://datatracker.ietf.org/doc/html/rfc8574">a technical approach</a> that, in natural language translates, to 
+The landing page URI links to the persistent identifier URI with the <code>cite-as</code> link relation type. 
+In natural language, this <a href="https://datatracker.ietf.org/doc/html/rfc8574">technical approach</a> 
+translates, to 
 "In case you want to reference the landing page, don't do so using the landing page URI. Use the 
 persistent identifier URI instead.
 </li>
 </ul>
 </li>
 <li>
-In order to link from the landing page to content resources it is modeled as a collection. 
+In order to link from the landing page to content resources, the landing page is modeled as a collection. 
 This allows using links with the <code>item</code> relation type to point from the landing page to content resources, 
 and the inverse <code>collection</code> relation type to point back from content resources to the landing page.
 </li>
