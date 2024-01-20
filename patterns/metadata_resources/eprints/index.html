@@ -100,105 +100,88 @@
       </div>
     </div>
 
-    <div class="pagebreak"></div>
 
     <div class="row plain-row" style="border-bottom: 0px;" id="metadata">
       <img src=
       "/static/images/bibliographic_metadata_landingpage.png" alt=
       "Visualization of link relations" style=
       "border: 1px #000 solid;" class="example-graphs lvl2-graphs">
+      
+<br /><br />   
+      
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;"> The HTTP Link Header to link to metadata from the
+<b>Landing Page URI</b><br>
+<tt>https://eprints.soton.ac.uk/338797</tt>
+is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://eprints.soton.ac.uk/338797"
 
-      <div id="metadataheaders" class="link_headers">
-        <div>
-          <br>
-          <br>
+Link: &lt;https://eprints.soton.ac.uk/cgi/export/eprint/338797/RIS/eps-eprint-338797.ris&gt;
+ ; rel="describedby"
+ ; type="application/x-research-info-systems",
+ &lt;https://eprints.soton.ac.uk/cgi/export/eprint/338797/BibTeX/eps-eprint-338797.bib&gt;
+ ; rel="describedby"
+ ; type="application/x-bibtex",
+ &lt;https://eprints.soton.ac.uk/cgi/export/eprint/338797/MODS/eps-eprint-338797.xml&gt;
+ ; rel="describedby"
+ ; type="application/xml"
+ ; profile="https://www.loc.gov/mods"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>RIS metadata URI</b><br>
+<tt>https://eprints.soton.ac.uk/cgi/export/eprint/338797/RIS/eps-eprint-338797.ris</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://eprints.soton.ac.uk/cgi/export/eprint/338797/RIS/eps-eprint-338797.ris"
 
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-          The HTTP Link Header to link to metadata from the
-          <b>Landing Page URI</b><br>
-            <tt>https://eprints.soton.ac.uk/338797</tt>
-            is:<br>
+Link: &lt;https://eprints.soton.ac.uk/338797&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>BibTeX metadata URI</b><br>
+<tt>https://eprints.soton.ac.uk/cgi/export/eprint/338797/BibTeX/eps-eprint-338797.bib</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://eprints.soton.ac.uk/cgi/export/eprint/338797/BibTeX/eps-eprint-338797.bib"
 
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://eprints.soton.ac.uk/338797&quot;</code>
-              <br>
-              <br>          
-              <code>Link: &lt;https://eprints.soton.ac.uk/cgi/export/eprint/338797/RIS/eps-eprint-338797.ris&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;
-              type=<b>"application/x-research-info-systems"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://eprints.soton.ac.uk/cgi/export/eprint/338797/BibTeX/eps-eprint-338797.bib&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-bibtex"</b>,<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://eprints.soton.ac.uk/cgi/export/eprint/338797/MODS/eps-eprint-338797.xml&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/xml"</b><br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"https://www.loc.gov/mods"</b>
-              </code>
-            </div>
-          </div>
+Link: &lt;https://eprints.soton.ac.uk/338797&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+<tr>
+<td style="width: 80%;">The HTTP Link header to link back to the landing page for the
+<b>MODS metadata URI</b><br>
+<tt>https://eprints.soton.ac.uk/cgi/export/eprint/338797/MODS/eps-eprint-338797.xml</tt> is:</td>
+</tr>
+<tr>
+<td>
+<pre>$ curl -I "https://eprints.soton.ac.uk/cgi/export/eprint/338797/MODS/eps-eprint-338797.xml"
 
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-            <p>The HTTP Link header to link from the <b>RIS metadata URI</b><br>
-            <tt>https://eprints.soton.ac.uk/cgi/export/eprint/338797/RIS/eps-eprint-338797.ris</tt>
-            is:<br></p>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://eprints.soton.ac.uk/cgi/export/eprint/338797/RIS/eps-eprint-338797.ris&quot;</code>
-              <br>
-              <br>
-
-              <code>Link: &lt;https://eprints.soton.ac.uk/338797&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describes"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-            <p>The HTTP Link header to link from the <b>BibTeX metadata URI</b><br>
-            <tt>https://eprints.soton.ac.uk/cgi/export/eprint/338797/BibTeX/eps-eprint-338797.bib</tt>
-            is:<br></p>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://eprints.soton.ac.uk/cgi/export/eprint/338797/BibTeX/eps-eprint-338797.bib&quot;</code>
-              <br>
-              <br>          
-
-              <code>Link: &lt;https://eprints.soton.ac.uk/338797&gt;<br>
-
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describes"</b></code>
-            </div>
-          </div>
-
-          <div style=
-          "padding-bottom: 10px;border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;"><br>
-            <p>The HTTP Link header to link from the <b>MODS metadata URI</b><br>
-            <tt>https://eprints.soton.ac.uk/cgi/export/eprint/338797/MODS/eps-eprint-338797.xml</tt>
-            is:<br></p>
-
-            <div style="background: #fff; margin: 0 10px;">
-              <br>
-              <code>curl -I &quot;https://eprints.soton.ac.uk/cgi/export/eprint/338797/MODS/eps-eprint-338797.xml&quot;</code>
-              <br>
-              <br>          
-
-              <code>Link: &lt;https://eprints.soton.ac.uk/338797&gt;<br>
-
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describes"</b></code>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="pagebreak"></div>
-  </div><!-- /container -->
+Link: &lt;https://eprints.soton.ac.uk/338797&gt; ; rel="collection" ; type="text/html"
+</pre>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      </div><!-- row -->
+    </div><!-- jumbo -->
+  </div><!-- container -->  
+  
 
   <div class="footer" id="footer"></div>
 </body>
