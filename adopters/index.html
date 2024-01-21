@@ -57,8 +57,11 @@ $(function() {
                                 <ul>
                                 	<li><a href="#benchmarks">Benchmarks for FAIR Signposting</a></li>
                                 	<li><a href="#ckan">CKAN Signposting extension</a></li>
+                                	<li><a href="#notify">COAR Notify Protocol</a></li>
                                 	<li><a href="#dans">DANS Data Stations</a></li>
+                                	<!--
                                 	<li><a href="#datacite_search">DataCite Search and DataCite Commons</a></li>
+                                	-->
                                 	<li><a href="#dataverse">Dataverse FAIR Signposting</a></li>
 									<li><a href="#dri">Digital Repository Ireland</a></li>  
                                 	<li><a href="#dspace7">DSpace 7 FAIR Signposting</a></li>
@@ -264,11 +267,11 @@ $(function() {
                     Web-Scale Citation Tracking: Can You Read the Signs? Listen to That Little Voice in Your HEAD Requests</a>.
                 </div>
 -->
+<!--
                 <h3><a name="datacite_search"></a>DataCite Search and DataCite Commons</h3>
                 <div>
                     <a href="https://search.datacite.org/">DataCite Search</a> has implemented the following Signposting patterns:
                     <ul>
-                        <!-- <li>Author</li> -->
                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
                         <li><a href="/patterns/identifier/">Identifier</a></li>
                     </ul/>
@@ -314,6 +317,7 @@ $(function() {
                     </code>
                 </div>
 
+-->
 
                 <h3><a name="pangaea"></a>Pangaea</h3>
                 <div>
@@ -494,6 +498,18 @@ $(function() {
                     same way as recommended by Signposting, e.g. <code>cite-as</code> to point at the persistent identifier of the object provided by the institutional repository,  
                     <code>item</code> to point at content resources, etc. 
             
+                </div>
+                
+                <h3><a name="notify"></a>COAR Notify Protocol</h3>
+                            <div>
+                    The <a href="https://www.coar-repositories.org/notify/">COAR Notify Protocol</a> is a standard-based decentralized approach 
+                    (using <a href="https://www.w3.org/TR/ldn/">Linked Data Notifications</a> with profiled <a href="https://www.w3.org/TR/activitystreams-core/">ActivityStreams2</a> payloads) 
+                    to link research outputs hosted in the distributed 
+                    network of repositories with resources from external services, such as overlay-journals and open peer review services. It is a 
+                    specific implementation of the generic patterns described by the <a href="https://www.eventnotifications.net/">Event Notifications in Value-Adding Networks</a> specification. 
+                    The COAR Notify Protocol recommends that repositories support FAIR Signposting in order to be able to send nimble notifications 
+                    across the wire that, essentially, only contain URIs of objects and actors involved in a request/response conversation. Further information 
+                    pertaining to those can then be obtained via the FAIR Signposting and <a href="https://solid.github.io/webid-profile/">WebID</a> auto-discovery approaches, respectively. 
                 </div>
 
 
