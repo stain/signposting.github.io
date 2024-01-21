@@ -57,7 +57,7 @@ $(function() {
                                 <ul>
                                 	<li><a href="#benchmarks">Benchmarks for FAIR Signposting</a></li>
                                 	<li><a href="#ckan">CKAN Signposting extension</a></li>
-                                	<li><a href="#dans">DANS EASY</a></li>
+                                	<li><a href="#dans">DANS Data Stations</a></li>
                                 	<li><a href="#datacite_search">DataCite Search and DataCite Commons</a></li>
                                 	<li><a href="#dataverse">Dataverse FAIR Signposting</a></li>
 									<li><a href="#dri">Digital Repository Ireland</a></li>  
@@ -269,13 +269,13 @@ $(function() {
                     <a href="https://search.datacite.org/">DataCite Search</a> has implemented the following Signposting patterns:
                     <ul>
                         <!-- <li>Author</li> -->
-                        <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
+                        <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
                     </ul/>
                     As DataCite Search is being phased out, Signposting support will be added to its replacement <a href="https://commons.datacite.org/">DataCite Commons</a>.
                 </div>
 
-                <div>This example shows the Identifier and Bibliographic Metadata patterns implemented for a <b>Landing Page</b> in the DataCite <a href="https://search.datacite.org/works">Works Search</a>:</div> 
+                <div>This example shows the Identifier and Metadata Resources patterns implemented for a <b>Landing Page</b> in the DataCite <a href="https://search.datacite.org/works">Works Search</a>:</div> 
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
                     <code>curl -I &quot;https://search.datacite.org/works/10.6084/M9.FIGSHARE.3501629&quot;</code>
@@ -319,14 +319,14 @@ $(function() {
                 <div>
                     <a href="https://www.pangaea.de/">Pangaea</a> has implemented the following Signposting patterns:
                     <ul>
-                        <li><a href="http://signposting.org/author/">Author</a></li>
-                        <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
-                        <li><a href="http://signposting.org/publication_boundary/">Publication Boundary</a></li>
+                        <li><a href="/patterns/author/">Author</a></li>
+                        <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
+                        <li><a href="/patterns/content_resources/">Content Resources</a></li>
                     </ul/>
                 </div>
 
-                This example shows the Identifier, Bibliographic Metadata, Publication Boundary, 
+                This example shows the Identifier, Metadata Resources, Content Resources, 
                 and Author patterns implemented for the <b>Landing Page URI</b>: 
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
@@ -355,7 +355,7 @@ $(function() {
                 <!--
                 <br/>
 
-                The following example shows the Identifier, Bibliographic Metadata, Publication Boundary, 
+                The following example shows the Identifier, Metadata Resources, Content Resources, 
                 and Author patterns implemented for 
                 the <b>Publication Resource</b> URI that is conveyed by means of an <code>item</code> link in the 
                 above HTTP response: 
@@ -384,7 +384,7 @@ $(function() {
                     </code>
                 </div>
                 <br/>
-                This is an example showing the Identifier and the Bibliographic Metadata patterns implemented for a 
+                This is an example showing the Identifier and the Metadata Resources patterns implemented for a 
                 <b>Bibliographic  
                 Resource</b> formatted using the <a href="https://en.wikipedia.org/wiki/RIS_(file_format)">RIS</a> citation format: 
                 <div style="background: #fff; margin: 0 10px;">
@@ -409,13 +409,13 @@ $(function() {
                 <div>
                     The <a href="http://digital.ucd.ie/">University College Dublin Digital Library</a> has implemented the following Signposting patterns:
                     <ul>
-                        <li><a href="http://signposting.org/author/">Author</a></li>
-                         <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
+                        <li><a href="/patterns/author/">Author</a></li>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
                     </ul/>
                 </div>
 
-                This example shows the Identifier, Bibliographic Metadata, and the Author patterns 
+                This example shows the Identifier, Metadata Resources, and the Author patterns 
                 implemented for the <b>Landing Page URI</b>:
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
@@ -448,12 +448,12 @@ $(function() {
                 <div>
                     The <a href="https://digital.library.unt.edu/">University of North Texas Digital Library</a> has implemented the following Signposting patterns:
                     <ul>
-                         <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
                     </ul/>
                 </div>
 
-                This example shows the Identifier and Bibliographic Metadata patterns 
+                This example shows the Identifier and Metadata Resources patterns 
                 implemented for the <b>Landing Page URI</b>; note the link to an <a href="https://iiif.io">IIIF</a> manifest:
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
@@ -497,16 +497,22 @@ $(function() {
                 </div>
 
 
-                <h3><a name="dans"></a>DANS EASY</h3>
+                <h3><a name="dans"></a>DANS Data Stations</h3>
+                
+                <div>
+                 DANS was a Signposting pioneer, implementing the <a href="/patterns/identifier/">Identifier</a> and <a href="/patterns/metadata_resources/">Metadata Resources</a> patterns for its meanwhile 
+                retired DANS EASY repository. EASY has been replaced by several discipline-oriented Dataverse-based Data Stations that <a href="#dataverse">support FAIR Signposting out of the box</a>.
+                </div>
+               <!-- DANS EASY has been retired. Keep this info for historical purposes
                 <div>
                     The <a href="https://easy.dans.knaw.nl/ui/home">Data Archiving and Networked Services</a> has implemented the following Signposting patterns:
                     <ul>
-                         <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
                     </ul/>
                 </div>
 
-                This example shows the Identifier and the Bibliographic Metadata patterns 
+                This example shows the Identifier and the Metadata Resources patterns 
                 implemented for the <b>Landing Page URI</b>:
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
@@ -536,7 +542,7 @@ $(function() {
                     </code>
                 </div>
                 <br/>
-                This example shows a <b>bibliographic resource</b> linking to the <b>entry page</b> using the <code>describes</code> relation type in the Bibliographic Metadata pattern.
+                This example shows a <b>bibliographic resource</b> linking to the <b>entry page</b> using the <code>describes</code> relation type in the Metadata Resources pattern.
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
                     <code>curl -I &quot;https://easy.dans.knaw.nl/ui/resources/easy/export?sid=easy-dataset%3A67469&amp;format=XML&quot;</code>
@@ -551,18 +557,20 @@ $(function() {
                     </code>
                 </div>
                 
+                -->
+                
                 <h3><a name="dspacecris"></a>DSpace-CRIS</h3>
                 <div>
                     Starting with version 5.8.2, the open source <a href="https://wiki.duraspace.org/display/DSPACECRIS/DSpace-CRIS+Home">DSpace-CRIS</a> system 
                     has built-in support for <a href="https://wiki.duraspace.org/display/DSPACECRIS/Signposting">the following Signposting patterns</a>:
                     <ul>
-                        <li><a href="http://signposting.org/author/">Author</a></li>
-                    <!--    <li><a href="http://signposting.org/identifier/">Identifier</a></li> -->
-                        <li><a href="http://signposting.org/publication_boundary/">Publication Boundary</a></li>
+                        <li><a href="/patterns/author/">Author</a></li>
+                    <!--    <li><a href="/patterns/identifier/">Identifier</a></li> -->
+                        <li><a href="/patterns/content_resources/">Content Resources</a></li>
                     </ul/>
                 </div>
 				<div>
-                This example shows the Author and Publication Boundary patterns 
+                This example shows the Author and Content Resources patterns 
                 implemented for the <b>Landing Page URI</b>, which is identical to the <b>Identifying HTTP URI</b>, of a repository object:
                 </div>
                 <div style="background: #fff; margin: 0 10px;">
@@ -583,7 +591,7 @@ $(function() {
                 </div>
                 <br/>
                 This example shows the PDF file that is a constituent resource of the object linking back to the <b>Landing Page URI</b> using the <code>collection</code> 
-                relation type of the Publication Boundary pattern.
+                relation type of the Content Resources pattern.
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
                     <code>curl -I &quot;http://ktisis.cut.ac.cy/bitstream/10488/4268/2/Climate%20Change%20in%20Cyprus.pdf&quot;</code>
@@ -604,8 +612,8 @@ $(function() {
                     It facilitates discovery and re-use of workflows in an accessible and interoperable way by leveraging open standards and tools, including RO-Crate and Signposting.  
                     The following Signposting patterns are used:</a>:
                     <ul>
-                         <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/publication_boundary/">Publication Boundary</a></li>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/content_resources/">Content Resources</a></li>
                     </ul/>
                 </div>
 				<div>
@@ -642,10 +650,10 @@ $(function() {
                     to versions 2.4 and 3 of the open source <a href="https://pkp.sfu.ca/ojs/">Open Journal Systems</a>. The plug-in 
                     implements support for the following Signposting patterns</a>:
                     <ul>
-                        <li><a href="http://signposting.org/author/">Author</a></li>
-                        <li><a href="http://signposting.org/identifier/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
-                        <li><a href="http://signposting.org/publication_boundary/">Publication Boundary</a></li>
+                        <li><a href="/patterns/author/">Author</a></li>
+                        <li><a href="/patterns/identifier/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
+                        <li><a href="/patterns/content_resources/">Content Resources</a></li>
                     </ul/>
                 </div>
 
@@ -678,7 +686,7 @@ $(function() {
                 </div>
                 <br/>
                 This example shows the PDF file that is a constituent resource of the object linking back to the <b>Landing Page URI</b> using the <code>collection</code> 
-                relation type of the Publication Boundary pattern.
+                relation type of the Content Resources pattern.
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
                     <code>curl -I &quot;http://www.annalsofgeophysics.eu/index.php/annals/article/download/7507/6808&quot;</code>
