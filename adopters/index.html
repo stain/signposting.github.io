@@ -130,6 +130,8 @@ $(function() {
                     exposing links by means of the HTTP Link header as well as using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. At the time of writing, the Dataverse software is used by nearly 100 data repositories, worldwide.
                 </div>
                 
+                <div>An example of a typical FAIR Signposting implementation for a Dataverse instance is shown below for a <a href="#dans">DANS Data Station</a>.
+                
                    <h3><a name="dspace7"></a>DSpace 7 FAIR Signposting</h3>
                             <div>
                     Starting with release 7.6, the <a href="https://wiki.lyrasis.org/display/DSDOC7x">DSpace 7</a> repository software supports the FAIR Signposting Profile. 
@@ -522,6 +524,35 @@ $(function() {
                  DANS was a Signposting pioneer, implementing the <a href="/patterns/identifier/">Identifier</a> and <a href="/patterns/metadata_resources/">Metadata Resources</a> patterns for its meanwhile 
                 retired DANS EASY repository. EASY has been replaced by several discipline-oriented Dataverse-based Data Stations that <a href="#dataverse">support FAIR Signposting out of the box</a>.
                 </div>
+                
+                This example shows the FAIR Signposting implementation, which is typical of all Dataverse repositories starting with version 5.14.
+                Links are provided both in the HTTP Link header of the <b>Landing Page URI</b>and and in a Link Set linked from it. 
+                <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://ssh.datastations.nl/dataset.xhtml?persistentId=doi:10.17026/SS/L8MCKA&quot;</code>
+                    <br>
+                    <br>
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-Type: text/html; charset=UTF-8<br/>
+                        Link: <https://0000-0003-2962-5234> ; rel=<b>"author"</b>,<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<https://doi.org/10.17026/SS/L8MCKA> ; rel=<b>"cite-as"</b>,<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<https://schema.org/AboutPage> ; rel=<b>"type"</b>,<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<https://schema.org/Dataset> ; rel=<b>"type"</b>,<br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<http://creativecommons.org/licenses/by-nc/4.0> ; rel=<b>"license"</b>,<br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<https://ssh.datastations.nl/api/access/datafile/203710><br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b> ; type="application/pdf"</b>,<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<https://ssh.datastations.nl/api/access/datafile/203711><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b> ; type="application/pdf"</b>,<br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<https://doi.org/10.17026/SS/L8MCKA><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b> ; type="application/vnd.citationstyles.csl+json"</b>,<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<https://ssh.datastations.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.17026/SS/L8MCKA><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b> ; type="application/ld+json"</b>,<br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<https://ssh.datastations.nl/api/datasets/:persistentId/versions/2.1/linkset?persistentId=doi:10.17026/SS/L8MCKA><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"linkset"</b> ; type="application/linkset+json"
+                    </code>
+                </div>
+                
                <!-- DANS EASY has been retired. Keep this info for historical purposes
                 <div>
                     The <a href="https://easy.dans.knaw.nl/ui/home">Data Archiving and Networked Services</a> has implemented the following Signposting patterns:
