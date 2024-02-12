@@ -251,11 +251,17 @@ $(function() {
                      </ul>
                      </div>
                      
+                                                                         <div style="text-align: center;">
+<img src="fairicat-discovery.png" alt="FAIRiCat discovery via well-known URI" width="800">
+</div>
+                     
                      <div class="">
                      What the <b>repository-entry-URL</b> is 
                      depends on how/where the repository was installed. For example, it could be &lt;https://myuniversity.edu/repository/home&gt;, or 
                      &lt;https://repository.myuniversity.edu/home&gt;, or &lt;https://repo.org/&gt;. Generally speaking it is the de-facto entry page to a repository.
                      </div>
+                     
+                     <br />
 
               <div class="">
               When a repository receives an <b>HTTP GET</b> request against &lt;repository-entry-URL/.well-known/api-catalog&gt;:
@@ -273,23 +279,19 @@ $(function() {
                 <br />  
                 
              <div class="">
-              When a repository receives an <b>HTTP HEAD</b> request against &lt;repository-entry-URL/.well-known/api-catalog&gt;:
-              <ul>
-              <li>The response header should have a link with the <code>api-catalog</code> link relation 
+              When a repository receives an <b>HTTP HEAD</b> request against &lt;repository-entry-URL/.well-known/api-catalog&gt;, 
+              the response header should have a link with the <code>api-catalog</code> link relation 
                type that points at the repository's FAIRiCat Link Set. This link:
                 <ul>
        			<li>Must be provided in the HTTP <code>Link</code> header.</li>
        			<li>Must have a <code>type</code> attribute with value <code>application/linkset+json</code>.</li>
        			<li>Must have a <code>profile</code> attribute with value <code>https://signposting.org/FAIRiCat/</code>.</li>
        			</ul>  
-               </li>
                </div>
                 <br />  
                                  
-                                                    <div style="text-align: center;">
-<img src="fairicat-discovery.png" alt="FAIRiCat discovery via well-known URI" width="800">
-</div>
-<br /> 
+
+
                          
        
        <h3><a name="examples"></a>3. Examples</h3>
@@ -303,7 +305,7 @@ $(function() {
        &lt;https://my.repo.org/home/&gt;. 
        The response contains an HTTP Link header that has a link with the <code>api-catalog</code> link relation type and the mandatory <code>type</code> and <code>profile</code> 
        attributes as described in <a href="#discovery">Section 2.3</a>. 
-       The link's target &lt;https://my.repo.org/api-info.json&gt; is the URL of the repository's FAIRiCat Link Set. The client can proceed by issuing an 
+       The link's target &lt;https://my.repo.org/fairicat/api-info.json&gt; is the URL of the repository's FAIRiCat Link Set. The client can proceed by issuing an 
        HTTP GET against that URI to obtain the FAIRiCat. Note that, if the client had issued an HTTP GET instead of an HTTP GET, 
        the response body would have been the FAIRiCat whereas the response header would have been the same as shown below.
        </div> 
@@ -320,7 +322,7 @@ $(function() {
 
 HTTP/1.1 200 OK
 Date: Sat, 18 Nov 2023 14:43:06 GMT
-Link: &lt;https://my.repo.org/api-info.json&gt; 
+Link: &lt;https://my.repo.org/fairicat/api-info.json&gt; 
       ; rel="api-catalog" 
       ; type="application/linkset+json" 
       ; profile="https://signposting.org/FAIRiCat/" 
