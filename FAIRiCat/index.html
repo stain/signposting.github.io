@@ -69,13 +69,13 @@ $(function() {
                         Prepared by: Herbert Van de Sompel, Robert Huber, Patrick Hochstenbach, Michael L. Nelson, Martin Klein, Andrea Bollini, Enno Meijers, Petr Knoth, Paul Walk, Wim Hugo, Jim Meyers, ...
                         </h5>
 
-                        <h5>This version, created 20240109: <a href="https://signposting.org/FAIRiCat/"
-							data-versionurl="http://web.archive.org/web/20240109164509/https://signposting.org/FAIRiCat/"
-							data-versiondate="2024-01-09">https://signposting.org/FAIRiCat/</a> </h5>
+                        <h5>This version, created 20240212: <a href="https://signposting.org/FAIRiCat/"
+							data-versionurl="http://web.archive.org/web/20240212/https://signposting.org/FAIRiCat/"
+							data-versiondate="2024-02-12">https://signposting.org/FAIRiCat/</a> </h5>
 							
-                        <h5><a href="http://web.archive.org/web/20231215091026/https://signposting.org/FAIRiCat/"
+                        <h5><a href="http://web.archive.org/web/20240109164509/https://signposting.org/FAIRiCat/"
 							data-originalurl="https://www.signposting.org/API-Catalog/"
-							data-versiondate="2023-12-15">Previous version</a>, created 20231215</h5>
+							data-versiondate="2024-01-09">Previous version</a>, created 20240109</h5>
 						<h5><a href="http://labs.mementoweb.org/timemap/json/https://signposting.org/FAIRiCat/">Version history</a></h5>
 						<h5><a href="http://labs.mementoweb.org/timemap/json/https://signposting.org/API-Catalog/">Versions prior to name change from API Catalog to FAIRiCat</a></h5>
 						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a></h5>
@@ -114,22 +114,12 @@ $(function() {
 <ol>
 <li><a href="#linkset">The FAIRiCat Link Set</a></li>
 <li><a href="#linkrels">Link Relation Types to Point at Machine Interface Descriptions</a></li>
-<li><a href="#discovery">Discovery of the FAIRiCat Link Set</a>
-<ol>
-<li><a href="#discwellknown">/.well-known/api-catalog at the root-URL</a></li>
-<li><a href="#disclinkroot">api-catalog links</a></li>
-</ol>
-</li>
+<li><a href="#discovery">Discovery of the FAIRiCat Link Set</a></li>
 </ol>
 </li>
 <li><a href="#examples">Examples</a>
 <ol>
-<li><a href="#exdiscovery">Discovery</a>
-<ol>
-<li><a href="#exwellknown">Discovery via the /.well-known/api-catalog URI</a></li>
-<li><a href="#exlink">Discovery via an api-catalog link</a></li>
-</ol>
-</li>
+<li><a href="#exdiscovery">Discovery</a></li>
 <li><a href="#exlinkset">FAIRiCat Link Set</a>
 <ol>
 <li><a href="#exrepo">Repository-Level Affordances</a></li>
@@ -253,104 +243,69 @@ $(function() {
 
        
                      <div class="">
-                     A repository's FAIRiCat Link Set can be discovered in two ways: 
+                     A repository's FAIRiCat Link Set can be discovered as follows: 
                      <ul>
-                     <li>Via the <code>/.well-known/api-catalog</code> URI at the <b>root-URL</b> of a repository; 
-                     this approach is discussed in <a href="#discwellknown">Section 2.3.1.</a></li>
-                     <li>Via <code>api-catalog</code> links provided for various repository resources, i.e. its <b>root-URL</b>, its 
-                         <b>repository-entry-URL</b>, and the <a href="https://signposting.org/conventions/#scholobject">landing pages</a> of the scholarly objects it manages; 
-                         this approach is discussed in <a href="#disclinkroot">Section 2.3.2.</a></li>
-                     </ul>
-                     The approaches described in these respective sections should be used simultaneously, and at least one of the approaches must be implemented.
-                     </div>
-
-              
-                            <h5><a name="discwellknown"></a>2.3.1. /.well-known/api-catalog at the root-URL</h5>  
-              
-              <div class="">
-                     The <b>root-URL</b> is the top of the repository's path's hierarchy. 
-                     For example:
-                     <ul>
-                     <li>For a repository with <b>repository-entry-URL</b> &lt;https://myuniversity.edu/repository/home&gt; the <b>root-URL</b> 
-                     is &lt;https://myuniversity.edu&gt;, in which case the <code>/.well-known/api-catalog</code> URI is &lt;https://myuniversity.edu/.well-known/api-catalog&gt;.</li>
-                     <li>For a repository <b>repository-entry-URL</b> &lt;https://repository.myuniversity.edu/home&gt; the <b>root-URL</b> 
-                     is &lt;https://repository.myuniversity.edu&gt;, in which case the <code>/.well-known/api-catalog</code> URI is &lt;https://repository.myuniversity.edu/.well-known/api-catalog&gt;.</li>
+                     <li>At the <code>/.well-known/api-catalog</code> URI provided at the <b>repository-entry-URL</b> of a repository, i.e. at 
+                     <b>repository-entry-URL/.well-known/api-catalog</b>.</li>
+                     <li>Via an <code>api-catalog</code> link provided at that same URL, i.e. at <b>repository-entry-URL/.well-known/api-catalog</b>.</li>
                      </ul>
                      </div>
                      
+                     <div class="">
+                     What the <b>repository-entry-URL</b> is 
+                     depends on how/where the repository was installed. For example, it could be &lt;https://myuniversity.edu/repository/home&gt;, or 
+                     &lt;https://repository.myuniversity.edu/home&gt;, or &lt;https://repo.org/&gt;. Generally speaking it is the de-facto entry page to a repository.
+                     </div>
+
               <div class="">
-              When a repository with <b>root-URL</b> receives an HTTP GET request against &lt;root-URL/.well-known/api-catalog&gt;, 
-               the request must resolve to its the FAIRiCat Link Set serialized in the <code>application/linkset+json</code> format. 
-               The behavior for an HTTP HEAD against that URL is described in <a href="#disclinkroot">Section 2.3.2</a>.
+              When a repository receives an <b>HTTP GET</b> request against &lt;repository-entry-URL/.well-known/api-catalog&gt;:
+              <ul>
+              <li>The response body must be its the FAIRiCat Link Set serialized in the <code>application/linkset+json</code> format.</li>
+              <li>The response header should have a link with the <code>api-catalog</code> link relation 
+               type that points at the repository's FAIRiCat Link Set. This link:
+                <ul>
+       			<li>Must be provided in the HTTP <code>Link</code> header.</li>
+       			<li>Must have a <code>type</code> attribute with value <code>application/linkset+json</code>.</li>
+       			<li>Must have a <code>profile</code> attribute with value <code>https://signposting.org/FAIRiCat/</code>.</li>
+       			</ul>  
+               </li>
                </div>
-                <br />                   
+                <br />  
+                
+             <div class="">
+              When a repository receives an <b>HTTP HEAD</b> request against &lt;repository-entry-URL/.well-known/api-catalog&gt;:
+              <ul>
+              <li>The response header should have a link with the <code>api-catalog</code> link relation 
+               type that points at the repository's FAIRiCat Link Set. This link:
+                <ul>
+       			<li>Must be provided in the HTTP <code>Link</code> header.</li>
+       			<li>Must have a <code>type</code> attribute with value <code>application/linkset+json</code>.</li>
+       			<li>Must have a <code>profile</code> attribute with value <code>https://signposting.org/FAIRiCat/</code>.</li>
+       			</ul>  
+               </li>
+               </div>
+                <br />  
+                                 
                                                     <div style="text-align: center;">
-<img src="fairicat-discovery1.png" alt="FAIRiCat discovery via well-known URI" width="800">
+<img src="fairicat-discovery.png" alt="FAIRiCat discovery via well-known URI" width="800">
 </div>
 <br /> 
                          
-             <h5><a name="disclinkroot"></a>2.3.2. api-catalog link</h5> 
-             
-              <div class="">
-             Links with the <code>api-catalog</code> link relation type may be provided for various repository resources, i.e. its <b>root-URL</b>, its 
-             <b>repository-entry-URL</b>, and the <a href="https://signposting.org/conventions/#scholobject">landing pages</a> of the scholarly objects it manages. Such links:
-       <ul>
-       <li>Must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element. 
-       If provided in the HTTP <code>Link</code> header, both HTTP HEAD and HTTP GET requests must provide the <code>api-catalog</code> link.</li>
-       <li>Must have a <code>type</code> attribute with value <code>application/linkset+json</code>.</li>
-       <li>Must have a <code>profile</code> attribute with value <code>https://signposting.org/FAIRiCat/</code>.</li>
-       </ul>  
-       </div>
-       
-        <div class="">
-       The expected behavior for the various repository resources for which <code>api-catalog</code> links can be provided is as follows:
-             <ul>
-             <li><b>root-URL</b>: For repositories that implement the well-know URI approach described in <a href="#discwellknown">Section 2.3.1.</a>, 
-             an HTTP HEAD request against &lt;root-URL/.well-known/api-catalog&gt;, 
-               should resolve to a response that contains an HTTP Link header with a link that uses the <code>api-catalog</code> link relation 
-               type that points at the repository's FAIRiCat Link Set; the <code>type</code> and <code>profile</code> attributes must be as mentioned above.
-             </li>
-             <li><b>repository-entry-URL</b>: Cases exist in which the URL that serves as the entry point to a repository is not the <b>root-URL</b> and/or 
-             in which the repository manager does not have editorial access to the <b>root-URL</b>. 
-             In these cases, a repository should provide an <code>api-catalog</code> link 
-             pointing from the <b>repository-entry-URL</b> to the FAIRiCat Link Set. 
-             This link must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element. 
-             If provided in the HTTP <code>Link</code> header, both HTTP HEAD and HTTP GET requests must provide the link. 
-             The <code>type</code> and <code>profile</code> attributes on the link must be as mentioned above.</li>
-             <li><b>Landing page URLs</b>: Repositories may consider to also provide <code>api-catalog</code> links 
-            pointing from the landing pages of objects managed by the repository to the FAIRiCat Link Set. 
-            This approach is of interest when implementing discoverability of the FAIRiCat at both the <b>root-URL</b> and 
-            <b>repository-entry-URL</b> is impossible. These links must be provided in the HTTP <code>Link</code> header and/or the HTML <code>&lt;link&gt;</code> element of the 
-            landing pages. If provided in the HTTP <code>Link</code> header, both HTTP HEAD and HTTP GET requests must provide the link. 
-             The <code>type</code> and <code>profile</code> attributes on the links must be as mentioned above.
-            </li>
-             </ul>
-             </div>
-             
-                             <br />                   
-                                                    <div style="text-align: center;">
-<img src="fairicat-discovery2.png" alt="FAIRiCat discovery via api-catalog link" width="800">
-</div>
-<br /> 
        
        <h3><a name="examples"></a>3. Examples</h3>
        
               <h4><a name="exdiscovery"></a>3.1. Discovery</h4>
-              
-                     <div class="">
-                     This section illustrates discovery of a FAIRiCat using the <code>well-know URI</code> and <code>api-catalog</code> link approaches. 
-                     </div>
-                     
-        	              <h5><a name="exwellknown"></a>3.1.1. Discovery via /.well-known/api-catalog at the root-URL</h5>
+
         	              
         	              <div class="">
        The below example illustrates how an agent can discover a repository's FAIRiCat using the well-know URI approach. 
-       It shows the response to an HTTP HEAD request issued against the <code>/.well-known/api-catalog</code> URI at the <b>root-URL</b> 
-       &lt;https://my.repo.org/&gt; of the fictitious repository &lt;https://my.repo.org/home/&gt;. 
+       It shows the response to an HTTP HEAD request issued against the <code>/.well-known/api-catalog</code> URI at the <b>repository-entry-URL</b> 
+       &lt;https://my.repo.org/home/&gt;. 
        The response contains an HTTP Link header that has a link with the <code>api-catalog</code> link relation type and the mandatory <code>type</code> and <code>profile</code> 
        attributes as described in <a href="#discovery">Section 2.3</a>. 
        The link's target &lt;https://my.repo.org/api-info.json&gt; is the URL of the repository's FAIRiCat Link Set. The client can proceed by issuing an 
-       HTTP GET against that URI to obtain the FAIRiCat.
+       HTTP GET against that URI to obtain the FAIRiCat. Note that, if the client had issued an HTTP GET instead of an HTTP GET, 
+       the response body would have been the FAIRiCat whereas the response header would have been the same as shown below.
        </div> 
        <br />
        
@@ -361,7 +316,7 @@ $(function() {
 </tr>
 <tr>
 <td>
-<pre>$ curl -I "https://my.repo.org/.well-known/api-catalog"
+<pre>$ curl -I "https://my.repo.org/home/.well-known/api-catalog"
 
 HTTP/1.1 200 OK
 Date: Sat, 18 Nov 2023 14:43:06 GMT
@@ -377,48 +332,7 @@ Link: &lt;https://my.repo.org/api-info.json&gt;
 </tbody></table>
 </div>       	              
         	              
-        	             <h5><a name="exlink"></a>3.1.2. Discovery via an api-catalog link</h5>
-        	             
-    <div class="">
-    The <a href="#exwellknown">previous example</a> shows how a client discovers an <code>api-catalog</code> link 
-    by interacting with the <code>/.well-known/api-catalog</code> URI and can follow that link to retrieve the FAIRiCat. 
-    But <code>api-catalog</code> links can also be provided at the level of <a href="https://signposting.org/conventions/#scholobject">landing pages</a> 
-    of objects managed by a repository. 
-    </div>
-           <br />
-        <div class="">
-       The below example shows an agent issuing an HTTP HEAD request 
-        against the landing page URL &lt;https://my.repo.org/item/747369/&gt; of an object managed by the fictitious repository &lt;https://my.repo.org/home/&gt;. 
-       The response contains an HTTP Link header that has a link with the <code>api-catalog</code> link relation type 
-       and the mandatory <code>type</code> and <code>profile</code> 
-       attributes as described in <a href="#discovery">Section 2.3</a>. 
-       The link's target &lt;https://my.repo.org/api-info.json&gt; is the URL of the repository's FAIRiCat Link Set.
-       For brevity, <a href="https://signposting.org/FAIR/">FAIR Signposting</a> links that should be provided in the same response are not shown.
-       </div> 
-       <br />
-       
-       <div class=" ">
-<table class="table">
-<tbody><tr>
-<td style="width: 80%;">HTTP HEAD against the landing page URL of an object managed by a repository: request and response</td>
-</tr>
-<tr>
-<td>
-<pre>$ curl -I "https://my.repo.org/item/747369/"
-
-HTTP/1.1 200 OK
-Date: Sat, 18 Nov 2023 14:43:12 GMT
-Content-Type: text/html
-Content-Length: 2657
-Link: &lt;https://my.repo.org/api-info.json&gt; 
-      ; rel="api-catalog" 
-      ; type="application/linkset+json" 
-      ; profile="https://signposting.org/FAIRiCat/" 
-</pre>
-</td>
-</tr>
-</tbody></table>
-</div>
+        	            
 
       <h4><a name="exlinkset"></a>3.2. FAIRiCat Link Set</h4>  
               
