@@ -65,9 +65,6 @@ $(function() {
                 <div class="jumbo">
                 <div class="row">
                         <h3>authorIDy: Listing Contributions by Contributor Identifier</h3>
-                        <h5>
-                        Prepared by: Herbert Van de Sompel, Patrick Hochstenbach, Martin Klein, Michael L. Nelson, ...
-                        </h5>
 
                         <h5>This version, created 20240217: <a href="https://signposting.org/authorIDy/"
 							data-versionurl="http://web.archive.org/web/20240217/https://signposting.org/authorIDy/"
@@ -182,7 +179,7 @@ $(function() {
 <tr>
 <td>optional</td>
 <td>contributions since</td>
-<td><code>baseURL-service/date/contributor-id-uri/</code>, e.g. &lt;https://github.com/byuser/20231107/https://github.com/phonedude/&gt;</td>
+<td><code>baseURL-service/yyyymmdd/contributor-id-uri/</code>, e.g. &lt;https://github.com/byuser/20231107/https://github.com/phonedude/&gt;</td>
 </tr>
 </tbody>
 </table>
@@ -190,9 +187,16 @@ $(function() {
               
 <h3><a name="response"></a>3. Protocol Response</h3>  
 
-<h4><a name="header"></a>3.1. Protocol Response Header</h3>  
+<h4><a name="header"></a>3.1. Protocol Response HTTP Header</h3>  
 
 <br />
+
+                 <div class=" ">  
+            A request may yield a paged response, in which case each individual response uses the HTTP Link header 
+            to link to previous and/or next portions of the response.
+            </div>  
+            
+                                 <br /><br />
 
 <div class=" ">
 <table class="table">
@@ -223,10 +227,43 @@ allows interpretation of the JSON response as JSON-LD.
 </table>
 </div> 
          
-<h4><a name="body"></a>3.2. Protocol Response Body</h3>  
+<h4><a name="body"></a>3.2. Protocol Response HTTP Body</h3>  
+
+<br />
+            
+                 <div class=" ">  
+            Each response body consists of a single header followed by a list of entries, one entry per contribution. 
+            </div>           
+            
+                                 <br /><br />
+            
+                <div class=" ">  
+            Single header for an entire response body:
+            </div>
+            
+                     <br /><br />
+                     
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td><b>Requirement</b></td>
+<td><b>Cardinality</b></td>
+<td><b>Data Type</b></td>
+<td style="width: 50%;"><b>Content</b></td>
+</tr>
+<tr>
+<td>mandatory</td>
+<td>[1]</td>
+<td>HTTP URI</td>
+<td>contributor identifier URI</td>
+</tr>
+</tbody>
+</table>
+</div> 
             
             <div class=" ">  
-            Protocol response payload for a single contribution entry:
+            Content for an entry in a list of contributions:
             </div>
             
                      <br /><br />
