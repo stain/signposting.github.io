@@ -120,6 +120,8 @@ $(function() {
 </ol>
 </div>
 						
+						       <h3><a name="intro"></a>1. Motivation</h3>  
+						
                         <div class="">
                         The following motivate the work on authorIDy:
                         
@@ -168,9 +170,6 @@ $(function() {
 <table class="table">
 <tbody>
 <tr>
-<td style="width: 80%;">authorIDy protocol request</td>
-</tr>
-<tr>
 <td>Requirement</td>
 <td>Purpose</td>
 <td>Request syntax</td>
@@ -196,19 +195,17 @@ $(function() {
 <table class="table">
 <tbody>
 <tr>
-<td style="width: 80%;">authorIDy protocol response header</td>
+<td>authorIDy protocol response header</td>
 </tr>
 <tr>
 <td>HTTP header</td>
 <td>Requirement</td>
 <td>Value</td>
-<td>Content</td>
 </tr>
 <tr>
 <td>Content-Type</td>
 <td>mandatory</td>
 <td><code>application/json</code></td>
-<td>landing page URI of contribution</td>
 </tr>
 <tr>
 <td>Link</td>
@@ -291,6 +288,7 @@ allows interpretation of the JSON response as JSON-LD.
 		<ul>
 		<li>for a link that has &lt;https://signposting.org/authorIDy/&gt; as the target and <code>service-doc</code> as the link relation type</li>
 		<li>for a link that has as target a schema/template/OpenAPI-spec specifying the nature of the authorIDy implementation and <code>service-desc</code> as the link relation type</li>
+		</ul>
 		<li>Provision of <code>/.well-known/authoridy</code> URI that resolves to a schema/template/OpenAPI-spec specifying the nature of the authorIDy implementation</li>
 		</ul>
        </div> 
