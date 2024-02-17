@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>authorIDy - Listing Contributions by Contributor Identifier</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/signposting.js"></script>
+        <script src="/static/js/lodash.min.js"></script>
+        <script src="/static/js/backbone-min.js"></script>
+ <style type="text/css">       
+ol.nested-counter-list {
+  counter-reset: item;
+}
+
+ol.nested-counter-list li {
+  display: block;
+}
+
+ol.nested-counter-list li::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+ol.nested-counter-list ol {
+  counter-reset: item;
+}
+</style>        
+        
+        <!-- RobustLinks CSS -->
+		<link rel="stylesheet" type="text/css" href="https://doi.org/10.25776/z58z-r575" />
+		<!-- RobustLinks Javascript -->
+		<script type="text/javascript" src="https://doi.org/10.25776/h1fa-7a28"></script>
+        <script>   
+$(function() {
+    load_header_footer();
+});
+        </script>
+    </head>
+
+    <body>
+
+        <!-- Static navbar -->
+        <div id="signposting-menu"></div>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="jumbo">
+                <div class="row">
+                        <h3>authorIDy: Listing Contributions by Contributor Identifier</h3>
+                        <h5>
+                        Prepared by: Herbert Van de Sompel, Patrick Hochstenbach, Martin Klein, Michael L. Nelson, ...
+                        </h5>
+
+                        <h5>This version, created 20240217: <a href="https://signposting.org/authorIDy/"
+							data-versionurl="http://web.archive.org/web/20240217/https://signposting.org/authorIDy/"
+							data-versiondate="2024-02-17">https://signposting.org/FAIRiCat/</a> </h5>
+							<!-- 
+                        <h5><a href="http://web.archive.org/web/20240109164509/https://signposting.org/FAIRiCat/"
+							data-originalurl="https://www.signposting.org/API-Catalog/"
+							data-versiondate="2024-01-09">Previous version</a>, created 20240109</h5>
+						<h5><a href="http://labs.mementoweb.org/timemap/json/https://signposting.org/FAIRiCat/">Version history</a></h5>
+						<h5><a href="http://labs.mementoweb.org/timemap/json/https://signposting.org/API-Catalog/">Versions prior to name change from API Catalog to FAIRiCat</a></h5>
+						-->
+						
+						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a></h5>
+				</div>
+						
+				<div class="row">
+                        <div class="col-md-7">
+                        <br />
+                        Increasingly, repositories allow, recommend, or require providing unique contributor identifiers, 
+                        such as ORCID or ISNI, when depositing contributions. Despite this evolution, few repositories provide a machine 
+                        interface that allows listing the contributions made by a researcher using their contributor identifier as a key. 
+                        An interface with this capability, supported across repositories, would facilitate a range of use cases and 
+                        could be an important next step towards realizing COAR’s Next Generation Repositories vision. 
+                        This document describes core characteristics of authorIDy, a conceptual proposal for such a machine interface. 
+                        Eventually/Hopefully, this description will evolve into a specification. 
+                        </div>
+                        
+                        <!--
+                        <div class="col-md-5">
+                            <div class="clearfix">
+                                <img src="https://signposting.org/static/images/fairicat-logo.png" alt="Signposting the Scholarly Web: FAIRiCat" class="sp_pat pull-right"/>
+                            </div>
+                            <p style="font-size: 0.7em;" class="pull-right">Image courtesy of <a href="https://twitter.com/hochstenbach" target="_blank">Patrick Hochstenbach</a>.</p>
+                        </div>
+                        -->
+                    </div> <!-- row -->		
+					</div> <!-- jumbo -->	
+					</div> <!-- row -->	
+						
+<h3><a name="toc"></a>Table of Contents</h3>
+<div class=" ">
+<ol class="nested-counter-list">
+<li><a href="#intro">Motivation</a></li>
+<li><a href="#design">Design Principles</a></li>
+<li><a href="#request">Protocol Request</a></li>
+<li><a href="#response">Protocol Response</a></li>
+<li><a href="#discovery">Interface Discovery</a></li>
+<li><a href="#schema">JSON Schema for authorIDy Response Body</a></li>
+<li><a href="#openAPI">OpenAPI Specification of authorIDy Interface</a></li>
+</ol>
+</div>
+						
+                        <div class="">
+                        The following motivate the work on authorIDy:
+                        
+                        <ul>
+                         <li>Traditionally, scholarly communication was artifact-centric, i.e. had the journal (ISSN) and later the paper (DOI) as the center of attention.</li>
+                         <li>In the last decade, a shift towards contributor/researcher-centric scholarly communication has taken place, see e.g. <a href="https://scholarlykitchen.sspnet.org/2020/01/06/competing-researcher-identity/">Who Is Competing to Own Researcher Identity?</a> 
+                         Significant investments have been made in promoting, adopting, implementing contributor identifiers such as ORCID and ISNI.</li>
+                         <li>Yet, repositories have remained largely artifact-centric. Only few repositories offer an API that allows listing contributions 
+                         by contributor identifier, whereas this is common practice in general purpose web portals.</li>
+                         <li>Extending repository APIs with an affordance to list contributions by contributor identifier might be an approach to address this shortcoming. 
+                         But a uniform interface supported across repositories lowers the barrier for client implementations.</li>
+                         </ul>
+                         </div>
+                         
+                          
+       <h3><a name="design"></a>2. Design Principles</h3>  
+       
+       <div class="">
+       These are proposed design principles for a possible authorIDy interface:
+       
+<ul>
+<li>KISS</li>
+<li>Support for cross-platform contributor identifiers (e.g. ORCID, ISNI) as well as platform-specific contributor identifiers (e.g. GitHub user tokens, repository-specific unique contributor identifiers).</li>
+<li>Adoptable by repositories that already have affordance for listing contributions by contributor identifier.</li>
+<li>Slim response payload, assuming additional information can be obtained via affordances (i.e. URLs) provided in the payload (REST/HATEOAS approach).</li>
+<li>Request:
+<ul>
+<li>List contributions by a contributor by providing the contributor’s identifier.</li>
+<li>Optional support for incremental listing contributions by providing “since” accession date.</li>
+</ul>
+<li>Response:
+<ul>
+<li>Minimal, not a metadata harvesting protocol, not a metadata format.</li>
+<li>Assumes that metadata about contributions (if needed) can be obtained by means of affordances that are provided in the response (e.g. landing page URI, PID-URI)</li>
+<li>Support for filtering on accession date range as alternative for optional incremental harvesting.</li>
+<li>Optional support for filtering on contribution facets: contributor role, contribution type.</li>
+<li>No particular order required when listing contributions (client can sort according to facets of its choosing).</li>
+<li>Paging support? One expects most responses would fit in single response. But, if paging is needed, use "next" and "prev" links.</li>
+</ul>
+       
+       </div>       
+       
+              <h3><a name="request"></a>3. Protocol Request</h3>  
+              
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">authorIDy protocol request</td>
+</tr>
+<tr>
+<td>Requirement</td>
+<td>Purpose</td>
+<td>Request syntax</td>
+</tr>
+<tr>
+<td>mandatory</td>
+<td>all contributions</td>
+<td><code>baseURL-service/*/contributor-id-uri/</code>, e.g. &lt;https://mirepo.org/createdby/*/https://orcid.org/1234-5678-1234-5678&gt;</td>
+</tr>
+<tr>
+<td>optional</td>
+<td>contributions since</td>
+<td><code>baseURL-service/date/contributor-id-uri/</code>, e.g. &lt;https://github.com/byuser/20231107/https://github.com/phonedude/&gt;</td>
+</tr>
+</tbody>
+</table>
+</div>
+              
+<h3><a name="response"></a>3. Protocol Response</h3>  
+
+
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">authorIDy protocol response header</td>
+</tr>
+<tr>
+<td>HTTP header</td>
+<td>Requirement</td>
+<td>Value</td>
+<td>Content</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>mandatory</td>
+<td><code>application/json</code></td>
+<td>landing page URI of contribution</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>optional</td>
+<td>links with <code>rel="prev"</code> and/or <code>rel="next"</code> and <code>type="application/json"</code> to point at previous/next contributions</td>
+</tr>
+<tr>
+<td>Link</td>
+<td>optional</td>
+<td>link with <code>rel="http://www.w3.org/ns/json-ld#context"</code> and <code>type="application/ld+json"</code> to point at context document that 
+allows interpretation of the JSON response as JSON-LD. 
+</td>
+</tr>
+</tbody>
+</table>
+</div> 
+         
+         <br /><br />
+              
+<div class=" ">
+<table class="table">
+<tbody>
+<tr>
+<td style="width: 80%;">authorIDy protocol response payload for a single contribution entry</td>
+</tr>
+<tr>
+<td>Requirement</td>
+<td>Cardinality</td>
+<td>Data Type</td>
+<td>Content</td>
+</tr>
+<tr>
+<td>mandatory</td>
+<td>[1]</td>
+<td>HTTP URI</td>
+<td>landing page URI of contribution</td>
+</tr>
+<tr>
+<td>mandatory</td>
+<td>[1]</td>
+<td>ISO8601 date</td>
+<td>repository accession date</td>
+</tr>
+<tr>
+<td>optional</td>
+<td>[0,1]</td>
+<td>HTTP URI</td>
+<td>persistent identifier URI (redirects to landing page URI)</td>
+</tr>
+<tr>
+<td>optional</td>
+<td>[0,n]</td>
+<td>HTTP URI</td>
+<td>contributor type URI from vocabulary, e.g. https://credit.niso.org/</td>
+</tr>
+<tr>
+<td>optional</td>
+<td>[0,n]</td>
+<td>HTTP URI</td>
+<td>contribution type URI from vocabulary, e.g. https://vocabularies.coar-repositories.org/resource_types/</td>
+</tr>
+<tr>
+<td>optional</td>
+<td>[0,1]</td>
+<td>ISO8601 date</td>
+<td>publication date of contribution</td>
+</tr>
+</tbody>
+</table>
+</div> 
+       
+       <h3><a name="response"></a>4. Interface Discovery</h3>  
+       
+       
+       <div class="">
+		The following paths can be be pursued:
+		<ul>
+		<li>Provision of the authorIDy interface endpoint in the repository's <a href="https://signposting.org/FAIRiCat/">FAIRiCat</a>, using 
+		the URL of the interface as the anchor:
+		<ul>
+		<li>for a link that has &lt;https://signposting.org/authorIDy/&gt; as the target and <code>service-doc</code> as the link relation type</li>
+		<li>for a link that has as target a schema/template/OpenAPI-spec specifying the nature of the authorIDy implementation and <code>service-desc</code> as the link relation type</li>
+		<li>Provision of <code>/.well-known/authoridy</code> URI that resolves to a schema/template/OpenAPI-spec specifying the nature of the authorIDy implementation</li>
+		</ul>
+       </div> 
+       
+       <h4><a name="schema"></a>5. Appendix A: JSON Schema for authorIDy Response Body</h4>   
+       
+              <h4><a name="openAPI"></a>5. Appendix B: OpenAPI Specification of authorIDy Interface</h4>  
+       
+      
+
+
+</div>
+            </div> <!-- /container -->
+
+            <div class="footer" id="footer">
+            </div>
+
+    
+
+</body></html>
