@@ -163,6 +163,8 @@ $(function() {
        
               <h3><a name="request"></a>3. Protocol Request</h3>  
               
+              <br />
+              
 <div class=" ">
 <table class="table">
 <tbody>
@@ -187,7 +189,7 @@ $(function() {
               
 <h3><a name="response"></a>3. Protocol Response</h3>  
 
-<h4><a name="header"></a>3.1. Protocol Response HTTP Header</h3>  
+<h4><a name="header"></a>3.1. Protocol Response HTTP Header</h4>  
 
 <br />
 
@@ -213,7 +215,7 @@ $(function() {
 </tr>
 <tr>
 <td>Link</td>
-<td>optional</td>
+<td>mandatory for paged response</td>
 <td>links with <code>rel="prev"</code> and/or <code>rel="next"</code> and <code>type="application/json"</code> to point at previous/next contributions</td>
 </tr>
 <tr>
@@ -227,7 +229,7 @@ allows interpretation of the JSON response as JSON-LD.
 </table>
 </div> 
          
-<h4><a name="body"></a>3.2. Protocol Response HTTP Body</h3>  
+<h4><a name="body"></a>3.2. Protocol Response Body</h3>  
 
 <br />
             
@@ -235,13 +237,11 @@ allows interpretation of the JSON response as JSON-LD.
             Each response body consists of a single header followed by a list of entries, one entry per contribution. 
             </div>           
             
-                                 <br /><br />
+                                 <br />
+                                 
+          <h5><a name="body-header"></a>3.2.1. Single Header for an Entire Response Body</h5>  
             
-                <div class=" ">  
-            Single header for an entire response body:
-            </div>
-            
-                     <br /><br />
+<br />
                      
 <div class=" ">
 <table class="table">
@@ -261,12 +261,13 @@ allows interpretation of the JSON response as JSON-LD.
 </tbody>
 </table>
 </div> 
+
+<br />
+
+          <h5><a name="body-entry"></a>3.2.2. Content for an Entry in a List of Contributions</h5>  
             
-            <div class=" ">  
-            Content for an entry in a list of contributions:
-            </div>
-            
-                     <br /><br />
+
+                     <br />
               
 <div class=" ">
 <table class="table">
