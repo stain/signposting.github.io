@@ -70,7 +70,7 @@ $(function() {
 						-->
                         <h5>This version, created 20240217: <a href="https://signposting.org/authorIDy/"
 							data-versionurl="http://web.archive.org/web/20240217/https://signposting.org/authorIDy/"
-							data-versiondate="2024-02-17">https://signposting.org/FAIRiCat/</a></h5>
+							data-versiondate="2024-02-17">https://signposting.org/authorIDy/</a></h5>
 							<!-- 
                         <h5><a href="http://web.archive.org/web/20240109164509/https://signposting.org/FAIRiCat/"
 							data-originalurl="https://www.signposting.org/API-Catalog/"
@@ -118,6 +118,7 @@ $(function() {
 <li><a href="#examples">Examples</a></li>
 <li><a href="#schema">JSON Schema for authorIDy Response Body</a></li>
 <li><a href="#openAPI">OpenAPI Specification of Sample authorIDy Interface</a></li>
+<li><a href="#context">JSON-LD Context</a></li>
 </ol>
 </div>
 						
@@ -127,7 +128,7 @@ $(function() {
                         The following motivate the work on authorIDy:
                         
                         <ul>
-                         <li>Traditionally, scholarly communication was artifact-centric, i.e. had the journal (ISSN) and later the paper (DOI) as the center of attention.</li>
+                         <li>Traditionally, scholarly communication was artifact-centric, i.e. had the journal (ISSN) and then the paper (DOI) as the center of attention.</li>
                          <li>In the last decade, a shift towards contributor/researcher-centric scholarly communication has taken place, see e.g. <a href="https://scholarlykitchen.sspnet.org/2020/01/06/competing-researcher-identity/">Who Is Competing to Own Researcher Identity?</a> 
                          Significant investments have been made in promoting, adopting, implementing contributor identifiers such as ORCID and ISNI.</li>
                          <li>Yet, repositories have remained largely artifact-centric. Only few repositories offer an API that allows listing contributions 
@@ -147,7 +148,7 @@ $(function() {
 <li>KISS</li>
 <li>Support for cross-platform contributor identifiers (e.g. ORCID, ISNI) as well as platform-specific contributor identifiers (e.g. GitHub user tokens, repository-specific unique contributor identifiers).</li>
 <li>Adoptable by repositories that already have affordance for listing contributions by contributor identifier.</li>
-<li>Slim response payload, assuming additional information can be obtained via affordances (i.e. URLs) provided in the payload (REST/HATEOAS approach).</li>
+<li>Slim response payload, assuming additional information can be obtained via URIs provided in the payload (REST/HATEOAS approach).</li>
 <li>Request:
 <ul>
 <li>List contributions by a contributor by providing the contributor’s identifier.</li>
@@ -157,7 +158,7 @@ $(function() {
 <ul>
 <li>Minimal, not a metadata harvesting protocol, not a metadata format.</li>
 <li>Assumes that metadata about contributions (if needed) can be obtained by means of affordances that are provided in the response (e.g. landing page URI, PID-URI)</li>
-<li>Support for filtering on accession date range as alternative for optional incremental harvesting.</li>
+<li>Support for filtering on accession date range as alternative for optional incremental request.</li>
 <li>Optional support for filtering on contribution facets: contributor role, contribution type.</li>
 <li>No particular order required when listing contributions (client can sort according to facets of its choosing).</li>
 <li>Paging support? One expects most responses would fit in single response. But, if paging is needed, use "next" and "prev" links.</li>
@@ -224,7 +225,7 @@ $(function() {
 <tr>
 <td>Link</td>
 <td>optional</td>
-<td>link with <code>rel="http://www.w3.org/ns/json-ld#context"</code> and <code>type="application/ld+json"</code> to point at context document that 
+<td>link with <code>rel="http://www.w3.org/ns/json-ld#context"</code> and <code>type="application/ld+json"</code> to point at <a href="#context">context document</a> that 
 allows interpretation of the JSON response as JSON-LD. 
 </td>
 </tr>
@@ -288,13 +289,13 @@ allows interpretation of the JSON response as JSON-LD.
 <tr>
 <td>mandatory</td>
 <td>[1]</td>
-<td>ISO8601 date</td>
+<td><a href="https://www.w3.org/TR/NOTE-datetime">ISO8601 date, Complete date format</a></td>
 <td>repository accession date</td>
 </tr>
 <tr>
 <td>optional</td>
 <td>[0,1]</td>
-<td>ISO8601 date</td>
+<td><a href="https://www.w3.org/TR/NOTE-datetime""ISO8601 date, Year format</a></td>
 <td>publication date</td>
 </tr>
 <tr>
@@ -331,15 +332,66 @@ allows interpretation of the JSON response as JSON-LD.
 		<li>for a link that has &lt;https://signposting.org/authorIDy/&gt; as the target and <code>service-doc</code> as the link relation type</li>
 		<li>for a link that has as target a schema/template/OpenAPI-spec specifying the nature of the authorIDy implementation and <code>service-desc</code> as the link relation type</li>
 		</ul>
-		<li>Provision of <code>/.well-known/authoridy</code> URI that resolves to a schema/template/OpenAPI-spec specifying the nature of the authorIDy implementation</li>
+		<li>Provision of the <code>/.well-known/authoridy</code> URI that resolves to a schema/template/OpenAPI-spec specifying the nature of the authorIDy implementation</li>
 		</ul>
        </div> 
        
               <h3><a name="examples"></a>5. Examples</h3>  
+              
+
+               
+               <div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Possible JSON Format</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+  "contributions": [
+    {
+      "contributor": "https://orcid.org/1234-5678"
+    },
+    {
+      "landing-page": "https://mirepo.org/item/9876",
+      "accession-date": "2023-01-04",
+      "publication-date": "2022",
+      "cite-as": "https://doi.org/12.9876",
+      "contributor-type": [
+        "https://credit.niso.org/contributor-roles/writing-original-draft/",
+        "https://credit.niso.org/contributor-roles/software/"
+      ],
+      "contribution-type": [
+        "https://vocabularies.coar-repositories.org/resource_types/c_6501/",
+        "https://vocabularies.coar-repositories.org/resource_types/c_c950/"
+      ]
+    },
+    {
+      "landing-page": "https://mirepo.org/item/5432",
+      "accession-date": "2022-03-20",
+      "publication-date": "2021",
+      "cite-as": "https://doi.org/84.47562",
+      "contributor-type": [
+        "https://credit.niso.org/contributor-roles/writing-original-draft/"
+      ],
+      "contribution-type": [
+        "https://vocabularies.coar-repositories.org/resource_types/c_6501/"
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
        
-       <h4><a name="schema"></a>6. JSON Schema for authorIDy Response Body</h4>   
+       <h3><a name="schema"></a>6. JSON Schema for authorIDy Response Body</h3>   
        
-              <h4><a name="openAPI"></a>7. OpenAPI Specification of Sample authorIDy Interface</h4>  
+              <h3><a name="openAPI"></a>7. OpenAPI Specification of Sample authorIDy Interface</h3> 
+              
+                            <h3><a name="context"></a>8. JSON-LD Context</h3>  
        
       
 
