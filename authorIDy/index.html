@@ -68,9 +68,9 @@ $(function() {
                         <!--
 						<h5>Prepared by: </a></h5>
 						-->
-                        <h5>This version, created 20240217: <a href="https://signposting.org/authorIDy/"
-							data-versionurl="http://web.archive.org/web/20240217/https://signposting.org/authorIDy/"
-							data-versiondate="2024-02-17">https://signposting.org/authorIDy/</a></h5>
+                        <h5>This version, created 20240219: <a href="https://signposting.org/authorIDy/"
+							data-versionurl="http://web.archive.org/web/20240219/https://signposting.org/authorIDy/"
+							data-versiondate="2024-02-19">https://signposting.org/authorIDy/</a></h5>
 							<!-- 
                         <h5><a href="http://web.archive.org/web/20240109164509/https://signposting.org/FAIRiCat/"
 							data-originalurl="https://www.signposting.org/API-Catalog/"
@@ -215,7 +215,7 @@ $(function() {
 <tr>
 <td>Content-Type</td>
 <td>mandatory</td>
-<td><code>application/json</code></td>
+<td><code>TBD: application/json or application/ld+json</code></td>
 </tr>
 <tr>
 <td>Link</td>
@@ -237,7 +237,7 @@ allows interpretation of the JSON response as JSON-LD.
 
             
                  <div class=" ">  
-            Each response body is a JSON document consisting of a single header followed by a list of entries, one entry per contribution. 
+            Each response body is (TBD) a JSON or JSON-LD document consisting of a single header followed by a list of entries, one entry per contribution. 
             </div>           
             
                                  <br />
@@ -340,7 +340,7 @@ allows interpretation of the JSON response as JSON-LD.
               
 
                
-               <div class=" ">
+<div class=" ">
 <table class="table">
 <tbody><tr>
 <td style="width: 80%;">Possible JSON Format</td>
@@ -380,6 +380,25 @@ allows interpretation of the JSON response as JSON-LD.
       ]
     }
   ]
+}
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<br /><br />
+
+<div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">Possible JSON-LD/schena.org Format</td>
+</tr>
+<tr>
+<td>
+<pre>
+{
+
 }
 </pre>
 </td>
