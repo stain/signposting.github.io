@@ -48,7 +48,7 @@
                         }
                     }
                 },
-                "required": [ "landing-page", "accession-date"]
+                "required": [ "contribution-page", "accession-date"]
             },
             "minItems": 1
         }
