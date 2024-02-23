@@ -19,45 +19,38 @@
             "description": "The production authorIDy server"
         }
     ],
-    "tags": [
-        {
-            "name": "All contributions",
-            "description": "Retrieve all contributions for a specified contributor identifier."
-        },
-        {
-            "name": "Contributions since",
-            "description": "Retrieve contributions since and including an accession date (yyyymmdd) for a specified contributor identifier."
-        }
-    ],
-    "schemes": [
-        "https", "http"
-    ],
     "paths": {
         "/*/{contributorID}": {
             "get": {
-                "tags": [
-                    "All contributions"
-                ],
-                "summary": "Retrieve all contributions for a specified contributor identifier.",
+                "description": "Retrieve all contributions for a specified contributor identifier.",
                 "parameters": [
                     {
                         "name": "contributorID",
                         "in": "path",
                         "description": "The HTTP identifier of a contributor",
                         "required": true,
-                        "type": "string"
+                        "schema": {
+                            "type": "string",
+                            "style": "simple"
+                        }
                     }
                 ],
-                "produces": [
+                "content": [
                     "application/json"
                 ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
-                        "schema": {
-                            "$ref": "https://signposting.org/authorIDy/authorIDy_schema.json"
-                        }
-                    },
+                        "content": {
+                            "application/json":
+                            {
+                              "schema":
+                               {
+                               "$ref": "https://signposting.org/authorIDy/authorIDy_schema.json"
+                               }
+                            }
+                         }
+                },
                     "404": {
                         "description": "Unknown contributor identifier"
                     }
@@ -66,36 +59,42 @@
         },
         "/{sinceDate}/{contributorID}": {
             "get": {
-                "tags": [
-                    "Contributions since"
-                ],
-                "summary": "Retrieve contributions since and including an accession date (yyyymmdd) for a specified contributor identifier.",
+                "description": "Retrieve contributions since and including an accession date (yyyymmdd) for a specified contributor identifier.",
                 "parameters": [
                     {
                         "name": "contributorID",
                         "in": "path",
                         "description": "The HTTP identifier of a contributor",
                         "required": true,
-                        "type": "string"
+                    "schema": {
+                            "type": "string",
+                            "style": "simple"
+                        }
                     },
                     {
                         "name": "sinceDate",
                         "in": "path",
                         "description": "The accession date in yyyymmdd format",
                         "required": true,
-                        "type": "string"
+                    "schema": {
+                            "type": "string",
+                            "style": "simple"
+                        }
                     }
-                ],
-                "produces": [
-                    "application/json"
                 ],
                 "responses": {
                     "200": {
                         "description": "Successful operation",
-                        "schema": {
-                            "$ref": "https://signposting.org/authorIDy/authorIDy_schema.json"
-                        }
-                    },
+                        "content": {
+                            "application/json":
+                            {
+                              "schema":
+                               {
+                               "$ref": "https://signposting.org/authorIDy/authorIDy_schema.json"
+                               }
+                            }
+                         }
+                },
                     "404": {
                         "description": "Unknown contributor identifier"
                     },
@@ -105,21 +104,5 @@
                 }
             }
         }
-    },
-    "components": {
-      "parameters": {
-      "contributorID": {
-        "name": "contributorID",
-        "in": "path",
-        "required": true,
-         "type": "string"
-      },
-      "sinceDate": {
-        "name": "sinceDate",
-        "in": "path",
-        "required": true,
-         "type": "string"
-      }
     }
-  }
 }
