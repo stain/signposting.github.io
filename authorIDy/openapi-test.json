@@ -15,7 +15,7 @@
     },
     "servers": [
         {
-            "url": "https://mirepo.org/authorIDy/",
+            "url": "https://mirepo.org/authorIDy",
             "description": "The production authorIDy server"
         }
     ],
@@ -33,7 +33,7 @@
         "https", "http"
     ],
     "paths": {
-        "/all/{contributorID}": {
+        "/*/{contributorID}": {
             "get": {
                 "tags": [
                     "All contributions"
