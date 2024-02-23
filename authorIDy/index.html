@@ -92,7 +92,7 @@ $(function() {
                         An interface with this capability, supported across repositories, would facilitate a range of use cases and 
                         could be an important next step towards realizing COAR’s Next Generation Repositories vision. 
                         This document describes core characteristics of authorIDy, a conceptual proposal for such a machine interface. 
-                        Eventually/Hopefully, this description will evolve into a specification. 
+                        Hopefully, this description will evolve into a specification. 
                         </div>
                         
                         <!--
@@ -196,6 +196,8 @@ $(function() {
 <h4><a name="header"></a>4.1. Protocol Response HTTP Header</h4>  
 
 
+
+
                  <div class=" ">  
             A request may yield a paged response, in which case each individual response uses the HTTP Link header 
             to link to previous and/or next portions of the response.
@@ -212,12 +214,17 @@ $(function() {
 <td style="width: 50%;"><b>Value</b></td>
 </tr>
 <tr>
-<td>Content-Type</td>
+<td>HTTP status code</td>
+<td>mandatory</td>
+<td>For successful requests: <code>200 OK</code>. For unsupported requests (i.e. no support for the optional "contributions since" request) and malformed requests (e.g. 3-digit date): <code>400 Bad Request</code></td>
+</tr>
+<tr>
+<td><code>Content-Type</code></td>
 <td>mandatory</td>
 <td><code>application/json</code></td>
 </tr>
 <tr>
-<td>Link</td>
+<td><code>Link</code></td>
 <td>mandatory for paged response</td>
 <td>links with <code>rel="prev"</code> and/or <code>rel="next"</code> and <code>type="application/json"</code> to point at previous/next contributions</td>
 </tr>
