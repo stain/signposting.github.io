@@ -41,8 +41,8 @@
                 "summary": "Retrieve all contributions for a specified contributor identifier.",
                 "parameters": [
                     {
-                        "in": "path",
                         "name": "contributorID",
+                        "in": "path",
                         "description": "The HTTP identifier of a contributor",
                         "required": true,
                         "type": "string"
@@ -72,15 +72,15 @@
                 "summary": "Retrieve contributions since and including an accession date (yyyymmdd) for a specified contributor identifier.",
                 "parameters": [
                     {
-                        "in": "path",
                         "name": "contributorID",
+                        "in": "path",
                         "description": "The HTTP identifier of a contributor",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "in": "path",
                         "name": "sinceDate",
+                        "in": "path",
                         "description": "The accession date in yyyymmdd format",
                         "required": true,
                         "type": "string"
@@ -105,5 +105,21 @@
                 }
             }
         }
+    },
+    "components": {
+      "parameters": {
+      "contributorID": {
+        "name": "contributorID",
+        "in": "path",
+        "required": true,
+         "type": "string"
+      },
+      "sinceDate": {
+        "name": "sinceDate",
+        "in": "path",
+        "required": true,
+         "type": "string"
+      }
     }
+  }
 }
