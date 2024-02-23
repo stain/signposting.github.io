@@ -33,7 +33,7 @@
         "https", "http"
     ],
     "paths": {
-        "/*/{contributorID}": {
+        "/all/{contributorID}": {
             "get": {
                 "tags": [
                     "All contributions"
