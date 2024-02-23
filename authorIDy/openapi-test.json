@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "description": "This is mirepo's authorIDy instance",
+        "version": "v1.0",
+        "title": "mirepo authorIDy",
+        "termsOfService": "https://mirepo.org/terms-of-service/",
+        "contact": {
+            "email": "admin@mirepo.org"
+        },
+        "license": {
+            "name": "AGPL v3",
+            "url": "https://www.gnu.org/licenses/agpl-3.0.en.html"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://mirepo.org/authorIDy/",
+            "description": "The production authorIDy server"
+        }
+    ],
+    "tags": [
+        {
+            "name": "All contributions",
+            "description": "Retrieve all contributions for a specified contributor identifier."
+        },
+        {
+            "name": "Contributions since",
+            "description": "Retrieve contributions since and including an accession date (yyyymmdd) for a specified contributor identifier."
+        }
+    ],
+    "schemes": [
+        "https", "http"
+    ],
+    "paths": {
+        "/*/{contributorID}": {
+            "get": {
+                "tags": [
+                    "All contributions"
+                ],
+                "summary": "Retrieve all contributions for a specified contributor identifier.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "contributorID",
+                        "description": "The HTTP identifier of a contributor",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "https://signposting.org/authorIDy/authorIDy_schema.json"
+                        }
+                    },
+                    "404": {
+                        "description": "Unknown contributor identifier"
+                    }
+                }
+            }
+        },
+        "/{sinceDate}/{contributorID}": {
+            "get": {
+                "tags": [
+                    "Contributions since"
+                ],
+                "summary": "Retrieve contributions since and including an accession date (yyyymmdd) for a specified contributor identifier.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "contributorID",
+                        "description": "The HTTP identifier of a contributor",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "sinceDate",
+                        "description": "The accession date in yyyymmdd format",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "https://signposting.org/authorIDy/authorIDy_schema.json"
+                        }
+                    },
+                    "404": {
+                        "description": "Unknown contributor identifier"
+                    },
+                    "400": {
+                        "description": "Date in yyyymmdd format required."
+                    }
+                }
+            }
+        }
+    }
+}
