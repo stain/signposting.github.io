@@ -68,9 +68,9 @@ $(function() {
                         <!--
 						<h5>Prepared by: </a></h5>
 						-->
-                        <h5>This version, created 20240219: <a href="https://signposting.org/authorIDy/"
-							data-versionurl="http://web.archive.org/web/20240219/https://signposting.org/authorIDy/"
-							data-versiondate="2024-02-19">https://signposting.org/authorIDy/</a></h5>
+                        <h5>This version, created 20240224: <a href="https://signposting.org/authorIDy/"
+							data-versionurl="http://web.archive.org/web/20240224/https://signposting.org/authorIDy/"
+							data-versiondate="2024-02-24">https://signposting.org/authorIDy/</a></h5>
 							<!-- 
                         <h5><a href="http://web.archive.org/web/20240109164509/https://signposting.org/FAIRiCat/"
 							data-originalurl="https://www.signposting.org/API-Catalog/"
@@ -344,14 +344,14 @@ $(function() {
 		</ul>
        </div> 
        
-              <h3><a name="examples"></a>6. Examples</h3>  
+              <h3><a name="examples"></a>6.Possible authorIDy JSON Response Body</h3>  
               
 
                
 <div class=" ">
 <table class="table">
 <tbody><tr>
-<td style="width: 80%;">Possible authorIDy Response Body</td>
+<td style="width: 80%;">Sample authorIDy Response Body</td>
 </tr>
 <tr>
 <td>
@@ -396,12 +396,12 @@ $(function() {
 
 
        
-<h3><a name="schema"></a>7. JSON Schema for authorIDy Response Body</h3>   
+<h3><a name="schema"></a>7. JSON Schema for Possible authorIDy Response Body</h3>   
 
 <div class=" ">
 <table class="table">
 <tbody><tr>
-<td style="width: 80%;"><a href="authorIDy_schema.json">JSON Schema for Possible authorIDy Response Body</a></td>
+<td style="width: 80%;"><a href="authorIDy_schema.json">Sample JSON Schema for authorIDy Response Body</a></td>
 </tr>
 <tr>
 <td>
@@ -445,7 +445,8 @@ $(function() {
             "pattern": "http(s)?://.*"
           },
           "contributor-type": {
-            "description": "contributor type URI from vocabulary, e.g. https://credit.niso.org/",
+            "description": "contributor type URI from vocabulary, 
+                            e.g. https://credit.niso.org/",
             "type": "array",
             "items": {
               "type": "string",
@@ -453,7 +454,8 @@ $(function() {
             }
           },
           "contribution-type": {
-            "description": "contribution type URI from vocabulary, e.g. https://vocabularies.coar-repositories.org/resource_types/",
+            "description": "contribution type URI from vocabulary, 
+                            e.g. https://vocabularies.coar-repositories.org/resource_types/",
             "type": "array",
             "items": {
               "type": "string",
@@ -480,13 +482,13 @@ $(function() {
 </tbody></table>
 </div>
        
- <h3><a name="openAPI"></a>8. OpenAPI Document of Sample authorIDy Interface</h3> 
+ <h3><a name="openAPI"></a>8. OpenAPI Document for Proposed authorIDy Interface</h3> 
               
 
 <div class=" ">
 <table class="table">
 <tbody><tr>
-<td style="width: 80%;"><a href="openapi-example1.json">OpenAPI Document for Proposed authorIDy Interface</a></td>
+<td style="width: 80%;"><a href="openapi-example1.json">Sample OpenAPI Document for authorIDy Interface</a></td>
 </tr>
 <tr>
 <td>
@@ -549,7 +551,8 @@ $(function() {
         },
         "/{sinceDate}/{contributorID}": {
             "get": {
-                "description": "Retrieve contributions since and including an accession date (yyyymmdd) for a specified contributor identifier.",
+                "description": "Retrieve contributions since and including 
+                 an accession date (yyyymmdd) for a specified contributor identifier.",
                 "parameters": [
                     {
                         "name": "contributorID",
