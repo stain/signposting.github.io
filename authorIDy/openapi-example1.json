@@ -22,7 +22,7 @@
     "paths": {
         "/*/{contributorID}": {
             "get": {
-                "description": "Retrieve all contributions for a specified contributor identifier.",
+                "description": "Retrieve all contributions for a specified contributor HTTP identifier.",
                 "parameters": [
                     {
                         "name": "contributorID",

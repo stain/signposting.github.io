@@ -525,7 +525,8 @@ $(function() {
                         "description": "The HTTP identifier of a contributor",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "pattern": "http(s)?://.*"
                         },
                         "style": "simple"
                     }
@@ -560,7 +561,8 @@ $(function() {
                         "description": "The HTTP identifier of a contributor",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "pattern": "http(s)?://.*"
                         },
                         "style": "simple"
                     },
