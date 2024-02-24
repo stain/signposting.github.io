@@ -30,9 +30,9 @@
                         "description": "The HTTP identifier of a contributor",
                         "required": true,
                         "schema": {
-                            "type": "string",
-                            "style": "simple"
-                        }
+                            "type": "string"
+                        },
+                        "style": "simple"
                     }
                 ],
                 "responses": {
@@ -47,7 +47,7 @@
                                }
                             }
                          }
-                },
+                    },
                     "404": {
                         "description": "Unknown contributor identifier"
                     }
@@ -63,20 +63,21 @@
                         "in": "path",
                         "description": "The HTTP identifier of a contributor",
                         "required": true,
-                    "schema": {
-                            "type": "string",
-                            "style": "simple"
-                        }
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple"
                     },
                     {
                         "name": "sinceDate",
                         "in": "path",
                         "description": "The accession date in yyyymmdd format",
                         "required": true,
-                    "schema": {
+                        "schema": {
                             "type": "string",
-                            "style": "simple"
-                        }
+                            "pattern": "\\d{4}\\d{2}\\d{2}"
+                        },
+                        "style": "simple"
                     }
                 ],
                 "responses": {
@@ -91,7 +92,7 @@
                                }
                             }
                          }
-                },
+                    },
                     "404": {
                         "description": "Unknown contributor identifier"
                     },
