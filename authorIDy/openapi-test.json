@@ -54,12 +54,12 @@
                 }
             }
         },
-        "/{sinceDate}/{contributorID}": {
+        "/{sinceDate}/{contID}": {
             "get": {
                 "description": "Retrieve contributions since and including an accession date (yyyymmdd) for a specified contributor identifier.",
                 "parameters": [
                     {
-                        "name": "contributorID",
+                        "name": "contID",
                         "in": "path",
                         "description": "The HTTP identifier of a contributor",
                         "required": true,
