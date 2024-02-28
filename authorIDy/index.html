@@ -534,15 +534,18 @@ $(function() {
                 "responses": {
                     "200": {
                         "description": "Successful operation",
-                        "headers": {
+                         "headers": {
               				"Link": {
                         		"schema": {
                   					"type": "array",
                   					"items": {
                     				"type": "string"
-                  				},
-                  				"example": "<http://service/{sinceDate}/{contributorID}?page=0> ; rel=\"prev\",
-                  			 	<http://service/{sinceDate}/{contributorID}?page=2> ; rel=\"next\""
+                  				     },
+                  				    "example": 
+                  				      "&lt;http://service/{sinceDate}/{contributorID}?page=0&gt; 
+                  				           ; rel=\"prev\",
+                  			 	       &lt;http://service/{sinceDate}/{contributorID}?page=2&gt; 
+                  			 	           ; rel=\"next\""
                 					},
                 				"required": false,
                 				"description": "Optional links to next or previous pages (or both)"
@@ -601,9 +604,12 @@ $(function() {
                   					"type": "array",
                   					"items": {
                     				"type": "string"
-                  				},
-                  				"example": "<http://service/{sinceDate}/{contributorID}?page=0> ; rel=\"prev\",
-                  			 	<http://service/{sinceDate}/{contributorID}?page=2> ; rel=\"next\""
+                  				     },
+                  				    "example": 
+                  				      "&lt;http://service/{sinceDate}/{contributorID}?page=0&gt; 
+                  				           ; rel=\"prev\",
+                  			 	       &lt;http://service/{sinceDate}/{contributorID}?page=2&gt; 
+                  			 	           ; rel=\"next\""
                 					},
                 				"required": false,
                 				"description": "Optional links to next or previous pages (or both)"
