@@ -534,6 +534,20 @@ $(function() {
                 "responses": {
                     "200": {
                         "description": "Successful operation",
+                        "headers": {
+              				"Link": {
+                        		"schema": {
+                  					"type": "array",
+                  					"items": {
+                    				"type": "string"
+                  				},
+                  				"example": "<http://service/{sinceDate}/{contributorID}?page=0> ; rel=\"prev\",
+                  			 	<http://service/{sinceDate}/{contributorID}?page=2> ; rel=\"next\""
+                					},
+                				"required": false,
+                				"description": "Optional links to next or previous pages (or both)"
+              					}
+            			},
                         "content": {
                             "application/json":
                             {
@@ -581,6 +595,20 @@ $(function() {
                 "responses": {
                     "200": {
                         "description": "Successful operation",
+                         "headers": {
+              				"Link": {
+                        		"schema": {
+                  					"type": "array",
+                  					"items": {
+                    				"type": "string"
+                  				},
+                  				"example": "<http://service/{sinceDate}/{contributorID}?page=0> ; rel=\"prev\",
+                  			 	<http://service/{sinceDate}/{contributorID}?page=2> ; rel=\"next\""
+                					},
+                				"required": false,
+                				"description": "Optional links to next or previous pages (or both)"
+              					}
+            			},
                         "content": {
                             "application/json":
                             {
