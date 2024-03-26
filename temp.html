@@ -49,14 +49,16 @@ $(function() {
                             <p class="">
                             The Signposting site started in 2016 by recommending patterns based on <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">typed links</a> that repositories can implement 
                             to make it easier for machines to navigate the <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> they host. 
+                            For example, use <code>describedby</code> links to point from an object's landing page to 
+                            metadata descriptions of the object, and <code>item</code> links to point at the object's actual content resources.
                             Meanwhile, the site provides several specifications that 
-                            repositories can implement to make their content generally more accessible to machines:
+                            repositories can implement to make their objects more accessible to machines:
                             <ul>
                             <li><a href="/patterns/">Signposting patterns</a>: The original patterns that use a limited selection of <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation types</a>
-                            to help machines discover metadata, content, persistent identifier, authors, license, and type of <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a>.</li>
+                            to help machines unambiguously discover metadata, content, persistent identifier, authors, license, and type of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a>.</li>
                             <li><a href="/FAIR/">FAIR Signposting Profile</a>: An implementation guideline that provides concrete recipes for the implementation of the <a href="/patterns/">Signposting patterns</a>, including 
                             cardinality and requirements for links with each of the selected <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation types types</a>.</li>
-                            <li><a href="/FAIRiCat/">FAIRiCat</a>: The FAIR Interoperability Catalogue, a static file that repositories can publish to advertise the 
+                            <li><a href="/FAIRiCat/">FAIRiCat</a>: Specifies the content, syntax, and discoverability of the FAIR Interoperability Catalogue, a static file that repositories can publish to advertise the 
                             interoperability affordances they provide, including repository-level and object-level affordances.</li>
                             </ul>
                             </p>
