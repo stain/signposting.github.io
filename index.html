@@ -43,65 +43,63 @@ $(function() {
             <!-- Main component for a primary marketing message or call to action -->
             <div class="row">
                 <div class="jumbo"> 
-                    <div class="row">
-                        <div class="col-md-7">
+                     <div class="row" style="padding: 0 15px;">
+                        
                             <h3 style="margin: 0; margin-bottom: 10px;">Signposting the Scholarly Web</h3>
                             <p class="">
-                            Landing pages support humans that interact with scholarly objects on the web, providing descriptive metadata and links to content. 
-                            But those pages are not optimized for use by machine agents that navigate the scholarly web. 
-                            For example, how can a robot determine which links on a landing page lead to content and which to metadata? 
-		            And, how can a bot distinguish those links from the myriad of other links on the page?
-                            Signposting caters to machine agents by providing this information, and more, in a standards-based way, using <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">Typed Links</a> 
-                            as a means to clarify patterns that occur repeatedly in scholarly portals.
-                            As an administrator of platforms that host research outputs (e.g. data repositories, institutional repositories, publisher platforms, etc.), 
-		            you can help machines to navigate the information systems you manage by implementing 
-                            some of the Signposting Patterns listed on this site. Or, even better, by implementing the 
-                            <a href="https://signposting.org/FAIR/">FAIR Signposting Profile</a> that provides concrete recipes aimed at uniformity across systems. 
+                            The Signposting site started in 2016 by recommending patterns, based on <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">typed links</a>, that repositories can implement 
+                            to make it easier for machines to navigate the <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> they host. 
+                            For example, use <code>describedby</code> links to point from an object's landing page to 
+                            metadata descriptions of the object, and <code>item</code> links to point at the object's actual content resources.
+                            </p>
+                             <p class="">
+                            Meanwhile, the site provides several specifications that 
+                            repositories can implement to make their objects more accessible to machines:
+                            <ul>
+                            <li><a href="/patterns/">Signposting patterns</a>: Details the original patterns that use a limited selection of <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation types</a>
+                            to help machines unambiguously discover metadata, content, persistent identifier, authors, license, and type of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a>.</li>
+                            <li><a href="/FAIR/">FAIR Signposting Profile</a>: Provides a guideline with concrete recipes for the implementation of the <a href="/patterns/">Signposting patterns</a>, including 
+                            cardinality and requirements for links with each of the selected <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation types types</a>.</li>
+                            <li><a href="/FAIRiCat/">FAIRiCat</a>: Specifies the content, syntax, and discoverability of the FAIR Interoperability Catalogue, a static file that repositories can publish to advertise the 
+                            interoperability affordances they provide, including repository-level and object-level affordances.</li>
+                            </ul>
                             </p>
                             
+                            <p class="">
+                             All these specifications share the following design principles:
+                            <ul>
+                            <li>Decentralization: Interoperability across the scholarly web is achieved by providing machine affordances 
+                                at the end of repositories that are the custodians of the content, instead of via centralized third party services.</li>
+                            <li>Permissionless innovation: The more repositories implement the same interoperability affordances, 
+                                the lower the cost of entry becomes for the creation of services that leverage objects hosted by different repositories. 
+                                Leveling the playing field in this way allows for the introduction of innovative cross-repository services.</li>   
+                            <li>Standards-based: Specifications leverage existing formal Internet/Web standards, thereby helping the scholarly web to become an 
+                            integral part of the web at large instead of remaining an enclave that also happens to use HTTP.</li>
+                            <li>Lightweight: Ease of implementation for both repositories and machine agents that want to use repository content.</li>
+                            </ul>
+                            </p>
+                            <p class="">
+                            With regard to these design principles, the specifications on the Signposting site are very much aligned with befriended efforts such as 
+                            <a href="https://notify.coar-repositories.org/specification/">COAR Notify</a>, 
+                            <a href="https://w3id.org/ro/crate">RO-Crate</a>, 
+                            <a href="https://rioxx.net/profiles/v3-0-final/">RIOXX v3</a>, and 
+                            <a href="https://www.eventnotifications.net/">Event Notifications in Value Adding Networks</a>.
+                            </p>
                         </div>
+                        </div>
+                        
+                        <!--
+                        
                         <div class="col-md-5">
                             <div class="clearfix">
                                 <img src="https://signposting.org/static/images/signposting.png" alt="Signposting the Scholarly web in Slideshare" class="sp_pat pull-right"/>
                             </div>
                             <p style="font-size: 0.7em;" class="pull-right">Image courtesy of <a href="https://twitter.com/hochstenbach" target="_blank">Patrick Hochstenbach</a>.</p>
                         </div>
-                    </div> <!-- row -->
-                    <div class="row" style="padding: 0 15px;">
-                        <p>
-                         Typed links, as used in Signposting, can be provided in 
-                            <a href="http://tools.ietf.org/html/rfc5988">HTTP Link headers</a>, 
-                            <a href="https://www.w3.org/wiki/HTML/Elements/link">HTML link elements</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Sets</a>.  
-                            This example, as well as the examples in the Patterns section of this site, uses the HTTP Link header approach:
-                            <br/><br/>
-                        Herbert Van de Sompel and Michael L. Nelson are the authors of the paper with DOI 
-                        <a href="https://doi.org/10.1045/november2015-vandesompel">https://doi.org/10.1045/november2015-vandesompel</a>; 
-                        their respective <a href="http://orcid.org/">ORCIDs</a> are <a href="https://orcid.org/0000-0002-0715-6126">https://orcid.org/0000-0002-0715-6126</a> 
-                        and <a href="https://orcid.org/0000-0003-3749-8116">https://orcid.org/0000-0003-3749-8116</a>. The DOI redirects to the environment managed by the publisher of the paper,
-                        specifically to <a href="http://www.dlib.org/dlib/november15/vandesompel/11vandesompel.html">http://www.dlib.org/dlib/november15/vandesompel/11vandesompel.html</a>.
-                        The publisher can express authorship information in a machine-friendly way by providing <code>author</code> links 
-                        in a Link header provided in the response to an HTTP HEAD/GET issued against that URL. 
-                        The publisher can additionally convey the persistent identifier of the paper by using a 
-                        <code>cite-as</code> link. These links allow a bot to follow their nose to find pertinent additional information pertaining to the paper:
-                        <br /><br />
-
-                        <div class="code">
-                        HTTP/1.1 200 OK<br/>
-						Date: Fri, 19 May 2023 06:47:47 GMT<br/>
-						Server: Apache/2.2.15 (CentOS)<br/>
-						Last-Modified: Thu, 19 Nov 2015 14:50:19 GMT<br/>
-						ETag: "205a5e-f5ef-524e5e0ab80c0"<br/>
-						<b>Link: &lt;https://orcid.org/0000-0002-0715-6126&gt; ; rel="author",<br/>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://orcid.org/0000-0003-3749-8116&gt; ; rel="author",<br/>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.org/10.1045/november2015-vandesompel&gt; ; rel="cite-as"<br/></b>
-						Accept-Ranges: bytes<br/>
-						Content-Length: 62959<br/>
-						Content-Type: text/html; charset=UTF-8<br/>
-                        </div>
-                        </p>   
-                    </div>
-                </div>
-            </div>
+                    </div> 
+                    
+                    -->
+                    
 
             <!-- ABOUT -->
 
@@ -110,24 +108,16 @@ $(function() {
                     <a name="about"></a>
                     <h3 style="margin: 0; margin-bottom: 10px;">About</h3>
                     <p class="">
-                    There is very little interoperability among scholarly portals on the
-                    web. Most portals focus on access via the user interface. Some provide APIs
-                    for machine access, in which case each portal exposes their own. But
+                    There is very little interoperability among scholarly repositories on the
+                    web. Most focus on access via the user interface. Some provide APIs
+                    for machine access, in which case each repository platform has its own. But
                     how about some uniform approaches to allow machines to interact with
-                    scholarly portals?
-			</p>
-			<p class="">
-                    Understanding that resources are scarce, Signposting proposes a really
-                    simple approach, based on <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">Typed Links</a>,
-                    to clarify patterns that occur repeatedly in scholarly portals. Typed
-                    Links are used to help machines answer questions like "What is the DOI
-                    of this PDF publication", "Where to find the publication resources
-                    from the landing page?", "Where to find the BibTeX metadata that
-                    describes the publication", "What is the ORCID of the author of this
-                    publication", ...
+                    repositories? Wouldn't that make it a lot easier/cheaper to implement cross-repository services?
+                    Understanding that resources are scarce, the Signposting site lists really
+                    simple approaches that repositories can implement to improve machine accessibility of their content. 
                     </p>
                     <p class="">
-                    Signposting is not a formal standardization effort. It's just an
+                    Signposting is not a formal standardization effort. It's an
                     accumulation of ideas from people that have spent a lot of time
                     thinking about the web and scholarly communication on the web, working
                     on specifications to improve on the interoperability status quo, and
@@ -135,14 +125,11 @@ $(function() {
                     scarce resources, you know.
 			</p>
 			<p class="">
-                    The Signposting approach is fully aligned with hypermedia (REST, HATEOAS)
-                    lines of thinking regarding web interoperability. Implementation of a
-                    pattern should be straightforward and would help machines
-                    significantly. Which would allow the emergence of new applications that make the life of a reader easier. 
+                    The specifications provided under the Signposting umbrella are fully aligned with hypermedia (REST, HATEOAS)
+                    lines of thinking regarding web interoperability. Implementation should be straightforward and would help machines
+                    significantly. Which would allow the emergence of new applications that make the life of users easier. 
                     Meaning great Return On Investment.
 			</p>
-
-                    
            
                     <p style="font-weight: 200;">Some background material related to the Signposting effort:</p>
                     <ul style="font-weight: 200;">
@@ -157,7 +144,7 @@ $(function() {
                         </li>
                         <li>
                             Van de Sompel, H., Rosenthal, D., and Nelson, M.L. (2016) Web
-                            Infrastructure to Support e-Journal Preservation (and More). Arxiv
+                            Infrastructure to Support e-Journal Preservation (and More). arXiv
                             preprint. <a href="https://arxiv.org/abs/1605.06154">https://arxiv.org/abs/1605.06154</a>
                         </li>
 			<li>
@@ -180,10 +167,12 @@ $(function() {
                     <a name="feedback"></a>
                     <h3 style="margin: 0; margin-bottom: 10px;">Feedback</h3>
                     <p class="">
-                    Do you have feedback regarding patterns listed on this site? Are you thinking of another pattern that should be addressed? Do you have concrete suggestions for addressing another pattern? Do you have ideas on how to promote Signposting in the scholarly community? Do you want to join the cause to make the scholarly web more friendly to machines?
-
+                    Do you have feedback regarding specifications listed on this site? Are you thinking of another challenge that could be addressed 
+                    under the Signposting umbrella? Do you have ideas on how to promote Signposting in the scholarly community? 
+                    Do you want to join the cause to make the scholarly web more friendly to machines?
                     <br/><br/>
-                    Please let yourself be heard on the <a href="https://groups.google.com/forum/#!forum/signposting" target="_blank">Signposting Google Group</a>.
+                    Please let yourself be heard on the <a href="https://groups.google.com/forum/#!forum/signposting" target="_blank">Signposting Google Group</a> 
+                    and/or on the <a href="https://github.com/hvdsomp/signposting">Signposting GitHub repository</a>.
                     </p>
                 </div>
             </div>
