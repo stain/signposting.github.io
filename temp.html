@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>Signposting the Scholarly Web</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/signposting.js"></script>
+
+        <script>
+
+$(function() {
+    load_header_footer();
+
+});
+        </script>
+    </head>
+
+    <body>
+        <!-- Static navbar -->
+        <div id="signposting-menu"></div>
+
+        <div class="container">
+
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="row">
+                <div class="jumbo"> 
+                     <div class="row" style="padding: 0 15px;">
+                        
+                            <h3 style="margin: 0; margin-bottom: 10px;">Signposting the Scholarly Web</h3>
+                            <p class="">
+                            The Signposting site started in 2016 by recommending patterns based on <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">typed links</a> that repositories can implement 
+                            to make it easier for machines to navigate the <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> they host. 
+                            Meanwhile, the site provides several specifications that 
+                            repositories can implement to make their content generally more accessible to machines:
+                            <ul>
+                            <li><a href="/patterns/">Signposting patterns</a>: The original patterns that use a limited selection of <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation types</a>
+                            to help machines discover metadata, content, persistent identifier, authors, license, and type of <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a>.</li>
+                            <li><a href="/FAIR/">FAIR Signposting</a>: An implementation guideline that provides concrete recipes for the implementation of the <a href="/patterns/">Signposting patterns</a>, including 
+                            cardinality and requirements for links with each of the selected <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">link relation types types</a>.</li>
+                            <li><a href="/FAIRiCat/">FAIRiCat</a>: The FAIR Interoperability Catalogue, a static file that repositories can publish to advertise the 
+                            interoperability affordances they provide, including repository-level and object-level affordances.</li>
+                            </ul>
+                            </p>
+                            
+                            <p class="">
+                             All these specifications share the following design principles:
+                            <ul>
+                            <li>Decentralization: Interoperability across the scholarly web is achieved by providing interoperability affordances 
+                                at the end of repositories that are the custodians of the content, instead of via centralized third party services.</li>
+                            <li>Standards-based: Specifications leverage existing formal Internet/Web standards, thereby making the scholarly web an 
+                            integral part of the web at large instead of an enclave that happens to use HTTP.</li>
+                            <li>Lightweight: Ease of implementation for both repositories and machine agents that want to use repository content.</li>
+                            </ul>
+                            </p>
+                            <p class="">
+                            With regard to these design principles, the specifications on the Signposting site are very much aligned with befriended efforts such as 
+                            <a href="https://notify.coar-repositories.org/specification/">COAR Notify</a>, 
+                            <a href="https://w3id.org/ro/crate">RO-Crate</a>, 
+                            <a href="https://rioxx.net/profiles/v3-0-final/">RIOXX v3</a>, and 
+                            <a href="https://www.eventnotifications.net/">Event Notifications in Value Adding Networks</a>.
+                            </p>
+                        </div>
+                        
+                        <!--
+                        
+                        <div class="col-md-5">
+                            <div class="clearfix">
+                                <img src="https://signposting.org/static/images/signposting.png" alt="Signposting the Scholarly web in Slideshare" class="sp_pat pull-right"/>
+                            </div>
+                            <p style="font-size: 0.7em;" class="pull-right">Image courtesy of <a href="https://twitter.com/hochstenbach" target="_blank">Patrick Hochstenbach</a>.</p>
+                        </div>
+                    </div> 
+                    
+                    -->
+                    
+
+            <!-- ABOUT -->
+
+            <div class="row">
+                <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
+                    <a name="about"></a>
+                    <h3 style="margin: 0; margin-bottom: 10px;">About</h3>
+                    <p class="">
+                    There is very little interoperability among scholarly repositories on the
+                    web. Most focus on access via the user interface. Some provide APIs
+                    for machine access, in which case each repository platform has its own. But
+                    how about some uniform approaches to allow machines to interact with
+                    scholarly portals?
+			</p>
+			<p class="">
+                    Understanding that resources are scarce, the Signposting site lists really
+                    simple approaches that repositories can implement to improve machine accessibility of their content. 
+                    </p>
+                    <p class="">
+                    Signposting is not a formal standardization effort. It's an
+                    accumulation of ideas from people that have spent a lot of time
+                    thinking about the web and scholarly communication on the web, working
+                    on specifications to improve on the interoperability status quo, and
+                    witnessing some specifications being adopted and others not. Those
+                    scarce resources, you know.
+			</p>
+			<p class="">
+                    The specifications provided under the Signposting umbrella are fully aligned with hypermedia (REST, HATEOAS)
+                    lines of thinking regarding web interoperability. Implementation should be straightforward and would help machines
+                    significantly. Which would allow the emergence of new applications that make the life of users easier. 
+                    Meaning great Return On Investment.
+			</p>
+           
+                    <p style="font-weight: 200;">Some background material related to the Signposting effort:</p>
+                    <ul style="font-weight: 200;">
+                        <li>
+                            Van de Sompel, H. (2023) FAIR Digital Objects and FAIR Signposting. Presentation slides.
+                            <a href="https://doi.org/10.5281/zenodo.7977333">https://doi.org/10.5281/zenodo.7977333</a>
+                        </li>
+                        <li>
+                            Van de Sompel, H., and Nelson, M.L. (2015) Reminiscing About 15 Years
+                            of Interoperability Efforts. D-Lib Magazine, 21(11/12).
+                            <a href="https://doi.org/10.1045/november2015-vandesompel">https://doi.org/10.1045/november2015-vandesompel</a>
+                        </li>
+                        <li>
+                            Van de Sompel, H., Rosenthal, D., and Nelson, M.L. (2016) Web
+                            Infrastructure to Support e-Journal Preservation (and More). arXiv
+                            preprint. <a href="https://arxiv.org/abs/1605.06154">https://arxiv.org/abs/1605.06154</a>
+                        </li>
+			<li>
+                            Van de Sompel, H. (2017) Signposting the Scholarly Web: An Overview. Presentation slides.
+                            <a href="https://www.slideshare.net/hvdsomp/signposting-overview-version-november-2017">https://www.slideshare.net/hvdsomp/signposting-overview-version-november-2017</a>
+                        </li>
+                        <li>
+                            Van de Sompel, H., and Nelson, M.L. (2015) Achieving Meaningful
+                            Interoperability for Web-Based Scholarship. Presentation video.
+                            <a href="https://www.youtube.com/watch?v=NEeDvlveEVA">https://www.youtube.com/watch?v=NEeDvlveEVA</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FEEDBACK -->
+
+            <div class="row">
+                <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
+                    <a name="feedback"></a>
+                    <h3 style="margin: 0; margin-bottom: 10px;">Feedback</h3>
+                    <p class="">
+                    Do you have feedback regarding specifications listed on this site? Are you thinking of another challenge that could be addressed 
+                    under the Signposting umbrella? Do you have ideas on how to promote Signposting in the scholarly community? 
+                    Do you want to join the cause to make the scholarly web more friendly to machines?
+                    <br/><br/>
+                    Please let yourself be heard on the <a href="https://groups.google.com/forum/#!forum/signposting" target="_blank">Signposting Google Group</a>.
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /container -->
+
+        <div class="footer" id="footer">
+        </div>
+    </body>
