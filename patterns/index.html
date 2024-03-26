@@ -67,9 +67,35 @@ $(function() {
                             <p style="font-size: 0.7em;" class="pull-right">Image courtesy of <a href="https://twitter.com/hochstenbach" target="_blank">Patrick Hochstenbach</a>.</p>
                         </div>
                     </div> <!-- row -->
+                    </div> <!-- jumbo -->
                     
-                    <div class="row" style="padding: 0 15px;">
-                        <p>
+                <div class="row">
+                <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
+                    <h3 style="margin: 0; margin-bottom: 10px;">The Signposting Patterns</h3>
+                    <p class="">
+                    Descriptions and examples for the various Signposting patterns are available:
+                    <ul>
+                    <li><a href="https://signposting.org/patterns/author/">Author</a>: Use the <code>author</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
+                    identifiers (e.g. ORCID) of the object's authors.</li>
+                    <li><a href="https://signposting.org/patterns/identifier/">Identifier</a>: Use the <code>cite-as</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
+                    its persistent identifier, that is, the persistent URI (e.g. HTTP DOI) that redirects to the landing page.</li>
+                    <li><a href="https://signposting.org/patterns/license/">License</a>: Use the <code>license</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
+                    identifiers (e.g. SPDX URI) of licenses that apply to the object.</li>
+                    <li><a href="https://signposting.org/patterns/type/">Type</a>: Use the <code>type</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
+                    URIs of controlled vocabularies (e.g. schema.org) that denote the object's type, e.g. article, datasets, ...</li>
+                    <li><a href="https://signposting.org/patterns/content_resources/">Content Resources</a>: Use the <code>item</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
+                    URIs where the object's actual content is available.</li>
+                    <li><a href="https://signposting.org/patterns/metadata_resources/">Metadata Resources</a>: Use the <code>describedby</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
+                    URIs where metadata describing the object is available.</li>
+                    </ul>
+			</p>
+                </div>
+            </div>             <!-- row -->
+                    
+                <div class="row">
+                <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
+                    <h3 style="margin: 0; margin-bottom: 10px;">The Signposting Patterns: An Example</h3>
+                    <p class="">
                          Typed links, as used in Signposting, can be provided in 
                             <a href="http://tools.ietf.org/html/rfc5988">HTTP Link headers</a>, 
                             <a href="https://www.w3.org/wiki/HTML/Elements/link">HTML link elements</a>, and <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Sets</a>.  
@@ -105,29 +131,7 @@ $(function() {
             </div>  <!-- row -->
 
 
-            <div class="row">
-                <div class="jumbo" style="background: #fff; border-bottom: 1px solid #ddd; border-radius: 0px;">
-                    <a name="about"></a>
-                    <h3 style="margin: 0; margin-bottom: 10px;">The Signposting patterns</h3>
-                    <p class="">
-                    Descriptions and examples for the various Signposting patterns are available:
-                    <ul>
-                    <li><a href="https://signposting.org/patterns/author/">Author</a>: Use the <code>author</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
-                    identifiers (e.g. ORCID) of the object's authors.</li>
-                    <li><a href="https://signposting.org/patterns/identifier/">Identifier</a>: Use the <code>cite-as</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
-                    its persistent identifier, that is, the persistent URI (e.g. HTTP DOI) that redirects to the landing page.</li>
-                    <li><a href="https://signposting.org/patterns/license/">License</a>: Use the <code>license</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
-                    identifiers (e.g. SPDX URI) of licenses that apply to the object.</li>
-                    <li><a href="https://signposting.org/patterns/type/">Type</a>: Use the <code>type</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
-                    URIs of controlled vocabularies (e.g. schema.org) that indicate the object's type, e.g. article, datasets, ...</li>
-                    <li><a href="https://signposting.org/patterns/content_resources/">Content Resources</a>: Use the <code>item</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
-                    URIs where the object's actual content is available.</li>
-                    <li><a href="https://signposting.org/patterns/metadata_resources/">Metadata Resources</a>: Use the <code>describedby</code> link relation type to point from the landing page of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> to 
-                    URIs where metadata describing the object is available.</li>
-                    </ul>
-			</p>
-                </div>
-            </div>             <!-- row -->
+
 
 
 
