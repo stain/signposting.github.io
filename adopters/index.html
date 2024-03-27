@@ -134,7 +134,7 @@ $(function() {
                     exposing links by means of the HTTP Link header as well as using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. At the time of writing, the Dataverse software is used by nearly 100 data repositories, worldwide.
                 </div>
                 <br>
-                <div>An example of a typical FAIR Signposting implementation for a Dataverse instance is shown below for a <a href="#dans">DANS Data Station</a>.
+                <div>An example of a typical FAIR Signposting implementation for a Dataverse instance is shown below for a <a href="#dans">DANS Data Station</a>.</div>
                 
                    <h3><a name="dspace7"></a>DSpace 7 FAIR Signposting</h3>
                             <div>
@@ -153,7 +153,8 @@ $(function() {
                     <br/>
                     <div>Check out an example of FAIR Signposting for the repository object <a href="https://doi.org/10.7486/DRI.vm41bk02f">
                     USI Escort Conference 1991</a>. The HTML landing page <a href="https://repository.dri.ie/catalog/vm41bk02f">https://repository.dri.ie/catalog/vm41bk02f</a> for this object contains links to linksets serialized 
-                    in both the &quot;application/linkset&quot; and &quot;application/linkset+json&quot; media types:</div>
+                    in both the &quot;application/linkset&quot; and &quot;application/linkset+json&quot; media types:
+                    </div>
                     <div style="background: #fff; margin: 0 10px;">
                     <br>
                     <code>
@@ -233,7 +234,7 @@ $(function() {
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"text/xml"</b></br>
 						Content-Type: text/html;charset=UTF-8</br>
-						Content-Language: en</br>
+						Content-Language: en
                     </code>
                 </div>
                 
@@ -256,7 +257,7 @@ $(function() {
                         Content-Type: text/html;charset=utf-8<br/>
                         Link: &lt;https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/7507&gt;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"linkset"</b></br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/linkset+json"</b></br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/linkset+json"</b>
                     </code>
                 </div>
                 <br/>
@@ -337,7 +338,7 @@ $(function() {
                         <li><a href="/patterns/content_resources/">Content Resources</a></li>
                     </ul/>
                 </div>
-
+				<div>
                 This example shows the Identifier, Metadata Resources, Content Resources, 
                 and Author patterns implemented for the <b>Landing Page URI</b>: 
                 <div style="background: #fff; margin: 0 10px;">
@@ -361,8 +362,9 @@ $(function() {
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/zip"</b>,<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0003-1291-8524&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b>
                     </code>
+                </div>
                 </div>
                 <!--
                 <br/>
@@ -426,7 +428,7 @@ $(function() {
                         <li><a href="/patterns/identifier/">Identifier</a></li>
                     </ul/>
                 </div>
-
+				<div>
                 This example shows the Identifier, Metadata Resources, and the Author patterns 
                 implemented for the <b>Landing Page URI</b>:
                 <div style="background: #fff; margin: 0 10px;">
@@ -452,8 +454,9 @@ $(function() {
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0001-6092-9741&gt;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b>,<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0001-5134-5322&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b>
                     </code>
+                </div>
                 </div>
                 
                            <h3><a name="unt_digital_library"></a>UNT Digital Library</h3>
@@ -464,7 +467,7 @@ $(function() {
                         <li><a href="/patterns/identifier/">Identifier</a></li>
                     </ul/>
                 </div>
-
+				<div>
                 This example shows the Identifier and Metadata Resources patterns 
                 implemented for the <b>Landing Page URI</b>; note the link to an <a href="https://iiif.io">IIIF</a> manifest:
                 <div style="background: #fff; margin: 0 10px;">
@@ -490,8 +493,9 @@ $(function() {
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.library.unt.edu/ark:/67531/metadc1477161/manifest/&gt;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/json+ld"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://iiif.io/api/presentation/2.1/"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://iiif.io/api/presentation/2.1/"</b>
                     </code>
+                </div>
                 </div>
                 
                             <h3><a name="rioxx"></a>RIOXX version 3 metadata format</h3>
@@ -505,7 +509,6 @@ $(function() {
                     and by conveying various metadata elements by means of <code>dc:relation</code> links that are typed in the 
                     same way as recommended by Signposting, e.g. <code>cite-as</code> to point at the persistent identifier of the object provided by the institutional repository,  
                     <code>item</code> to point at content resources, etc. 
-            
                 </div>
                 
                 <h3><a name="notify"></a>COAR Notify Protocol</h3>
@@ -644,10 +647,11 @@ $(function() {
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
                         Link: &lt;http://ktisis.cut.ac.cy/bitstream/10488/4268/2/Climate%20Change%20in%20Cyprus.pdf&gt;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b>
                     </code>
                 </div>
                 <br/>
+                <div>
                 This example shows the PDF file that is a constituent resource of the object linking back to the <b>Landing Page URI</b> using the <code>collection</code> 
                 relation type of the Content Resources pattern.
                 <div style="background: #fff; margin: 0 10px;">
@@ -660,8 +664,9 @@ $(function() {
                         Content-Length: 227215<br/>
                         Content-Type: application/pdf<br/>
                         Link: &lt;http://ktisis.cut.ac.cy/handle/10488/4268&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b>
                     </code>
+                </div>
                 </div>
                 
                                 <h3><a name="workflowhub"></a>WorkflowHub</h3>
@@ -698,6 +703,7 @@ $(function() {
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type=<b>"application/zip"</b> ; <br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;profile=<b>"https://w3id.org/ro/crate"</b>
                     </code>
+                </div>
                 </div>
                 
                 <!--
@@ -761,7 +767,7 @@ $(function() {
                 
                 -->
                 
-                </div>
+                </div> <!-- /featurette -->
         </div> <!-- /container -->
 
         <div class="footer" id="footer">
