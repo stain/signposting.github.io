@@ -70,7 +70,7 @@
         Rutgers University Art Library Exhibition Spaces.
         <em>College &amp; Research Libraries News 77</em>, 5 (May
         2016), 226–230. <a href=
-        "https://crln.acrl.org/content/77/5/226.full">https://crln.acrl.org/content/77/5/226.full</a>.:</p>
+        "https://doi.org/10.5860/crln.77.5.9490">https://doi.org/10.5860/crln.77.5.9490</a>.:</p>
         </div>
 
         <p id="summary"></p>
@@ -113,46 +113,46 @@
 <tbody>
 <tr>
 <td style="width: 80%;"> The HTTP Link Header to link to metadata from the
-<b>Landing Page URI</b>, which is an HTML publication,<br>
-<tt>https://crln.acrl.org/content/77/5/226.full</tt>
+<b>Landing Page URI</b><br>
+<tt>https://crln.acrl.org/index.php/crlnews/article/view/9490</tt>
 is:</td>
 </tr>
 <tr>
 <td>
-<pre>$ curl -I "https://crln.acrl.org/content/77/5/226.full"
+<pre>$ curl -I "https://crln.acrl.org/index.php/crlnews/article/view/9490"
 
-Link: &lt;https://crln.acrl.org/citmgr?type=refman&amp;gca=crlnews%3B77%2F5%2F226&gt;
+Link: &lt;https://crln.acrl.org/index.php/crlnews/rt/captureCite/9490/10768/ProCiteCitationPlugin&gt;
  ; rel="describedby"
  ; type="application/x-research-info-systems",
- &lt;https://crln.acrl.org/citmgr?type=bibtex&amp;gca=crlnews%3B77%2F5%2F226&gt;
+ &lt;https://crln.acrl.org/index.php/crlnews/rt/captureCite/9490/10768/EndNoteCitationPlugin&gt;
  ; rel="describedby"
- ; type="application/x-bibtex"
+ ; type="application/x-endnote-refer"
 </pre>
 </td>
 </tr>
 <tr>
 <td style="width: 80%;">The HTTP Link header to link back to the landing page for the
 <b>RIS metadata URI</b><br>
-<tt>https://crln.acrl.org/citmgr?type=refman&amp;gca=crlnews%3B77%2F5%2F226</tt> is:</td>
+<tt>https://crln.acrl.org/index.php/crlnews/rt/captureCite/9490/10768/ProCiteCitationPlugin</tt> is:</td>
 </tr>
 <tr>
 <td>
 <pre>$ curl -I "https://journals.plos.org/plosone/article/citation/ris?id=10.1371%2Fjournal.pone.0115253"
 
-Link: &lt;https://crln.acrl.org/content/77/5/226.full&gt; ; rel="describes" ; type="text/html"
+Link: &lt;https://crln.acrl.org/index.php/crlnews/article/view/9490&gt; ; rel="describes" ; type="text/html"
 </pre>
 </td>
 </tr>
 <tr>
 <td style="width: 80%;">The HTTP Link header to link back to the landing page for the
-<b>BibTeX metadata URI</b><br>
-<tt>https://journals.plos.org/plosone/article/citation/bibtex?id=10.1371%2Fjournal.pone.0115253</tt> is:</td>
+<b>Endnote metadata URI</b><br>
+<tt>https://crln.acrl.org/index.php/crlnews/rt/captureCite/9490/10768/EndNoteCitationPlugin</tt> is:</td>
 </tr>
 <tr>
 <td>
-<pre>$ curl -I "https://crln.acrl.org/citmgr?type=bibtex&amp;gca=crlnews%3B77%2F5%2F226"
+<pre>$ curl -I "https://crln.acrl.org/index.php/crlnews/rt/captureCite/9490/10768/EndNoteCitationPlugin"
 
-Link: &lt;https://crln.acrl.org/content/77/5/226.full&gt; ; rel="describes" ; type="text/html"
+Link: &lt;https://crln.acrl.org/index.php/crlnews/article/view/9490&gt; ; rel="describes" ; type="text/html"
 </pre>
 </td>
 </tr>
