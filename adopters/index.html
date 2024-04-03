@@ -252,24 +252,25 @@ $(function() {
                             <h3><a name="ojs"></a>The Open Journal System FAIR Signposting Profile</h3>
                             <div>
                     Version v2.x and v3.x of the <a href="https://openjournalsystems.com/">Open Journal System</a> software for journal publishing support the FAIR Signposting Profile. They do so by 
-                    exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. At the time of writing, the hosted version of the Open Journal System publishes over 500 journals for publishers worldwide.</div> 
+                    exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. 
+                    At the time of writing, the hosted version of the Open Journal System publishes over 500 journals for publishers worldwide.</div> 
                     <br/>
-                    <div>Check out an example of FAIR Signposting at for the article <a href="https://doi.org/10.4401/ag-7507">On the Contribution of Philosophical and Geoscientific Inquiry to Geoethics (qua Applied Ethics)</a>:</div>
+                    <div>Check out an example of FAIR Signposting at for the article <a href="https://doi.org/10.4401/ag-8993">Atmospheric Correction of FG5 Absolute Gravimetry Data using Measured Air Pressure</a>:</div>
                                <div style="background: #fff; margin: 0 10px;">
                     <br>
-                    <code>curl -I &quot;https://www.annalsofgeophysics.eu/index.php/annals/Journal-sponsorship&quot;</code>
+                    <code>curl -I &quot;https://www.annalsofgeophysics.eu/index.php/annals/article/view/8993&quot;</code>
                     <br>
                     <br>
                     <code>
                         HTTP/1.1 200 OK<br/>
                         Content-Type: text/html;charset=utf-8<br/>
-                        Link: &lt;https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/7507&gt;<br>
+                        Link: &lt;https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/8993&gt;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"linkset"</b></br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/linkset+json"</b>
                     </code>
                 </div>
                 <br/>
-                <div>Now, check out the linkset document by clicking its URL <a href="https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/7507">https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/7507</a>.</div>
+                <div>Now, check out the linkset document by clicking its URL <a href="https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/8993">https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/8993</a>.</div>
             
 <!--
             <h3><a name="cobaltmetrics"></a>Cobaltmetrics</h3>
@@ -640,20 +641,22 @@ $(function() {
                 </div>
 				<div>
                 This example shows the Author and Content Resources patterns 
-                implemented for the <b>Landing Page URI</b>, which is identical to the <b>Identifying HTTP URI</b>, of a repository object:
+                implemented for the <b>Landing Page URI</b> of a repository object:
                 </div>
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
-                    <code>curl -I &quot;http://ktisis.cut.ac.cy/handle/10488/4268&quot;</code>
+                    <code>curl -I &quot;https://ktisis.cut.ac.cy/handle/20.500.14279/23265&quot;</code>
                     <br>
                     <br>
                     <code>
                         HTTP/1.1 200 OK<br/>
                         Content-Type: text/html; charset=UTF-8<br/>
-                        Content-Length: 30731<br/>
-                        Link: &lt;http://orcid.org/0000-0002-9452-3018&gt;<br>
+                        Content-Length: 43409<br/>
+                        Link: &lt;http://orcid.org/0000-0001-9079-1907&gt;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
-                        Link: &lt;http://ktisis.cut.ac.cy/bitstream/10488/4268/2/Climate%20Change%20in%20Cyprus.pdf&gt;<br>
+                        Link: &lt;http://orcid.org/0000-0002-2229-8798&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
+                        Link: &lt;https://ktisis.cut.ac.cy/bitstream/20.500.14279/23265/1/021-0007%282021%29.pdf&gt;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b>
                     </code>
@@ -664,14 +667,14 @@ $(function() {
                 relation type of the Content Resources pattern.
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
-                    <code>curl -I &quot;http://ktisis.cut.ac.cy/bitstream/10488/4268/2/Climate%20Change%20in%20Cyprus.pdf&quot;</code>
+                    <code>curl -I &quot;https://ktisis.cut.ac.cy/bitstream/20.500.14279/23265/1/021-0007%282021%29.pdf&quot;</code>
                     <br>
                     <br>
                     <code>
                         HTTP/1.1 200 OK<br/>
-                        Content-Length: 227215<br/>
+                        Content-Length: 3109603<br/>
                         Content-Type: application/pdf<br/>
-                        Link: &lt;http://ktisis.cut.ac.cy/handle/10488/4268&gt;<br>
+                        Link: &lt;https://ktisis.cut.ac.cy/handle/20.500.14279/23265&gt;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b>
                     </code>
                 </div>
