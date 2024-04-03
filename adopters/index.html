@@ -68,6 +68,8 @@ $(function() {
                                 	<!--
                                 	<li><a href="#eurac">eurac research Environmental Data Platform</a></li>
                                 	-->
+                                	<li><a href="#episciences">Episciences Overlay Journals</a></li>
+                                	<li><a href="#hal">HAL Open Science</a></li>
                                 	<li><a href="#ojs">Open Journal System FAIR Signposting</a></li>
                                 	<li><a href="#pangaea">Pangaea</a></li>
                                 	<li><a href="#pythonclient">Python client for FAIR Signposting </a></li>
@@ -76,15 +78,7 @@ $(function() {
                                 	<li><a href="#rubyclient">Ruby Web Link parsing gem</a></li>
                                 	<li><a href="#ucd_digital_library">UCD Digital Library</a></li>
                                     <li><a href="#unt_digital_library">UNT Digital Library</a></li> 
-                                    <li><a href="#workflowhub">WorkflowHub</a></li>  
-                                    <!-- ADD THESE
-                                    HAL:
-									https://hal.science/hal-03087870v1
-
-									Episcience (cite-as URI to be fixed):
-									https://jdmdh.episciences.org/13247
-
-                                    -->                        
+                                    <li><a href="#workflowhub">WorkflowHub</a></li>                        
                                 </ul>
                             </p>
                         </div>
@@ -427,6 +421,96 @@ $(function() {
                     </code>
                 </div>
 -->
+
+<h3><a name="hal"></a>HAL Open Science</h3>
+                <div>
+                    The <a href="https://hal.science">HAL Open Science</a> repository has implemented the following Signposting patterns:
+                    <ul>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
+                    </ul/>
+                    In addition to that it provides a typed link to make a <a href="https://www.w3.org/TR/ldn/">Linked Data Notification</a> inbox used for their
+                    implementation of the <a href="https://notify.coar-repositories.org/specification/">Notify Protocol</a> discoverable.
+                </div>
+				<div>
+                This example shows the Identifier and Metadata Resources patterns as well as the link to the 
+                Linked Data Notification inbox for the <b>Landing Page URI</b>:
+                <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://hal.science/hal-03087870v1&quot;</code>
+                    <br>
+                    <br>
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-Type: text/html; charset=UTF-8<br/>
+                        link:  &lt;https://inbox.hal.science/ &gt;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="http://www.w3.org/ns/ldp#inbox", 
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870v1 &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="cite-as", 
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870/bibtex &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/x-bibtex", 
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870/json &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/json", 
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870/tei &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/xml"
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile="http://www.tei-c.org/ns/1.0", 
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870/dc &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/xml"
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile="http://purl.org/dc/elements/1.1/", 
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870/dcterms &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/xml"
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile="http://purl.org/dc/terms/"
+                    </code>
+                </div>
+                </div>
+                
+                <h3><a name="episciences"></a>Episciences Overlay Journals</h3>
+                <div>
+                    The <a href="https://hal.science">Episciences Overlay Journals</a> have implemented the following Signposting patterns:
+                    <ul>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
+                        <li><a href="/patterns/type/">Type</a></li>
+                    </ul/>
+                    In addition to that a typed link is provided to make a <a href="https://www.w3.org/TR/ldn/">Linked Data Notification</a> inbox used for their
+                    implementation of the <a href="https://notify.coar-repositories.org/specification/">Notify Protocol</a> discoverable.
+                </div>
+				<div>
+                This example shows the Identifier and Metadata Resources patterns as well as the link to the 
+                Linked Data Notification inbox for the <b>Landing Page URI</b>:
+                <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://jdmdh.episciences.org/13247&quot;</code>
+                    <br>
+                    <br>
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-Type: text/html; charset=UTF-8<br/>
+						link:  &lt;https://inbox.episciences.org/ &gt;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="http://www.w3.org/ns/ldp#inbox", 
+  						&lt;https://doi.org/10.46298/jdmdh.13247 &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="cite-as", 
+  						&lt;https://schema.org/ScholarlyArticle &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="type", 
+  						&lt;https://jdmdh.episciences.org/13247/bibtex &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/x-bibtex", 
+  						&lt;https://jdmdh.episciences.org/13247/pdf &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/pdf", 
+  						&lt;https://jdmdh.episciences.org/13247/tei &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/xml"
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile="http://www.tei-c.org/ns/1.0", 
+  						&lt;https://jdmdh.episciences.org/13247/dc &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/xml"
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile="http://purl.org/dc/elements/1.1/", 
+  						&lt;https://jdmdh.episciences.org/13247/datacite &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/xml"
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile="http://datacite.org/schema/kernel-4", 
+  						&lt;https://jdmdh.episciences.org/13247/crossref &gt;
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel="describedby"; type="application/xml"
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile="http://www.crossref.org/schema/4.4.2"
+                    </code>
+                </div>
+                </div>
 
                 <h3><a name="ucd_digital_library"></a>UCD Digital Library</h3>
                 <div>
