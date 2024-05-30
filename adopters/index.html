@@ -54,6 +54,7 @@ $(function() {
 
                                 <br/>
                                 <ul>
+                                	<li><a href="#biblio">Biblio, the Ghent University Academic Bibliography</a></li>
                                 	<li><a href="#benchmarks">Benchmarks for FAIR Signposting</a></li>
                                 	<li><a href="#ckan">CKAN Signposting extension</a></li>
                                 	<li><a href="#notify">COAR Notify Protocol</a></li>
@@ -96,6 +97,73 @@ $(function() {
                 </div>
 
             <div class="row featurette">
+            
+                <h3><a name="biblio"></a>Biblio, the Ghent University Academic Bibliography supports FAIR Signposting</h3>
+                <div>
+                    The <a href="https://biblio.ugent.be/">Biblio</a> Academic Bibliography repository of Ghent University 
+                    supports FAIR Signposting by providing typed links in the HTTP Link 
+                    header of its landing pages for publications by the university's researchers. 
+                    The below (abbreviated) example shows an HTTP GET on a landing page and the resulting HTTP response headers. Note the helpful use of 
+                    the <code>profile</code> attribute on <code>describedby</code> links that are used to provide specificity 
+                    regarding the formats in which metadata for a publication is available. Note also the correct use of the 
+                    <code>cite-as</code> link, which points at the persistent identifier for the publication as it is available in the repository, i.e.  
+                    the persistent identifier (the handle URI) that redirects to the landing page in the Biblio repository.  
+                    It is not the persistent identifier of the publication at the publisher's site (a DOI URI). 
+                    A link to the publisher's persistent identifier should be provided using the <code>related</code> link relation type. 
+                    <br/>
+                    <br/>
+                    <code>curl -I &quot;https://biblio.ugent.be/publication/8762613&quot;</code>
+                    <br/>
+                    <br/>          
+                    <code>
+                        HTTP/1.1 200</br>
+						date: Thu, 30 May 2024 08:54:11 GMT</br>
+						server: nginx/1.24.0</br>
+						link: &lt;http://hdl.handle.net/1854/LU-8762613&gt;</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"cite-as"</b>,</br>
+						&lt;https://orcid.org/0000-0001-8390-6171>&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"author"</b>,</br>
+						&lt;https://biblio.ugent.be/person/6E421B04-B25E-11E6-B104-2D2FD0AF0289>&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"author"</b>,</br>
+						&lt;https://biblio.ugent.be/person/20497948-3DED-11E4-8AC5-DAE6B4D1D7B1>&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"author"</b>,</br>
+						&lt;https://orcid.org/0000-0002-8596-222X>&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"author"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613/file/8762616.pdf&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"item"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/pdf"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613/file/8768978.pdf&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"item"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/pdf"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613.rdf&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/rdf+xml"</b></br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;profile=<b>"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613.mods_36&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/xml"</b></br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;profile=<b>"http://www.loc.gov/mods/v3"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613.mets&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/xml"</b></br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;profile=<b>"http://www.loc.gov/METS/"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613.bibtex&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"text/x-bibtex"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613.bibtex&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"text/x-bibtex"</b>,</br>
+						Link: &lt;https://biblio.ugent.be/publication/8762613.ris&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/x-research-info-systems"</b>,</br>
+						&lt;https://schema.org/AboutPage>&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"type"</b>,</br>
+						&lt;https://schema.org/ScholarlyArticle>&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"type"</b></br>
+						content-type: text/html;charset=UTF-8</br>
+						content-lenght: 45801
+                    </code>
+                </div>
             
             <h3><a name="pythonclient"></a>Python client for FAIR Signposting </h3>
                             <div>
