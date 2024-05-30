@@ -104,7 +104,7 @@ $(function() {
                     supports FAIR Signposting by providing typed links in the HTTP Link 
                     header of its landing pages for publications by the university's researchers. 
                     The below (abbreviated) example shows an HTTP GET on a landing page and the resulting HTTP response headers. Note the helpful use of 
-                    the <code>profile</code> attribute on <code>describedby</code> links that are used to provide specificity 
+                    the <code>profile</code> attribute on <code>describedby</code> links, used to provide specificity 
                     regarding the formats in which metadata for a publication is available. Note also the correct use of the 
                     <code>cite-as</code> link, which points at the persistent identifier for the publication as it is available in the repository, i.e.  
                     the persistent identifier (the handle URI) that redirects to the landing page in the Biblio repository.  
@@ -150,18 +150,15 @@ $(function() {
 						&lt;https://biblio.ugent.be/publication/8762613.bibtex&gt;</br> 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"text/x-bibtex"</b>,</br>
-						&lt;https://biblio.ugent.be/publication/8762613.bibtex&gt;</br> 
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"text/x-bibtex"</b>,</br>
 						Link: &lt;https://biblio.ugent.be/publication/8762613.ris&gt;</br> 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/x-research-info-systems"</b>,</br>
-						&lt;https://schema.org/AboutPage>&gt;</br> 
+						&lt;https://schema.org/AboutPage&gt;</br> 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"type"</b>,</br>
-						&lt;https://schema.org/ScholarlyArticle>&gt;</br> 
+						&lt;https://schema.org/ScholarlyArticle&gt;</br> 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"type"</b></br>
 						content-type: text/html;charset=UTF-8</br>
-						content-lenght: 45801
+						content-length: 45801
                     </code>
                 </div>
             
