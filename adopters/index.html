@@ -66,6 +66,7 @@ $(function() {
                                 	<li><a href="#episciences">Episciences Overlay Journals</a></li>
                                 	<li><a href="#eurac">eurac research Environmental Data Platform</a></li>
                                 	<li><a href="#hal">HAL Open Science</a></li>
+                                	<li><a href="#invenio">InvenioRDM FAIR Signposting</a></li>
                                 	<li><a href="#ojs">Open Journal System FAIR Signposting</a></li>
                                 	<li><a href="#pangaea">Pangaea</a></li>
                                 	<li><a href="#pythonclient">Python client for FAIR Signposting </a></li>
@@ -74,7 +75,8 @@ $(function() {
                                 	<li><a href="#rubyclient">Ruby Web Link parsing gem</a></li>
                                 	<li><a href="#ucd_digital_library">UCD Digital Library</a></li>
                                     <li><a href="#unt_digital_library">UNT Digital Library</a></li> 
-                                    <li><a href="#workflowhub">WorkflowHub</a></li>                        
+                                    <li><a href="#workflowhub">WorkflowHub</a></li>  
+                                    <li><a href="#invenio">Zenodo FAIR Signposting</a></li>                      
                                 </ul>
                             </p>
                         </div>
@@ -424,6 +426,37 @@ $(function() {
                     </code>
                 </div>
                 </div>
+                
+                <h3><a name="invenio"></a>InvenioRDM</h3>
+                    <div>
+                    Starting with v12, <a href="https://inveniosoftware.org/products/rdm/">IvenioRDM</a> supports FAIR Signposting. 
+                    Since <a href="https://zenodo.org/">Zenodo</a> is an InvenioRDM instance, it also supports FAIR Signposting. 
+                    
+                    Support is implemented by  
+                    exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. 
+                    </div> 
+                    <br/>
+                    <div>Check out an example of FAIR Signposting for the Zenodo repository object <a href="https://doi.org/10.5281/zenodo.7977333">
+                    FAIR Digital Objects and FAIR Signposting</a>. The HTTP response header for the landing page <a href="https://zenodo.org/records/7977333">https://zenodo.org/records/7977333</a> 
+                    of this object contains a link to linksets serialized using the 
+                    &quot;application/linkset+json&quot; media types.
+                    </div>
+                    <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>
+                     &lt;link href="https://zenodo.org/api/records/7977333" rel="linkset" type="application/linkset+json"&gt;<br />
+                    </code>
+                </div>
+                <br/>
+                <div>In order to retrieve the linkset, a client should use content negotiation for the <code>application/linkset+json</code> 
+                media type against the URL &lt;https://zenodo.org/api/records/7977333&gt;. The linkset contains all links recommended for 
+                <a href="https://signposting.org/FAIR/#level2">Level 2 of the FAIR Signposting Profile</a>, including links that have 
+                content and metadata resources as anchor. At the time of first release there was a small glitch in the implementation: 
+                the linkset includes <code>describes</code> links that express a media type for the anchor, a feature that is not supported by
+                Web Links; only link target attributes are supported.
+                 </div>
+                
+                
                 
                 <h3><a name="ojs"></a>The Open Journal System FAIR Signposting Profile</h3>
                             <div>
