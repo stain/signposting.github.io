@@ -438,8 +438,8 @@ $(function() {
                     <br/>
                     <div>Check out an example of FAIR Signposting for the Zenodo repository object <a href="https://doi.org/10.5281/zenodo.7977333">
                     FAIR Digital Objects and FAIR Signposting</a>. The HTTP response header for the landing page <a href="https://zenodo.org/records/7977333">https://zenodo.org/records/7977333</a> 
-                    of this object contains a link to linksets serialized using the 
-                    &quot;application/linkset+json&quot; media types.
+                    of this object contains a link to a linkset serialized using the 
+                    &quot;application/linkset+json&quot; media type.
                     </div>
                     <div style="background: #fff; margin: 0 10px;">
                     <br>
@@ -447,7 +447,6 @@ $(function() {
                      &lt;link href="https://zenodo.org/api/records/7977333" rel="linkset" type="application/linkset+json"&gt;<br />
                     </code>
                 </div>
-                <br/>
                 <div>In order to retrieve the linkset, a client should use content negotiation for the <code>application/linkset+json</code> 
                 media type against the URL &lt;https://zenodo.org/api/records/7977333&gt;. The linkset contains all links recommended for 
                 <a href="https://signposting.org/FAIR/#level2">Level 2 of the FAIR Signposting Profile</a>, including links that have 
