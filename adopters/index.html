@@ -65,6 +65,7 @@ $(function() {
                                 	<li><a href="#dspacecris">DSpace-CRIS</a></li>
                                 	<li><a href="#episciences">Episciences Overlay Journals</a></li>
                                 	<li><a href="#eurac">eurac research Environmental Data Platform</a></li>
+                                	<li><a href="#FAIR-by-design">FAIR-by-Design Training Materials Repository</a></li>
                                 	<li><a href="#hal">HAL Open Science</a></li>
                                 	<li><a href="#invenio">InvenioRDM FAIR Signposting</a></li>
                                 	<li><a href="#ojs">Open Journal System FAIR Signposting</a></li>
@@ -384,6 +385,29 @@ $(function() {
                 An HTTP GET on <a href="https://edp-portal.eurac.edu/discovery/linkset/31f0258a-5517-11ed-8c40-0050568e1483">https://edp-portal.eurac.edu/discovery/linkset/31f0258a-5517-11ed-8c40-0050568e1483</a> 
                 returns a Link Set in <code>application/linkset+json</code> format.
                 </div>
+                
+                   <h3><a name="FAIR-by-design"></a>FAIR-by-Design Training Materials Repository</h3>
+                    <div>
+                    The <a href="https://github.com/FAIR-by-Design-Methodology">GitHub-based</a> repository for <a href="https://inveniosoftware.org/products/rdm/">FAIR-by-Design Training Materials</a> 
+                    supports FAIR Signposting. Templates that are forked to create a new training have been enhanced to include a <code>linkset</code> link in the 
+                    HTML training documents that 
+                     points at a <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> document.
+                    </div> 
+                    <br/>
+                    <div>An example training forked from the enhanced templates is <a href="https://fair-by-design-methodology.github.io/FAIR-by-Design_ToT/latest/">FAIR-by-Design Methodology for Learning Materials Training of Trainers</a>.
+					The HTML page contains a link to a linkset serialized using the 
+                    &quot;application/linkset+json&quot; media type:
+                    </div>
+                    <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>
+                     &lt;link rel="linkset" type="application/json+linkset" href="https://raw.githubusercontent.com/FAIR-by-Design-Methodology/FAIR-by-Design_ToT/main/linkset.json"&gt;<br />
+                    </code>
+                </div>
+                <div>The <a href="https://raw.githubusercontent.com/FAIR-by-Design-Methodology/FAIR-by-Design_ToT/main/linkset.json">linkset</a> contains, among others, 
+                <code>item</code> links to training module information expressed 
+                    according a <a href="https://raw.githubusercontent.com/FAIR-by-Design-Methodology/MVS/main/resources/MVS%20Template/template.md">community-agreed Minimal Viable Skills md format</a>.
+                 </div>
                 
                 <h3><a name="hal"></a>HAL Open Science</h3>
                 <div>
