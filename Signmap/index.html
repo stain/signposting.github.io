@@ -242,12 +242,15 @@ type of the linked resources, i.e. JSON and PDF, respectively. The first link ad
        (and hence the number of landing page URLs) exceeds 50.000, 
        multiple Sitemaps must be provided as well as a Sitemap Index file that lists the URL of each Sitemap.</li>
        <li>In order to meet the restrictions regarding the location of a Sitemap specified by the Sitemap protocol, 
-       a Sitemap must be provided at a URL that allows listing the contained landing page URLs. For example, a Sitemap 
+       a Sitemap must be provided at a URL that allows listing the contained landing page URLs. For example:
+       <ul>
+       <li>a Sitemap 
        &lt;https://myuniversity.edu/sitemap.xml&gt; can not list landing page URLs located at &lt;https://repository.myuniversity.edu/&gt; but it can 
-       list landing page URLs located at &lt;https://myuniversity.edu/repository/&gt;. Consequently, for landing pages located at &lt;https://repository.myuniversity.edu/&gt;, 
-       the Sitemap must be located there too. Note that in cases where a repository is provided 
-       at a subdomain such as &lt;https://repository.myuniversity.edu/&gt;, the use of a Sitemap Index at &lt;https://myuniversity.edu/&gt; 
-       may be required to cover all resources made available under that domain and its subdomains.</li>
+       list landing page URLs located at &lt;https://myuniversity.edu/repository/&gt;;</li>
+       <li>when landing pages are located at &lt;https://repository.myuniversity.edu/&gt;, 
+       the Sitemap must be located there too.</li>
+       </ul>
+		</li>
        </ul>
               </div>
               
