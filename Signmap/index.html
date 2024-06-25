@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/static/images/favicon.ico">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/static/images/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+
+        <title>Signmap - Signposting the Scholarly Web</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/signposting.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/signposting.js"></script>
+        <script src="/static/js/lodash.min.js"></script>
+        <script src="/static/js/backbone-min.js"></script>
+ <style type="text/css">       
+ol.nested-counter-list {
+  counter-reset: item;
+}
+
+ol.nested-counter-list li {
+  display: block;
+}
+
+ol.nested-counter-list li::before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+ol.nested-counter-list ol {
+  counter-reset: item;
+}
+</style>        
+        
+        <!-- RobustLinks CSS -->
+		<link rel="stylesheet" type="text/css" href="https://doi.org/10.25776/z58z-r575" />
+		<!-- RobustLinks Javascript -->
+		<script type="text/javascript" src="https://doi.org/10.25776/h1fa-7a28"></script>
+        <script>   
+$(function() {
+    load_header_footer();
+});
+        </script>
+    </head>
+
+    <body>
+
+        <!-- Static navbar -->
+        <div id="signposting-menu"></div>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="jumbo">
+                <div class="row" class="row" style="padding: 0 15px;">
+                        <h3 style="margin: 0; margin-bottom: 10px;">Signmap: Providing an Inventory of the Scholarly Objects Hosted by a Repository</h3>
+                        <h5>
+                        Prepared by: Herbert Van de Sompel, Patrick Hochstenbach, Michael L. Nelson, Martin Klein, ...
+                        </h5>
+
+                        <h5>This version, created 20240624: <a href="https://signposting.org/Signmap/"
+							data-versionurl="http://web.archive.org/web/20240227134416/https://signposting.org/Signmap/"
+							data-versiondate="2024-02-27">https://signposting.org/Signmap/</a> </h5>
+							<!--
+                        <h5><a href="http://web.archive.org/web/20240212120920/https://signposting.org/FAIRiCat/"
+							data-originalurl="https://www.signposting.org/API-Catalog/"
+							data-versiondate="2024-02-12">Previous version</a>, created 20240212</h5>
+						<h5><a href="http://labs.mementoweb.org/timemap/json/https://signposting.org/FAIRiCat/">Version history</a></h5>
+						-->
+						
+						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a>, using label Signmap</h5>
+				</div>
+						
+				<div class="row">
+                        <div class="col-md-7">
+                        <br />
+                        Historically, repositories have provided an inventory of hosted <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> by making descriptive metadata available via 
+                        an <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html">OAI-PMH</a> machine interface. But, differing approaches in providing metadata can make it hard for harvesting applications to unambiguously 
+                        determine where an object's content files reside, what it's persistent identifier is, etc. Recent innovations in metadata formats, 
+                        exemplified by <a href="https://rioxx.net/profiles/v3-0-final/">RIOXX version 3</a>, have significantly improved on the status quo. Over time, repositories have also 
+                        started to publish an inventory using <a href="https://www.sitemaps.org/protocol.html">the Sitemaps Protocol</a>, 
+                        which has been the dominant approach to help web crawlers find a server's 
+                        resources since 2009. In a typical repository implementation, for each hosted <a href="https://signposting.org/conventions/#scholobject">scholarly object</a>, the Sitemap has an entry that
+                        provides
+                        the object's landing page URL. Given a landing page URL and the HTML that is available there, 
+                        a crawler can attempt to discover the URLs of other resources associated with each <a href="https://signposting.org/conventions/#scholobject">scholarly object</a>, e.g. 
+                        metadata resources, content resources, persistent identifier. For the longest time, this has been a laborious heuristic-bound task. 
+                        Support for <a href="https://signposting.org/FAIR/">FAIR Signposting</a> removes uncertainty by providing distinct typed links 
+                        on the landing page that make discovering each type of 
+                        resource associated with a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> unambiguous. This significantly simplifies the task for a crawler intent on collecting all 
+                        resources associated with each repository object. But if a crawler is only interested in, for example, PDF content resources or 
+                        BIBTEX metadata, it must visit the landing page URL of each object and, by checking the appropriate typed links, determine whether 
+                        any of the linked resources meet its scope. Signmaps, specified in this document, leverage the convenience of the long-established <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> and extend it with 
+                        the ability to associate <a href="https://signposting.org/conventions/#relation_types">Signposting links</a> with each landing page URL listed in a Sitemap. As such, Signmaps allow crawlers to discover URLs of resources 
+                        that meet their scope without having to visit each landing page URL.
+                        </div>
+                        <div class="col-md-5">
+                            <div class="clearfix">
+                                <img src="https://signposting.org/static/images/signmap-logo.png" alt="Signposting the Scholarly Web: Signmap" class="sp_pat pull-right"/>
+                            </div>
+                            <p style="font-size: 0.7em;" class="pull-right">Image courtesy of <a href="https://twitter.com/hochstenbach" target="_blank">Patrick Hochstenbach</a>.</p>
+                        </div>
+                    </div> <!-- row -->		
+					</div> <!-- jumbo -->	
+					</div> <!-- row -->	
+						
+<h3><a name="toc"></a>Table of Contents</h3>
+<div class=" ">
+<ol class="nested-counter-list">
+
+<li><a href="#intro">Introduction</a></li>
+<li><a href="#blocks">Building Blocks</a>
+<ol>
+<li><a href="#sitemap">The Sitemaps Protocol</a></li>
+<li><a href="#links">Links in Sitemaps</a></li>
+<li><a href="#linkrels">Link Relation Types for Links in Sitemaps</a></li>
+</ol>
+</li>
+<li><a href="#examples">Examples</a>
+<ol>
+<li><a href="#exdiscovery">Discovery</a></li>
+<li><a href="#exlinkset">FAIRiCat Link Set</a>
+<ol>
+<li><a href="#exrepo">Repository-Level Affordances</a></li>
+<li><a href="#exobject">Object-Level Affordances</a></li>
+</ol>
+</li>
+<li><a href="#exaffordances">FAIRiCat Entries for Selected Interoperability Affordances</a></li>
+<li><a href="#excatalogs">FAIRiCats for Selected Interoperability Affordances</a></li>
+</ol>
+</li>
+</ol>
+</div>
+						
+		<h3><a name="intro"></a>1. Introduction</h3>
+						
+                        <div class="">
+                        This specification details the Signmap approach that repositories 
+                        can use to publish an inventory of the <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> 
+                        they manage. The approach consists of: 
+                        <ul>
+                        <li>Publishing a <a href="https://www.sitemaps.org/protocol.html">Sitemap</a> that list the URL of the landing page of each scholarly object.</li>
+                        <li>Providing the URLs of other constituent resources of each scholarly object (e.g. content resources, metadata resources) by 
+                        means of unambiguous <a href="https://signposting.org/conventions/#relation_types">Signposting links</a> associated with the object's landing page URL.</a>
+                        </ul>
+                         </div>
+                         
+                         <br />
+                         
+                         <div class=" ">
+<table class="table">
+<tbody><tr>
+<td style="width: 80%;">A Signmap showing an entry for a single scholarly object managed by a repository. It shows the URL of the 
+object's landing page in the <code>&lt;loc&gt;</code> element and several <a href="https://signposting.org/conventions/#relation_types">Signposting links</a> 
+associated with the landing page in consecutive <code>&lt;rs:ln&gt;</code> elements. As per <a href="https://signposting.org/conventions/#relation_types">Signposting conventions</a>, 
+the <code>describedby</code> link points at a metadata resource, the <code>item</code> link at a content resource, 
+and the <code>cite-as</code> link at the object's persistent identifier. Note that the first two links also provide information on the media 
+type of the linked resources, i.e. JSON and PDF, respectively.</td>
+</tr>
+<tr>
+<td>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:rs="http://www.openarchives.org/rs/terms/"&gt;
+  &lt;url&gt;
+      &lt;loc&gt;http://example.com/res1&lt;/loc&gt;
+      &lt;rs:ln rel="describedby"
+             href="http://example.com//metadata/res1.json"
+             type="application/ld+json"/&gt;
+      &lt;rs:ln rel="item"
+             href="http://example.com/content/res1.pdf"
+             type="application/pdf"/&gt;
+      &lt;rs:ln rel="cite-as"
+             href="https://doi.org/123.457643"/&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+                                                <div class="">
+                        The Signmap approach leverages the following specifications:
+                        <ul>
+                        <li>The <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> that has been widely adopted as a means to allow crawlers to discover 
+                        a web server's resources.</li>
+                         <li>The <a href="http://www.openarchives.org/rs/resourcesync">ResourceSync Framework Specification</a> (ANSI/NISO Z39.99-2017) that extends Sitemaps with the ability to include 
+                         typed links to point at resources related to those listed in a Sitemap.</li>
+                         <li>The <a href="https://signposting.org/conventions/#relation_types">Signposting conventions</a> that detail which link relation type 
+                         to use to point at various constituent resources of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> on the web.</li>
+                         </ul>                         
+                         </div>
+                         
+                          
+       <h3><a name="blocks"></a>2. Building Blocks</h3>  
+       
+       <div class="">
+       This section provides a description of the building blocks of the Signmap approach that can be used to publish an 
+       inventory of the scholarly objects managed by a repository.
+       </div>       
+       
+              <h4><a name="sitemap"></a>2.1. The Sitemaps Protocol</h4>  
+       
+              <div class="">
+              The Signmap approach rigorously follows all aspects of the <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> with the following implementation guidelines for repositories:
+                     <ul>
+       <li>A Sitemap must have one <code>&lt;url&gt;</code> element per scholarly object managed by the repository. The URL of the object's landing page 
+       must be provided in the <code>&lt;loc&gt;</code> element. Other elements may be provided as intended by the Sitemap protocol.</li>
+       <li>Landing page URLs that contain characters that are reserved in XML must be encoded as follows: 
+       <ul>
+       <li>&amp; must be encoded as &amp;amp;</li>
+       <li>&apos; must be encoded as &amp;apos;</li>
+       <li>&quot; must be encoded as &amp;quot;</li>
+       <li>&lt; must be encoded as &amp;lt;</li>
+       <li>&gt; must be encoded as &amp;gt;</li>
+       </ul>
+       </li>
+       <li>When the number of <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> managed by the repository 
+       (and hence the number of landing page URLs) exceeds 50.000, 
+       multiple Sitemaps must be provided as well as a Sitemap Index file that lists the URL of each Sitemap.</li>
+       <li>In order to meet the restrictions regarding the location of a Sitemap specified by the Sitemap protocol, 
+       a Sitemap must be provided at a URL that allows listing the contained landing page URLs. For example, a Sitemap 
+       &lt;https://myuniversity.edu/sitemap.xml&gt; can not list landing page URLs located at &lt;https://repository.myuniversity.edu/&gt; but it can 
+       list landing page URLs located at &lt;https://myuniversity.edu/repository/&gt;. Consequently, for landing pages located at &lt;https://repository.myuniversity.edu/&gt;, 
+       the Sitemap must be located there too. Note that in cases where a repository is provided 
+       at a subdomain such as &lt;https://repository.myuniversity.edu/&gt;, the use of a Sitemap Index at &lt;https://myuniversity.edu/&gt; 
+       may be required to cover all resources made available under that domain and its subdomains.</li>
+       <li>The <a href="https://www.rfc-editor.org/rfc/rfc9309.html"><code>robots.txt</code> file</a> that is used to make a Sitemap (or Sitemap Index, if applicable) discoverable must be located at the root domain 
+       under which the repository resides. For example, for repositories at &lt;https://repository.myuniversity.edu/&gt; or 
+       &lt;https://myuniversity.edu/repository/&gt;, the <code>robots.txt</code> file must be &lt;https://myuniversity.edu/robots.txt/&gt;; 
+       for a repository at &lt;https://repo.org/&gt;, the <code>robots.txt</code> file must be &lt;https://repo.org/robots.txt/&gt;
+       The URL of the Sitemap (or Sitemap Index, if applicable) must be provided by means of a <code>Sitemap:</code> line in the <code>robots.txt</code> file, 
+       e.g. by adding the line <code>Sitemap: https://myuniversity.edu/sitemap.xml</code>.</li>
+       </ul>
+              </div>
+       
+       <h4><a name="links"></a>2.2. Links in Sitemaps</h4>   
+       
+       <div class="">
+       The <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> can be <a href="https://www.sitemaps.org/protocol.html#extending">extended</a> through inclusion of XML elements from 
+       namespaces other than the Sitemaps XML Namespace. The <a href="http://www.openarchives.org/rs/resourcesync">ResourceSync Framework Specification</a> uses this 
+       extensibility mechanism to support the <a href="https://www.openarchives.org/rs/1.1/resourcesync#LinkRelRes">inclusion of typed links</a> pertaining to the resource for which the URL is provided in a Sitemap's <code>&lt;loc&gt;</code> element. 
+       The Signmaps approach uses this extensibility mechanism to provide typed links pertaining to the landing page URLs provided in a Sitemap's <code>&lt;loc&gt;</code> element. This is achieved by:
+       <ul>
+       <li>Including the ResourceSync XML Namespace URL in the opening <code>&lt;urlset&gt;</code> element of a Sitemap as <code>xmlns:rs="http://www.openarchives.org/rs/terms/"</code></li>
+       <li>Conveying a link pertaining to a landing page by means of a <code>&lt;rs:ln&gt;</code> child element of the <code>&lt;loc&gt;</code> element that contains the landing page's URL.</li>
+       <li>Using the following attributes for the <code>&lt;rs:ln&gt;</code> element to provide link information:
+       <ul>
+       <li><code>rel</code>: conveys the link relation type;</li>
+       <li><code>href</code>: conveys the URL (absolute, not relative URL) of the resource that is the target of the link;</li>
+       <li><code>type</code>: conveys the media type of the resource that is the target of the link.</li>
+       <li><code>type</code>: conveys a <a href="https://signposting.org/conventions/#attributes">profile of the media type</a> by means of a Profile URI.</li>
+       </ul>
+       </li>
+       </ul>
+       
+       <h4><a name="linkrels"></a>2.3. Link Relation Types for Links in Sitemaps</h4>   
+       
+                     <div class="">
+                     The <a href="http://www.openarchives.org/rs/resourcesync">ResourceSync Framework Specification</a> supports 
+                     using link relation types registered in the <a href="http://www.iana.org/assignments/link-relations/link-relations.xml">IANA Link Relation Type Registry</a> 
+                     or expressed as URIs as specified in <a href="https://datatracker.ietf.org/doc/html/rfc8288#section-2.1.2">RFC 8288, Sec. 2.1.2</a>. 
+                     Signmaps offer the same flexibility regarding the provision of typed links pertaining to the landing page 
+                     with a focus on <a href="https://signposting.org/conventions/#relation_types">Signposting links</a>, 
+                     and, especially those link relation types that can that guide a web crawler that is intent on limiting its scope, e.g. 
+                     <code>describedby</code> to link to metadata resources and <code>item</code> to link to content resources.
+                     </div>
+
+
+                
+                     
+
+                         
+       
+      
+
+
+
+            </div> <!-- /container -->
+
+            <div class="footer" id="footer">
+            </div>
+
+    
+
+</body></html>
