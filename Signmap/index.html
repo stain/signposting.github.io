@@ -228,7 +228,7 @@ type of the linked resources, i.e. JSON and PDF, respectively. The first link ad
               The Signmap approach rigorously follows all aspects of the <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> with the following implementation guidelines for repositories:
                      <ul>
        <li>A Sitemap must have one <code>&lt;url&gt;</code> element per scholarly object managed by the repository. The URL of the object's landing page 
-       must be provided in the <code>&lt;loc&gt;</code> element. Other elements may be provided as intended by the Sitemap protocol.</li>
+       must be provided in the <code>&lt;loc&gt;</code> element. Other elements may be provided as intended by the Sitemaps Protocol.</li>
        <li>Landing page URLs that contain characters that are reserved in XML must be encoded as follows: 
        <ul>
        <li>&amp; must be encoded as &amp;amp;</li>
@@ -241,7 +241,7 @@ type of the linked resources, i.e. JSON and PDF, respectively. The first link ad
        <li>When the number of <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> managed by the repository 
        (and hence the number of landing page URLs) exceeds 50.000, 
        multiple Sitemaps must be provided as well as a Sitemap Index file that lists the URL of each Sitemap.</li>
-       <li>In order to meet the restrictions regarding the location of a Sitemap specified by the Sitemap protocol, 
+       <li>In order to meet the restrictions regarding the location of a Sitemap specified by the Sitemaps Protocol, 
        a Sitemap must be provided at a URL that allows listing the contained landing page URLs. For example:
        <ul>
        <li>a Sitemap 
@@ -267,7 +267,7 @@ type of the linked resources, i.e. JSON and PDF, respectively. The first link ad
         &lt;https://repository.myuniversity.edu/home&gt;, or &lt;https://repo.org/&gt;. 
         Generally speaking it is the de-facto entry page to a repository.</li>
         <li>The URL of the Sitemap (or Sitemap Index, if applicable) must be provided in the <code>robots.txt</code> file by means of a <code>Sitemap:</code> line, 
-        e.g. by adding the line <code>Sitemap: https://myuniversity.edu/sitemap.xml</code>. Other lines can be added to the <code>robots.txt</code> file, 
+        e.g. by adding the line <code>Sitemap: https://myuniversity.edu/sitemap.xml</code>. Other lines may be added to the <code>robots.txt</code> file, 
         as described in the <a href="https://www.rfc-editor.org/rfc/rfc9309.html">Robots Exclusion Protocol</a>.</li>
         </ul>   
               </div>
@@ -278,7 +278,7 @@ type of the linked resources, i.e. JSON and PDF, respectively. The first link ad
        The <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> can be <a href="https://www.sitemaps.org/protocol.html#extending">extended</a> through inclusion of XML elements from 
        namespaces other than the Sitemaps XML Namespace. The <a href="http://www.openarchives.org/rs/resourcesync">ResourceSync Framework Specification</a> uses this 
        extensibility mechanism to support the <a href="https://www.openarchives.org/rs/1.1/resourcesync#LinkRelRes">inclusion of typed links</a> pertaining to the resource for which the URL is provided in a Sitemap's <code>&lt;loc&gt;</code> element. 
-       The Signmaps approach uses this extensibility mechanism to provide typed links pertaining to the landing page URLs provided in a Sitemap's <code>&lt;loc&gt;</code> element. This is achieved by:
+       The Signmaps approach uses this extensibility mechanism to provide typed links pertaining to the landing page URLs provided in a Sitemap's <code>&lt;loc&gt;</code> elements. This is achieved by:
        <ul>
        <li>Including the ResourceSync XML Namespace URL in the opening <code>&lt;urlset&gt;</code> element of a Sitemap as <code>xmlns:rs="http://www.openarchives.org/rs/terms/"</code></li>
        <li>Conveying a link pertaining to a landing page by means of a <code>&lt;rs:ln&gt;</code> child element of the <code>&lt;loc&gt;</code> element that contains the landing page's URL.</li>
