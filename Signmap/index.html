@@ -85,18 +85,18 @@ $(function() {
 				<div class="row">
                         <div class="col-md-7">
                         <br />
-                        Historically, repositories have provided an inventory of hosted <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> by making descriptive metadata available via 
+                        Historically, repositories have provided an inventory of the <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> they manage by making descriptive metadata available via 
                         an <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html">OAI-PMH</a> machine interface. But, differing approaches in providing metadata can make it hard for harvesting applications to unambiguously 
                         determine where an object's content files reside, what it's persistent identifier is, etc. Recent innovations in metadata formats, 
                         exemplified by <a href="https://rioxx.net/profiles/v3-0-final/">RIOXX version 3</a>, have significantly improved on the status quo. Over time, repositories have also 
                         started to publish an inventory using <a href="https://www.sitemaps.org/protocol.html">the Sitemaps Protocol</a>, 
                         which has been the dominant approach to help web crawlers find a server's 
-                        resources since 2009. In a typical repository implementation, for each hosted <a href="https://signposting.org/conventions/#scholobject">scholarly object</a>, the Sitemap has an entry that
+                        resources since 2009. In a typical repository implementation, for each <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> managed by a repository, the Sitemap has an entry that
                         provides
                         the object's landing page URL. Given a landing page URL and the HTML that is available there, 
                         a crawler can attempt to discover the URLs of other resources associated with each <a href="https://signposting.org/conventions/#scholobject">scholarly object</a>, e.g. 
                         metadata resources, content resources, persistent identifier. For the longest time, this has been a laborious heuristic-bound task. 
-                        Support for <a href="https://signposting.org/FAIR/">FAIR Signposting</a> removes uncertainty by providing distinct typed links 
+                        Support for <a href="https://signposting.org/FAIR/">FAIR Signposting</a> removes uncertainty by providing <a href="https://signposting.org/conventions/#relation_types">distinct typed links</a> 
                         on the landing page that make discovering each type of 
                         resource associated with a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> unambiguous. This significantly simplifies the task for a crawler intent on collecting all 
                         resources associated with each repository object. But if a crawler is only interested in, for example, PDF content resources or 
@@ -150,7 +150,7 @@ $(function() {
                         can use to publish an inventory of the <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> 
                         they manage. The approach consists of: 
                         <ul>
-                        <li>Publishing a <a href="https://www.sitemaps.org/protocol.html">Sitemap</a> that list the URL of the landing page of each scholarly object.</li>
+                        <li>Using the <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> to publish the URLs of the landing page of each scholarly object.</li>
                         <li>Providing the URLs of other constituent resources of each scholarly object (e.g. content resources, metadata resources) by 
                         means of unambiguous <a href="https://signposting.org/conventions/#relation_types">Signposting links</a> associated with the object's landing page URL.</a>
                         </ul>
@@ -166,7 +166,7 @@ object's landing page in the <code>&lt;loc&gt;</code> element and several <a hre
 associated with the landing page in consecutive <code>&lt;rs:ln&gt;</code> elements. As per <a href="https://signposting.org/conventions/#relation_types">Signposting conventions</a>, 
 the <code>describedby</code> link points at a metadata resource, the <code>item</code> link at a content resource, 
 and the <code>cite-as</code> link at the object's persistent identifier. Note that the first two links also provide information on the media 
-type of the linked resources, i.e. JSON and PDF, respectively.</td>
+type of the linked resources, i.e. JSON and PDF, respectively. The first link additionally expresses the <a href="https://signposting.org/conventions/#attributes">profile</a> of the media type.</td>
 </tr>
 <tr>
 <td>
@@ -178,7 +178,8 @@ type of the linked resources, i.e. JSON and PDF, respectively.</td>
       &lt;loc&gt;http://example.com/res1&lt;/loc&gt;
       &lt;rs:ln rel="describedby"
              href="http://example.com//metadata/res1.json"
-             type="application/ld+json"/&gt;
+             type="application/ld+json"
+             profile="https://w3id.org/ro/crate"/&gt;
       &lt;rs:ln rel="item"
              href="http://example.com/content/res1.pdf"
              type="application/pdf"/&gt;
@@ -240,8 +241,8 @@ type of the linked resources, i.e. JSON and PDF, respectively.</td>
        may be required to cover all resources made available under that domain and its subdomains.</li>
        <li>The <a href="https://www.rfc-editor.org/rfc/rfc9309.html"><code>robots.txt</code> file</a> that is used to make a Sitemap (or Sitemap Index, if applicable) discoverable must be located at the root domain 
        under which the repository resides. For example, for repositories at &lt;https://repository.myuniversity.edu/&gt; or 
-       &lt;https://myuniversity.edu/repository/&gt;, the <code>robots.txt</code> file must be &lt;https://myuniversity.edu/robots.txt/&gt;; 
-       for a repository at &lt;https://repo.org/&gt;, the <code>robots.txt</code> file must be &lt;https://repo.org/robots.txt/&gt;
+       &lt;https://myuniversity.edu/repository/&gt;, the <code>robots.txt</code> file must be &lt;https://myuniversity.edu/robots.txt&gt;; 
+       for a repository at &lt;https://repo.org/&gt;, the <code>robots.txt</code> file must be &lt;https://repo.org/robots.txt&gt;
        The URL of the Sitemap (or Sitemap Index, if applicable) must be provided by means of a <code>Sitemap:</code> line in the <code>robots.txt</code> file, 
        e.g. by adding the line <code>Sitemap: https://myuniversity.edu/sitemap.xml</code>.</li>
        </ul>
@@ -284,7 +285,7 @@ type of the linked resources, i.e. JSON and PDF, respectively.</td>
                      
 
                          
-       
+       </div>
       
 
 
