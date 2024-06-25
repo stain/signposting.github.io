@@ -129,6 +129,7 @@ $(function() {
 <li><a href="#blocks">Building Blocks</a>
 <ol>
 <li><a href="#sitemap">The Sitemaps Protocol</a></li>
+<li><a href="#robotstxt">The Robots Exclusion Protocol</a></li>
 <li><a href="#links">Links in Sitemaps</a></li>
 <li><a href="#linkrels">Link Relation Types for Links in Sitemaps</a></li>
 </ol>
@@ -204,6 +205,8 @@ type of the linked resources, i.e. JSON and PDF, respectively. The first link ad
                         <ul>
                         <li>The <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> that has been widely adopted as a means to allow crawlers to discover 
                         a web server's resources.</li>
+                        <li>The <a href="https://www.rfc-editor.org/rfc/rfc9309.html">Robots Exclusion Protocol</a> (RFC 9309) aka <code>robots.txt</code>, which is used by the Sitemaps Protocol to support discovery of 
+                        Sitemaps.</li>
                          <li>The <a href="http://www.openarchives.org/rs/resourcesync">ResourceSync Framework Specification</a> (ANSI/NISO Z39.99-2017) that extends Sitemaps with the ability to include 
                          typed links to point at resources related to those listed in a Sitemap.</li>
                          <li>The <a href="https://signposting.org/conventions/#relation_types">Signposting conventions</a> that detail which link relation type 
@@ -245,16 +248,28 @@ type of the linked resources, i.e. JSON and PDF, respectively. The first link ad
        the Sitemap must be located there too. Note that in cases where a repository is provided 
        at a subdomain such as &lt;https://repository.myuniversity.edu/&gt;, the use of a Sitemap Index at &lt;https://myuniversity.edu/&gt; 
        may be required to cover all resources made available under that domain and its subdomains.</li>
-       <li>The <a href="https://www.rfc-editor.org/rfc/rfc9309.html"><code>robots.txt</code> file</a> that is used to make a Sitemap (or Sitemap Index, if applicable) discoverable must be located at the root domain 
-       under which the repository resides. For example, for repositories at &lt;https://repository.myuniversity.edu/&gt; or 
-       &lt;https://myuniversity.edu/repository/&gt;, the <code>robots.txt</code> file must be &lt;https://myuniversity.edu/robots.txt&gt;; 
-       for a repository at &lt;https://repo.org/&gt;, the <code>robots.txt</code> file must be &lt;https://repo.org/robots.txt&gt;
-       The URL of the Sitemap (or Sitemap Index, if applicable) must be provided by means of a <code>Sitemap:</code> line in the <code>robots.txt</code> file, 
-       e.g. by adding the line <code>Sitemap: https://myuniversity.edu/sitemap.xml</code>.</li>
        </ul>
               </div>
+              
+            <h4><a name="robotstxt"></a>2.2. The Robots Exclusion Protocol</h4>  
+            
+        <div class="">
+        The Sitemap Protocol uses the <a href="https://www.rfc-editor.org/rfc/rfc9309.html">Robots Exclusion Protocol</a> aka <code>robots.txt</code> to make 
+        a Sitemap (or a Sitemap Index, if applicable) discoverable. The Signmap approach uses the Robots Exclusion 
+        Protocol in the same way, with the following implementation guidelines for repositories:
+        <ul>
+        <li>A <code>robots.txt</code> file must be provided at the <b>repository-entry-URL</b> of the repository. 
+        What the <b>repository-entry-URL</b> is depends on how/where the repository was installed. 
+        For example, it could be &lt;https://myuniversity.edu/repository/home&gt;, or 
+        &lt;https://repository.myuniversity.edu/home&gt;, or &lt;https://repo.org/&gt;. 
+        Generally speaking it is the de-facto entry page to a repository.</li>
+        <li>The URL of the Sitemap (or Sitemap Index, if applicable) must be provided in the <code>robots.txt</code> file by means of a <code>Sitemap:</code> line, 
+        e.g. by adding the line <code>Sitemap: https://myuniversity.edu/sitemap.xml</code>. Other lines can be added to the <code>robots.txt</code> file, 
+        as described in the <a href="https://www.rfc-editor.org/rfc/rfc9309.html">Robots Exclusion Protocol</a>.</li>
+        </ul>   
+              </div>
        
-       <h4><a name="links"></a>2.2. Links in Sitemaps</h4>   
+       <h4><a name="links"></a>2.3. Links in Sitemaps</h4>   
        
        <div class="">
        The <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> can be <a href="https://www.sitemaps.org/protocol.html#extending">extended</a> through inclusion of XML elements from 
@@ -274,7 +289,7 @@ type of the linked resources, i.e. JSON and PDF, respectively. The first link ad
        </li>
        </ul>
        
-       <h4><a name="linkrels"></a>2.3. Link Relation Types for Links in Sitemaps</h4>   
+       <h4><a name="linkrels"></a>2.4. Link Relation Types for Links in Sitemaps</h4>   
        
                      <div class="">
                      The <a href="http://www.openarchives.org/rs/resourcesync">ResourceSync Framework Specification</a> supports 
