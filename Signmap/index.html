@@ -88,7 +88,10 @@ $(function() {
                         Historically, repositories have provided an inventory of the <a href="https://signposting.org/conventions/#scholobject">scholarly objects</a> they manage by making descriptive metadata available via 
                         an <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html">OAI-PMH</a> machine interface. But, differing approaches in providing metadata can make it hard for harvesting applications to unambiguously 
                         determine where an object's content files reside, what it's persistent identifier is, etc. Recent innovations in metadata formats, 
-                        exemplified by <a href="https://rioxx.net/profiles/v3-0-final/">RIOXX version 3</a>, have significantly improved on the status quo. Over time, repositories have also 
+                        exemplified by <a href="https://rioxx.net/profiles/v3-0-final/">RIOXX version 3</a>, have significantly improved on the status quo. 
+                        <br />
+                        <br />
+                        Over time, repositories have also 
                         started to publish an inventory using <a href="https://www.sitemaps.org/protocol.html">the Sitemaps Protocol</a>, 
                         which has been the dominant approach to help web crawlers find a server's 
                         resources since 2009. In a typical repository implementation, for each <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> managed by a repository, the Sitemap has an entry that
@@ -97,11 +100,14 @@ $(function() {
                         a crawler can attempt to discover the URLs of other resources associated with each <a href="https://signposting.org/conventions/#scholobject">scholarly object</a>, e.g. 
                         metadata resources, content resources, persistent identifier. For the longest time, this has been a laborious heuristic-bound task. 
                         Support for <a href="https://signposting.org/FAIR/">FAIR Signposting</a> removes uncertainty by providing <a href="https://signposting.org/conventions/#relation_types">distinct typed links</a> 
-                        on the landing page that make discovering each type of 
-                        resource associated with a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> unambiguous. This significantly simplifies the task for a crawler intent on collecting all 
+                        on the landing page that make discovering the constituent resources of a <a href="https://signposting.org/conventions/#scholobject">scholarly object</a> unambiguous. This significantly simplifies the task for any bot that interacts with 
+                        landing pages, including crawlers intent on collecting all 
                         resources associated with each repository object. But if a crawler is only interested in, for example, PDF content resources or 
                         BIBTEX metadata, it must visit the landing page URL of each object and, by checking the appropriate typed links, determine whether 
-                        any of the linked resources meet its scope. Signmaps, specified in this document, leverage the convenience of the long-established <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> and extend it with 
+                        any of the linked resources meet its scope. 
+                        <br />
+                        <br />
+                        Signmaps, specified in this document, leverage the convenience of the long-established <a href="https://www.sitemaps.org/protocol.html">Sitemaps Protocol</a> and extend it with 
                         the ability to associate <a href="https://signposting.org/conventions/#relation_types">Signposting links</a> with each landing page URL listed in a Sitemap. As such, Signmaps allow crawlers to discover URLs of resources 
                         that meet their scope without having to visit each landing page URL.
                         </div>
