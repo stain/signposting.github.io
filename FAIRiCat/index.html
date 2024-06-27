@@ -69,13 +69,13 @@ $(function() {
                         Prepared by: Herbert Van de Sompel, Robert Huber, Patrick Hochstenbach, Michael L. Nelson, Martin Klein, Andrea Bollini, Enno Meijers, Petr Knoth, Paul Walk, Wim Hugo, Jim Meyers, ...
                         </h5>
 
-                        <h5>This version, created 20240227: <a href="https://signposting.org/FAIRiCat/"
-							data-versionurl="http://web.archive.org/web/20240227134416/https://signposting.org/FAIRiCat/"
-							data-versiondate="2024-02-27">https://signposting.org/FAIRiCat/</a> </h5>
+                        <h5>This version, created 20240627: <a href="https://signposting.org/FAIRiCat/"
+							data-versionurl="http://web.archive.org/web/20240627/https://signposting.org/FAIRiCat/"
+							data-versiondate="2024-06-27">https://signposting.org/FAIRiCat/</a> </h5>
 							
-                        <h5><a href="http://web.archive.org/web/20240212120920/https://signposting.org/FAIRiCat/"
+                        <h5><a href="http://web.archive.org/web/20240227134416/https://signposting.org/FAIRiCat/"
 							data-originalurl="https://www.signposting.org/API-Catalog/"
-							data-versiondate="2024-02-12">Previous version</a>, created 20240212</h5>
+							data-versiondate="2024-02-27">Previous version</a>, created 20240227</h5>
 						<h5><a href="http://labs.mementoweb.org/timemap/json/https://signposting.org/FAIRiCat/">Version history</a></h5>
 						<h5><a href="http://labs.mementoweb.org/timemap/json/https://signposting.org/API-Catalog/">Versions prior to name change from API Catalog to FAIRiCat</a></h5>
 						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a>, using label FAIRiCat</h5>
@@ -393,8 +393,11 @@ Link: &lt;https://my.repo.org/fairicat/api-info.json&gt;
        <code>service-meta</code> link relation type that points at the URL of a 
        <a href="https://www.w3.org/TR/sparql11-service-description/">SPARQL Description</a> document.</li>
        <li>The affordance at &lt;https://my.repo.org/api&gt; is detailed in a machine-readable manner (<code>service-desc</code> link relation type) 
-       by the JSON document at &lt;https://my.repo.org/api/api-specification.json&gt;, which could be an OpenAPI document. 
-       It is also detailed in a human-readable manner (<code>service-doc</code> link relation type) by the document at &lt;https://my.repo.org/api/api-specification.html&gt;.</li>
+       by the JSON document at &lt;https://my.repo.org/api/api-specification.json&gt;, which is an OpenAPI document. 
+       The API description is expressed using the OpenAPI specification &lt;https://spec.openapis.org/oas/v3.1.0&gt;, which is 
+       provided in a first link with the <code>service-doc</code> link relation type. A second link with that same link relation type 
+       points at the human-readable description of the actual API.
+       a </li>
        </ul>
        </div> 
        
@@ -461,6 +464,11 @@ Link: &lt;https://my.repo.org/fairicat/api-info.json&gt;
         }
       ],
       "service-doc": [
+        {
+          "href": "https://spec.openapis.org/oas/v3.1.0",
+          "type": "text/html",
+          "title": "OpenAPI Specification v3.1.0"
+        },
         {
           "href": "https://my.repo.org/api/api-specification.html",
           "type": "text/html",
@@ -724,7 +732,7 @@ Link: &lt;https://my.repo.org/fairicat/api-info.json&gt;
                         </tr>
                         <tr>
                             <td style="width: 25%;"><b>Affordance</b></td>
-                            <td><b>OpenAPI API</b></td>
+                            <td><b>OpenAPI v.3.1 API</b></td>
                         </tr>
                         <tr>
                             <td>Affordance type</td>
@@ -733,6 +741,10 @@ Link: &lt;https://my.repo.org/fairicat/api-info.json&gt;
                         <tr>
                             <td>svc-desc</td>
                             <td>URL of JSON or YAML OpenAPI description of the API</td>
+                        </tr>
+                        <tr>
+                            <td>svc-doc</td>
+                            <td>https://spec.openapis.org/oas/v3.1.0</td>
                         </tr>
                         <tr>
                             <td>svc-doc</td>
@@ -1174,6 +1186,11 @@ Link: &lt;https://my.repo.org/fairicat/api-info.json&gt;
         }
       ],
       "service-doc": [
+        {
+          "href": "https://spec.openapis.org/oas/v3.1.0",
+          "type": "text/html",
+          "title": "OpenAPI Specification v3.1.0"
+        },
         {
           "href": "https://www.ebi.ac.uk/biomodels/docs/",
           "type": "text/html",
