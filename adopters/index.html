@@ -43,47 +43,508 @@ $(function() {
 
             <!-- Main component for a primary marketing message or call to action -->
             <div class="row">
-                <div class="jumbo">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <h3>Adopters</h3>
+                <div class="jumbo"> 
+                     <div class="row" style="padding: 0 15px;">
+                            <h3 style="margin: 0; margin-bottom: 10px;">Adopters</h3>
                             <h4 class="text-muted">Signposting the Scholarly Web</h4>
-                            <div class="">
+                            <p class="">
                                 This page provides examples of Signposting implementations. 
                                 <br/><br/>
                                 To add your Signposting work to this list, please send an email to the <a href="https://groups.google.com/forum/#!forum/signposting">Signposting Google Group</a> with a list of patterns that you have implemented along with some example URIs. 
 
-                                <br/><br/>
+                                <br/>
                                 <ul>
                                 	<li><a href="#benchmarks">Benchmarks for FAIR Signposting</a></li>
+                                	<li><a href="#biblio">Biblio, the Ghent University Academic Bibliography</a></li>
                                 	<li><a href="#ckan">CKAN Signposting extension</a></li>
-                                	<li><a href="#dans">DANS EASY</a></li>
-                                	<li><a href="#datacite_search">DataCite Search and DataCite Commons</a></li>
+                                	<li><a href="#notify">COAR Notify Protocol</a></li>
+                                	<li><a href="#dans">DANS Data Stations</a></li>
                                 	<li><a href="#dataverse">Dataverse FAIR Signposting</a></li>
+									<li><a href="#dri">Digital Repository Ireland</a></li>  
                                 	<li><a href="#dspace7">DSpace 7 FAIR Signposting</a></li>
                                 	<li><a href="#dspacecris">DSpace-CRIS</a></li>
+                                	<li><a href="#episciences">Episciences Overlay Journals</a></li>
+                                	<li><a href="#eurac">eurac research Environmental Data Platform</a></li>
+                                	<li><a href="#FAIR-by-design">FAIR-by-Design Training Materials Repository</a></li>
+                                	<li><a href="#hal">HAL Open Science</a></li>
+                                	<li><a href="#invenio">InvenioRDM FAIR Signposting</a></li>
                                 	<li><a href="#ojs">Open Journal System FAIR Signposting</a></li>
                                 	<li><a href="#pangaea">Pangaea</a></li>
                                 	<li><a href="#pythonclient">Python client for FAIR Signposting </a></li>
                                 	<li><a href="#radareu">Radar (Research Data Repository) FAIR Signposting</a></li>
+                                	<li><a href="#rioxx">RIOXX v3 metadata format</a></li>
                                 	<li><a href="#rubyclient">Ruby Web Link parsing gem</a></li>
                                 	<li><a href="#ucd_digital_library">UCD Digital Library</a></li>
                                     <li><a href="#unt_digital_library">UNT Digital Library</a></li> 
-                                    <li><a href="#workflowhub">WorkflowHub</a></li>                          
+                                    <li><a href="#workflowhub">WorkflowHub</a></li>  
+                                    <li><a href="#invenio">Zenodo FAIR Signposting</a></li>                      
                                 </ul>
-                            </div>
+                            </p>
                         </div>
+                        <!--
+                        
                         <div class="col-md-5">
                             <div class="clearfix">
                                 <img src="https://signposting.org/static/images/signposting.png" alt="Signposting the web in Slideshare" class="sp_pat pull-right"/>
                             </div>
                             <p style="font-size: 0.7em;" class="pull-right">Image courtesy of <a href="https://twitter.com/hochstenbach" target="_blank">Patrick Hochstenbach</a>.</p>
                         </div>
+                        -->
+                        
                     </div>
                 </div>
-            </div>
 
             <div class="row featurette">
+            
+               <h3><a name="benchmarks"></a>Benchmarks for FAIR Signposting</h3>
+                            <div>
+                    The <a href="https://s11.no/2022/a2a-fair-metrics/">Apples-to-Apples FAIR Signposting</a> page gives access to a set of benchmarks that clients can use to test their capabilities for extracting Signposting links.
+                    The benchmarks cover cases whereby web links are provided in HTTP Link headers, HTML &lt;link&gt; elements, 
+                    and <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Sets</a> (in both JSON and text format) made discoverable via Link headers and HTML &lt;link&gt; elements.
+                   The benchmarks include links that use a subset of FAIR Signposting link relation types, i.e. <code>cite-as</code>, <code>item</code>, and <code>describedby</code> and result from <a href="https://signposting.org/FAIR/apples-hackathon/">a hackathon</a> that focused on assessing 
+                   FAIR Signposting compliance.
+                </div>
+            
+                <h3><a name="biblio"></a>Biblio, the Ghent University Academic Bibliography supports FAIR Signposting</h3>
+                <div>
+                    The <a href="https://biblio.ugent.be/">Biblio</a> Academic Bibliography repository of Ghent University 
+                    supports FAIR Signposting by providing typed links in the HTTP Link 
+                    header of its landing pages for publications by the university's researchers. 
+                    The below (abbreviated) example shows an HTTP GET on a landing page and the resulting HTTP response headers. Note the helpful use of 
+                    the <code>profile</code> attribute on <code>describedby</code> links, used to provide specificity 
+                    regarding the formats in which metadata for a publication is available. Note also the correct use of the 
+                    <code>cite-as</code> link, which points at the persistent identifier for the publication as it is available in the repository, i.e.  
+                    the persistent identifier (the handle URI) that redirects to the landing page in the Biblio repository.  
+                    It is not the persistent identifier of the publication at the publisher's site (a DOI URI). 
+                    A link to the publisher's persistent identifier should be provided using the <code>related</code> link relation type. 
+                    <br/>
+                    <br/>
+                    <code>curl -I &quot;https://biblio.ugent.be/publication/8762613&quot;</code>
+                    <br/>
+                    <br/>          
+                    <code>
+                        HTTP/1.1 200</br>
+						date: Thu, 30 May 2024 08:54:11 GMT</br>
+						server: nginx/1.24.0</br>
+						link: &lt;http://hdl.handle.net/1854/LU-8762613&gt;</br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"cite-as"</b>,</br>
+						&lt;https://schema.org/AboutPage&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"type"</b>,</br>
+						&lt;https://schema.org/ScholarlyArticle&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"type"</b>,</br>
+						&lt;https://orcid.org/0000-0001-8390-6171>&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"author"</b>,</br>
+						&lt;https://biblio.ugent.be/person/6E421B04-B25E-11E6-B104-2D2FD0AF0289>&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"author"</b>,</br>
+						&lt;https://biblio.ugent.be/person/20497948-3DED-11E4-8AC5-DAE6B4D1D7B1>&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"author"</b>,</br>
+						&lt;https://orcid.org/0000-0002-8596-222X>&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"author"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613/file/8762616.pdf&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"item"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/pdf"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613/file/8768978.pdf&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"item"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/pdf"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613.rdf&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/rdf+xml"</b></br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;profile=<b>"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613.mods_36&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/xml"</b></br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;profile=<b>"http://www.loc.gov/mods/v3"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613.mets&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/xml"</b></br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;profile=<b>"http://www.loc.gov/METS/"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613.bibtex&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"text/x-bibtex"</b>,</br>
+						&lt;https://biblio.ugent.be/publication/8762613.ris&gt;</br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"application/x-research-info-systems"</b></br>
+						content-type: text/html;charset=UTF-8</br>
+						content-length: 45801
+                    </code>
+                </div>
+                
+                <h3><a name="ckan"></a>CKAN Signposting extension</h3>
+                            <div>
+                    The <a href="https://github.com/annefou/ckanext-signposting">CKAN extension for Signposting</a> adds FAIR Signposting support to the 
+                    open source data management system <a href="https://ckan.org/">CKAN</a>. The typed links are provided as HTML &lt;link&gt; elements in dataset landing pages.
+                    The extension supports adding ORCIDs as CKAN metadata and providing those ORCIDs as <code>author</code> links.
+
+                </div>
+                
+                 <h3><a name="notify"></a>COAR Notify Protocol</h3>
+                            <div>
+                    The <a href="https://www.coar-repositories.org/notify/">COAR Notify Protocol</a> is a standard-based decentralized approach 
+                    (using <a href="https://www.w3.org/TR/ldn/">Linked Data Notifications</a> with profiled <a href="https://www.w3.org/TR/activitystreams-core/">ActivityStreams2</a> payloads) 
+                    to link research outputs hosted in the distributed 
+                    network of repositories with resources from external services, such as overlay-journals and open peer review services. It is a 
+                    specific implementation of the generic patterns described by the <a href="https://www.eventnotifications.net/">Event Notifications in Value-Adding Networks</a> specification. 
+                    The COAR Notify Protocol recommends that repositories support FAIR Signposting in order to be able to send nimble notifications 
+                    across the wire that, essentially, only contain URIs of objects and actors involved in a request/response conversation. Further information 
+                    pertaining to those can then be obtained via the FAIR Signposting and <a href="https://solid.github.io/webid-profile/">WebID</a> auto-discovery approaches, respectively. 
+                    But, additionally, 
+                    it fully aligns with the Signposting perspective, giving the landing page URI a central role by providing it as the <code>id</code> of the <code>object</code> 
+                    used to represent a scholarly object in the ActivityStreams2 JSON-LD payloads and by providing the persistent identifier using a <code>cite-as</code> statement.
+                </div>
+                
+                <h3><a name="dans"></a>DANS Data Stations</h3>
+                
+                <div>
+                 DANS was a Signposting pioneer, implementing the <a href="/patterns/identifier/">Identifier</a> and <a href="/patterns/metadata_resources/">Metadata Resources</a> patterns for its meanwhile 
+                retired DANS EASY repository. EASY has been replaced by several discipline-oriented Dataverse-based Data Stations that <a href="#dataverse">support FAIR Signposting out of the box</a>.
+                </div>
+                <br>
+                <div>
+                This example shows the FAIR Signposting implementation, which is typical of all Dataverse repositories starting with version 5.14.
+                Links are provided both in the HTTP Link header of the <b>Landing Page URI</b> and in a Link Set linked from it. 
+                </div>
+                <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://ssh.datastations.nl/dataset.xhtml?persistentId=doi:10.17026/SS/L8MCKA&quot;</code>
+                    <br>
+                    <br>
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-Type: text/html; charset=UTF-8<br/>
+                        Link: &lt;https://0000-0003-2962-5234&gt; ; rel=<b>"author"</b>,<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.org/10.17026/SS/L8MCKA&gt; ; rel=<b>"cite-as"</b>,<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://schema.org/AboutPage&gt; ; rel=<b>"type"</b>,<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://schema.org/Dataset&gt; ; rel=<b>"type"</b>,<br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://creativecommons.org/licenses/by-nc/4.0&gt; ; rel=<b>"license"</b>,<br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://ssh.datastations.nl/api/access/datafile/203710&gt;<br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b> ; type=<b>"application/pdf"</b>,<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://ssh.datastations.nl/api/access/datafile/203711&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b> ; type=<b>"application/pdf"</b>,<br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.org/10.17026/SS/L8MCKA&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b> ; type=<b>"application/vnd.citationstyles.csl+json"</b>,<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://ssh.datastations.nl/api/datasets/export?exporter=schema.org&persistentId=doi:10.17026/SS/L8MCKA&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b> ; type=<b>"application/ld+json"</b>,<br> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://ssh.datastations.nl/api/datasets/:persistentId/versions/2.1/linkset?persistentId=doi:10.17026/SS/L8MCKA&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"linkset"</b> ; type=<b>"application/linkset+json"</b>
+                    </code>
+                </div>
+                
+                 <h3><a name="dataverse"></a>Dataverse FAIR Signposting</h3>
+                            <div>
+                    Starting with the 06/2023 release v5.14, the <a href="https://dataverse.org/">Dataverse</a> data repository software supports the FAIR Signposting Profile. It supports 
+                    exposing links by means of the HTTP Link header as well as using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. At the time of writing, the Dataverse software is used by nearly 100 data repositories, worldwide.
+                </div>
+                <br>
+                <div>An example of a typical FAIR Signposting implementation for a Dataverse instance is shown below for a <a href="#dans">DANS Data Station</a>.</div>
+                
+                
+                <h3><a name="dri"></a>Digital Repository Ireland</h3>
+                    <div>
+                    The <a href="https://repository.dri.ie/">Digital Repository Ireland</a> supports the FAIR Signposting Profile by  
+                    exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. 
+                    </div> 
+                    <br/>
+                    <div>Check out an example of FAIR Signposting for the repository object <a href="https://doi.org/10.7486/DRI.vm41bk02f">
+                    USI Escort Conference 1991</a>. The HTML landing page <a href="https://repository.dri.ie/catalog/vm41bk02f">https://repository.dri.ie/catalog/vm41bk02f</a> for this object contains links to linksets serialized 
+                    in both the &quot;application/linkset&quot; and &quot;application/linkset+json&quot; media types:
+                    </div>
+                    <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>
+                     &lt;link href="https://repository.dri.ie/linkset/vm41bk02f/json" rel="linkset" type="application/linkset+json"&gt;<br />
+    				 &lt;link href= "https://repository.dri.ie/linkset/vm41bk02f/lset"  rel="linkset"  type="application/linkset"&gt;
+                    </code>
+                </div>
+                <br/>
+                <div>Now, check out the &quot;application/linkset+json&quot; linkset document by clicking its URL 
+                 <a href="https://repository.dri.ie/linkset/vm41bk02f/json">https://repository.dri.ie/linkset/vm41bk02f/json</a>.
+                 </div>
+                 
+                <h3><a name="dspace7"></a>DSpace 7 FAIR Signposting</h3>
+                            <div>
+                    Starting with release 7.6, the <a href="https://wiki.lyrasis.org/display/DSDOC7x">DSpace 7</a> repository software supports the FAIR Signposting Profile. 
+                    It supports 
+                    exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. 
+                
+                </div>
+                 
+                 <h3><a name="dspacecris"></a>DSpace-CRIS</h3>
+                <div>
+                    Starting with version 5.8.2, the open source <a href="https://wiki.duraspace.org/display/DSPACECRIS/DSpace-CRIS+Home">DSpace-CRIS</a> system 
+                    has built-in support for <a href="https://wiki.duraspace.org/display/DSPACECRIS/Signposting">the following Signposting patterns</a>:
+                    <ul>
+                        <li><a href="/patterns/author/">Author</a></li>
+                    <!--    <li><a href="/patterns/identifier/">Identifier</a></li> -->
+                        <li><a href="/patterns/content_resources/">Content Resources</a></li>
+                    </ul/>
+                </div>
+				<div>
+                This example shows the Author and Content Resources patterns 
+                implemented for the <b>Landing Page URI</b> of a repository object:
+                </div>
+                <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://ktisis.cut.ac.cy/handle/20.500.14279/23265&quot;</code>
+                    <br>
+                    <br>
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-Type: text/html; charset=UTF-8<br/>
+                        Content-Length: 43409<br/>
+                        Link: &lt;http://orcid.org/0000-0001-9079-1907&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
+                        Link: &lt;http://orcid.org/0000-0002-2229-8798&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
+                        Link: &lt;https://ktisis.cut.ac.cy/bitstream/20.500.14279/23265/1/021-0007%282021%29.pdf&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b>
+                    </code>
+                </div>
+                <br/>
+                <div>
+                This example shows the PDF file that is a constituent resource of the object linking back to the <b>Landing Page URI</b> using the <code>collection</code> 
+                relation type of the Content Resources pattern.
+                <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://ktisis.cut.ac.cy/bitstream/20.500.14279/23265/1/021-0007%282021%29.pdf&quot;</code>
+                    <br>
+                    <br>
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-Length: 3109603<br/>
+                        Content-Type: application/pdf<br/>
+                        Link: &lt;https://ktisis.cut.ac.cy/handle/20.500.14279/23265&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b>
+                    </code>
+                </div>
+                </div>
+                
+                    <h3><a name="episciences"></a>Episciences Overlay Journals</h3>
+                <div>
+                    The <a href="https://hal.science">Episciences Overlay Journals</a> have implemented the following Signposting patterns:
+                    <ul>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
+                        <li><a href="/patterns/type/">Type</a></li>
+                    </ul/>
+                    In addition to that a typed link is provided to make a <a href="https://www.w3.org/TR/ldn/">Linked Data Notification</a> inbox used for their
+                    implementation of the <a href="https://notify.coar-repositories.org/specification/">Notify Protocol</a> discoverable.
+                </div>
+				<div>
+                This example shows the Identifier and Metadata Resources patterns as well as the link to the 
+                Linked Data Notification inbox for the <b>Landing Page URI</b>:
+                <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://jdmdh.episciences.org/13247&quot;</code>
+                    <br>
+                    <br>
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-Type: text/html; charset=UTF-8<br/>
+						link:  &lt;https://inbox.episciences.org/&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"http://www.w3.org/ns/ldp#inbox"</b>, <br>
+  						&lt;https://doi.org/10.46298/jdmdh.13247&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b>, <br>
+  						&lt;https://schema.org/ScholarlyArticle&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"type"</b>, <br>
+  						&lt;https://jdmdh.episciences.org/13247/bibtex&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>; type=<b>"application/x-bibtex</b>", <br>
+  						&lt;https://jdmdh.episciences.org/13247/pdf&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>; type=<b>"application/pdf</b>", <br>
+  						&lt;https://jdmdh.episciences.org/13247/tei&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>; type=<b>"application/xml"</b><br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://www.tei-c.org/ns/1.0</b>", <br>
+  						&lt;https://jdmdh.episciences.org/13247/dc&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>;; type=<b>"application/xml"</b><br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://purl.org/dc/elements/1.1/</b>", <br>
+  						&lt;https://jdmdh.episciences.org/13247/datacite&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>; type=<b>"application/xml"</b><br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://datacite.org/schema/kernel-4</b>", <br>
+  						&lt;https://jdmdh.episciences.org/13247/crossref&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>; type=<b>"application/xml"</b><br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://www.crossref.org/schema/4.4.2"</b>
+                    </code>
+                </div>
+                </div>
+                
+                  <h3><a name="eurac"></a>eurac research Environmental Data Platform</h3>
+					<div>
+                    The <a href="https://edp-portal.eurac.edu/discovery/">eurac research Environmental Data Platform</a> 
+                    supports FAIR Signposting by means of Link Sets that are discoverable via <code>linkset</code> links 
+                    provided in the HTML &lt;link&gt; element of dataset landing pages. 
+                    The landing page <a href="https://edp-portal.eurac.edu/discovery/31f0258a-5517-11ed-8c40-0050568e1483">https://edp-portal.eurac.edu/discovery/31f0258a-5517-11ed-8c40-0050568e1483</a> contains the 
+                    following entry:
+                    <br/>
+                    <br/>          
+                    <code>
+                    &lt;link rel=<b>"linkset"</b> type="application/linkset+json" </br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;href="https://edp-portal.eurac.edu/discovery/linkset/31f0258a-5517-11ed-8c40-0050568e1483"&gt;</br>
+                    </code>
+                </div>
+                <div>
+                An HTTP GET on <a href="https://edp-portal.eurac.edu/discovery/linkset/31f0258a-5517-11ed-8c40-0050568e1483">https://edp-portal.eurac.edu/discovery/linkset/31f0258a-5517-11ed-8c40-0050568e1483</a> 
+                returns a Link Set in <code>application/linkset+json</code> format.
+                </div>
+                
+                   <h3><a name="FAIR-by-design"></a>FAIR-by-Design Training Materials Repository</h3>
+                    <div>
+                    The <a href="https://github.com/FAIR-by-Design-Methodology">GitHub-based</a> repository for 
+                    FAIR-by-Design Training Materials
+                    supports FAIR Signposting. <a href="https://github.com/FAIR-by-Design-Methodology/templates">Templates</a> that are forked to create a new training have been enhanced to include a <code>linkset</code> link in the 
+                    HTML training documents that 
+                     points at a <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> document.
+                    </div> 
+                    <br/>
+                    <div>An example training forked from the enhanced templates is <a href="https://fair-by-design-methodology.github.io/FAIR-by-Design_ToT/latest/">FAIR-by-Design Methodology for Learning Materials Training of Trainers</a>.
+					The HTML page contains a link to a linkset serialized using the 
+                    &quot;application/linkset+json&quot; media type:
+                    </div>
+                    <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>
+                     &lt;link rel="linkset" type="application/json+linkset" href="https://raw.githubusercontent.com/FAIR-by-Design-Methodology/FAIR-by-Design_ToT/main/linkset.json"&gt;<br />
+                    </code>
+                </div>
+                <div>The <a href="https://raw.githubusercontent.com/FAIR-by-Design-Methodology/FAIR-by-Design_ToT/main/linkset.json">linkset</a> contains, among others, 
+                <code>item</code> links to training module information expressed 
+                    according a <a href="https://raw.githubusercontent.com/FAIR-by-Design-Methodology/MVS/main/resources/MVS%20Template/template.md">community-agreed Minimal Viable Skills md format</a>.
+                 </div>
+                
+                <h3><a name="hal"></a>HAL Open Science</h3>
+                <div>
+                    The <a href="https://hal.science">HAL Open Science</a> repository has implemented the following Signposting patterns:
+                    <ul>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
+                    </ul/>
+                    In addition to that it provides a typed link to make a <a href="https://www.w3.org/TR/ldn/">Linked Data Notification</a> inbox used for their
+                    implementation of the <a href="https://notify.coar-repositories.org/specification/">Notify Protocol</a> discoverable.
+                </div>
+				<div>
+                This example shows the Identifier and Metadata Resources patterns as well as the link to the 
+                Linked Data Notification inbox for the <b>Landing Page URI</b>:
+                <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://hal.science/hal-03087870v1&quot;</code>
+                    <br>
+                    <br>
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-Type: text/html; charset=UTF-8<br/>
+                        link:  &lt;https://inbox.hal.science/&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"http://www.w3.org/ns/ldp#inbox"</b>, <br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870v1&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b>, <br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870/bibtex&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>; type=<b>"application/x-bibtex"</b>, <br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870/json&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>; type=<b>"application/json"</b>, <br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870/tei&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>; type=<b>"application/xml"</b><br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://www.tei-c.org/ns/1.0"</b>, <br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870/dc&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>; type=<b>"application/xml"</b><br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://purl.org/dc/elements/1.1/"</b>, <br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://hal.science/hal-03087870/dcterms&gt;<br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b>; type=<b>"application/xml"</b><br>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://purl.org/dc/terms/"</b><br>
+                    </code>
+                </div>
+                </div>
+                
+                <h3><a name="invenio"></a>InvenioRDM FAIR Signposting</h3>
+                    <div>
+                    Starting with v12, <a href="https://inveniosoftware.org/products/rdm/">IvenioRDM</a> supports FAIR Signposting. 
+                    Since <a href="https://zenodo.org/">Zenodo</a> is an InvenioRDM instance, it also supports FAIR Signposting. 
+                    
+                    Support is implemented by  
+                    exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. 
+                    </div> 
+                    <br/>
+                    <div>Check out an example of FAIR Signposting for the Zenodo repository object <a href="https://doi.org/10.5281/zenodo.7977333">
+                    FAIR Digital Objects and FAIR Signposting</a>. The HTTP response header for the landing page <a href="https://zenodo.org/records/7977333">https://zenodo.org/records/7977333</a> 
+                    of this object contains a link to a linkset serialized using the 
+                    &quot;application/linkset+json&quot; media type.
+                    </div>
+                    <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>
+                     &lt;link href="https://zenodo.org/api/records/7977333" rel="linkset" type="application/linkset+json"&gt;<br />
+                    </code>
+                </div>
+                <div>In order to retrieve the linkset, a client should use content negotiation for the <code>application/linkset+json</code> 
+                media type against the URL &lt;https://zenodo.org/api/records/7977333&gt;. The linkset contains all links recommended for 
+                <a href="https://signposting.org/FAIR/#level2">Level 2 of the FAIR Signposting Profile</a>, including links that have 
+                content and metadata resources as anchor. At the time of first release there was a small glitch in the implementation: 
+                the linkset includes <code>describes</code> links that express a media type for the anchor, a feature that is not supported by
+                Web Links; only link target attributes are supported.
+                 </div>
+                
+                
+                
+                <h3><a name="ojs"></a>The Open Journal System FAIR Signposting Profile</h3>
+                            <div>
+                    Version v2.x and v3.x of the <a href="https://openjournalsystems.com/">Open Journal System</a> software for journal publishing support the FAIR Signposting Profile. They do so by 
+                    exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. 
+                    At the time of writing, the hosted version of the Open Journal System publishes over 500 journals for publishers worldwide.</div> 
+                    <br/>
+                    <div>Check out an example of FAIR Signposting at for the article <a href="https://doi.org/10.4401/ag-8993">Atmospheric Correction of FG5 Absolute Gravimetry Data using Measured Air Pressure</a>:</div>
+                               <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://www.annalsofgeophysics.eu/index.php/annals/article/view/8993&quot;</code>
+                    <br>
+                    <br>
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-Type: text/html;charset=utf-8<br/>
+                        Link: &lt;https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/8993&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"linkset"</b></br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/linkset+json"</b>
+                    </code>
+                </div>
+                <br/>
+                <div>Now, check out the linkset document by clicking its URL <a href="https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/8993">https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/8993</a>.
+                </div>
+            
+               <h3><a name="pangaea"></a>Pangaea</h3>
+                <div>
+                    <a href="https://www.pangaea.de/">Pangaea</a> has implemented the following Signposting patterns:
+                    <ul>
+                        <li><a href="/patterns/author/">Author</a></li>
+                        <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
+                        <li><a href="/patterns/content_resources/">Content Resources</a></li>
+                    </ul/>
+                </div>
+				<div>
+                This example shows the Identifier, Metadata Resources, Content Resources, 
+                and Author patterns implemented for the <b>Landing Page URI</b>: 
+                <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://doi.pangaea.de/10.1594/PANGAEA.867908&quot;</code>
+                    <br>
+                    <br>          
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-length: 8424<br/>
+                        Content-type: text/html;charset=UTF-8<br/>
+                        Link: &lt;https://doi.org/10.1594/PANGAEA.867908&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.pangaea.de/10.1594/PANGAEA.867908?format=citation_ris&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-research-info-systems"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.pangaea.de/10.1594/PANGAEA.867908?format=citation_bibtex&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-bibtex"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.pangaea.de/10.1594/PANGAEA.867908?format=zip&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/zip"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0003-1291-8524&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b>
+                    </code>
+                </div>
+                </div>
+            
             
             <h3><a name="pythonclient"></a>Python client for FAIR Signposting </h3>
                             <div>
@@ -94,46 +555,9 @@ $(function() {
     				Future versions of this library may also provide ways to discover FAIR signposting in HTML &;ltlink&gt; elements and in <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents.
                 </div>
                 
-                    <h3><a name="rubyclient"></a>Ruby Web Link parsing gem</h3>
-                            <div>
-                    This <a href="https://github.com/markwilkinson/linkheader-processor">Ruby gem</a> extracts links found in HTTP Link headers, HTML &lt;link&gt; elements, 
-                    as well those provided in <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Sets</a> (in both JSON and text format) made discoverable via Link headers and HTML &lt;link&gt; elements.
-                   It also handles unusual cases, such as having multiple relation types in a single link and dealing with 204 or 410 response where there is no message body.
-                </div>
-                
-                <h3><a name="benchmarks"></a>Benchmarks for FAIR Signposting</h3>
-                            <div>
-                    The <a href="https://s11.no/2022/a2a-fair-metrics/">Apples-to-Apples FAIR Signposting</a> page gives access to a set of benchmarks that clients can use to test their capabilities for extracting Signposting links.
-                    The benchmarks cover cases whereby web links are provided in HTTP Link headers, HTML &lt;link&gt; elements, 
-                    and <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Sets</a> (in both JSON and text format) made discoverable via Link headers and HTML &lt;link&gt; elements.
-                   The benchmarks include links that use a subset of FAIR Signposting link relation types, i.e. <code>cite-as</code>, <code>item</code>, and <code>describedby</code> and result from <a href="https://signposting.org/FAIR/apples-hackathon/">a hackathon</a> that focused on assessing 
-                   FAIR Signposting compliance.
-                </div>
-                
-                                <h3><a name="ckan"></a>CKAN Signposting extension</h3>
-                            <div>
-                    The <a href="https://github.com/annefou/ckanext-signposting">CKAN extension for Signposting</a> adds FAIR Signposting support to the 
-                    open source data management system <a href="https://ckan.org/">CKAN</a>. The typed links are provided as HTML &lt;link&gt; elements in dataset landing pages.
-                    The extension supports adding ORCIDs as CKAN metadata and providing those ORCIDs as <code>author</code> links.
-
-                </div>
-                
-                            <h3><a name="dataverse"></a>Dataverse FAIR Signposting</h3>
-                            <div>
-                    Starting with the 06/2023 release v5.14, the <a href="https://dataverse.org/">Dataverse</a> data repository software supports the FAIR Signposting Profile. It supports 
-                    exposing links by means of the HTTP Link header as well as using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. At the time of writing, the Dataverse software is used by nearly 100 data repositories, worldwide.
-                </div>
-                
-                   <h3><a name="dspace7"></a>DSpace 7 FAIR Signposting</h3>
-                            <div>
-                    Starting with release 7.6, the <a href="https://wiki.lyrasis.org/display/DSDOC7x">DSpace 7</a> repository software supports the FAIR Signposting Profile. 
-                    It supports 
-                    exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. 
-                
-                </div>
                 
                 
-                 <h3><a name="radareu"></a>Radar (Research Data Repository) FAIR Signposting</h3>
+                     <h3><a name="radareu"></a>Radar (Research Data Repository) FAIR Signposting</h3>
                 <div>
                     The <a href="https://www.radar-service.eu/radar/en/home">Radar</a> research data repository operated by the 
                     FIZ Karlsruhe Leibniz Institute for Information Infrastructure supports FAIR Signposting by providing typed links in the HTTP Link 
@@ -166,35 +590,121 @@ $(function() {
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;rel=<b>"describedby"</b></br> 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;type=<b>"text/xml"</b></br>
 						Content-Type: text/html;charset=UTF-8</br>
-						Content-Language: en</br>
+						Content-Language: en
                     </code>
+                </div>       
+                
+                <h3><a name="rioxx"></a>RIOXX version 3 metadata format</h3>
+                            <div>
+                    <a href="https://rioxx.net/about/">Rioxx</a> has been developed for institutional repositories to share metadata about the scholarly resources they contain. 
+                    Originally designed to meet the reporting requirements of Research Councils UK (RCUK), 
+                    RIOXX has also proven to be generally useful as a standard for sharing metadata between repositories and network services 
+                    such as large-scale metadata aggregators like <a href="https://core.ac.uk/">CORE</a>. <a href="https://rioxx.net/profiles/v3-0-final/">RIOXX version 3</a> 
+                    recommends using FAIR Signposting to assist machine agents in navigating from the landing page to the relevant resources. But, additionally, 
+                    it fully aligns with the Signposting perspective, giving the landing page URI a central role by providing it in <code>dc:identifier</code>, 
+                    and by conveying various metadata elements by means of <code>dc:relation</code> links that are typed in the 
+                    same way as recommended by Signposting, e.g. <code>cite-as</code> to point at the persistent identifier of the object provided by the institutional repository,  
+                    <code>item</code> to point at content resources, etc. 
                 </div>
                 
-                
-                
-                
-                            <h3><a name="ojs"></a>The Open Journal System FAIR Signposting Profile</h3>
+                                    <h3><a name="rubyclient"></a>Ruby Web Link parsing gem</h3>
                             <div>
-                    Version v2.x and v3.x of the <a href="https://openjournalsystems.com/">Open Journal System</a> software for journal publishing support the FAIR Signposting Profile. They do so by 
-                    exposing links using <a href="https://signposting.org/FAIR/#linksetrec">linkset</a> documents. At the time of writing, the hosted version of the Open Journal System publishes over 500 journals for publishers worldwide.</div> 
-                    <br/>
-                    <div>Check out an example of FAIR Signposting at for the article <a href="https://doi.org/10.4401/ag-7507">On the Contribution of Philosophical and Geoscientific Inquiry to Geoethics (qua Applied Ethics)</a>:</div>
-                               <div style="background: #fff; margin: 0 10px;">
+                    This <a href="https://github.com/markwilkinson/linkheader-processor">Ruby gem</a> extracts links found in HTTP Link headers, HTML &lt;link&gt; elements, 
+                    as well those provided in <a href="https://www.rfc-editor.org/rfc/rfc9264.html">Link Sets</a> (in both JSON and text format) made discoverable via Link headers and HTML &lt;link&gt; elements.
+                   It also handles unusual cases, such as having multiple relation types in a single link and dealing with 204 or 410 response where there is no message body.
+                </div>
+                    
+                 <h3><a name="ucd_digital_library"></a>UCD Digital Library</h3>
+                <div>
+                    The <a href="http://digital.ucd.ie/">University College Dublin Digital Library</a> has implemented the following Signposting patterns:
+                    <ul>
+                        <li><a href="/patterns/author/">Author</a></li>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
+                    </ul/>
+                </div>
+				<div>
+                This example shows the Identifier, Metadata Resources, and the Author patterns 
+                implemented for the <b>Landing Page URI</b>:
+                <div style="background: #fff; margin: 0 10px;">
                     <br>
-                    <code>curl -I &quot;https://www.annalsofgeophysics.eu/index.php/annals/Journal-sponsorship&quot;</code>
+                    <code>curl -I &quot;http://digital.ucd.ie/view/ucdlib:31122&quot;</code>
                     <br>
                     <br>
                     <code>
                         HTTP/1.1 200 OK<br/>
-                        Content-Type: text/html;charset=utf-8<br/>
-                        Link: &lt;https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/7507&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"linkset"</b></br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/linkset+json"</b></br>
+                        Content-Length: 20<br/>
+                        Content-Type: text/html; charset=UTF-8<br/>
+                        Link: &lt;https://doi.org/10.7925/drs1.ucdlib_31122&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.org/10.7925/drs1.ucdlib_31122&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/vnd.citationstyles.csl+json"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.ucd.ie/citation/ucdlib:31122/ris&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-research-info-systems"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.ucd.ie/citation/ucdlib:31122/btx&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-bibtex"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0001-6092-9741&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0001-5134-5322&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b>
                     </code>
                 </div>
-                <br/>
-                <div>Now, check out the linkset document by clicking its URL <a href="https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/7507">https://www.annalsofgeophysics.eu/index.php/annals/sp-linkset/article/7507</a>.</div>
-            
+                </div>
+                
+                <h3><a name="unt_digital_library"></a>UNT Digital Library</h3>
+                <div>
+                    The <a href="https://digital.library.unt.edu/">University of North Texas Digital Library</a> has implemented the following Signposting patterns:
+                    <ul>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
+                    </ul/>
+                </div>
+				<div>
+                This example shows the Identifier and Metadata Resources patterns 
+                implemented for the <b>Landing Page URI</b>; note the link to an <a href="https://iiif.io">IIIF</a> manifest:
+                <div style="background: #fff; margin: 0 10px;">
+                    <br>
+                    <code>curl -I &quot;https://digital.library.unt.edu/ark:/67531/metadc1477161/&quot;</code>
+                    <br>
+                    <br>
+                    <code>
+                        HTTP/1.1 200 OK<br/>
+                        Content-Length: 20<br/>
+                        Content-Type: text/html; charset=UTF-8<br/>
+                        Link: &lt;https://digital.library.unt.edu/ark:/67531/metadc1477161/&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.library.unt.edu/ark:/67531/metadc1477161/metadata.dc.xml&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"txt/xml"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://purl.org/dc/elements/1.1/"</b>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.library.unt.edu/ark:/67531/metadc1477161/metadata.untl.xml&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"txt/xml"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://digital2.library.unt.edu/untl.xsd"</b>,<br>
+                        
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.library.unt.edu/ark:/67531/metadc1477161/manifest/&gt;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/json+ld"</b><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://iiif.io/api/presentation/2.1/"</b>
+                    </code>
+                </div>
+                </div>
+                
+
+                
+              
+                
+
+                
+                
+                
+                
+                
+                
+                            
 <!--
             <h3><a name="cobaltmetrics"></a>Cobaltmetrics</h3>
                 <div>
@@ -208,18 +718,18 @@ $(function() {
                     Web-Scale Citation Tracking: Can You Read the Signs? Listen to That Little Voice in Your HEAD Requests</a>.
                 </div>
 -->
+<!--
                 <h3><a name="datacite_search"></a>DataCite Search and DataCite Commons</h3>
                 <div>
                     <a href="https://search.datacite.org/">DataCite Search</a> has implemented the following Signposting patterns:
                     <ul>
-                        <!-- <li>Author</li> -->
-                        <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
+                        <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
                     </ul/>
                     As DataCite Search is being phased out, Signposting support will be added to its replacement <a href="https://commons.datacite.org/">DataCite Commons</a>.
                 </div>
 
-                <div>This example shows the Identifier and Bibliographic Metadata patterns implemented for a <b>Landing Page</b> in the DataCite <a href="https://search.datacite.org/works">Works Search</a>:</div> 
+                <div>This example shows the Identifier and Metadata Resources patterns implemented for a <b>Landing Page</b> in the DataCite <a href="https://search.datacite.org/works">Works Search</a>:</div> 
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
                     <code>curl -I &quot;https://search.datacite.org/works/10.6084/M9.FIGSHARE.3501629&quot;</code>
@@ -258,48 +768,13 @@ $(function() {
                     </code>
                 </div>
 
+-->
 
-                <h3><a name="pangaea"></a>Pangaea</h3>
-                <div>
-                    <a href="https://www.pangaea.de/">Pangaea</a> has implemented the following Signposting patterns:
-                    <ul>
-                        <li><a href="http://signposting.org/author/">Author</a></li>
-                        <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
-                        <li><a href="http://signposting.org/publication_boundary/">Publication Boundary</a></li>
-                    </ul/>
-                </div>
-
-                This example shows the Identifier, Bibliographic Metadata, Publication Boundary, 
-                and Author patterns implemented for the <b>Landing Page URI</b>: 
-                <div style="background: #fff; margin: 0 10px;">
-                    <br>
-                    <code>curl -I &quot;https://doi.pangaea.de/10.1594/PANGAEA.867908&quot;</code>
-                    <br>
-                    <br>          
-                    <code>
-                        HTTP/1.1 200 OK<br/>
-                        Content-length: 8424<br/>
-                        Content-type: text/html;charset=UTF-8<br/>
-                        Link: &lt;https://doi.org/10.1594/PANGAEA.867908&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.pangaea.de/10.1594/PANGAEA.867908?format=citation_ris&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-research-info-systems"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.pangaea.de/10.1594/PANGAEA.867908?format=citation_bibtex&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-bibtex"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.pangaea.de/10.1594/PANGAEA.867908?format=zip&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/zip"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0003-1291-8524&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
-                    </code>
-                </div>
+             
                 <!--
                 <br/>
 
-                The following example shows the Identifier, Bibliographic Metadata, Publication Boundary, 
+                The following example shows the Identifier, Metadata Resources, Content Resources, 
                 and Author patterns implemented for 
                 the <b>Publication Resource</b> URI that is conveyed by means of an <code>item</code> link in the 
                 above HTTP response: 
@@ -328,7 +803,7 @@ $(function() {
                     </code>
                 </div>
                 <br/>
-                This is an example showing the Identifier and the Bibliographic Metadata patterns implemented for a 
+                This is an example showing the Identifier and the Metadata Resources patterns implemented for a 
                 <b>Bibliographic  
                 Resource</b> formatted using the <a href="https://en.wikipedia.org/wiki/RIS_(file_format)">RIS</a> citation format: 
                 <div style="background: #fff; margin: 0 10px;">
@@ -349,94 +824,30 @@ $(function() {
                 </div>
 -->
 
-                <h3><a name="ucd_digital_library"></a>UCD Digital Library</h3>
-                <div>
-                    The <a href="http://digital.ucd.ie/">University College Dublin Digital Library</a> has implemented the following Signposting patterns:
-                    <ul>
-                        <li><a href="http://signposting.org/author/">Author</a></li>
-                         <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
-                    </ul/>
-                </div>
+			
+            
 
-                This example shows the Identifier, Bibliographic Metadata, and the Author patterns 
-                implemented for the <b>Landing Page URI</b>:
-                <div style="background: #fff; margin: 0 10px;">
-                    <br>
-                    <code>curl -I &quot;http://digital.ucd.ie/view/ucdlib:31122&quot;</code>
-                    <br>
-                    <br>
-                    <code>
-                        HTTP/1.1 200 OK<br/>
-                        Content-Length: 20<br/>
-                        Content-Type: text/html; charset=UTF-8<br/>
-                        Link: &lt;https://doi.org/10.7925/drs1.ucdlib_31122&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://doi.org/10.7925/drs1.ucdlib_31122&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/vnd.citationstyles.csl+json"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.ucd.ie/citation/ucdlib:31122/ris&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-research-info-systems"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.ucd.ie/citation/ucdlib:31122/btx&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/x-bibtex"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0001-6092-9741&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http://orcid.org/0000-0001-5134-5322&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
-                    </code>
-                </div>
+               
                 
-                           <h3><a name="unt_digital_library"></a>UNT Digital Library</h3>
-                <div>
-                    The <a href="https://digital.library.unt.edu/">University of North Texas Digital Library</a> has implemented the following Signposting patterns:
-                    <ul>
-                         <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
-                    </ul/>
-                </div>
+               
+                
 
-                This example shows the Identifier and Bibliographic Metadata patterns 
-                implemented for the <b>Landing Page URI</b>; note the link to an <a href="https://iiif.io">IIIF</a> manifest:
-                <div style="background: #fff; margin: 0 10px;">
-                    <br>
-                    <code>curl -I &quot;https://digital.library.unt.edu/ark:/67531/metadc1477161/&quot;</code>
-                    <br>
-                    <br>
-                    <code>
-                        HTTP/1.1 200 OK<br/>
-                        Content-Length: 20<br/>
-                        Content-Type: text/html; charset=UTF-8<br/>
-                        Link: &lt;https://digital.library.unt.edu/ark:/67531/metadc1477161/&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"cite-as"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.library.unt.edu/ark:/67531/metadc1477161/metadata.dc.xml&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"txt/xml"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://purl.org/dc/elements/1.1/"</b>,<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.library.unt.edu/ark:/67531/metadc1477161/metadata.untl.xml&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"txt/xml"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://digital2.library.unt.edu/untl.xsd"</b>,<br>
-                        
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;https://digital.library.unt.edu/ark:/67531/metadc1477161/manifest/&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"describedby"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/json+ld"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; profile=<b>"http://iiif.io/api/presentation/2.1/"</b><br>
-                    </code>
-                </div>
+                
+               
 
 
-                <h3><a name="dans"></a>DANS EASY</h3>
+                
+                
+               <!-- DANS EASY has been retired. Keep this info for historical purposes
                 <div>
                     The <a href="https://easy.dans.knaw.nl/ui/home">Data Archiving and Networked Services</a> has implemented the following Signposting patterns:
                     <ul>
-                         <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
                     </ul/>
                 </div>
 
-                This example shows the Identifier and the Bibliographic Metadata patterns 
+                This example shows the Identifier and the Metadata Resources patterns 
                 implemented for the <b>Landing Page URI</b>:
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
@@ -466,7 +877,7 @@ $(function() {
                     </code>
                 </div>
                 <br/>
-                This example shows a <b>bibliographic resource</b> linking to the <b>entry page</b> using the <code>describes</code> relation type in the Bibliographic Metadata pattern.
+                This example shows a <b>bibliographic resource</b> linking to the <b>entry page</b> using the <code>describes</code> relation type in the Metadata Resources pattern.
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
                     <code>curl -I &quot;https://easy.dans.knaw.nl/ui/resources/easy/export?sid=easy-dataset%3A67469&amp;format=XML&quot;</code>
@@ -481,52 +892,9 @@ $(function() {
                     </code>
                 </div>
                 
-                <h3><a name="dspacecris"></a>DSpace-CRIS</h3>
-                <div>
-                    Starting with version 5.8.2, the open source <a href="https://wiki.duraspace.org/display/DSPACECRIS/DSpace-CRIS+Home">DSpace-CRIS</a> system 
-                    has built-in support for <a href="https://wiki.duraspace.org/display/DSPACECRIS/Signposting">the following Signposting patterns</a>:
-                    <ul>
-                        <li><a href="http://signposting.org/author/">Author</a></li>
-                    <!--    <li><a href="http://signposting.org/identifier/">Identifier</a></li> -->
-                        <li><a href="http://signposting.org/publication_boundary/">Publication Boundary</a></li>
-                    </ul/>
-                </div>
-				<div>
-                This example shows the Author and Publication Boundary patterns 
-                implemented for the <b>Landing Page URI</b>, which is identical to the <b>Identifying HTTP URI</b>, of a repository object:
-                </div>
-                <div style="background: #fff; margin: 0 10px;">
-                    <br>
-                    <code>curl -I &quot;http://ktisis.cut.ac.cy/handle/10488/4268&quot;</code>
-                    <br>
-                    <br>
-                    <code>
-                        HTTP/1.1 200 OK<br/>
-                        Content-Type: text/html; charset=UTF-8<br/>
-                        Content-Length: 30731<br/>
-                        Link: &lt;http://orcid.org/0000-0002-9452-3018&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"author"</b><br>
-                        Link: &lt;http://ktisis.cut.ac.cy/bitstream/10488/4268/2/Climate%20Change%20in%20Cyprus.pdf&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"item"</b><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; type=<b>"application/pdf"</b><br>
-                    </code>
-                </div>
-                <br/>
-                This example shows the PDF file that is a constituent resource of the object linking back to the <b>Landing Page URI</b> using the <code>collection</code> 
-                relation type of the Publication Boundary pattern.
-                <div style="background: #fff; margin: 0 10px;">
-                    <br>
-                    <code>curl -I &quot;http://ktisis.cut.ac.cy/bitstream/10488/4268/2/Climate%20Change%20in%20Cyprus.pdf&quot;</code>
-                    <br>
-                    <br>
-                    <code>
-                        HTTP/1.1 200 OK<br/>
-                        Content-Length: 227215<br/>
-                        Content-Type: application/pdf<br/>
-                        Link: &lt;http://ktisis.cut.ac.cy/handle/10488/4268&gt;<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; rel=<b>"collection"</b><br>
-                    </code>
-                </div>
+                -->
+                
+                
                 
                                 <h3><a name="workflowhub"></a>WorkflowHub</h3>
                 <div>
@@ -534,8 +902,8 @@ $(function() {
                     It facilitates discovery and re-use of workflows in an accessible and interoperable way by leveraging open standards and tools, including RO-Crate and Signposting.  
                     The following Signposting patterns are used:</a>:
                     <ul>
-                         <li><a href="http://signposting.org/bibliographic_metadata/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/publication_boundary/">Publication Boundary</a></li>
+                         <li><a href="/patterns/metadata_resources/">Metadata Resources</a></li>
+                        <li><a href="/patterns/content_resources/">Content Resources</a></li>
                     </ul/>
                 </div>
 				<div>
@@ -560,8 +928,9 @@ $(function() {
                         &lt;https://workflowhub.eu/workflows/419/ro_crate?version=1&gt; ; <br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rel=<b>"item"</b> ; <br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type=<b>"application/zip"</b> ; <br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;profile=<b>"https://w3id.org/ro/crate"</b> <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;profile=<b>"https://w3id.org/ro/crate"</b>
                     </code>
+                </div>
                 </div>
                 
                 <!--
@@ -572,10 +941,10 @@ $(function() {
                     to versions 2.4 and 3 of the open source <a href="https://pkp.sfu.ca/ojs/">Open Journal Systems</a>. The plug-in 
                     implements support for the following Signposting patterns</a>:
                     <ul>
-                        <li><a href="http://signposting.org/author/">Author</a></li>
-                        <li><a href="http://signposting.org/identifier/">Bibliographic Metadata</a></li>
-                        <li><a href="http://signposting.org/identifier/">Identifier</a></li>
-                        <li><a href="http://signposting.org/publication_boundary/">Publication Boundary</a></li>
+                        <li><a href="/patterns/author/">Author</a></li>
+                        <li><a href="/patterns/identifier/">Metadata Resources</a></li>
+                        <li><a href="/patterns/identifier/">Identifier</a></li>
+                        <li><a href="/patterns/content_resources/">Content Resources</a></li>
                     </ul/>
                 </div>
 
@@ -608,7 +977,7 @@ $(function() {
                 </div>
                 <br/>
                 This example shows the PDF file that is a constituent resource of the object linking back to the <b>Landing Page URI</b> using the <code>collection</code> 
-                relation type of the Publication Boundary pattern.
+                relation type of the Content Resources pattern.
                 <div style="background: #fff; margin: 0 10px;">
                     <br>
                     <code>curl -I &quot;http://www.annalsofgeophysics.eu/index.php/annals/article/download/7507/6808&quot;</code>
@@ -625,8 +994,7 @@ $(function() {
                 
                 -->
                 
-                
-            </div>
+                </div> <!-- /featurette -->
         </div> <!-- /container -->
 
         <div class="footer" id="footer">

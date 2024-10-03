@@ -1,0 +1,130 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "description": "This is mirepo's authorIDy instance",
+    "version": "v1.0",
+    "title": "mirepo authorIDy",
+    "termsOfService": "https://mirepo.org/terms-of-service/",
+    "contact": {
+      "email": "admin@mirepo.org"
+    },
+    "license": {
+      "name": "AGPL v3",
+      "url": "https://www.gnu.org/licenses/agpl-3.0.en.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://mirepo.org/authorIDy",
+      "description": "The production authorIDy server"
+    }
+  ],
+  "paths": {
+    "/*/{contributorID}": {
+      "get": {
+        "description": "Retrieve all contributions for a specified contributor HTTP identifier.",
+        "parameters": [
+          {
+            "name": "contributorID",
+            "in": "path",
+            "description": "The HTTP identifier of a contributor",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "http(s)?://.*"
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "example": "<http://service/{sinceDate}/{contributorID}?page=0> ; rel=\"prev\", <http://service/{sinceDate}/{contributorID}?page=2> ; rel=\"next\""
+                },
+                "required": false,
+                "description": "Optional links to next or previous pages (or both)"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://signposting.org/authorIDy/authorIDy_schema.json"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown contributor identifier"
+          }
+        }
+      }
+    },
+    "/{sinceDate}/{contributorID}": {
+      "get": {
+        "description": "Retrieve contributions since and including an accession date (yyyymmdd) for a specified contributor identifier.",
+        "parameters": [
+          {
+            "name": "contributorID",
+            "in": "path",
+            "description": "The HTTP identifier of a contributor",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "http(s)?://.*"
+            },
+            "style": "simple"
+          },
+          {
+            "name": "sinceDate",
+            "in": "path",
+            "description": "The accession date in yyyymmdd format",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "\\d{4}\\d{2}\\d{2}"
+            },
+            "style": "simple"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "headers": {
+              "Link": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "example": "<http://service/{sinceDate}/{contributorID}?page=0> ; rel=\"prev\", <http://service/{sinceDate}/{contributorID}?page=2> ; rel=\"next\""
+                },
+                "required": false,
+                "description": "Optional links to next or previous pages (or both)"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://signposting.org/authorIDy/authorIDy_schema.json"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Date in yyyymmdd format required."
+          },
+          "404": {
+            "description": "Unknown contributor identifier"
+          }
+        }
+      }
+    }
+  }
+}

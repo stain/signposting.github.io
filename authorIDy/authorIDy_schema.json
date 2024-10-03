@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://signposting.org/authorIDy/schema.json",
+  "title": "authorIDy",
+  "description": "An authorIDy response body",
+  "type": "object",
+  "properties": {
+    "contributor": {
+      "description": "contributor identifier URI",
+      "type": "string",
+      "pattern": "http(s)?://.*"
+    },
+    "contributions": {
+      "description": "list of entries, one entry per contribution",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "contribution-page": {
+            "description": "URI of contribution, e.g. landing page URI",
+            "type": "string",
+            "pattern": "http(s)?://.*"
+          },
+          "accession-date": {
+            "description": "repository accession date",
+            "type": "string",
+            "pattern": "\\d{4}-[01]\\d-[0-3]\\d"
+          },
+          "publication-date": {
+            "description": "publication date",
+            "type": "string",
+            "pattern": "\\d{4}"
+          },
+          "cite-as": {
+            "description": "persistent identifier URI (redirects to landing page URI)",
+            "type": "string",
+            "pattern": "http(s)?://.*"
+          },
+          "contributor-type": {
+            "description": "contributor type URI from vocabulary, e.g. https://credit.niso.org/",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "http(s)?://.*"
+            }
+          },
+          "contribution-type": {
+            "description": "contribution type URI from vocabulary, e.g. https://vocabularies.coar-repositories.org/resource_types/",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "http(s)?://.*"
+            }
+          }
+        },
+        "required": [
+          "contribution-page",
+          "accession-date"
+        ]
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "contributor",
+    "contributions"
+  ]
+}

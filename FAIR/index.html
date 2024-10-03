@@ -63,8 +63,8 @@ $(function() {
 
             <div class="row">
                 <div class="jumbo">
-                <div class="row">
-                        <h3>FAIR Signposting Profile</h3>
+                <div class="row" style="padding: 0 15px;">
+                        <h3 style="margin: 0; margin-bottom: 10px;">FAIR Signposting Profile</h3>
                         <h5>
                         Prepared by: Herbert Van de Sompel, Martin 
 Klein, Shawn Jones, Michael L. Nelson, 
@@ -75,21 +75,22 @@ Klein, Shawn Jones, Michael L. Nelson,
                         <h5>This version, created 20231002: <a href="https://signposting.org/FAIR/"
 data-versionurl="http://web.archive.org/web/20231002073726/https://signposting.org/FAIR/"
 data-versiondate="2023-10-02">https://signposting.org/FAIR/</a> </h5>
-<h5>Previous version, created 20230519: <a href="https://signposting.org/FAIR/"
-data-versionurl="https://web.archive.org/web/20230519072548/https://signposting.org/FAIR/"
-data-versiondate="2023-05-19">https://signposting.org/FAIR/</a></h5>
-						<h5>Please provide feedback in the <a href="https://github.com/signposting/signposting.github.io">GitHub Signposting repository</a></h5>
-						<br>
-                        <div class="">
-                             This page details concrete recipes that 
-platforms that host research outputs (e.g. data repositories, 
-                             institutional repositories, publisher 
-platforms, etc.) can follow to implement <a href="http://signposting.org/">Signposting</a>, 
-                             a lightweight yet powerful approach to increase the <a href="https://doi.org/10.1038/sdata.2016.18">FAIR</a>ness of scholarly objects. 
-                             <br>
-                             <br>
-                             Landing pages support humans that interact 
-with scholarly objects on the web, 
+<h5><a href="https://web.archive.org/web/20230519072548/https://signposting.org/FAIR/"
+data-originalurl="https://signposting.org/FAIR/"
+data-versiondate="2023-05-19">Previous version</a> created 20230519</h5>
+						<h5><a href="http://labs.mementoweb.org/timemap/json/https://signposting.org/FAIR/">Version history</a></h5>
+						<h5>Please provide feedback in the <a href="https://github.com/hvdsomp/signposting">GitHub Signposting repository</a>, using label FAIRSignposting</h5>
+				</div>
+				
+				
+					<div class="row">
+                        <div class="col-md-7">
+                        <br />
+This page details concrete recipes that platforms that host research outputs (e.g. data repositories, 
+institutional repositories, publisher platforms, etc.) can follow to implement <a href="http://signposting.org/">Signposting</a>, 
+a lightweight yet powerful approach to increase the <a href="https://doi.org/10.1038/sdata.2016.18">FAIR</a>ness of scholarly objects. 
+                             <br />
+Landing pages support humans that interact with scholarly objects on the web, 
                              providing descriptive metadata and links to
  content. These pages are not optimized for 
                              use by machine agents that navigate the 
@@ -112,7 +113,19 @@ author is.
                              It conveys this by means of meaningful 
 links 
                              that have web locations (HTTP URIs) as 
-their target. As such it does significantly  
+their target. 
+                        </div>
+                        <div class="col-md-5">
+                            <div class="clearfix">
+                                <img src="https://signposting.org/static/images/signposting.png" alt="Signposting the Scholarly Web: FAIR Signposting" class="sp_pat pull-right"/>
+                            </div>
+                            <p style="font-size: 0.7em;" class="pull-right">Image courtesy of <a href="https://openbiblio.social/@hochstenbach" target="_blank">Patrick Hochstenbach</a>.</p>
+                        </div>
+                    </div> <!-- row -->				
+				
+					<div class="row" style="padding: 0 15px;">  
+					<br />   
+					As such it does significantly  
                              more than merely providing the 
                              information. It invites machine agents to 
 follow the links to 
@@ -126,8 +139,8 @@ and because it is entirely based on widely implemented
                              web protocols specified in IETF RFCs. As 
 such, the interoperability that results from 
                              adopting it is not restricted to the 
-scholarly landscape but encompasses the web at large.  
-                             <br><br>
+scholarly landscape but encompasses the web at large.                
+<br />
                              The recipes provided in this document take a
  gradual approach towards increasing FAIRness for scholarly 
                              resources by means of Signposting: 
@@ -143,6 +156,11 @@ Link Set discoverable.
                              It increases the action radius of machine 
 agents and provides them with a complete map of a scholarly object.
                              </li></ul>
+                         </div> <!-- row -->
+                    </div> <!-- jumbo -->
+            </div> <!-- row -->
+            
+            <div class=" ">
                              <i>"Signposting has a ridiculously low cost of entry (if you serve scholarly content over HTTP, you're already almost there)"</i> - <a href="https://orcid.org/0000-0003-0557-1155">Luc Boruta</a> in 
                              <a href="https://github.com/hvdsomp/signposting/issues/12">GitHub feedback</a> on this document.
                              <br /><br />
@@ -157,8 +175,6 @@ agents and provides them with a complete map of a scholarly object.
                              <br />
                              <br />
 							<a href="https://www.youtube.com/watch?v=FaLyasJPyUU">Make it so!</a>
-                         </div>
-                    </div>
             </div>
             
 <h3><a name="toc"></a>Table of Contents</h3>
@@ -167,8 +183,8 @@ agents and provides them with a complete map of a scholarly object.
 <ol class="nested-counter-list">
 <li><a href="#intro">Introduction</a>
 <ol>
-<li><a href="#intro1">A Scholarly Object on the Web</a></li>
-<li><a href="#intro2">Typed Links</a></li>
+<li><a href="#scholobject">A Scholarly Object on the Web</a></li>
+<li><a href="#typedlinks">Typed Links</a></li>
 <li><a href="#reltypes">Typed Links in the FAIR Signposting Profile</a></li>
 <li><a href="#linksetrec">Typed Links Provided in Link Sets</a></li>
 </ol>
@@ -199,7 +215,7 @@ agents and provides them with a complete map of a scholarly object.
             
 <h3><a name="intro"></a>1. Introduction</h3>
                             
-<h4><a name="intro1"></a>1.1. A Scholarly Object on the Web</h4>
+<h4><a name="scholobject"></a>1.1. A Scholarly Object on the Web</h4>
 
 
 <div class=" ">
@@ -209,8 +225,8 @@ each equipped with an HTTP URI. A <b>scholarly object</b> typically has:
 <li>A <b>persistent identifier</b>, e.g. a <a href="https://www.doi.org/">DOI</a> or <a href="https://www.handle.net/">handle</a> expressed as an HTTP URI.
 </li><li>A <b>landing page</b> that is reachable by dereferencing the persistent identifier and following HTTP redirects. 
 The landing page typically describes the scholarly object and provides links to its content resources. 
-Note that, in some cases, such as articles published in HTML, the landing page actually represents content of the resource. 
-For the purpose of the recipes it still is referred to as the landing page.</li>
+In some cases, such as articles published in HTML, the landing page actually represents content of the resource. 
+For the purpose of the recipes it still is referred to as the landing page. Essentially, Signposting uses the term landing page for the resource to which the object's persistent identifier resolves.</li>
 <li>One or more <b>content resources</b> that provide the actual content
  of the scholarly object, such as a PDF article, a CSV dataset, a ZIPped
  software repository, a dynamically generated map.</li> 
@@ -256,7 +272,7 @@ For the purpose of the recipes it still is referred to as the landing page.</li>
 </div>           
   -->
                 
-                <h4><a name="intro2"></a>1.2. Typed Links</h4>
+                <h4><a name="typedlinks"></a>1.2. Typed Links</h4>
                 
 <div class=" ">Typed links are more expressive than plain <code>href</code> links in HTML. They actually express 
                 the nature of the relationship between the <b>origin</b> and the <b>target</b> of the link. 
@@ -283,7 +299,7 @@ For the purpose of the recipes it still is referred to as the landing page.</li>
                 
                 <li>For web resources of any media type: Using a standalone document called a <code>Link Set</code> 
                  that is made discoverable by means of a typed link with the <code>linkset</code> 
-                relation type. More details on <code>Link Set</code> are provided in <a href="https://signposting.org/FAIR/linksetrec">Section 1.4</a></li>
+                relation type. More details on <code>Link Set</code> are provided in <a href="https://signposting.org/FAIR#linksetrec">Section 1.4</a></li>
                 </ol>
 </div>
     
@@ -338,7 +354,8 @@ without running the risk that the HTTP header becomes too large to be handled by
                         </td></tr>
                         <tr>
                             <td><code>cite-as</code></td>
-                            <td>The target of the link is a persistent URI for the resource that is the origin of the link.
+                            <td>The target of the link is a persistent URI for the resource that is the origin of the link. 
+                            When accessing the persistent URI, it redirects to that origin resource.
                             </td>
                         </tr>
                         <tr>
@@ -505,7 +522,9 @@ Sets in <a href="#level2">Level 2</a>.
                             <td><code>cite-as</code></td>
                             <td>1</td>
                             <td>Provide a link that has the persistent identifier of the scholarly object (e.g. DOI expressed as an HTTP URI) as target. 
-                            Note that dereferencing the target of a link with a <code>cite-as</code> relation type must lead to the landing page that provided that <code>cite-as</code> link.
+                            Note that dereferencing the target of a link with a <code>cite-as</code> relation type must lead to the landing page that provided that <code>cite-as</code> link. 
+                            Do not use a <code>cite-as</code> link to point at a persistent identifier that does not resolve to the landing page. For persistent identifiers that are associated with 
+                            the scholarly object but that do not resolve to its landing page, use links with the <code>related</code> link relation type.
                             </td>
                         </tr>
                         <tr>
@@ -756,7 +775,9 @@ type.</td>
                             <td><code>cite-as</code></td>
                             <td>1</td>
                             <td>Provide a link that has the persistent identifier of the scholarly object (e.g. DOI expressed as an HTTP URI) as target. 
-                            Note that dereferencing the target of a link with a <code>cite-as</code> relation type must lead to the landing page that provided that <code>cite-as</code> link.
+                            Note that dereferencing the target of a link with a <code>cite-as</code> relation type must lead to the landing page that provided that <code>cite-as</code> link. 
+                            Do not use a <code>cite-as</code> link to point at a persistent identifier that does not resolve to the landing page. For persistent identifiers that are associated with 
+                            the scholarly object but that do not resolve to its landing page, use links with the <code>related</code> link relation type.
                             </td>
                         </tr>
                        <tr>
@@ -1155,13 +1176,13 @@ Date: Fri, 9 Oct 2020 19:19:22 GMT
 Content-Type: text/html
 Content-Length: 25414
 Link: &lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="cite-as" , &lt;https://schema.org/ScholarlyArticle&gt; ; rel="type" , 
-&lt;https://schema.org/AboutPage&gt; ; rel="type" , &lt;https://orcid.org/0000-0002-1825-0097&gt; ; rel="author" , 
-&lt;https://example.org/meta/7507/bibtex&gt; ; rel="describedby" ; type="application/x-bibtex" , 
-&lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="describedby" ; type="application/vnd.datacite.datacite+json" , 
-&lt;https://spdx.org/licenses/CC-BY-4.0&gt; ; rel="license" ,
-&lt;https://example.org/file/7507/1&gt; ; rel="item" ; type="application/pdf" , 
-&lt;https://example.org/file/7507/2&gt; ; rel="item" ; type="text/csv" , 
-&lt;https://gitmodo.io/johnd/ct.zip&gt; ; rel="item" ; type="application/zip"
+ &lt;https://schema.org/AboutPage&gt; ; rel="type" , &lt;https://orcid.org/0000-0002-1825-0097&gt; ; rel="author" , 
+ &lt;https://example.org/meta/7507/bibtex&gt; ; rel="describedby" ; type="application/x-bibtex" , 
+ &lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="describedby" ; type="application/vnd.datacite.datacite+json" , 
+ &lt;https://spdx.org/licenses/CC-BY-4.0&gt; ; rel="license" ,
+ &lt;https://example.org/file/7507/1&gt; ; rel="item" ; type="application/pdf" , 
+ &lt;https://example.org/file/7507/2&gt; ; rel="item" ; type="text/csv" , 
+ &lt;https://gitmodo.io/johnd/ct.zip&gt; ; rel="item" ; type="application/zip"
 
 &lt;html lang="en"&gt;
  &lt;head&gt;
@@ -1252,7 +1273,7 @@ Date: Fri, 9 Oct 2020 20:03:49 GMT
 Content-Type: text/csv
 Content-Length: 4285
 Link: &lt;https://example.org/page/7507&gt; ; rel="collection" ; type="text/html" , 
-&lt;https://schema.org/Dataset&gt; ; rel="type"
+ &lt;https://schema.org/Dataset&gt; ; rel="type"
 </pre>
 </td>
 </tr>
@@ -1324,15 +1345,15 @@ Date: Fri, 9 Oct 2020 19:19:22 GMT
 Content-Type: text/html
 Content-Length: 25414
 Link: &lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="cite-as" , &lt;https://schema.org/ScholarlyArticle&gt; ; rel="type" , 
-&lt;https://schema.org/AboutPage&gt; ; rel="type" , &lt;https://orcid.org/0000-0002-1825-0097&gt; ; rel="author" , 
-&lt;https://example.org/meta/7507/bibtex&gt; ; rel="describedby" ; type="application/x-bibtex" , 
-&lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="describedby" ; type="application/vnd.datacite.datacite+json" , 
-&lt;https://spdx.org/licenses/CC-BY-4.0&gt; ; rel="license" ,
-&lt;https://example.org/file/7507/1&gt; ; rel="item" ; type="application/pdf" , 
-&lt;https://example.org/file/7507/2&gt; ; rel="item" ; type="text/csv" , 
-&lt;https://gitmodo.io/johnd/ct.zip&gt; ; rel="item" ; type="application/zip" , 
-&lt;https://example.org/linkset/7507/lset&gt; ; rel="linkset" ; type="application/linkset" , 
-&lt;https://example.org/linkset/7507/json&gt; ; rel="linkset" ; type="application/linkset+json"
+ &lt;https://schema.org/AboutPage&gt; ; rel="type" , &lt;https://orcid.org/0000-0002-1825-0097&gt; ; rel="author" , 
+ &lt;https://example.org/meta/7507/bibtex&gt; ; rel="describedby" ; type="application/x-bibtex" , 
+ &lt;https://doi.org/10.5061/dryad.5d23f&gt; ; rel="describedby" ; type="application/vnd.datacite.datacite+json" , 
+ &lt;https://spdx.org/licenses/CC-BY-4.0&gt; ; rel="license" ,
+ &lt;https://example.org/file/7507/1&gt; ; rel="item" ; type="application/pdf" , 
+ &lt;https://example.org/file/7507/2&gt; ; rel="item" ; type="text/csv" , 
+ &lt;https://gitmodo.io/johnd/ct.zip&gt; ; rel="item" ; type="application/zip" , 
+ &lt;https://example.org/linkset/7507/lset&gt; ; rel="linkset" ; type="application/linkset" , 
+ &lt;https://example.org/linkset/7507/json&gt; ; rel="linkset" ; type="application/linkset+json"
 
 &lt;html lang="en"&gt;
  &lt;head&gt;
@@ -1403,8 +1424,8 @@ Date: Fri, 9 Oct 2020 20:14:29 GMT
 Content-Type: application/pdf
 Content-Length: 36588
 Link: &lt;https://example.org/linkset/7507/1/lset&gt; ; rel="linkset" ; type="application/linkset" , 
-&lt;https://example.org/linkset/7507/1/json&gt; ; rel="linkset" ; type="application/linkset+json" ,
-&lt;https://example.org/page/7507&gt; ; rel="collection" ; type="text/html"
+ &lt;https://example.org/linkset/7507/1/json&gt; ; rel="linkset" ; type="application/linkset+json" ,
+ &lt;https://example.org/page/7507&gt; ; rel="collection" ; type="text/html"
 </pre>
 </td>
 </tr>

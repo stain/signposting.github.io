@@ -40,90 +40,120 @@ $(function() {
         <div class="container">
 
             <!-- Main component for a primary marketing message or call to action -->
-            <div class="row">
-                <div class="jumbo">
-                <div class="row">
-                    <div class="col-md-7">
-                        <h3>Conventions</h3>
+				<div class="row">
+                <div class="jumbo"> 
+                     <div class="row" style="padding: 0 15px;">
+                        <h3 style="margin: 0; margin-bottom: 10px;">Conventions</h3>
                         <h4 class="text-muted">Signposting the Scholarly Web</h4>
-                        <div class="">
-                             This page provides an overview of a variety of proposed conventions to be used for the Signposting patterns.
-                             <br/><br/>
+                        <p class="">
+                             This page provides an overview of a variety of conventions that are used by specifications on the Signposting site.
+                             <br/>
                              <ul>
-                                 <li><a href="#terminology">Terminology</a></li>
+                                 <li><a href="#scholobject">A Scholarly Object on the Web</a></li>
+                                 <li><a href="#signpostingmodel">Signposting Modeling of a Scholarly Object on the Web</a></li>
                                  <li><a href="#relation_types">Relation Types for Typed Links</a></li>
                                  <li><a href="#attributes">Attributes for Typed Links</a></li>
-                                 <!--<li><a href="#type">URIs to express the nature of a scholarly resource</a></li>-->
                                  <li><a href="#bibliographic">Bibliographic Metadata Formats</a></li>
                              </ul>
-                         </div>
+                         </p>
                     </div>
+                    
+                    <!--
                     <div class="col-md-5">
                         <div class="clearfix">
                         <img src="https://signposting.org/static/images/signposting.png" alt="Signposting the web in Slideshare" class="sp_pat pull-right"/>
                         </div>
                         <p style="font-size: 0.7em;" class="pull-right">Image courtesy of <a href="https://twitter.com/hochstenbach" target="_blank">Patrick Hochstenbach</a>.</p>
                     </div>
+                 -->
                 </div>
                 </div>
-            </div>
+
 
             <div class="row featurette">
-                <h3><a name="terminology"></a>Terminology</h3>
-                <div class="">
-                    <table class="table" >
-                        <tr>
-                            <td style="width: 25%;"><a name="identifier"></a><b>Identifying HTTP URI</b></td>
-                            <td>An HTTP URI that provides a scholarly object with a web identity that is 
-                                intended to be persistent. The intended persistence can be achieved by means of cross-portal  
-                                infrastructure (e.g. DOI, handle, PURL, W3ID, ...). Typically, an Identifying HTTP URI does not provide content itself but rather redirects to another HTTP URI that does.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 25%;"><a name="repository_uri"></a><b>Repository Stable HTTP URI</b></td>
-                            <td>
-                                 An HTTP URI minted by a repository or a portal, and specifically intended to remain stable over time.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a name="entry_page"></a><b>Entry Page</b></td>
-                            <td>The page in a publisher's portal where one typically enters when accessing a 
-                                scholarly publication, usually by following redirects from an Identifying HTTP URI 
-                                or via a search engine result. In some portals, the Entry Page is the landing page, 
-                                in others the Entry Page is an HTML version of the publication.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a name="publication_resource"></a><b>Publication Resource</b></td>
-                            <td>Any web resource that is considered to be an integral part of a publication. 
-                                Typical scholarly publications have several associated Publication Resources, such as a PDF version of an 
-                                article, an HTML version of an article, supplementary information in various formats, datasets, etc.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a name="bibliographic_resource"></a><b>Bibliographic Resource</b></td>
-                            <td>A web resource that describes the publication in a structured manner, for example, using BibTeX or RIS formatting styles. 
-                            The resource is available at a URI that supports <code>HTTP GET</code>.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a name="author_identifier"></a><b>Author Identifying HTTP URI</b></td>
-                            <td>An HTTP URI that identifies the author of a publication and is intended to be persistent. 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a name="author_description_page"></a><b>Author Description Page</b></td>
-                            <td>A web resource that provides information about an author, for example, a resource that lists an author's scholarly publications and other metadata. This resource either could provide information that is maintained by single publisher or a repository, or it could be a service that provides information by aggregating across repositories.
-                            </td>
-                        </tr>
+                <h3><a name="scholobject"></a>A Scholarly Object on the Web</h3>
+                
+                <div class=" ">
+It has become common to publish scholarly objects on the web as a set of web resources, 
+each equipped with an HTTP URI. A <b>scholarly object</b> typically has:
+<ul>
+<li>A <b>persistent identifier</b>, e.g. a <a href="https://www.doi.org/">DOI</a> or <a href="https://www.handle.net/">handle</a> expressed as an HTTP URI.
+</li><li>A <b>landing page</b> that is reachable by dereferencing the persistent identifier and following HTTP redirects. 
+The landing page typically describes the scholarly object and provides links to its content resources. 
+In some cases, such as articles published in HTML, the landing page actually represents content of the resource. 
+For simplicity, this is still referred to as the landing page. Essentially, Signposting uses the term landing page for the resource to which the object's persistent identifier resolves.</li>
+<li>One or more <b>content resources</b> that provide the actual content
+ of the scholarly object, such as a PDF article, a CSV dataset, a ZIPped
+ software repository, a dynamically generated map.</li> 
+<li>One or more <b>metadata resources</b> that describe the scholarly object in commonly used formats.</li>
+<li>Other <b>identifiers</b> that pertain to the scholarly object, including:
+	<ul>
+		<li>Identifiers for <b>authors</b>, e.g. 
+    <a href="https://orcid.org/">ORCID</a> or <a href="https://isni.org/">ISNI</a>, expressed as HTTP URIs.</li>
+		<li>Identifiers of applicable <b>licenses</b>, e.g. <a href="https://creativecommons.org/">Creative Commons</a> licenses expressed as HTTP URIs, preferably using <a href="https://spdx.org/licenses">SPDX</a> license URIs.</li>
+		<li>Identifiers for scholarly object <b>types</b> expressed as HTTP URIs from commonly used vocabularies, e.g. <a href="https://schema.org">schema.org</a>.</li> 
+	</ul>	
+	</li>
+</ul>
+</div>	
 
-                    </table>
-                </div>
+<br>
+                 <div style="text-align: center;">
+                        <img src="basic.png" alt="scholarly object on the web" width="500">
+                        </div>
+               <br>
+               
+             <h3><a name="signpostingmodel"></a>Signposting Modeling of a Scholarly Object on the Web</h3>
+             
+ <div class=" ">
+A <a href="#scholobject">Scholarly Object</a> on the Web consists of a range of different kinds of resources, each with their own URI. Signposting 
+interconnects these resources in an unambiguous manner by means of links with a limited set of <a href="#relation_types">link relation types</a>. 
+These are some core characteristics of the approach:
+<ul>
+<li>
+The landing page, i.e. the resource to which the scholarly object's persistent identifier resolves, takes center stage in the approach. 
+Since landing pages are under control of the custodians of scholarly objects, the approach is not dependent on technical interventions 
+by parties other than those custodians, e.g. repository managers.
+</li>
+<li>
+Links with specific link relation types point from the landing page to various resources that are constituents 
+of the scholarly object, e.g. <code>item</code> links point at content resources, <code>describedby</code> links point at 
+metadata resources, etc. Modeling purists are known to have taken some issue with these links emanating from the landing page, 
+rather than from the persistent identifier of the scholarly object. This choice is justified in two ways. 
+First, it puts custodians of scholarly objects (repository managers) in the driver seat to make the required technical 
+interventions without dependency on external parties. Second, the approach entails an equivalence between the landing page URI 
+and the persistent identifier URI because:
+<ul>
+<li>
+The persistent identifier URI redirects with an <code>HTTP 302 Found</code> to the landing page URI. 
+In natural language, this <a href="https://datatracker.ietf.org/doc/html/rfc9110#name-302-found">technical approach</a> 
+translates to 
+"You are looking for the resource identified by the persistent identifier URI. It's not here. 
+But you can find it at the landing page URI."
+</li>
+<li>
+The landing page URI links to the persistent identifier URI with the <code>cite-as</code> link relation type. 
+In natural language, this <a href="https://datatracker.ietf.org/doc/html/rfc8574">technical approach</a> 
+translates, to 
+"In case you want to reference the landing page, don't do so using the landing page URI. Use the 
+persistent identifier URI instead.
+</li>
+</ul>
+</li>
+<li>
+In order to link from the landing page to content resources, the landing page is modeled as a collection. 
+This allows using links with the <code>item</code> relation type to point from the landing page to content resources, 
+and the inverse <code>collection</code> relation type to point back from content resources to the landing page.
+</li>
+</ul>
+</div>	
+
+<br>            
 
                 <h3><a name="relation_types"></a>Relation Types for Typed Links</h3>
 
                 <p>Relation Types are generally registered in the <a href="https://www.iana.org/assignments/link-relations/link-relations.xhtml">IANA Link Relation Registry</a>, 
-                which also describes their meaning and links to the specification in which they were originally defined. The Relation Types used for Signposting are repeated below, 
+                which also describes their meaning and links to the specification in which they were originally defined. The Relation Types used for Signposting are listed below, 
                 with reference to the pattern in which they are applied.</p>
 
                 <div class="">
@@ -135,66 +165,49 @@ $(function() {
                         </tr>
                         <tr>
                             <td><code>author</code></td>
-                            <td><a href="/author/">Author</a></td>
-                            <td>The resource that is the target of the link is a web resource that identifies the author of the publication. In the Author pattern, the <a href="#identifier">Identifying HTTP URI</a>, the <a href="#entry_page">Entry Page</a>, and the <a href="#publication_resource">Publication Resource</a> links to the Author of the publication using the <code>author</code> relation type. The <code>author</code> relation type may be repeated if there are multiple authors for a publication. 
+                            <td><a href="/patterns/author/">Author</a></td>
+                            <td>The target of the link is a URI for an author of the resource that is the origin of the link.</td>
                         </tr>
-                        <tr>
-                            <td><code>collection</code></td>
-                            <td><a href="/publication_boundary/">Publication Boundary</a></td>
-                            <td>The resource that is the target of the link is a collection to which the resource that provides the link belongs. 
-                                In the Publication Boundary pattern, 
-                                the <a href="#entry_page">Entry Page</a> is modeled as a collection. 
-                                Each <a href="#publication_resource">Publication Resource</a> link to the <a href="#entry_page">Entry Page</a> 
-                                using the <code>collection</code> relation type.</td>
-                        </tr>
-                        <tr>
-                            <td><code>describedby</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a></td>
-                            <td>The resource that is the target of the link is a description of the resource that provides the link. 
-                                In the Bibliographic Metadata pattern, the <a href="#entry_page">Entry Page</a> 
-                                links to a <a href="#bibliographic_resource">Bibliographic Resource</a> 
-                                using the <code>describedby</code> relation type.</td>
-                        </tr>
-                        <tr>
-                            <td><code>describes</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a></td>
-                            <td>The resource that is the target of the link is described by the resource that provides the link. 
-                                In the Bibliographic Metadata pattern, a <a href="#bibliographic_resource">Bibliographic Resource</a> links to the 
-                                <a href="#entry_page">Entry Page</a> using the <code>describes</code> 
-                                relation type.</td>
-                        </tr>
-                        <tr>
-                            <td><code>item</code></td>
-                            <td><a href="/publication_boundary/">Publication Boundary</a></td>
-                            <td>The resource that is the target of the link belongs to a collection, 
-                                which is the resource that provides the link.  In the Publication Boundary pattern, 
-                                the <a href="#entry_page">Entry Page</a> is modeled as a collection. 
-                                It links to each <a href="#publication_resource">Publication Resource</a> using the <code>item</code> relation type.
-                            </td>
-                        </tr>
-                        <tr>
+                                                <tr>
                             <td><code>cite-as</code></td>
-                            <td><a href="/publication_boundary/">Publication Boundary</a>, <a href="/identifier/">Identifier</a></td>
-                            <td>The resource that is the target of the link is the Identifying HTTP URI of the resource that 
-                                provides the link. In the Publication Boundary pattern, each <a href="#publication_resource">Publication Resource</a> links 
-                                to the <a href="#identifier">Identifying HTTP URI</a> 
-                                using the <code>cite-as</code> relation type. In the Identifier pattern, the <a href="#author_description_page">Author Description Page</a> links to the preferred 
-                                <a href="#author_identifier">Author Identifier</a> using the <code>cite-as</code> relation type. 
-                                </td>
+                            <td><a href="/patterns/identifier/">Identifier</a></td>
+                            <td>The target of the link is a persistent URI for the resource that is the origin of the link. When accessing the persistent URI, 
+                            it redirects to that origin resource.</td>
+                        </tr>
+                       <tr>
+                            <td><code>describedby</code></td>
+                            <td><a href="/patterns/metadata_resources/">Metadata Resources</a></td>
+                            <td>The target of the link provides metadata that describes the resource that is the origin of the link.</td>
+                        </tr>
+                       <tr>
+                            <td><code>describes</code></td>
+                            <td><a href="/patterns/metadata_resources/">Metadata Resources</a></td>
+                            <td>The origin of the link is a resource that provides metadata that describes the resource that is the target of the link. It is the inverse of the <code>describedby</code> relation type. </td>
                         </tr>
                         <tr>
                             <td><code>type</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a>, <a href="/publication_boundary/">Publication Boundary</a>, <a href="/resource_type/">Resource Type</a></td>
-                            <td>The resource that is the target of the link indicates the nature of the resource that provides the link, 
-                                e.g. whether it is a landing page, a publication, a dataset, ... In the Publication Boundary pattern, 
-                                the <a href="#entry_page">Entry Page</a> and each <a href="#publication_resource">Publication Resource</a> 
-                                uses a link with the <code>type</code> relation type to express its own nature. In the Bibliographic 
-                                Metadata pattern, each <a href="#bibliographic_resource">Bibliographic Resource</a> uses this relation type 
-                                to indicate its descriptive nature. Values to be used are listed in the section 
-                                <a href="#type">URIs to express the nature of a scholarly resource</a>.
-                                In the Resource Type pattern, the <a href="#identifier">Identifying HTTP URI</a> and the <a href="#author_identifier">Author Identifier</a> expresses their resource type using <code>type</code>. 
-
-                                </td>
+                            <td><a href="/patterns/type/">Type</a></td>
+                            <td>The target of the link is the URI for a class of resources to which the resource that is the origin of the link belongs.</td>
+                        <tr>
+                        <tr>
+                            <td><code>license</code></td>
+                            <td><a href="/patterns/license/">License</a></td>
+                            <td>The target of the link is the URI of a license that applies to the resource that is the origin of the link.</td>
+                        </tr>
+                        <tr>
+                            <td><code>item</code></td>
+                            <td><a href="/patterns/content_resources/">Content Resources</a></td>
+                            <td>The origin of the link is a collection of resources and the target of the link is a resource that belongs to that collection. 
+                            It is the inverse of the <code>collection</code> relation type. In Signposting, the landing page of a scholarly object is modeled 
+                            as a collection of content resources.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>collection</code></td>
+                            <td><a href="/patterns/content_resources/">Content Resources</a></td>
+                            <td>The origin of the link is a resource that belongs to a collection and the target of the link is the collection to which it belongs. 
+                            It is the inverse of the <code>item</code> relation type. In Signposting, the landing page of a scholarly object is modeled 
+                            as a collection of content resources.</td>
                         </tr>
                     </table>
                 </div>
@@ -202,7 +215,7 @@ $(function() {
                 <h3><a name="attributes"></a>Attributes for Typed Links</h3>
 
                 <p>There is currently no official registry for attributes that can be used on Typed Links. The most common ones are 
-                listed in the <a href="http://tools.ietf.org/html/rfc5988#page-8">Web Linking RFC</a>. The attributes that are important 
+                listed in the <a href="https://datatracker.ietf.org/doc/html/rfc8288#section-3.4">Web Linking RFC</a>. The attributes that are important 
                 for Signposting are listed below, 
                 with reference to the pattern in which they are applied. </p>
 
@@ -214,13 +227,19 @@ $(function() {
                             <td><b>Description</b></td>
                         </tr>
                         <tr>
+                            <td><code>type</code></td>
+                            <td><a href="/patterns/metadata_resources/">Metadata Resources</a>, <a href="/patterns/content_resources/">Content Resources</a></td>
+                            <td>The value of the <code>type</code> attribute conveys the MIME type of the resource 
+                                that is the target of the link on which the attribute is used.</td>
+                        </tr>
+                        <tr>
                             <td><code>profile</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a>, <a href="/publication_boundary/">Publication Boundary</a></td>
+                            <td><a href="/patterns/metadata_resources/">Metadata Resources</a>, <a href="/patterns/content_resources/">Content Resources</a></td>
                             <td>The value of the <code>profile</code> attribute indicates the <a href="https://tools.ietf.org/html/rfc6906#section-3">profile</a> to which the resource that is the 
                                 target of the link conforms. Generally, a profile is a syntactic and/or semantic constraint that 
                                 applies beyond what can be expressed using the MIME type of the resource. 
                                 The <code>profile</code> attribute is, for example, useful when different 
-                                <a href="#bibliographic_resource">Bibliographic Resources</a> have the 
+                                <a href="#scholobject">metadata resources</a> have the 
                                 same MIME type (e.g. <code>application/xml</code>) but conform to a different schema. 
                                 The value of the <code>profile</code> attribute is a URI 
                                 that uniquely identifies the format (e.g. <code>XML Schema URI</code>). Note that the use of the <code>profile</code> attribute is standardized for certain MIME types, such as  
@@ -228,83 +247,10 @@ $(function() {
                 <code>application/xml</code>, and <code>application/json</code> and, as such, its use is a community convention introduced for Signposting.
                             </td>
                         </tr>
-                        <!--
-                        <tr>
-                            <td><code>sem-type</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a>, <a href="/landing_page/">Landing Page</a></td>
-                            <td>The value of the <code>sem-type</code> attribute conveys the nature of the resource 
-                                that is the target of the link on which the attribute is used. 
-                                Values to be used are listed in the section 
-                                <a href="#type">URIs to express the nature of a scholarly resource</a>. 
-                                The <code>sem-type</code> 
-                                attribute will be defined in the <a href="https://github.com/mnot/I-D/tree/gh-pages/link-hint">HTTP Link Hints</a> RFC that is in the making.</td>
-                        </tr>
-                        -->
-                        <tr>
-                            <td><code>type</code></td>
-                            <td><a href="/bibliographic_metadata/">Bibliographic Metadata</a>, <a href="/publication_boundary/">Publication Boundary</a></td>
-                            <td>The value of the <code>type</code> attribute conveys the MIME type of the resource 
-                                that is the target of the link on which the attribute is used.</td>
-                        </tr>
                     </table>
                 </div>
 
-                <!--
-                <h3><a name="type"></a>URIs to express the nature of a scholarly resource</h3>
 
-            <p>The below table lists URIs to be used to convey the nature of a scholarly web resource. These URIs 
-            are used:</p>
-            <ul>
-            <li>With the <code>type</code> relation type: A resource provides a link with the <code>type</code> relation type to 
-            express its own nature. That target of that link is one of the URIs listed below.</li>
-            <li>For the <code>sem-type</code> attribute: A resource provides a link (using any relation type) with a 
-            <code>sem-type</code> attribute to express the nature of the linked resource. The value of that attribute 
-            is one of the URIs listed below.</li>
-            </ul>
-
-                <p>In order to keep things simple, and to achieve broad interoperability, 
-                only very coarse expressions of scholarly resource type are used. They originate in the 
-                COAR
-                <a href="https://wiki.surfnet.nl/display/standards/info-eu-repo">info:eu-repo/</a> and 
-                JISC/UKOLN/cetis <a href="http://www.ukoln.ac.uk/repositories/digirep/index/Eprints_Type_Vocabulary_Encoding_Scheme">eprint</a> vocabularies.</p>
-
-                <div class="">
-                    <table class="table" >
-                        <tr>
-                            <td style="width: 50%;"><b>Value</b></td>
-                            <td><b>Description</b>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>info:eu-repo/semantics/dataset</code></td>
-                            <td>This is the value for a <a href="#publication_resource">Publication Resource</a> that is a dataset.</td>
-                        </tr>
-                        <tr>
-                            <td><code>info:eu-repo/semantics/descriptiveMetadata</code></td>
-                            <td>This is the value for <a href="#bibliographic_resource">Bibliographic Resources</a>.</td>
-                        </tr>
-                        <tr>
-                            <td><code>info:eu-repo/semantics/humanStartPage</code></td>
-                            <td>This is the value for the Landing Page. Do not use it for an <a href="#entry_page">Entry Page</a> 
-                                that is an HTML version of a publication.</td>
-                        </tr>
-                        <tr>
-                            <td><code>http://purl.org/eprint/type/ScholarlyText</code></td>
-                            <td>This is the value for a <a href="#publication_resource">Publication Resource</a> 
-                            that is a scholarly text that primarily consists of words for reading. It is used for a variety of 
-                            textual scholarly works including journal articles, conference papers, preprints, thesis, books, etc. 
-                            An <a href="http://www.ukoln.ac.uk/repositories/digirep/index/Eprints_Type_Vocabulary_Encoding_Scheme">enumeration</a> is available. 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><code>info:eu-repo/semantics/objectFile</code></td>
-                            <td>This is the value for a <a href="#publication_resource">Publication Resource</a> that can not be 
-                                characterized as any of the other types of <a href="#publication_resource">Publication Resources</a> 
-                                listed in this table. </td>
-                        </tr>
-                    </table>
-                </div>
-                -->
 
                 <h3><a name="bibliographic"></a>Bibliographic Metadata Formats</h3>
 
@@ -318,17 +264,17 @@ $(function() {
                 <p>Preferably, MIME types for bibliographic metadata formats should be 
                 <a href="http://www.iana.org/form/media-types">registered</a>. 
                 But CrossRef, DataCite, and mEDRA have established an interoperable 
-                practice to <a href="http://www.crosscite.org/cn/">access bibliographic metadata using content negotiation</a> on the basis  
+                practice to <a href="https://citation.crosscite.org/docs.html">access bibliographic metadata using content negotiation</a> on the basis  
                 of unregistered MIME types for three formats. Since Signposting is all about 
                 pragmatism it uses these de-facto MIME types for interoperability; they are listed in the below table. 
-                These MIME types are used in <code>describedby</code> links that point to <a href="#bibliographic_resource">Bibliographic Resources</a> 
+                These MIME types are used in <code>describedby</code> links that point to bibliographic metadata resources 
                 and should be expressed by a client in the <code>Accept</code> HTTP Request header when accessing the URI that is the target 
                 of a <code>describedby</code> link.</p>
                 
                     <div class="">
                     <table class="table" >
                         <tr>
-                            <td style="width: 25%;"><b>Bibliographic Format</b></td>
+                            <td style="width: 25%;"><b>Bibliographic Metadata Format</b></td>
                             <td style="width: 25%;"><b>MIME Type</b></td>
                             <td>&nbsp;</td>
                         </tr>
@@ -338,7 +284,7 @@ $(function() {
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td><a href="https://github.com/citation-style-language/schema/blob/master/csl-data.json">CiteProc JSON</a></td>
+                            <td><a href="https://citeproc-js.readthedocs.io/en/latest/">CiteProc JSON</a></td>
                             <td><code>application/vnd.citationstyles.csl+json</code></td>
                             <td>&nbsp;</td>
                         </tr>
@@ -354,7 +300,7 @@ $(function() {
                 <code>application/xml</code>, <code>application/json</code>, or <code>application/ld+json</code> as MIME types. In order to distinguish between 
                 bibliographic formats that have the same MIME type, either a dedicated MIME type should be <a href="http://www.iana.org/form/media-types">registered</a> 
                 or a <code>profile</code> attribute 
-                can be used on a <code>describedby</code> link to clarify the bibliographic format beyond its MIME type. The former allows for content negotiation, the latter does not. The below table shows how the <code>profile</code> 
+                can be used on a <code>describedby</code> link to clarify the metadata format beyond its MIME type. The former allows for content negotiation, the latter does not. The below table shows how the <code>profile</code> 
                 approach can be used for popular XML-based formats. Note that the use of the <code>profile</code> attribute is standardized for some MIME types, such as  
                 <code>application/ld+json</code>. It is not for many others, including <code>text/plain</code>, 
                 <code>application/xml</code>, and <code>application/json</code> and, as such, it is a community convention introduced for Signposting.</p>
@@ -362,29 +308,34 @@ $(function() {
                  <div class="">
                     <table class="table" >
                         <tr>
-                            <td style="width: 25%;"><b>Bibliographic Format</b></td>
+                            <td style="width: 25%;"><b>Bibliographic Metadata Format</b></td>
                             <td style="width: 25%;"><b><code>type</code> Attribute Value</b></td>
                             <td><b><code>profile</code> Attribute Value</b></td>
                         </tr>
                         <tr>
-                            <td><a href="http://www.loc.gov/standards/marcxml/">MARC XML</a></td>
+                            <td><a href="https://www.loc.gov/standards/marcxml/">MARC XML</a></td>
                             <td><code>application/xml</code></td>
                             <td><code>http://www.loc.gov/MARC21/slim</code></td>   
                         </tr>
                         <tr>
-                            <td><a href="http://www.loc.gov/standards/mods/">MODS</a></td>
+                            <td><a href="https://www.loc.gov/standards/mods/">MODS</a></td>
                             <td><code>application/xml</code></td>
                             <td><code>http://www.loc.gov/mods/</code></td>   
                         </tr>
                         <tr>
-                            <td><a href="http://www.dublincore.org/documents/dces/">Simple Dublin Core</a></td>
+                            <td><a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#section-3">Simple Dublin Core</a></td>
                             <td><code>application/xml</code></td>
-                            <td><code>http://purl.org/dc/elements/1.1/ </code></td>                          
+                            <td><code>http://purl.org/dc/elements/1.1/</code></td>                          
                         </tr>
                         <tr>
-                            <td><a href="http://www.dublincore.org/documents/dces/">Qualified Dublin Core</a></td>
+                            <td><a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/">Qualified Dublin Core</a></td>
                             <td><code>application/xml</code></td>
                             <td><code>http://dublincore.org/documents/dcmi-terms/</code></td>                          
+                        </tr>
+                        <tr>
+                            <td><a href="https://rioxx.net/profiles/v3-0-final/">Rioxx version 3</a></td>
+                            <td><code>application/xml</code></td>
+                            <td><code>http://www.rioxx.net/schema/v3.0/rioxx/</code></td>                          
                         </tr>
                     </table>
                 </div>
